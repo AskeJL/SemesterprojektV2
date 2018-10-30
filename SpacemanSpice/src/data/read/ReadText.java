@@ -11,6 +11,10 @@ package data.read;
  */
 public class ReadText {
     
+    ReadText(){
+        
+    }
+    
     public void readtext(){
         
     }

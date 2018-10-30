@@ -11,6 +11,10 @@ package data.read;
  */
 public class ReadLocation {
     
+    ReadLocation(){
+        
+    }
+    
     public void readLocation(){
         
     }

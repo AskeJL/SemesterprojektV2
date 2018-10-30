@@ -11,4 +11,8 @@ package data.write;
  */
 public class WriteLocation {
     
+    WriteLocation(){
+        
+    }
+    
 }
