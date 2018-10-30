@@ -17,7 +17,7 @@ import spacemanspice.locations.Room;
 public class Outside extends Location{
 
     public Outside() {
-        super("Outside","You are now outside the ship, here you can repair some off the damage it has taken");
+        super("Outside","You are at the airlock and have the oppertunity to go outside the ship");
         
         createLocation();
     }
@@ -26,7 +26,7 @@ public class Outside extends Location{
     public void createLocation() {
         
         // The outside location object is created here toogether with the airlock.
-        Room outside = new Room("Outside","You are now outside");
+        Room outside = new Room("Outside","You are now outside and here you can repair the ship");
         super.addRoom(outside);
         
         Room airlock = new Room("airlock","You are now in the airlock");
@@ -37,13 +37,11 @@ public class Outside extends Location{
         outside.addExit(new Exit(ExitDirection.EAST,airlock));
         
         airlock.addExit(new Exit(ExitDirection.WEST,airlock));
-        airlock.addExit(new Exit(ExitDirection.NORTH,airlock));
-        airlock.addExit(new Exit(ExitDirection.EAST,airlock));
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + this.getExits()+ "]";
     }
     
     
