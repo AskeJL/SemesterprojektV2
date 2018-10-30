@@ -10,5 +10,18 @@ package spacemanspice.locations;
  * @author sbang
  */
 public class Exit {
+    private boolean exitToRoom;
+    private boolean exitToLocation;
+    private Room roomExit;
+    private Location locationExit;
+    
+    
+    public Exit(ExitDirection d, Room exit){
+        
+    }
+    
+    public Exit(ExitDirection d, Location exit){
+        
+    }
     
 }
