@@ -11,6 +11,10 @@ package data.read;
  */
 public class ReadArt {
     
+    ReadArt(){
+        
+    }
+    
     public void readArt(){
         
     }

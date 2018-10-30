@@ -11,5 +11,7 @@ package data.write;
  */
 public class WriteScore {
     
-    
+    WriteScore(){
+        
+    }
 }

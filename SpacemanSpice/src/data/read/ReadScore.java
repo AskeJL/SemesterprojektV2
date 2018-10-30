@@ -11,6 +11,10 @@ package data.read;
  */
 public class ReadScore {
     
+    ReadScore(){
+        
+    }
+    
     public void readScore(){
         
     }
