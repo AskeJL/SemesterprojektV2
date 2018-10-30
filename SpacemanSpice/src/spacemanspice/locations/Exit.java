@@ -14,14 +14,19 @@ public class Exit {
     private boolean exitToLocation;
     private Room roomExit;
     private Location locationExit;
+    private ExitDirection direction;
     
     
     public Exit(ExitDirection d, Room exit){
-        
+        this.direction = d;
+        this.roomExit = exit;
+        this.exitToRoom = true;
     }
     
     public Exit(ExitDirection d, Location exit){
-        
+        this.direction = d;
+        this.locationExit = exit;
+        this.exitToLocation = true;
     }
     
 }

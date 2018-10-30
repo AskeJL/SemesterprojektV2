@@ -10,5 +10,5 @@ package spacemanspice.locations;
  * @author sbang
  */
 public enum ExitDirection {
-    
+    NORTH, SOUTH, WEST, EAST;
 }
