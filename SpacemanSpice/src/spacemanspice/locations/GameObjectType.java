@@ -9,6 +9,8 @@ package spacemanspice.locations;
  *
  * @author sbang
  */
-public class GameObjectType {
-    
+public enum GameObjectType {
+    WATER,
+    AIR,
+    FIRE_EXTINGUISHER;
 }
