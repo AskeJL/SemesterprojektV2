@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package data.read;
 
 /**
  *
  * @author askel
  */
-public class Contoller {
+public class ReadScore {
     
+    public void readScore(){
+        
+    }
 }
