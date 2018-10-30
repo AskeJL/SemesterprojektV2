@@ -5,10 +5,32 @@
  */
 package spacemanspice.locations.nonfunctional;
 
+import spacemanspice.locations.Location;
+import spacemanspice.locations.Room;
+
 /**
  *
  * @author sbang
  */
-public class Hallway01 {
+public class Hallway01 extends Location {
+
+    public Hallway01() {
+        super("Hallway01", "Hallway connecting Personal, Laser and Control");
+        
+        createLocation();
+    }
+
+    @Override
+    public void createLocation() {
+        /*Hallway-------------------------------------------------------------*/
+        Room hallway = new Room("Hallway", "The lower left hallway");
+        
+        super.addEntrance(hallway);
+    }
+
+    @Override
+    public String toString() {
+        return "locations.functional.Control : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+    }
     
 }
