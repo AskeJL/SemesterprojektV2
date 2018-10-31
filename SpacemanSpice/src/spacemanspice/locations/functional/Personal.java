@@ -8,12 +8,14 @@ import spacemanspice.locations.Room;
 
 public class Personal extends Location{
     
+    //Constructor
     public Personal(){
         super("Personal" , "this is the personal room");
         
         createLocation();
     }
     
+    //Create Location method
     @Override
     public void createLocation(){
         
@@ -36,6 +38,7 @@ public class Personal extends Location{
         bedroomRoom.addExit(new Exit(ExitDirection.WEST, corridorRoom));
     }
     
+    //toString method
     @Override
     public String toString(){
         return "locations.functional.Personal : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
