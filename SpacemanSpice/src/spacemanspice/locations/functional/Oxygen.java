@@ -7,12 +7,14 @@ import spacemanspice.locations.Room;
 
 public class Oxygen extends Location {
     
+    //Constructor
     public Oxygen(){
         super("Oxygen" , "Oxygen is refueled from here");
         
         createLocation();
     }
     
+    //Create Location method
     @Override
     public void createLocation(){
         
@@ -35,6 +37,7 @@ public class Oxygen extends Location {
         oxygenRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
     
+    //toString method
     @Override
     public String toString(){
             return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
