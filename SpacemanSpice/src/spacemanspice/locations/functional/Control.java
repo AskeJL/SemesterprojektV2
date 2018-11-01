@@ -39,7 +39,9 @@ public class Control extends Location {
         
         super.addRoom(controlRoom);
         
-        /*Setting exits-------------------------------------------------------*/
+        /*Setting exits and entrances-----------------------------------------*/
+        super.addEntrance(controlRoom);
+        
         controlRoom.addExit(new Exit(ExitDirection.NORTH, steeringRoom));
         controlRoom.addExit(new Exit(ExitDirection.WEST, navigationRoom));
         

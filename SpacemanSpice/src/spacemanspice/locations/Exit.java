@@ -22,8 +22,9 @@ public class Exit {
         this.exitToRoom = true;
     }
     
-    public Exit(ExitDirection d, Location exit){
+    public Exit(ExitDirection d, Location exit, Room entrance){
         this.direction = d;
+        this.roomExit = entrance;
         this.locationExit = exit;
         this.exitToLocation = true;
     }

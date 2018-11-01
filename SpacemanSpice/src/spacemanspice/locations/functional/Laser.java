@@ -39,7 +39,9 @@ public class Laser extends Location{
         
         super.addRoom(controlsRoom);
         
-        /*Setting exits-------------------------------------------------------*/
+        /*Setting exits and entrances-----------------------------------------*/
+        super.addEntrance(corridorRoom);
+        
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, technicRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, controlsRoom));
         
