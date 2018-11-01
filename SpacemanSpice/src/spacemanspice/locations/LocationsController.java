@@ -44,7 +44,7 @@ public class LocationsController {
         LOCATIONS.add(mainhall01);// 9
         LOCATIONS.add(mainhall02);// 10
 
-        // Connecting locations
+        // Connecting locations (Should be moved to another method: connectLocations)
         // Laser connects to mainhall02 from corridor due WEST
         // Laser connects to hallway01 from corridor due EAST
         laser.addExit(new Exit(ExitDirection.WEST, mainhall02, laser.getRooms().get(0)));

@@ -9,6 +9,7 @@ public class Scanning extends Location {
     
     public Scanning(){
         super("Scanning", "Space debris can be scanned from here.");
+        
         createLocation();
     }
     
