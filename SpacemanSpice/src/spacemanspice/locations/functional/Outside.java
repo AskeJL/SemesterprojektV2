@@ -17,23 +17,27 @@ import spacemanspice.locations.Room;
 public class Outside extends Location{
 
     public Outside() {
-        super("Outside","You are at the airlock and have the oppertunity to go outside the ship");
+        super("Outside","This location contains the airlock and from here it is possible to go outside");
         
         createLocation();
     }
 
     @Override
     public void createLocation() {
+         /*The romms in the control location are created-----------------------*/
         
-        // The outside location object is created here toogether with the airlock.
+        /*outside------------------------------------------------------------*/
         Room outside = new Room("Outside","You are now outside and here you can repair the ship");
         super.addRoom(outside);
         
+        /*Airlock----------------------------------------------------------*/
         Room airlock = new Room("airlock","You are now in the airlock");
         super.addRoom(airlock);
         
         
-        // Outside and airlock is given exits
+        /*Setting exits and entrances-----------------------------------------*/
+        super.addEntrance(airlock);
+        
         outside.addExit(new Exit(ExitDirection.EAST,airlock));
         
         airlock.addExit(new Exit(ExitDirection.WEST,airlock));

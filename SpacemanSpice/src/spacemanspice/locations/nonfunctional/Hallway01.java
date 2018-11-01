@@ -15,16 +15,21 @@ import spacemanspice.locations.Room;
 public class Hallway01 extends Location {
 
     public Hallway01() {
-        super("Hallway01", "Hallway connecting Personal, Laser and Control");
+        super("Hallway01", "Hallway connecting Personal, Laser and Net");
         
         createLocation();
     }
 
     @Override
     public void createLocation() {
-        /*Hallway-------------------------------------------------------------*/
-        Room hallway = new Room("Hallway", "The lower left hallway");
+        /*The romms in the control location are created-----------------------*/
         
+        /*Hallway-------------------------------------------------------------*/
+        Room hallway = new Room("Hallway", "This hallway connects the Personal, Laser and Net");
+        
+        super.addRoom(hallway);
+        
+        /*Setting entrance----------------------------------------------------*/
         super.addEntrance(hallway);
     }
 

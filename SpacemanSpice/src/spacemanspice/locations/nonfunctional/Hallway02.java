@@ -22,8 +22,14 @@ public class Hallway02 extends Location {
 
     @Override
     public void createLocation() {
-        Room hallway02 = new Room("Outside","You are now outside and here you can repair the ship");
+        /*The romm in the control location are created-----------------------*/
+        
+        /*Hallway 02------------------------------------------------------------*/
+        Room hallway02 = new Room("Hallway 02","This hallway connects the airlock, navigation and oxygen");
+       
         super.addRoom(hallway02);
+        
+        /*Setting entrance-----------------------------------------*/
         super.addEntrance(hallway02);
     }
 

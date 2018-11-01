@@ -17,13 +17,15 @@ import spacemanspice.locations.Room;
 public class Control extends Location {
 
     public Control() {
-        super("Control", "The ship is navigated from here.");
+        super("Control", "In this location the ship is controlled.");
         
         createLocation();
     }
 
     @Override
     public void createLocation() {
+        /*The romms in the control location are created-----------------------*/
+        
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
         
@@ -46,6 +48,7 @@ public class Control extends Location {
         controlRoom.addExit(new Exit(ExitDirection.WEST, navigationRoom));
         
         navigationRoom.addExit(new Exit(ExitDirection.EAST, controlRoom));
+        
         steeringRoom.addExit(new Exit(ExitDirection.SOUTH, controlRoom));
     }
 

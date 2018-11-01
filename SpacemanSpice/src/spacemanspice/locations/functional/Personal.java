@@ -8,37 +8,43 @@ import spacemanspice.locations.Room;
 
 public class Personal extends Location{
     
-    //Constructor
     public Personal(){
-        super("Personal" , "this is the personal room");
+        super("Personal" , "This location contains toilets and beerooms");
         
         createLocation();
     }
     
-    //Create Location method
+    
     @Override
     public void createLocation(){
+        /*The romms in the control location are created-----------------------*/
         
-        //The three rooms in personal are added here
-        //Main room corridor
+        /*Corridor------------------------------------------------------------*/
         Room corridorRoom = new Room("Personal corridor" , "Main corridor of the personal room");
+      
         super.addRoom(corridorRoom);
-        //Toilet room
+       
+        /*Toilet--------------------------------------------------------------*/
         Room toiletRoom = new Room("Toilet" , "this is the toilet");
+       
         super.addRoom(toiletRoom);
-        //Bedroom
+       
+        /*bedroom-------------------------------------------------------------*/
         Room bedroomRoom = new Room("Bedroom" , "This is the bedroom");
+        
         super.addRoom(bedroomRoom);
         
-        //Here we set the exits up
+        /*Setting exits and entrances-----------------------------------------*/
+        super.addEntrance(corridorRoom);
+        
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, toiletRoom));
         corridorRoom.addExit(new Exit(ExitDirection.EAST, bedroomRoom));
         
         toiletRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
+        
         bedroomRoom.addExit(new Exit(ExitDirection.WEST, corridorRoom));
     }
     
-    //toString method
     @Override
     public String toString(){
         return "locations.functional.Personal : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";

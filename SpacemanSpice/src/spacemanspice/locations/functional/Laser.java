@@ -24,6 +24,8 @@ public class Laser extends Location{
 
     @Override
     public void createLocation() {
+        /*The romms in the control location are created-----------------------*/
+        
         /*Corridor------------------------------------------------------------*/
         Room corridorRoom = new Room("Laser corridor", "Main corridor for the laser.");
         

@@ -7,37 +7,44 @@ import spacemanspice.locations.Room;
 
 public class Oxygen extends Location {
     
-    //Constructor
+    
     public Oxygen(){
         super("Oxygen" , "Oxygen is refueled from here");
         
         createLocation();
     }
     
-    //Create Location method
+  
     @Override
     public void createLocation(){
+        /*The romms in the control location are created-----------------------*/
         
-        //The three rooms in oxygen are added here
-        //Main corridor
+        /*Main corridor-------------------------------------------------------*/
         Room corridorRoom = new Room("Oxygen corridor" , "Main corridor of the oxygen room");
+        
         super.addRoom(corridorRoom);
-        //Oxygen storage
+        
+        /*Storage room--------------------------------------------------------*/
         Room storageRoom = new Room("Oxygen storage" , "Here the oxygen is storaged");
+        
         super.addRoom(storageRoom);
-        //Oxygen ????
-        Room oxygenRoom = new Room("" , "");
+        
+        /*Oxygen room---------------------------------------------------------*/
+        Room oxygenRoom = new Room("Oxygen room" , "Here oxygensuply can be refilled");
         super.addRoom(oxygenRoom);
         
-        //Here we set the exits up
+        /*Setting exits and entrances-----------------------------------------*/
+        super.addEntrance(corridorRoom);
+        
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, oxygenRoom));
         
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
+        
         oxygenRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
     
-    //toString method
+    
     @Override
     public String toString(){
             return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
