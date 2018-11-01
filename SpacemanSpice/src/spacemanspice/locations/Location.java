@@ -54,7 +54,7 @@ public abstract class Location {
     /**
      * Create the explicit location.
      */
-    public abstract void createLocation();
+    protected abstract void createLocation();
 
     @Override
     public abstract String toString();

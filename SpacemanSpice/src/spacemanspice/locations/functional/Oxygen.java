@@ -5,48 +5,43 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
-public class Oxygen extends Location {
-    
-    
-    public Oxygen(){
-        super("Oxygen" , "Oxygen is refueled from here");
-        
+public final class Oxygen extends Location {
+
+    public Oxygen() {
+        super("Oxygen", "Oxygen is refueled from here");
+
         createLocation();
     }
-    
-  
+
     @Override
-    public void createLocation(){
-        /*The romms in the control location are created-----------------------*/
-        
+    protected void createLocation() {
+        /*The rooms in the oxygen location are created------------------------*/
+
         /*Main corridor-------------------------------------------------------*/
-        Room corridorRoom = new Room("Oxygen corridor" , "Main corridor of the oxygen room");
-        
+        Room corridorRoom = new Room("Oxygen corridor", "Main corridor of the oxygen room");
         super.addRoom(corridorRoom);
-        
+
         /*Storage room--------------------------------------------------------*/
-        Room storageRoom = new Room("Oxygen storage" , "Here the oxygen is storaged");
-        
+        Room storageRoom = new Room("Oxygen storage", "Here the oxygen is storaged");
         super.addRoom(storageRoom);
-        
+
         /*Oxygen room---------------------------------------------------------*/
-        Room oxygenRoom = new Room("Oxygen room" , "Here oxygensuply can be refilled");
+        Room oxygenRoom = new Room("Oxygen room", "Here oxygensuply can be refilled");
         super.addRoom(oxygenRoom);
-        
+
         /*Setting exits and entrances-----------------------------------------*/
         super.addEntrance(corridorRoom);
-        
+
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, oxygenRoom));
-        
+
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
-        
+
         oxygenRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
-    
-    
+
     @Override
-    public String toString(){
-            return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+    public String toString() {
+        return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
 }

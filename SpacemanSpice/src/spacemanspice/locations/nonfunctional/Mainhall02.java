@@ -3,7 +3,7 @@ package spacemanspice.locations.nonfunctional;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
-public class Mainhall02 extends Location {
+public final class Mainhall02 extends Location {
     
     public Mainhall02(){
         super("Mainhall02", "This is the 2nd mainhall on the space ship");
@@ -12,12 +12,11 @@ public class Mainhall02 extends Location {
     }
     
     @Override
-    public void createLocation(){
-        /*The romm in the location are created--------------------------------*/
+    protected void createLocation(){
+        /*The room in the location are created--------------------------------*/
         
         /*Mainhall 02---------------------------------------------------------*/
         Room mainhall02 = new Room("Mainhall", "This is the upper part of the mainhall.");
-        
         super.addRoom(mainhall02);
         
         /*Adding entrance-----------------------------------------------------*/
