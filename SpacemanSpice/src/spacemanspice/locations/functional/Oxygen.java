@@ -26,18 +26,18 @@ public final class Oxygen extends Location {
         super.addRoom(storageRoom);
 
         /*Oxygen room---------------------------------------------------------*/
-        Room oxygenRoom = new Room("Oxygen room", "Here oxygensuply can be refilled");
-        super.addRoom(oxygenRoom);
+        Room refuelRoom = new Room("Refuel room", "Here oxygen suply can be refilled");
+        super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
         super.addEntrance(corridorRoom);
 
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
-        corridorRoom.addExit(new Exit(ExitDirection.SOUTH, oxygenRoom));
+        corridorRoom.addExit(new Exit(ExitDirection.SOUTH, refuelRoom));
 
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
 
-        oxygenRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
+        refuelRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
 
     @Override
