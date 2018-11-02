@@ -1,9 +1,9 @@
-package spacemanspice.locations.functional;
+package controller.locations.functional;
 
-import spacemanspice.locations.Exit;
-import spacemanspice.locations.ExitDirection;
-import spacemanspice.locations.Location;
-import spacemanspice.locations.Room;
+import controller.locations.Exit;
+import controller.locations.ExitDirection;
+import controller.locations.Location;
+import controller.locations.Room;
 
 /**
  * Functional location, that controls the movement of the spaceship.

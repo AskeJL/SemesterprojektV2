@@ -1,7 +1,7 @@
-package spacemanspice.locations.nonfunctional;
+package controller.locations.nonfunctional;
 
-import spacemanspice.locations.Location;
-import spacemanspice.locations.Room;
+import controller.locations.Location;
+import controller.locations.Room;
 
 /**
  * Nonfunctional location, that connects the functional location: Control, Oxygen, Outside.
