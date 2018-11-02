@@ -3,7 +3,15 @@ package spacemanspice.locations.nonfunctional;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Nonfunctional location, that connects the functional location: Laser, Net, Outside.
+ */
+
 public final class Mainhall02 extends Location {
+    
+    /**
+     * Constructor that runs the createLocation method.
+     */
     
     public Mainhall02(){
         super("Mainhall02", "This is the 2nd mainhall on the space ship");
