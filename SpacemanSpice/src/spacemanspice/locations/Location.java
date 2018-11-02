@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spacemanspice.locations;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author sbang
+ * This is the main file for locations and all that these include such as 
+ * building rooms and all their entrances and exits.
+ 
  */
 public abstract class Location {
 
