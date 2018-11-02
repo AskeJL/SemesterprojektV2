@@ -40,11 +40,11 @@ public final class Personal extends Location {
         /*Setting exits and entrances-----------------------------------------*/
         super.addEntrance(corridorRoom);
 
-        corridorRoom.addExit(new Exit(ExitDirection.NORTH, toiletRoom));
         corridorRoom.addExit(new Exit(ExitDirection.EAST, bedroomRoom));
 
-        toiletRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
+        toiletRoom.addExit(new Exit(ExitDirection.SOUTH, bedroomRoom));
 
+        bedroomRoom.addExit(new Exit(ExitDirection.NORTH, toiletRoom));
         bedroomRoom.addExit(new Exit(ExitDirection.WEST, corridorRoom));
     }
 
