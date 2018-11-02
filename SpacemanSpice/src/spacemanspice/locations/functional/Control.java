@@ -5,8 +5,14 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional room, that controls the movement of the spaceship
+ */
 public final class Control extends Location {
 
+    /**
+     * Constructor that runs createLocation method
+     */
     public Control() {
         super("Control", "In this location the ship is controlled.");
 
