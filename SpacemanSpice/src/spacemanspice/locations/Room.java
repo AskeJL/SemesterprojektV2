@@ -1,36 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spacemanspice.locations;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author sbang
+ * A room within a location. This needs to be within a location. Primarily used
+ * within the Locations.createLocation(), as it is only to be sat at the
+ * initialization of the game.
  */
 public class Room {
+
     private String name;
     private String description;
     private ArrayList<Exit> exits = new ArrayList<>();
     private ArrayList<GameObject> gameObjects = new ArrayList<>();
     private boolean hasOxygen;
-    
+
+    /**
+     * Room with a name and a description.
+     *
+     * @param name of the room.
+     * @param description of the room.
+     */
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
     }
-    
+
+    /**
+     * Add an exit to the room.
+     *
+     * @param exit to add.
+     */
     public void addExit(Exit exit) {
         this.exits.add(exit);
     }
-    
+
+    /**
+     * Add a GameObject to the room.
+     * @param o GameObject to add.
+     */
     public void addGameObject(GameObject o) {
         this.gameObjects.add(o);
     }
-    
+
     @Override
     public String toString() {
         return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
