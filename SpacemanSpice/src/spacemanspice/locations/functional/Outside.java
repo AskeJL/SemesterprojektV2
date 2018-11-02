@@ -5,8 +5,16 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional location, where the player can repair the spaceship. 
+ */
+
 public final class Outside extends Location {
 
+    /**
+     * Constructor that runs the createLocation method.
+     */
+    
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
 
