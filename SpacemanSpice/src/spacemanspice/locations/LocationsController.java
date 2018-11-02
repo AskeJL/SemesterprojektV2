@@ -5,17 +5,25 @@ import spacemanspice.locations.functional.*;
 import spacemanspice.locations.nonfunctional.*;
 
 /**
- *
- * @author sbang
+ * The main controller for the Locations package. This will control all the
+ * other classes within the package.
  */
 public class LocationsController {
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
+    /**
+     * Initializes the controller. This will setup all the necessary things
+     * before running the game.
+     */
     public static void init() {
         createLocations();
     }
 
+    /**
+     * Creates all the predetermined locations. This is created based on a map
+     * (Hard-coded).
+     */
     private static void createLocations() {
         Location laser = new Laser(),
                 control = new Control(),
@@ -115,6 +123,10 @@ public class LocationsController {
         mainhall02.addExit(new Exit(ExitDirection.SOUTH, net, mainhall02.getRooms().get(0)));
     }
 
+    /**
+     * Get all the locations.
+     * @return the locations.
+     */
     public static ArrayList<Location> getLocations() {
         return LocationsController.LOCATIONS;
     }
