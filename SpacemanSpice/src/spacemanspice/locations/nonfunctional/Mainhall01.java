@@ -3,7 +3,15 @@ package spacemanspice.locations.nonfunctional;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Nonfunctional location, that connects the functional location: Personal, Oxygen, Control.
+ */
+
 public final class Mainhall01 extends Location {
+    
+    /**
+     * Constructor that runs the createLocation method.
+     */
     
     public Mainhall01(){
         super("Mainhall01", "This is the 1st mainhall on the space ship");
