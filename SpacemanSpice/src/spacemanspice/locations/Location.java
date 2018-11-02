@@ -3,7 +3,8 @@ package spacemanspice.locations;
 import java.util.ArrayList;
 
 /**
- * Creates the class Location in which rooms can exist.
+ * This is the main file for locations and all that these include such as 
+ * building rooms and all their entrances and exits.
  
  */
 public abstract class Location {
