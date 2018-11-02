@@ -5,8 +5,16 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
-public final class Laser extends Location {
+/**
+ * Functional location, that uses a laser to destroy small fragments
+ */
 
+public final class Laser extends Location {
+    
+    /**
+     * Constructor that runs the createLocation method.
+     */
+    
     public Laser() {
         super("Laser", "The laser is operated from here.");
 

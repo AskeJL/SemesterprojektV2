@@ -5,8 +5,16 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional location, the personal room of spaceman Spice.
+ */
+
 public final class Personal extends Location {
 
+    /**
+     * Constructor that runs the createLocation method.
+     */
+    
     public Personal() {
         super("Personal", "This location contains toilets and beerooms");
 

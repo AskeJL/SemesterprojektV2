@@ -5,8 +5,16 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional location, that refuels oxygen.
+ */
+
 public final class Oxygen extends Location {
 
+    /**
+     * Constructor that runs the createLocation method.
+     */
+    
     public Oxygen() {
         super("Oxygen", "Oxygen is refueled from here");
 

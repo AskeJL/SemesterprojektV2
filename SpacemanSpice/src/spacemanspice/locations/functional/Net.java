@@ -5,7 +5,15 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional location, that utilises nets to clear medium fragments.
+ */
+
 public final class Net extends Location {
+    
+    /**
+     * Constructor that runs the createLocation method.
+     */
     
     public Net() {
         super("Net", "In this location the net is controlled and repaired");

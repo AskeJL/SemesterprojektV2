@@ -5,7 +5,15 @@ import spacemanspice.locations.ExitDirection;
 import spacemanspice.locations.Location;
 import spacemanspice.locations.Room;
 
+/**
+ * Functional location, where fragments can be identified.
+ */
+
 public final class Scanning extends Location {
+    
+    /**
+     * Constructor that runs the createLocation method.
+     */
     
     public Scanning(){
         super("Scanning", "In this location spacedebree can be scanned.");
