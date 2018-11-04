@@ -36,15 +36,21 @@ public class Commands {
     public static Command validateCommand(String commandWord, String parameter) {
         if (commandWord != null && parameter != null) {
             Command command = getCommand(commandWord);
-            if (command.hasParameter() && command.checkParameter(parameter)) {
-                command.setCurrentParameter(parameter);
-                return command;
+            if (command.hasParameter()) {
+                if (command.checkParameter(parameter)) {
+                    command.setCurrentParameter(parameter);
+                } else {
+                    System.out.println("Wrong parameter.");
+                    command.showParameters();
+                    return null;
+                }
             }
-            System.out.println("Wrong parameter.");
+            return command;
         } else if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command.hasParameter()) {
                 System.out.println("Missing parameter.");
+                command.showParameters();
                 return null;
             }
             return command;
@@ -85,5 +91,4 @@ public class Commands {
     public static List<Command> getCommandwords() {
         return COMMAND_WORDS;
     }
-
 }

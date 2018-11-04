@@ -53,6 +53,17 @@ public abstract class Command {
         return false;
     }
 
+    public void showParameters() {
+        if(this.hasParameter) {
+            System.out.println("These are the available parameters to the command " + this.name + ":");
+            int i = 1;
+            for(String parameter : this.parameters) {
+                System.out.format("%s %10s\n", i, parameter);
+                i++;
+            }
+        }
+    }
+    
     @Override
     public abstract String toString();
 
