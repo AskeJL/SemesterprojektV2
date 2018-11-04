@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CommandWords {
 
-    List<String> commandwords = new ArrayList<>();
+    private List<String> commandwords = new ArrayList<>();
     
     public CommandWords(){
         
@@ -24,4 +24,13 @@ public class CommandWords {
        
         return false;
     }
+    
+    public String getCommandwords(){
+        
+        for (int i = 0; i < commandwords.size(); i++) {
+           return commandwords.get(i);
+        }
+      return commandwords.toString();
+    }
+    
 }

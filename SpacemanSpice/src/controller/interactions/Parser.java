@@ -17,6 +17,9 @@ public class Parser {
     
     public Parser(){
         
+        commands = new CommandWords();
+        reader = new Scanner(System.in);
+        
     }
     
     public Command getCommand(){
@@ -27,4 +30,15 @@ public class Parser {
     public void showCommands(){
         
     }
+    
+    public void setCommands(CommandWords commands){
+        
+        this.commands = commands;
+    }
+    
+    public CommandWords getCommands(){
+        
+        return this.commands;
+    }
+    
 }
