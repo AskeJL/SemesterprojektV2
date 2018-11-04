@@ -10,4 +10,11 @@ package controller.interactions;
  */
 public class TerminalController {
 
+    public TerminalController(){
+        initTerminal();
+    }
+    
+    public void initTerminal(){
+        
+    }
 }
