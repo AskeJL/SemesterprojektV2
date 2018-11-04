@@ -6,6 +6,8 @@ public class Help extends Command {
 
     public Help() {
         super("help", "Display the help list.", false);
+        
+        super.setHasParameter(false);
     }
     
     @Override
@@ -20,11 +22,11 @@ public class Help extends Command {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing help information.");
     }
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 }

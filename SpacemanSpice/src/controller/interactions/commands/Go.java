@@ -6,6 +6,12 @@ public class Go extends Command {
 
     public Go() {
         super("go", "Walk the player in a direction. [North, South, West, East]", true);
+        
+        super.setHasParameter(true);
+        super.addParameter("north");
+        super.addParameter("west");
+        super.addParameter("east");
+        super.addParameter("south");
     }
     
     @Override
@@ -20,12 +26,12 @@ public class Go extends Command {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Goes " + super.getCurrentParameter());
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "controller.interactions.commands.Go: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
     
 }

@@ -6,6 +6,8 @@ public class Quit extends Command {
 
     public Quit() {
         super("quit", "Quit the game.", false);
+        
+        super.setHasParameter(false);
     }
     
     @Override
@@ -20,12 +22,12 @@ public class Quit extends Command {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Quitting the game");
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "controller.interactions.commands.Quit: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
 }

@@ -1,7 +1,6 @@
 /*
  * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
  */
-
 package controller.interactions;
 
 /**
@@ -10,11 +9,13 @@ package controller.interactions;
  */
 public class TerminalController {
 
-    public TerminalController(){
-        initTerminal();
-    }
-    
-    public void initTerminal(){
+    public static void initTerminal() {
+        Parser parser = new Parser();
+        parser.showCommands();
         
+        Command command = parser.getCommand();
+        if (command != null) {
+            command.run();
+        }
     }
 }
