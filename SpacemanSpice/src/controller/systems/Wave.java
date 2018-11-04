@@ -1,4 +1,5 @@
 
+
 package controller.systems;
 
 /**
@@ -15,14 +16,16 @@ public class Wave {
      * Constructor 
     */
     Wave(){
-        numberOfWaves++;
-        
+        ++numberOfWaves;
+        smallFragments = numberOfWaves * 2;
+        mediumFragments = (numberOfWaves/2);
+        largeFragments = (numberOfWaves/3);
     }
     
     //toString method
     @Override
     public String toString(){
-        String s = "";
+        String s = "Number of waves: " + this.getNumberOfWaves() + "\nSmall Fragments: " + this.smallFragments + "\nMedium Fragments: " + this.mediumFragments + "\nLarge Fragments: " + this.largeFragments;
         return s;
     }
     
