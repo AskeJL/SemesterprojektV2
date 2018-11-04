@@ -13,17 +13,12 @@ public class Go extends Command {
         super.addParameter("east");
         super.addParameter("south");
     }
-    
-    @Override
-    public boolean validateCommand() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean check() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void run() {
         System.out.println("Goes " + super.getCurrentParameter());

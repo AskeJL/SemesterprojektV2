@@ -6,52 +6,84 @@ import java.util.List;
 
 public class Commands {
 
-    private final List<Command> commandwords = new ArrayList<>();
-    
-    public Commands(){
-        commandwords.add(new Go());
-        commandwords.add(new Help());
-        commandwords.add(new Interact());
-        commandwords.add(new Quit());
+    private static final List<Command> COMMAND_WORDS = new ArrayList<>();
+
+    public Commands() {
+        // The class is static so the constructer is never called.
     }
 
-    public boolean validateCommand(String commandword) {
-       for(Command command : this.commandwords) {
-           if(commandword.equals(command.getName())) {
-               return true;
-           }
-       }
-       return false;
+    /**
+     * Initialize the Commands class.
+     */
+    public static void init() {
+        COMMAND_WORDS.clear();
+
+        COMMAND_WORDS.add(new Go());
+        COMMAND_WORDS.add(new Help());
+        COMMAND_WORDS.add(new Interact());
+        COMMAND_WORDS.add(new Quit());
     }
-    
-    public boolean setCommandParameter(Command command, String parameter) {
-        for(int i = 0; i < this.commandwords.size(); i++) {
-            Command c = this.commandwords.get(i);
-            if(c.equals(command) && c.hasParameter() && c.checkParameter(parameter)) {
-                c.setCurrentParameter(parameter);
-                return true;
-            } else if(c.equals(command) && c.hasParameter()) {
-                System.out.println("I do not understand that parameter.");
+
+    /**
+     * Checks to see if the inserted Strings match any command. Will return the
+     * command with an assigned parameter (if given).
+     *
+     * @param commandWord The String to validate. Needs to be the name of the
+     * command.
+     * @param parameter The parameter for the command.
+     * @return The command.
+     */
+    public static Command validateCommand(String commandWord, String parameter) {
+        if (commandWord != null && parameter != null) {
+            Command command = getCommand(commandWord);
+            if (command.hasParameter() && command.checkParameter(parameter)) {
+                command.setCurrentParameter(parameter);
+                return command;
             }
+            System.out.println("Wrong parameter.");
+        } else if (commandWord != null) {
+            Command command = getCommand(commandWord);
+            if (command.hasParameter()) {
+                System.out.println("Missing parameter.");
+                return null;
+            }
+            return command;
         }
-        return false;
+        return null;
     }
-    
-    public Command getCommand(int index) {
-        return this.commandwords.get(index);
+
+    /**
+     * Gets the command based in its index.
+     *
+     * @param index Index of the command.
+     * @return The command.
+     */
+    public static Command getCommand(int index) {
+        return COMMAND_WORDS.get(index);
     }
-    
-    public Command getCommand(String name) {
-        for(Command command : this.commandwords) {
+
+    /**
+     * Get the command based on its name.
+     *
+     * @param name Name of the command.
+     * @return The command.
+     */
+    public static Command getCommand(String name) {
+        for (Command command : COMMAND_WORDS) {
             if (name.equals(command.getName())) {
                 return command;
             }
         }
         return null;
     }
-    
-    public List<Command> getCommandwords(){
-        return this.commandwords;
+
+    /**
+     * Get all the command words.
+     *
+     * @return A List of command words.
+     */
+    public static List<Command> getCommandwords() {
+        return COMMAND_WORDS;
     }
-    
+
 }
