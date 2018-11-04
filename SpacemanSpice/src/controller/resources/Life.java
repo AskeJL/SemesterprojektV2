@@ -36,7 +36,7 @@ public class Life extends Element {
     }
     
     public double getLife() {
-        return life;
+        return this.life;
     }
     
 }
