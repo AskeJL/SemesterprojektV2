@@ -12,7 +12,13 @@ public abstract class Command {
     private String name;
     private String description;
     private boolean hasParameter;
-
+    
+    protected Command(String name, String description, boolean hasParameter) {
+        this.name = name;
+        this.description = description;
+        this.hasParameter = hasParameter;
+    }
+    
     /**
      * Validate that this command can be used if called.
      *
