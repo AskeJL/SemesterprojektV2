@@ -4,6 +4,7 @@ import controller.interactions.Command;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
 import controller.locations.ExitDirection;
+import controller.locations.Location;
 import controller.locations.Room;
 import java.util.ArrayList;
 
@@ -20,10 +21,14 @@ public class Go extends Command {
 
     @Override
     public void checkAvailableParameters() {
-        ArrayList<Exit> exits = TerminalController.getCurrentRoom().getExits();
+        ArrayList<Exit> roomExits = TerminalController.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for (Exit exit : exits) {
+        for(Exit exit : TerminalController.getCurrentLocation().getExits()) {
+            System.out.println(exit);
+        }
+
+        for (Exit exit : roomExits) {
             parameters.add(exit.getDirection().name());
         }
 
@@ -34,10 +39,21 @@ public class Go extends Command {
     public void run() {
         System.out.println("Goes " + super.getCurrentParameter());
 
-        Room nextRoom = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getRoomExit();
-        
-        System.out.println(nextRoom);
+        boolean isRoomExit = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).isExitToRoom();
+
+        Room nextRoom;
+        Location nextLocation;
+
+        if (isRoomExit) {
+            nextRoom = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getRoomExit();
+            nextLocation = TerminalController.getCurrentLocation();
+        } else {
+            nextRoom = TerminalController.getCurrentRoom();
+            nextLocation = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getLocationExit();
+        }
+
         TerminalController.setCurrentRoom(nextRoom);
+        TerminalController.setCurrentLocation(nextLocation);
     }
 
     @Override

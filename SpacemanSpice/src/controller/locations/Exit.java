@@ -32,9 +32,9 @@ public class Exit {
     @Override
     public String toString() {
         if(exitToRoom) {
-            return "locations.Exit : Exit[" + this.roomExit.getName() + "] Direction[" + this.direction + "]";
+            return "locations.RoomExit : Exit[" + this.roomExit.getName() + "] Direction[" + this.direction + "]";
         } else {
-            return "locations.Exit : Exit[" + this.locationExit.getName() + "] Direction[" + this.direction + "]";
+            return "locations.LocationExit : Exit[" + this.locationExit.getName() + "] Direction[" + this.direction + "] room[" + this.roomExit.getName() + "]";
         }
     }
     

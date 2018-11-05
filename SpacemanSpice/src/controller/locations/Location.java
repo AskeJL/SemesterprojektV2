@@ -70,7 +70,7 @@ public abstract class Location {
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
-
+    
     public String getName() {
         return this.name;
     }

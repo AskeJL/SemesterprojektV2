@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class LocationsController {
     
     private static Room currentRoom;
+    private static Location currentLocation;
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
@@ -29,7 +30,9 @@ public class LocationsController {
      */
     public static void init() {
         createLocations();
+        
         currentRoom = LOCATIONS.get(5).getRooms().get(0);
+        currentLocation = LOCATIONS.get(5);
     }
 
     /**
@@ -143,13 +146,19 @@ public class LocationsController {
         return LocationsController.LOCATIONS;
     }
     
+    public static void setCurrentRoom(Room room){
+        LocationsController.currentRoom = room;
+    }
+    
+    public static void setCurrentLocation(Location location) {
+        LocationsController.currentLocation = location;
+    }
+    
     public static Room getCurrentRoom(){
-        
         return LocationsController.currentRoom;
     }
     
-    public static void setCurrentRoom(Room room){
-        
-        LocationsController.currentRoom = room;
+    public static Location getCurrentLocation() {
+        return LocationsController.currentLocation;
     }
 }
