@@ -2,6 +2,7 @@
 
 package controller.systems;
 
+import java.util.Random;
 /**
  * Class that controls the various resources that make up a wave.
  */
@@ -17,12 +18,27 @@ public class Wave {
     */
     Wave(){
         ++numberOfWaves;
-        smallFragments = numberOfWaves * 2;
-        mediumFragments = (numberOfWaves/2);
-        largeFragments = (numberOfWaves/3);
+        createWave();
     }
     
-    //toString method
+    /**
+     * Method that creates a wave and sets values on each fragment variable
+     */
+    private void createWave(){
+        Random random = new Random();
+        smallFragments = (random.nextInt(3)+1)*numberOfWaves;
+        
+        if(numberOfWaves%2==0){
+            mediumFragments = numberOfWaves/2;
+        }
+        else mediumFragments = 0;
+        
+        if(numberOfWaves%3==0){
+            largeFragments = numberOfWaves/3;
+        }
+        else largeFragments = 0;
+    }
+    
     @Override
     public String toString(){
         String s = "Number of waves: " + this.getNumberOfWaves() + "\nSmall Fragments: " + this.smallFragments + "\nMedium Fragments: " + this.mediumFragments + "\nLarge Fragments: " + this.largeFragments;
@@ -30,7 +46,7 @@ public class Wave {
     }
     
     public int getNumberOfWaves(){
-        return this.numberOfWaves;
+        return numberOfWaves;
     }
     
     public void setSmallFragments(int n){
