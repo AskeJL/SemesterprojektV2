@@ -8,10 +8,6 @@ public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
 
-    public Commands() {
-        // The class is static so the constructer is never called.
-    }
-
     /**
      * Initialize the Commands class.
      */
