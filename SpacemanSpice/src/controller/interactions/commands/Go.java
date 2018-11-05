@@ -1,6 +1,7 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
+import controller.interactions.Commands;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
 import controller.locations.ExitDirection;
@@ -24,12 +25,14 @@ public class Go extends Command {
         ArrayList<Exit> roomExits = TerminalController.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for(Exit exit : TerminalController.getCurrentLocation().getExits()) {
-            System.out.println(exit);
+        for (Exit exit : TerminalController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(TerminalController.getCurrentRoom().getName())) {
+                parameters.add(exit.getDirection().name().toLowerCase());
+            }
         }
 
         for (Exit exit : roomExits) {
-            parameters.add(exit.getDirection().name());
+            parameters.add(exit.getDirection().name().toLowerCase());
         }
 
         super.setAvailableParameters(parameters);
@@ -37,23 +40,31 @@ public class Go extends Command {
 
     @Override
     public void run() {
-        System.out.println("Goes " + super.getCurrentParameter());
-
-        boolean isRoomExit = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).isExitToRoom();
-
         Room nextRoom;
         Location nextLocation;
+        Exit exitTo = null;
 
-        if (isRoomExit) {
-            nextRoom = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getRoomExit();
+        for (Exit exit : TerminalController.getCurrentLocation().getExits()) {
+            if (exit.getDirection().name().toLowerCase().equals(super.getCurrentParameter())) {
+                exitTo = exit;
+            }
+        }
+
+        System.out.println(exitTo);
+
+        if (exitTo == null) {
+            nextRoom = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getFromRoom();
             nextLocation = TerminalController.getCurrentLocation();
         } else {
-            nextRoom = TerminalController.getCurrentRoom();
-            nextLocation = TerminalController.getCurrentRoom().getExit(super.getCurrentParameter()).getLocationExit();
+            nextRoom = exitTo.getToRoom();
+            nextLocation = exitTo.getToLocation();
         }
 
         TerminalController.setCurrentRoom(nextRoom);
         TerminalController.setCurrentLocation(nextLocation);
+
+        System.out.print("You went " + super.getCurrentParameter());
+        System.out.println(". You have entered " + TerminalController.getCurrentRoom().getName());
     }
 
     @Override

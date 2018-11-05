@@ -31,8 +31,6 @@ public abstract class Command {
 
     /**
      * Checks if the parameter is valid based on where the player currently is.
-     *
-     * @return false if the parameter isn't valid, true if it is.
      */
     public abstract void checkAvailableParameters();
 

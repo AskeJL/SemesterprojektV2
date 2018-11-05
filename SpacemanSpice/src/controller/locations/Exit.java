@@ -12,50 +12,58 @@ package controller.locations;
 public class Exit {
     private boolean exitToRoom;
     private boolean exitToLocation;
-    private Room roomExit;
-    private Location locationExit;
+    private Room fromRoom;
+    private Room toRoom;
+    private Location toLocation;
     private ExitDirection direction;
     
     public Exit(ExitDirection d, Room exit){
         this.direction = d;
-        this.roomExit = exit;
+        this.fromRoom = exit;
         this.exitToRoom = true;
+        this.exitToLocation = false;
     }
     
-    public Exit(ExitDirection d, Location exit, Room entrance){
+    public Exit(ExitDirection d, Location toLocation, Room fromRoom, Room toRoom){
         this.direction = d;
-        this.roomExit = entrance;
-        this.locationExit = exit;
+        this.toLocation = toLocation;
+        this.fromRoom = fromRoom;
+        this.toRoom = toRoom;
         this.exitToLocation = true;
+        this.exitToRoom = false;
     }
     
     @Override
     public String toString() {
         if(exitToRoom) {
-            return "locations.RoomExit : Exit[" + this.roomExit.getName() + "] Direction[" + this.direction + "]";
+            return "locations.RoomExit : Exit[" + this.fromRoom.getName() + "] Direction[" + this.direction + "]";
         } else {
-            return "locations.LocationExit : Exit[" + this.locationExit.getName() + "] Direction[" + this.direction + "] room[" + this.roomExit.getName() + "]";
+            return "locations.LocationExit : Exit[" + this.toLocation.getName() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
         }
     }
     
-    public void setRoomExit(Room exit) {
-        this.roomExit = exit;
+    public void setFromRoom(Room exit) {
+        this.fromRoom = exit;
     }
     
-    public void setLocationExit(Location exit) {
-        this.locationExit = exit;
+    public void setToLocation(Location exit) {
+        this.toLocation = exit;
     }
     
     public void setDirection(ExitDirection direction) {
         this.direction = direction;
     }
     
-    public Room getRoomExit() {
-        return this.roomExit;
+    public Room getFromRoom() {
+        return this.fromRoom;
     }
     
-    public Location getLocationExit() {
-        return this.locationExit;
+    public Room getToRoom() {
+        return this.toRoom;
+    }
+    
+    public Location getToLocation() {
+        return this.toLocation;
     }
     
     public ExitDirection getDirection() {
