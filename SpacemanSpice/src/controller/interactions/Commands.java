@@ -30,30 +30,46 @@ public class Commands {
      * @return The command.
      */
     public static Command validateCommand(String commandWord, String parameter) {
-        if (commandWord != null && parameter != null) {
+        if (commandWord != null) {
             Command command = getCommand(commandWord);
-            if (command.hasParameter()) {
-                if (command.checkParameter(parameter)) {
-                    command.setCurrentParameter(parameter);
-                } else {
-                    System.out.println("Wrong parameter.");
+            if (command == null) {
+                System.out.println("I don't know that command. \nThese are the commands available:");
+                showCommands();
+                return null;
+            }
+
+            if (parameter != null) {
+                if (command.hasParameter()) {
+                    if (command.checkParameter(parameter)) {
+                        command.setCurrentParameter(parameter);
+                    } else {
+                        System.out.println("Wrong parameter.");
+                        command.showParameters();
+                        return null;
+                    }
+                }
+                return command;
+            } else {
+                if (command.hasParameter()) {
+                    System.out.println("Missing parameter.");
                     command.showParameters();
                     return null;
                 }
+                return command;
             }
-            return command;
-        } else if (commandWord != null) {
-            Command command = getCommand(commandWord);
-            if (command.hasParameter()) {
-                System.out.println("Missing parameter.");
-                command.showParameters();
-                return null;
-            }
-            return command;
         }
         return null;
     }
 
+    /**
+     * Displays the available commands to the user.
+     */
+    public static void showCommands() {
+        for(Command command : COMMAND_WORDS) {
+            System.out.format("   %-10s\n", command.getName());
+        }
+    }
+    
     /**
      * Gets the command based in its index.
      *
