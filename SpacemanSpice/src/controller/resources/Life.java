@@ -6,27 +6,39 @@ package controller.resources;
  */
 public class Life extends Element {
     
-    //Life er en double, da vi ikke helt har besluttet os for hvor meget
-    //de forskellige typer a debris skal skade skibet (kunne være komma tal).
+    private final double SMALL_FRAGMENT = 1;
+    private final double MEDIUM_FRAGMENT = 2;
+    private final double LARGE_FRAGMENT = 3;
+    
     private double life;
     
     /**
      * Constructor for this class.
      */
-    public Life() {
+    Life() {
+        super.setMax(100);
+        super.setMin(0);
+        
+        super.setIncrement(2);
+        super.setDecrement(5);
+        
         
     }
     
     /**
      * The method that increases the life value of the ship.
      */
-    public void increaseLife() {
+    public void increaseLife(int times) {
+        super.getIncrement();
+        
         
     }
     /**
      * The metod that decreases the life value of the ship.
      */
-    public void decreaseLife() {
+    public void decreaseLife(int times) {
+        super.getDecrement();
+        
         
     }
     
