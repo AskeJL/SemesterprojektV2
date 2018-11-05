@@ -64,6 +64,9 @@ public abstract class Command {
         return false;
     }
 
+    /**
+     * Display this commands parameters to the user.
+     */
     public void showParameters() {
         if (this.hasParameter) {
             System.out.println("These are the available parameters to the command " + this.name + ":");
