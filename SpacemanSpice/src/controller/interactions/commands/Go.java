@@ -7,7 +7,6 @@ public class Go extends Command {
     public Go() {
         super("go", "Walk the player in a direction. [North, South, West, East]", true);
         
-        super.setHasParameter(true);
         super.addParameter("north");
         super.addParameter("west");
         super.addParameter("east");

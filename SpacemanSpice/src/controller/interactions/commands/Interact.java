@@ -7,7 +7,6 @@ public class Interact extends Command {
     public Interact() {
         super("interact", "Interact with an object.", true);
         
-        super.setHasParameter(true);
         super.addParameter("door");
     }
 

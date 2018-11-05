@@ -6,8 +6,6 @@ public class Help extends Command {
 
     public Help() {
         super("help", "Display the help list.", false);
-        
-        super.setHasParameter(false);
     }
     
     @Override

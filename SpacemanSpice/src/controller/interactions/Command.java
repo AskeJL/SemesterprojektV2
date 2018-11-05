@@ -40,10 +40,21 @@ public abstract class Command {
      */
     public abstract void run();
 
+    /**
+     * Add a parameter to the commands parameter list.
+     *
+     * @param parameter to add.
+     */
     public void addParameter(String parameter) {
         this.parameters.add(parameter);
     }
 
+    /**
+     * Check to see if the parameter is within the commands parameter list.
+     *
+     * @param parameter Parameter to check.
+     * @return 
+     */
     public boolean checkParameter(String parameter) {
         for (String p : this.parameters) {
             if (p.equals(parameter)) {
@@ -54,16 +65,16 @@ public abstract class Command {
     }
 
     public void showParameters() {
-        if(this.hasParameter) {
+        if (this.hasParameter) {
             System.out.println("These are the available parameters to the command " + this.name + ":");
             int i = 1;
-            for(String parameter : this.parameters) {
+            for (String parameter : this.parameters) {
                 System.out.format("%s %10s\n", i, parameter);
                 i++;
             }
         }
     }
-    
+
     @Override
     public abstract String toString();
 

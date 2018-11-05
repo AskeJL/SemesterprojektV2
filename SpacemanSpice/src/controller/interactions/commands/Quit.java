@@ -6,8 +6,6 @@ public class Quit extends Command {
 
     public Quit() {
         super("quit", "Quit the game.", false);
-        
-        super.setHasParameter(false);
     }
 
     @Override
