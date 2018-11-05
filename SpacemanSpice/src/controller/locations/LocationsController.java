@@ -18,6 +18,8 @@ import java.util.ArrayList;
  * other classes within the package.
  */
 public class LocationsController {
+    
+    private static Room currentRoom;
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
@@ -27,6 +29,7 @@ public class LocationsController {
      */
     public static void init() {
         createLocations();
+        currentRoom = LOCATIONS.get(5).getRooms().get(0);
     }
 
     /**
@@ -138,5 +141,15 @@ public class LocationsController {
      */
     public static ArrayList<Location> getLocations() {
         return LocationsController.LOCATIONS;
+    }
+    
+    public Room getCurrentRoom(){
+        
+        return this.currentRoom;
+    }
+    
+    public void setCurrentRoom(Room room){
+        
+        this.currentRoom = room;
     }
 }
