@@ -38,6 +38,8 @@ public class Commands {
                 return null;
             }
 
+            command.checkAvailableParameters();
+            
             if (parameter != null) {
                 if (command.hasParameter()) {
                     if (command.checkAvailableParameter(parameter)) {

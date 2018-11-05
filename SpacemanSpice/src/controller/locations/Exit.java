@@ -62,4 +62,12 @@ public class Exit {
         return this.direction;
     }
     
+    public boolean isExitToLocation() {
+        return this.exitToLocation;
+    }
+    
+    public boolean isExitToRoom() {
+        return this.exitToRoom;
+    }
+    
 }

@@ -59,6 +59,15 @@ public class Room {
     public ArrayList<Exit> getExits() {
         return exits;
     }
+    
+    public Exit getExit(String direction) {
+        for(Exit exit : exits) {
+            if(exit.getDirection().name().toLowerCase().equals(direction.toLowerCase())) {
+                return exit;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<GameObject> getGameObjects() {
         return gameObjects;

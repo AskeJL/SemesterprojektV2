@@ -34,7 +34,7 @@ public abstract class Command {
      *
      * @return false if the parameter isn't valid, true if it is.
      */
-    public abstract boolean check();
+    public abstract void checkAvailableParameters();
 
     /**
      * Run the command itself. (After checking and validating the input)
@@ -74,7 +74,7 @@ public abstract class Command {
      */
     public boolean checkAvailableParameter(String parameter) {
         for (String p : this.availableParameters) {
-            if (p.equals(parameter)) {
+            if (p.toLowerCase().equals(parameter.toLowerCase())) {
                 return true;
             }
         }
