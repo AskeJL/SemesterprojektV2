@@ -6,11 +6,8 @@ public class Interact extends Command {
 
     public Interact() {
         super("interact", "Interact with an object.", true);
-    }
-    
-    @Override
-    public boolean validateCommand() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        super.addParameter("door");
     }
 
     @Override
@@ -20,12 +17,12 @@ public class Interact extends Command {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Interacts...");
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
 }

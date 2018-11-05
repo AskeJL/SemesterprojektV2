@@ -30,7 +30,7 @@ public class Parser
                 word2 = tokenizer.next(); 
             }
         }
-
+        
         return new Command(commands.getCommandWord(word1), word2);
     }
 

@@ -1,20 +1,12 @@
-/*
- * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
- */
-
 package controller.interactions;
 
-/**
- *
- * @author Samuel Bangslund
- */
 public class TerminalController {
 
-    public TerminalController(){
-        initTerminal();
-    }
-    
-    public void initTerminal(){
-        
+    public static void initTerminal() {
+        Commands.init();
+        Command command = Parser.getCommand();
+        if (command != null) {
+            command.run();
+        }
     }
 }
