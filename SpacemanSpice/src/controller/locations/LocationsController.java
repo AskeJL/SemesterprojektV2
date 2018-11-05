@@ -143,13 +143,13 @@ public class LocationsController {
         return LocationsController.LOCATIONS;
     }
     
-    public Room getCurrentRoom(){
+    public static Room getCurrentRoom(){
         
-        return this.currentRoom;
+        return LocationsController.currentRoom;
     }
     
-    public void setCurrentRoom(Room room){
+    public static void setCurrentRoom(Room room){
         
-        this.currentRoom = room;
+        LocationsController.currentRoom = room;
     }
 }
