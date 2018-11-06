@@ -2,6 +2,8 @@ package controller.interactions.commands;
 
 import controller.interactions.Command;
 import controller.interactions.Commands;
+import controller.interactions.TerminalController;
+import controller.locations.Exit;
 import java.util.*;
 
 public class Help extends Command {
@@ -50,5 +52,19 @@ public class Help extends Command {
     @Override
     public void helpInfo() {
         System.out.println("The help function can tell you which commands you can use in the given room");
+    }
+
+    @Override
+    public void showAvailableParameters() {
+        System.out.println("Current location: " + TerminalController.getCurrentLocation().getName());
+        System.out.println("Current room: " + TerminalController.getCurrentRoom().getName());
+        for (Exit exit : TerminalController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(TerminalController.getCurrentRoom().getName())) {
+                System.out.println("You can go " + exit.getDirection().name());
+            }
+        }
+        for (int i = 0; i < TerminalController.getCurrentRoom().getExits().size(); i++) {
+            System.out.println("You can go " + TerminalController.getCurrentRoom().getExits().get(i).getDirection().name());
+        }
     }
 }
