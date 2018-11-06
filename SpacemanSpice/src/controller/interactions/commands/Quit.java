@@ -10,12 +10,15 @@ public class Quit extends Command {
 
     @Override
     public void checkAvailableParameters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void run() {
-        System.out.println("Quitting the game");
+        boolean running = false;
+        System.out.println("You are now exiting the game");
+        System.out.println("Goodbye");
+        controller.game.Game.setRunning(running);
     }
 
     @Override
