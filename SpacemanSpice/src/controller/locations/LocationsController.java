@@ -1,38 +1,30 @@
 package controller.locations;
 
-import controller.locations.functional.Outside;
-import controller.locations.functional.Control;
-import controller.locations.functional.Personal;
-import controller.locations.functional.Oxygen;
-import controller.locations.functional.Laser;
-import controller.locations.functional.Net;
-import controller.locations.functional.Scanning;
-import controller.locations.nonfunctional.Mainhall02;
-import controller.locations.nonfunctional.Hallway02;
-import controller.locations.nonfunctional.Hallway01;
-import controller.locations.nonfunctional.Mainhall01;
+import controller.game.Controller;
+import controller.locations.functional.*;
+import controller.locations.nonfunctional.*;
 import java.util.ArrayList;
 
 /**
  * The main controller for the Locations package. This will control all the
  * other classes within the package.
  */
-public class LocationsController {
+public class LocationsController extends Controller{
     
     private static Room currentRoom;
     private static Location currentLocation;
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
-    /**
-     * Initializes the controller. This will setup all the necessary things
-     * before running the game.
-     */
     public static void init() {
         createLocations();
         
         currentRoom = LOCATIONS.get(5).getRooms().get(0);
         currentLocation = LOCATIONS.get(5);
+    }
+    
+    public static void update() {
+        // Update locations.
     }
 
     /**
