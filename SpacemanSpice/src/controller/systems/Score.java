@@ -6,31 +6,24 @@ package controller.systems;
  */
 public class Score {
     
-    private static int score;
+    private static int score = 0;
     
-    private final int SMALL_FRAGMENT_POINTS = 5;
-    private final int MEDIUM_FRAGMENT_POINTS = 10;
-    private final int LARGE_FRAGMENT_POINTS = 15;
-    
-    /**
-     * Score constructor.
-     */
-    Score(){
-       score = 0; 
-    }
+    private final static int SMALL_FRAGMENT_POINTS = 5;
+    private final static int MEDIUM_FRAGMENT_POINTS = 10;
+    private final static int LARGE_FRAGMENT_POINTS = 15;
     
     /**
      * Method that updates score, based on fragment type.
-     * @param fragmentType 
+     * @param fragmentIdentifier 
      */
-    public void updateScore(int fragmentType){
-        if(fragmentType == 1){
+    public static void updateScore(int fragmentIdentifier){
+        if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
             score += SMALL_FRAGMENT_POINTS;
         }
-        if(fragmentType == 2){
+        if(fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()){
             score += MEDIUM_FRAGMENT_POINTS;
         }
-        if(fragmentType == 3){
+        if(fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()){
             score += LARGE_FRAGMENT_POINTS;
         }
     }
@@ -41,7 +34,7 @@ public class Score {
       return s;
     }
     
-    public void getScore(){
-        
+    public static int getScore(){
+        return score;
     }
 }

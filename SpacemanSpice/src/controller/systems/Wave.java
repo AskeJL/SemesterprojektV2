@@ -9,22 +9,15 @@ import java.util.Random;
 public class Wave {
    private static int numberOfWaves = 0;
     
-    private int smallFragments;
-    private int mediumFragments;
-    private int largeFragments;
+    private static int smallFragments;
+    private static int mediumFragments;
+    private static int largeFragments;
     
-    /**
-     * Constructor 
-    */
-    Wave(){
-        ++numberOfWaves;
-        createWave();
-    }
-    
+        
     /**
      * Method that creates a wave and sets values on each fragment variable
      */
-    private void createWave(){
+    public static void createWave(){
         Random random = new Random();
         smallFragments = (random.nextInt(3)+1)*numberOfWaves;
         
@@ -38,39 +31,46 @@ public class Wave {
         }
         else largeFragments = 0;
     }
-    
+    public static void updateWave(int fragmentIdentifier){
+        if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
+            --smallFragments;
+        if(smallFragments < 0){
+            smallFragments = 0;
+        }
+        }
+        if(fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()){
+             --mediumFragments;
+        if(mediumFragments < 0){
+            mediumFragments = 0;
+        }
+        }
+        if(fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()){
+             --largeFragments;
+        if(largeFragments < 0){
+            largeFragments = 0;
+        }
+        }
+    }
     @Override
     public String toString(){
-        String s = "Number of waves: " + this.getNumberOfWaves() + "\nSmall Fragments: " + this.smallFragments + "\nMedium Fragments: " + this.mediumFragments + "\nLarge Fragments: " + this.largeFragments;
+        String s = "";
         return s;
     }
-    
-    public int getNumberOfWaves(){
-        return numberOfWaves;
-    }
-    
-    public void setSmallFragments(int n){
-        this.smallFragments = n;
+    /**
+     * Increase number of waves by 1.
+     */
+    static void incrementNumberOfWaves(){
+        numberOfWaves++;
     }
 
-    public int getSmallFragments(){
-        return this.smallFragments;
+    static int getSmallFragments(){
+        return smallFragments;
     }
 
-    public void setMediumFragments(int n){
-        this.mediumFragments = n;
+    static int getMediumFragments(){
+        return mediumFragments;
     }
-
-    public int getMediumFragments(){
-        return this.mediumFragments;
-    }
-
-    public void setLargeFragments(int n){
-        this.largeFragments = n;
-    }
-    
-
-    public int getLargeFragments(){
-        return this.largeFragments;
+    static int getLargeFragments(){
+        return largeFragments;
     }
 }

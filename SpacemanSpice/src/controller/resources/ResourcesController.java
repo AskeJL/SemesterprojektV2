@@ -5,18 +5,14 @@ package controller.resources;
  */
 public class ResourcesController {
     
-    /**
-     * Constructor
-     */
-    ResourcesController(){
-        
-    }
+    
     
     /**
      * Method used to manipulate the time resource
+     * @return time parameter
      */
-    public void controlTime(){
-        
+    public static double getTime(){
+       return Time.getTime();
     }
     
     /**

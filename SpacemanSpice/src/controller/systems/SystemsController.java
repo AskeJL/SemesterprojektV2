@@ -1,67 +1,66 @@
 
 package controller.systems;
 
-import controller.resources.*;
+import controller.resources.ResourcesController;
 
-
+/**
+ * Class controlling oxygen and wave systems.
+ */
 public class SystemsController {
-
-    SystemsController(){
+    
+    private final static int SMALL_FRAGMENT_IDENTIFIER = 1;
+    private final static int MEDIUM_FRAGMENT_IDENTIFIER = 2;
+    private final static int LARGE_FRAGMENT_IDENTIFIER = 3;
+    
+    private static boolean smallFragmentDestroyed = false;
+    private static boolean mediumFragmentDestroyed = false;
+    private static boolean largeFragmentDestroyed = false;
+    
+    @Override 
+    public static void update(int fragmentIdentifier){
         
-    }
-    
-    
-    public boolean initSystemsController(){
-       boolean status = true;
-       Score score = new Score();
-       Life life = new Life();
-       Oxygen oxygen = new Oxygen();
-       
-       while(status == true){
-           
-           Wave wave = new Wave();
-           Time waveTimer = new Time();
-           waveTimer.setMax(60);
-           for(Here, we count time down){
-               waveTimer.decreaseTime(1);
-               oxygen.decreaseOxygen(1);
-               
-               
+        if(ResourcesController.getTime() == 0){
+            Wave.incrementNumberOfWaves();
+            Wave.createWave();
         }
-               
-               
-           }
-           
-           
-           
-           
-           
-           if(life.getLife() == 0 || oxygen.getOxygen() == 0){
-               status = false;
-           }
-           
-           
-           return status;
-       }
-      
-       Time waveTimer = new Time();
-       
-       
-       
+        
+        if(smallFragmentDestroyed == true){
+        Score.updateScore(1);
+        Wave.updateWave(1);
+            setSmallFragmentDestroyed(false);
+        }
+        if(mediumFragmentDestroyed == true){
+        Score.updateScore(2);
+        Wave.updateWave(2);
+            setMediumFragmentDestroyed(false);
+        }
+        if(largeFragmentDestroyed == true){
+        Score.updateScore(3);
+        Wave.updateWave(3);
+            setLargeFragmentDestroyed(false);
+        }
     }
-    /**
-     * Destroy a small fragment and update score
-     */
     
-        
-        
-    
-    
-    public void controlWave(){
-        
+    public static int getSmallFragmentIdentifier(){
+        return SMALL_FRAGMENT_IDENTIFIER;
     }
-    public void controlScore(){
-        
+    public static int getMediumFragmentIdentifier(){
+        return MEDIUM_FRAGMENT_IDENTIFIER;
+    }
+    public static int getLargeFragmentIdentifier(){
+        return LARGE_FRAGMENT_IDENTIFIER;
+    }
+
+    public static void setSmallFragmentDestroyed(boolean aSmallFragmentDestroyed) {
+        smallFragmentDestroyed = aSmallFragmentDestroyed;
+    }
+
+    public static void setMediumFragmentDestroyed(boolean aMediumFragmentDestroyed) {
+        mediumFragmentDestroyed = aMediumFragmentDestroyed;
+    }
+
+    public static void setLargeFragmentDestroyed(boolean aLargeFragmentDestroyed) {
+        largeFragmentDestroyed = aLargeFragmentDestroyed;
     }
 }
 

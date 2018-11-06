@@ -6,7 +6,7 @@ package controller.resources;
 public class Time extends Element {
     
     
-    private double time;
+    private static double time;
     
     /**
      * Constructor
@@ -36,7 +36,7 @@ public class Time extends Element {
         
     }
     
-    public double getTime(){
+    static double getTime(){
         return time;
     }
     
