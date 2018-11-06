@@ -1,12 +1,8 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
-import controller.interactions.Commands;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
-import controller.locations.ExitDirection;
-import controller.locations.Location;
-import controller.locations.Room;
 import java.util.ArrayList;
 import java.util.List;
 

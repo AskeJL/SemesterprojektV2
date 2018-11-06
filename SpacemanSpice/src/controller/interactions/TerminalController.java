@@ -4,6 +4,7 @@ import controller.game.Controller;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;
+import java.util.List;
 
 public class TerminalController extends Controller {
 
@@ -33,5 +34,9 @@ public class TerminalController extends Controller {
 
     public static Location getCurrentLocation() {
         return LocationsController.getCurrentLocation();
+    }
+    
+    public static List<Command> getCommandWords() {
+        return Commands.getCommandwords();
     }
 }

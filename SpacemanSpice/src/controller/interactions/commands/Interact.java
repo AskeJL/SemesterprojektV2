@@ -11,12 +11,12 @@ public class Interact extends Command {
     }
 
     @Override
-    public void checkAvailableParameters() {
+    protected void checkAvailableParameters() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void run() {
+    protected void run() {
         System.out.println("Interacts...");
     }
 
