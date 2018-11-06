@@ -108,6 +108,8 @@ public abstract class Command {
 
     @Override
     public abstract String toString();
+    
+    public abstract void helpInfo();
 
     public void setName(String name) {
         this.name = name;

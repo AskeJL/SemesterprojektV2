@@ -69,4 +69,10 @@ public class Go extends Command {
     public String toString() {
         return "controller.interactions.commands.Go: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
+
+    @Override
+    public void helpInfo() {
+        System.out.println("The go function takes takes go and then a secong parameter");
+        System.out.println("The parameter are the direction in which there is an exit in the given room");
+    }
 }

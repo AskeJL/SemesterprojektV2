@@ -53,7 +53,9 @@ public class Commands {
                 return command;
             } else {
                 if (command.hasParameter()) {
-                    System.out.println("Missing parameter.");
+                    if(!command.getName().equalsIgnoreCase("help")){
+                        System.out.println("Missing parameter.");
+                    }
                     command.showAvailableParameters();
                     return null;
                 }
