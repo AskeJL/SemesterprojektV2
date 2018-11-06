@@ -6,20 +6,23 @@ package controller.resources;
  */
 public class Oxygen extends Element {
     
-    private double oxygen;
+    private int oxygen;
     
     /**
      * Constructor
      */
-    Oxygen(){
-        
+    public Oxygen(){
+        oxygen = 100;
+        this.setMax(100);
+        this.setMin(0);
     }
     
     /**
      * Method used to decrease the oxygen variable
+     * @param decreaseVariable
      */
-    public void decreaseOxygen(){
-        
+    public void decreaseOxygen(int decreaseVariable){
+        oxygen -= decreaseVariable;
     }
     
     /**

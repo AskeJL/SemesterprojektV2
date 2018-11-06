@@ -13,12 +13,12 @@ public class Life extends Element {
     private int hit;
     private int repair;
     
-    private double life;
+    private int life;
     
     /**
      * Constructor for this class.
      */
-    Life() {
+    public Life() {
         super.setMax(100);
         super.setMin(0);
     }
@@ -36,7 +36,7 @@ public class Life extends Element {
         
     }
     /**
-     * The metod that decreases the life value of the ship.
+     * The method that decreases the life value of the ship.
      */
     public void decreaseLife(int hit) {
         super.getDecrement();

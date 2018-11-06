@@ -11,15 +11,16 @@ public class Time extends Element {
     /**
      * Constructor
      */
-    Time(){
+    public Time(){
     
     }
     
     /**
      * Method that increases the time variable
+     * @param decreaseVariable
      */
-    public void decreaseTime(){
-        
+    public void decreaseTime(int decreaseVariable){
+        time -= decreaseVariable;
     }
     
     /**
