@@ -78,12 +78,12 @@ public class LocationsController {
         // Control connects to hallway02 from navigation due SOUTH
         control.addExit(new Exit(ExitDirection.SOUTH, mainhall01, control.getRooms().get(2), mainhall01.getRooms().get(0)));
         control.addExit(new Exit(ExitDirection.EAST, scanning, control.getRooms().get(2), scanning.getRooms().get(0)));
-        control.addExit(new Exit(ExitDirection.SOUTH, hallway02, control.getRooms().get(1), mainhall01.getRooms().get(0)));
+        control.addExit(new Exit(ExitDirection.SOUTH, hallway02, control.getRooms().get(1), hallway02.getRooms().get(0)));
 
         // Net connects to mainhall02 from corridor due NORTH
         // Net connects to hallway01 from corridor due SOUTH
-        net.addExit(new Exit(ExitDirection.NORTH, mainhall02, net.getRooms().get(0), net.getRooms().get(0)));
-        net.addExit(new Exit(ExitDirection.SOUTH, hallway01, net.getRooms().get(0), hallway01.getRooms().get(0)));
+        net.addExit(new Exit(ExitDirection.NORTH, mainhall02, net.getRooms().get(0), mainhall02.getRooms().get(0)));
+        net.addExit(new Exit(ExitDirection.NORTH, hallway01, net.getRooms().get(1), hallway01.getRooms().get(0)));
 
         // Outside connects to hallway02 from airlock due NORTH
         // Outside conncets to mainhall02 from airlock due EAST
@@ -110,7 +110,7 @@ public class LocationsController {
         // Hallway01 connects to net from hallway due SOUTH
         // Hallway01 connects to laser from hallway due WEST
         // Hallway01 connects to personal from hallway due NORTH
-        hallway01.addExit(new Exit(ExitDirection.SOUTH, net, hallway01.getRooms().get(0), net.getRooms().get(0)));
+        hallway01.addExit(new Exit(ExitDirection.SOUTH, net, hallway01.getRooms().get(0), net.getRooms().get(1)));
         hallway01.addExit(new Exit(ExitDirection.WEST, laser, hallway01.getRooms().get(0), laser.getRooms().get(0)));
         hallway01.addExit(new Exit(ExitDirection.NORTH, personal, hallway01.getRooms().get(0), personal.getRooms().get(0)));
 
@@ -126,7 +126,8 @@ public class LocationsController {
         // Mainhall01 connects to control from mainhall due NORTH
         mainhall01.addExit(new Exit(ExitDirection.WEST, oxygen, mainhall01.getRooms().get(0), oxygen.getRooms().get(0)));
         mainhall01.addExit(new Exit(ExitDirection.EAST, personal, mainhall01.getRooms().get(0), personal.getRooms().get(0)));
-        mainhall01.addExit(new Exit(ExitDirection.NORTH, control, mainhall01.getRooms().get(0), control.getRooms().get(0)));
+        mainhall01.addExit(new Exit(ExitDirection.NORTH, control, mainhall01.getRooms().get(0), control.getRooms().get(2)));
+        mainhall01.addExit(new Exit(ExitDirection.SOUTH, mainhall02, mainhall01.getRooms().get(0), mainhall02.getRooms().get(0)));
 
         // Mainhall02 connects to mainhall01 from mainhall due NORTH
         // Mainhall02 connects to outside from mainhall due WEST
