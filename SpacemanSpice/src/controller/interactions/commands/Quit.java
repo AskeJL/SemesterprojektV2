@@ -23,4 +23,9 @@ public class Quit extends Command {
         return "controller.interactions.commands.Quit: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
+    @Override
+    public void helpInfo() {
+        System.out.println("The quit function lets you quit the game");
+    }
+
 }

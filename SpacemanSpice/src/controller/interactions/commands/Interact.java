@@ -25,4 +25,10 @@ public class Interact extends Command {
         return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
+    @Override
+    public void helpInfo() {
+        System.out.println("The ineract function lest you interact with object in the room you are in");
+        System.out.println("The interact function takes a parameter which is the thing you would like to interact with");
+    }
+
 }
