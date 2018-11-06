@@ -9,7 +9,7 @@ public class Quit extends Command {
     }
 
     @Override
-    public boolean check() {
+    public void checkAvailableParameters() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

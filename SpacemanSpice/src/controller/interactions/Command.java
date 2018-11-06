@@ -10,6 +10,7 @@ public abstract class Command {
     private String currentParameter;
 
     private ArrayList<String> parameters = new ArrayList<>();
+    private ArrayList<String> availableParameters = new ArrayList<>();
 
     protected Command(String name, String description, boolean hasParameter) {
         this.name = name;
@@ -30,10 +31,8 @@ public abstract class Command {
 
     /**
      * Checks if the parameter is valid based on where the player currently is.
-     *
-     * @return false if the parameter isn't valid, true if it is.
      */
-    public abstract boolean check();
+    public abstract void checkAvailableParameters();
 
     /**
      * Run the command itself. (After checking and validating the input)
@@ -53,7 +52,7 @@ public abstract class Command {
      * Check to see if the parameter is within the commands parameter list.
      *
      * @param parameter Parameter to check.
-     * @return 
+     * @return True if the parameter was found and false if not.
      */
     public boolean checkParameter(String parameter) {
         for (String p : this.parameters) {
@@ -65,15 +64,44 @@ public abstract class Command {
     }
 
     /**
+     * Check to see if the parameter is within the commands available parameter
+     * list.
+     *
+     * @param parameter Parameter to check.
+     * @return True if the parameter was found and false if not.
+     */
+    public boolean checkAvailableParameter(String parameter) {
+        for (String p : this.availableParameters) {
+            if (p.toLowerCase().equals(parameter.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Display this commands parameters to the user.
      */
     public void showParameters() {
         if (this.hasParameter) {
-            System.out.println("These are the available parameters to the command " + this.name + ":");
-            int i = 1;
+            System.out.println("These are the parameters to the command " + this.name + ":");
+
             for (String parameter : this.parameters) {
-                System.out.format("%s %10s\n", i, parameter);
-                i++;
+                System.out.format("  %10s\n", parameter);
+            }
+        }
+    }
+
+    /**
+     * Display this commands available parameters to the user. (Depends on the
+     * current location)
+     */
+    public void showAvailableParameters() {
+        if (this.hasParameter) {
+            System.out.println("These are the available parameters to the command " + this.name + ":");
+
+            for (String parameter : this.availableParameters) {
+                System.out.format("   %10s\n", parameter);
             }
         }
     }
@@ -97,6 +125,10 @@ public abstract class Command {
         this.currentParameter = parameter;
     }
 
+    public void setAvailableParameters(ArrayList<String> parameters) {
+        this.availableParameters = parameters;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -111,5 +143,9 @@ public abstract class Command {
 
     public String getCurrentParameter() {
         return this.currentParameter;
+    }
+
+    public ArrayList<String> getAvailableParameters() {
+        return this.availableParameters;
     }
 }

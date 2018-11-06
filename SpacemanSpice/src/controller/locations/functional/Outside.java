@@ -38,7 +38,7 @@ public final class Outside extends Location {
 
         outside.addExit(new Exit(ExitDirection.EAST, airlock));
 
-        airlock.addExit(new Exit(ExitDirection.WEST, airlock));
+        airlock.addExit(new Exit(ExitDirection.WEST, outside));
     }
 
     @Override

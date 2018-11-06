@@ -12,6 +12,7 @@ public class Room {
     private String name;
     private String description;
     private ArrayList<Exit> exits = new ArrayList<>();
+    private Location locationExit;
     private ArrayList<GameObject> gameObjects = new ArrayList<>();
     private boolean hasOxygen;
 
@@ -59,6 +60,15 @@ public class Room {
     public ArrayList<Exit> getExits() {
         return exits;
     }
+    
+    public Exit getExit(String direction) {
+        for(Exit exit : exits) {
+            if(exit.getDirection().name().toLowerCase().equals(direction.toLowerCase())) {
+                return exit;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<GameObject> getGameObjects() {
         return gameObjects;
@@ -79,7 +89,7 @@ public class Room {
     public void setExits(ArrayList<Exit> exits) {
         this.exits = exits;
     }
-
+    
     public void setGameObjects(ArrayList<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }

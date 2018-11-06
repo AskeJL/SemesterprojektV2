@@ -38,13 +38,15 @@ public class Commands {
                 return null;
             }
 
+            command.checkAvailableParameters();
+            
             if (parameter != null) {
                 if (command.hasParameter()) {
-                    if (command.checkParameter(parameter)) {
+                    if (command.checkAvailableParameter(parameter)) {
                         command.setCurrentParameter(parameter);
                     } else {
                         System.out.println("Wrong parameter.");
-                        command.showParameters();
+                        command.showAvailableParameters();
                         return null;
                     }
                 }
@@ -52,7 +54,7 @@ public class Commands {
             } else {
                 if (command.hasParameter()) {
                     System.out.println("Missing parameter.");
-                    command.showParameters();
+                    command.showAvailableParameters();
                     return null;
                 }
                 return command;

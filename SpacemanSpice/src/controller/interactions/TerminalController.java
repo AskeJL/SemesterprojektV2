@@ -1,5 +1,9 @@
 package controller.interactions;
 
+import controller.locations.Location;
+import controller.locations.LocationsController;
+import controller.locations.Room;
+
 public class TerminalController {
 
     /**
@@ -7,10 +11,30 @@ public class TerminalController {
      * the class.
      */
     public static void initTerminal() {
+        LocationsController.init();
+        
         Commands.init();
-        Command command = Parser.getCommand();
-        if (command != null) {
-            command.run();
+        while (true) {
+            Command command = Parser.getCommand();
+            if (command != null) {
+                command.run();
+            }
         }
+    }
+
+    public static void setCurrentRoom(Room room) {
+        LocationsController.setCurrentRoom(room);
+    }
+    
+    public static void setCurrentLocation(Location location) {
+        LocationsController.setCurrentLocation(location);
+    }
+
+    public static Room getCurrentRoom() {
+        return LocationsController.getCurrentRoom();
+    }
+    
+    public static Location getCurrentLocation() {
+        return LocationsController.getCurrentLocation();
     }
 }
