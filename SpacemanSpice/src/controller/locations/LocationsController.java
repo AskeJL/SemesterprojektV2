@@ -16,10 +16,13 @@ public class LocationsController extends Controller{
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
+    private LocationsController(){}
+    
     public static void init() {
         createLocations();
         
-        currentRoom = LOCATIONS.get(5).getRooms().get(0);
+        // The player starts in their bedroom/Personal
+        currentRoom = LOCATIONS.get(5).getRooms().get(2);
         currentLocation = LOCATIONS.get(5);
     }
     

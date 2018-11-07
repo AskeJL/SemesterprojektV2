@@ -1,12 +1,16 @@
 package controller.interactions;
 
 import controller.game.Controller;
+import controller.game.Game;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;
+import java.util.List;
 
 public class TerminalController extends Controller {
 
+    private TerminalController(){}
+    
     public static void init() {
         LocationsController.init();
         Commands.init();
@@ -26,6 +30,10 @@ public class TerminalController extends Controller {
     public static void setCurrentLocation(Location location) {
         LocationsController.setCurrentLocation(location);
     }
+    
+    public static void setRunning(boolean isRunning) {
+        Game.setRunning(isRunning);
+    }
 
     public static Room getCurrentRoom() {
         return LocationsController.getCurrentRoom();
@@ -33,5 +41,9 @@ public class TerminalController extends Controller {
 
     public static Location getCurrentLocation() {
         return LocationsController.getCurrentLocation();
+    }
+    
+    public static List<Command> getCommandWords() {
+        return Commands.getCommandwords();
     }
 }

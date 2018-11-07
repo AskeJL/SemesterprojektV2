@@ -2,6 +2,8 @@ package controller.game;
 
 public class Controller {
 
+    protected Controller(){}
+    
     /**
      * For initializing the controller. All the classes that needs to be
      * initialized is initialized here.

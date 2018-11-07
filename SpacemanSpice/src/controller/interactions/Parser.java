@@ -6,6 +6,8 @@ public class Parser {
 
     private static final Scanner READER = new Scanner(System.in);
 
+    private Parser(){}
+    
     /**
      * Read the two first inputs from the user. Then return the words
      * separately.
@@ -39,7 +41,7 @@ public class Parser {
      *
      * @return The command that matches the user input.
      */
-    public static Command getCommand() {
+    static Command getCommand() {
         String[] input = readInput();
 
         String word1 = input[0];
@@ -51,7 +53,7 @@ public class Parser {
     /**
      * Print a list of all the available commands.
      */
-    public void showCommands() {
+    void showCommands() {
         for (Command command : Commands.getCommandwords()) {
             System.out.println(command);
         }

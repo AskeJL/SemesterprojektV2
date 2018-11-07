@@ -1,7 +1,6 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
-import controller.interactions.Commands;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
 import java.util.*;
@@ -32,13 +31,13 @@ public class Help extends Command {
     public void run() {
 
         if (super.getAvailableParameters().get(0).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("go")) {
-            Commands.getCommandwords().get(0).helpInfo();
+            TerminalController.getCommandWords().get(0).helpInfo();
         } else if (super.getAvailableParameters().get(1).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("interact")) {
-            Commands.getCommandwords().get(2).helpInfo();
+            TerminalController.getCommandWords().get(2).helpInfo();
         } else if (super.getAvailableParameters().get(2).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("help")) {
-            Commands.getCommandwords().get(1).helpInfo();
+            TerminalController.getCommandWords().get(1).helpInfo();
         } else if (super.getAvailableParameters().get(3).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("quit")) {
-            Commands.getCommandwords().get(3).helpInfo();
+            TerminalController.getCommandWords().get(3).helpInfo();
         } else {
             System.out.println("What command is it you need help with?");
         }

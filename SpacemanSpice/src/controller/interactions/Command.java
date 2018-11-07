@@ -25,26 +25,26 @@ public abstract class Command {
      * command name.
      * @return false if the command is not accessible and true if it is.
      */
-    public boolean validateCommand(String commandWord) {
+    protected boolean validateCommand(String commandWord) {
         return this.name.equals(commandWord);
     }
 
     /**
      * Checks if the parameter is valid based on where the player currently is.
      */
-    public abstract void checkAvailableParameters();
+    protected abstract void checkAvailableParameters();
 
     /**
      * Run the command itself. (After checking and validating the input)
      */
-    public abstract void run();
+    protected abstract void run();
 
     /**
      * Add a parameter to the commands parameter list.
      *
      * @param parameter to add.
      */
-    public void addParameter(String parameter) {
+    protected void addParameter(String parameter) {
         this.parameters.add(parameter);
     }
 
@@ -54,7 +54,7 @@ public abstract class Command {
      * @param parameter Parameter to check.
      * @return True if the parameter was found and false if not.
      */
-    public boolean checkParameter(String parameter) {
+    protected boolean checkParameter(String parameter) {
         for (String p : this.parameters) {
             if (p.equals(parameter)) {
                 return true;
@@ -70,7 +70,7 @@ public abstract class Command {
      * @param parameter Parameter to check.
      * @return True if the parameter was found and false if not.
      */
-    public boolean checkAvailableParameter(String parameter) {
+    protected boolean checkAvailableParameter(String parameter) {
         for (String p : this.availableParameters) {
             if (p.toLowerCase().equals(parameter.toLowerCase())) {
                 return true;
@@ -82,7 +82,7 @@ public abstract class Command {
     /**
      * Display this commands parameters to the user.
      */
-    public void showParameters() {
+    protected void showParameters() {
         if (this.hasParameter) {
             System.out.println("These are the parameters to the command " + this.name + ":");
 
@@ -96,7 +96,7 @@ public abstract class Command {
      * Display this commands available parameters to the user. (Depends on the
      * current location)
      */
-    public void showAvailableParameters() {
+    protected void showAvailableParameters() {
         if (this.hasParameter) {
             System.out.println("These are the available parameters to the command " + this.name + ":");
 
@@ -111,43 +111,43 @@ public abstract class Command {
     
     public abstract void helpInfo();
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
-    public void setHasParameter(boolean bool) {
+    protected void setHasParameter(boolean bool) {
         this.hasParameter = bool;
     }
 
-    public void setCurrentParameter(String parameter) {
+    protected void setCurrentParameter(String parameter) {
         this.currentParameter = parameter;
     }
 
-    public void setAvailableParameters(ArrayList<String> parameters) {
+    protected void setAvailableParameters(ArrayList<String> parameters) {
         this.availableParameters = parameters;
     }
 
-    public String getName() {
+    protected String getName() {
         return this.name;
     }
 
-    public String getDescription() {
+    protected String getDescription() {
         return this.description;
     }
 
-    public boolean hasParameter() {
+    protected boolean hasParameter() {
         return this.hasParameter;
     }
 
-    public String getCurrentParameter() {
+    protected String getCurrentParameter() {
         return this.currentParameter;
     }
 
-    public ArrayList<String> getAvailableParameters() {
+    protected ArrayList<String> getAvailableParameters() {
         return this.availableParameters;
     }
 }

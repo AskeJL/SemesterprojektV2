@@ -8,13 +8,11 @@ import controller.locations.Room;
 /**
  * Functional location, that uses a laser to destroy small fragments
  */
-
 public final class Laser extends Location {
     
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Laser() {
         super("Laser", "The laser is operated from here.");
 
@@ -42,7 +40,6 @@ public final class Laser extends Location {
 
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, technicRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, controlsRoom));
-
         technicRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
         controlsRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }

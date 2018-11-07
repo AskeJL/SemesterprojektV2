@@ -8,10 +8,12 @@ public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
 
+    private Commands(){}
+    
     /**
      * Initialize the Commands class.
      */
-    public static void init() {
+    static void init() {
         COMMAND_WORDS.clear();
 
         COMMAND_WORDS.add(new Go());
@@ -29,7 +31,7 @@ public class Commands {
      * @param parameter The parameter for the command.
      * @return The command.
      */
-    public static Command validateCommand(String commandWord, String parameter) {
+    static Command validateCommand(String commandWord, String parameter) {
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
@@ -68,7 +70,7 @@ public class Commands {
     /**
      * Displays the available commands to the user.
      */
-    public static void showCommands() {
+    static void showCommands() {
         for(Command command : COMMAND_WORDS) {
             System.out.format("   %-10s\n", command.getName());
         }
@@ -80,7 +82,7 @@ public class Commands {
      * @param index Index of the command.
      * @return The command.
      */
-    public static Command getCommand(int index) {
+    static Command getCommand(int index) {
         return COMMAND_WORDS.get(index);
     }
 
@@ -90,7 +92,7 @@ public class Commands {
      * @param name Name of the command.
      * @return The command.
      */
-    public static Command getCommand(String name) {
+    static Command getCommand(String name) {
         for (Command command : COMMAND_WORDS) {
             if (name.equals(command.getName())) {
                 return command;
@@ -104,7 +106,7 @@ public class Commands {
      *
      * @return A List of command words.
      */
-    public static List<Command> getCommandwords() {
+    static List<Command> getCommandwords() {
         return COMMAND_WORDS;
     }
 }

@@ -8,13 +8,11 @@ import controller.locations.Room;
 /**
  * Functional location, that refuels oxygen.
  */
-
 public final class Oxygen extends Location {
 
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Oxygen() {
         super("Oxygen", "Oxygen is refueled from here");
 
@@ -42,9 +40,7 @@ public final class Oxygen extends Location {
 
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, refuelRoom));
-
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
-
         refuelRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
 
