@@ -32,7 +32,7 @@ public class TerminalController extends Controller {
     }
     
     public static void setRunning(boolean isRunning) {
-        Game.setRunning(isRunning);
+        Controller.setRunning(isRunning);
     }
 
     public static Room getCurrentRoom() {
