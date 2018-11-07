@@ -43,11 +43,11 @@ public class Game {
      * Set if the game is running. 
      * @param isRunning 
      */
-    protected static void setRunning(boolean isRunning) {
+    static void setRunning(boolean isRunning) {
         Game.running = isRunning;
     }
     
-    protected static boolean isRunning() {
+    static boolean isRunning() {
         return Game.running;
     }
 }

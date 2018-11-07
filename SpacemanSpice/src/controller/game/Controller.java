@@ -18,4 +18,8 @@ public class Controller {
     public static void update() {
         System.out.println("Not implemented");
     }
+    
+    protected static void setRunning(boolean isRunning) {
+        Game.setRunning(isRunning);
+    }
 }
