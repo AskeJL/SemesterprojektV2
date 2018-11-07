@@ -7,7 +7,7 @@ import controller.locations.LocationsController;
  *
  * @author sbang
  */
-public class Game {
+public abstract class Game {
 
     private static boolean running = true;
     
@@ -22,7 +22,7 @@ public class Game {
     /**
      * Initializes all the controllers.
      */
-    static void init() {
+    private static void init() {
         LocationsController.init();
         TerminalController.init();
     }
@@ -30,7 +30,7 @@ public class Game {
     /**
      * Loops through all the controllers.
      */
-    static void loop() {
+    private static void loop() {
         while (running) {
             LocationsController.update();
             TerminalController.update();
@@ -41,11 +41,11 @@ public class Game {
      * Set if the game is running. 
      * @param isRunning 
      */
-    public static void setRunning(boolean isRunning) {
+    protected static void setRunning(boolean isRunning) {
         Game.running = isRunning;
     }
     
-    public static boolean isRunning() {
+    protected static boolean isRunning() {
         return Game.running;
     }
 }

@@ -1,6 +1,6 @@
 package controller.game;
 
-public class Controller {
+public abstract class Controller extends Game {
 
     /**
      * For initializing the controller. All the classes that needs to be

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * The main controller for the Locations package. This will control all the
  * other classes within the package.
  */
-public class LocationsController extends Controller{
+public abstract class LocationsController extends Controller{
     
     private static Room currentRoom;
     private static Location currentLocation;

@@ -2,7 +2,7 @@ package controller.interactions;
 
 import java.util.Scanner;
 
-public class Parser {
+public abstract class Parser {
 
     private static final Scanner READER = new Scanner(System.in);
 

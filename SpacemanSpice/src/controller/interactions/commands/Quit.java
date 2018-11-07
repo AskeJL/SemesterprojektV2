@@ -1,6 +1,7 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
+import controller.interactions.TerminalController;
 
 public class Quit extends Command {
 
@@ -18,7 +19,7 @@ public class Quit extends Command {
         boolean running = false;
         System.out.println("You are now exiting the game");
         System.out.println("Goodbye");
-        controller.game.Game.setRunning(running);
+        TerminalController.setRunning(running);
     }
 
     @Override

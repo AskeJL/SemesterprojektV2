@@ -4,7 +4,7 @@ import controller.interactions.commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commands {
+public abstract class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
 

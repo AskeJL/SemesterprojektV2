@@ -1,14 +1,13 @@
 package controller.interactions;
 
 import controller.game.Controller;
-import controller.locations.Exit;
-import controller.locations.ExitDirection;
+import controller.game.Game;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;
 import java.util.List;
 
-public class TerminalController extends Controller {
+public abstract class TerminalController extends Controller {
 
     public static void init() {
         LocationsController.init();
@@ -28,6 +27,10 @@ public class TerminalController extends Controller {
 
     public static void setCurrentLocation(Location location) {
         LocationsController.setCurrentLocation(location);
+    }
+    
+    public static void setRunning(boolean isRunning) {
+        Game.setRunning(isRunning);
     }
 
     public static Room getCurrentRoom() {
