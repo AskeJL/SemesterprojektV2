@@ -8,13 +8,11 @@ import controller.locations.Room;
 /**
  * Functional location, the personal room of spaceman Spice.
  */
-
 public final class Personal extends Location {
 
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Personal() {
         super("Personal", "This location contains toilets and beerooms");
 
@@ -41,9 +39,7 @@ public final class Personal extends Location {
         super.addEntrance(corridorRoom);
 
         corridorRoom.addExit(new Exit(ExitDirection.EAST, bedroomRoom));
-
         toiletRoom.addExit(new Exit(ExitDirection.SOUTH, bedroomRoom));
-
         bedroomRoom.addExit(new Exit(ExitDirection.NORTH, toiletRoom));
         bedroomRoom.addExit(new Exit(ExitDirection.WEST, corridorRoom));
     }

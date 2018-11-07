@@ -12,7 +12,6 @@ public class Room {
     private String name;
     private String description;
     private ArrayList<Exit> exits = new ArrayList<>();
-    private Location locationExit;
     private ArrayList<GameObject> gameObjects = new ArrayList<>();
     private boolean hasOxygen;
 

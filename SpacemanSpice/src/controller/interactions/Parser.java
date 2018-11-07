@@ -39,7 +39,7 @@ public class Parser {
      *
      * @return The command that matches the user input.
      */
-    protected static Command getCommand() {
+    static Command getCommand() {
         String[] input = readInput();
 
         String word1 = input[0];
@@ -51,7 +51,7 @@ public class Parser {
     /**
      * Print a list of all the available commands.
      */
-    protected void showCommands() {
+    void showCommands() {
         for (Command command : Commands.getCommandwords()) {
             System.out.println(command);
         }

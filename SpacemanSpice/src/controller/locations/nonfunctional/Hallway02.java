@@ -11,7 +11,6 @@ public final class Hallway02 extends Location {
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Hallway02() {
         super("Hallway 02", "The hallway connecting airlock, oxygen and navigation");
         
@@ -34,5 +33,4 @@ public final class Hallway02 extends Location {
     public String toString() {
         return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
     }
-    
 }

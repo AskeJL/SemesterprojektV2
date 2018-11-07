@@ -6,13 +6,11 @@ import controller.locations.Room;
 /**
  * Nonfunctional location, that connects the functional location: Laser, Net, Outside.
  */
-
 public final class Mainhall02 extends Location {
     
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Mainhall02(){
         super("Mainhall02", "This is the 2nd mainhall on the space ship");
         
@@ -35,5 +33,4 @@ public final class Mainhall02 extends Location {
     public String toString(){
         return "locations.nonfunctional.Mainhall02 : Name[" + this.getName() + "] Description [" + this.getDescription() + "]";
     }
-    
 }

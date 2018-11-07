@@ -15,7 +15,7 @@ public abstract class Location {
     private ArrayList<Room> entrances = new ArrayList<>();
     private ArrayList<Room> rooms = new ArrayList<>();
 
-    public Location(String name, String description) {
+    protected Location(String name, String description) {
         this.name = name;
         this.description = description;
     }

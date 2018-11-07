@@ -6,13 +6,11 @@ import controller.locations.Room;
 /**
  * Nonfunctional location, that connects the functional locations: Personal, Net, Laser
  */
-
 public final class Hallway01 extends Location {
 
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Hallway01() {
         super("Hallway01", "Hallway connecting Personal, Laser and Net");
         
@@ -35,5 +33,4 @@ public final class Hallway01 extends Location {
     public String toString() {
         return "locations.functional.Control : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
-    
 }

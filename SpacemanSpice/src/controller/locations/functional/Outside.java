@@ -8,13 +8,11 @@ import controller.locations.Room;
 /**
  * Functional location, where the player can repair the spaceship. 
  */
-
 public final class Outside extends Location {
 
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
 
@@ -37,7 +35,6 @@ public final class Outside extends Location {
         super.addEntrance(airlock);
 
         outside.addExit(new Exit(ExitDirection.EAST, airlock));
-
         airlock.addExit(new Exit(ExitDirection.WEST, outside));
     }
 

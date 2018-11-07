@@ -1,6 +1,8 @@
 package controller.interactions;
 
 import controller.game.Controller;
+import controller.locations.Exit;
+import controller.locations.ExitDirection;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;

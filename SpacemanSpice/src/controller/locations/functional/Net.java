@@ -8,13 +8,11 @@ import controller.locations.Room;
 /**
  * Functional location, that utilises nets to clear medium fragments.
  */
-
 public final class Net extends Location {
     
     /**
      * Constructor that runs the createLocation method.
      */
-    
     public Net() {
         super("Net", "In this location the net is controlled and repaired");
         
@@ -42,13 +40,8 @@ public final class Net extends Location {
         
         NetCorridor.addExit(new Exit(ExitDirection.EAST,NetRoom));
         NetCorridor.addExit(new Exit(ExitDirection.WEST,NetBay));
-        
         NetRoom.addExit(new Exit(ExitDirection.WEST,NetCorridor));
-        
         NetBay.addExit(new Exit(ExitDirection.EAST,NetCorridor));
-        
-       
-        
     }
 
     @Override
