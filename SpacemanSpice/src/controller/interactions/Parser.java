@@ -2,10 +2,12 @@ package controller.interactions;
 
 import java.util.Scanner;
 
-public abstract class Parser {
+public class Parser {
 
     private static final Scanner READER = new Scanner(System.in);
 
+    private Parser(){}
+    
     /**
      * Read the two first inputs from the user. Then return the words
      * separately.

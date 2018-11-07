@@ -7,9 +7,11 @@ import controller.locations.LocationsController;
  *
  * @author sbang
  */
-public abstract class Game {
+public class Game {
 
     private static boolean running = true;
+    
+    private Game(){}
     
     /**
      * @param args the command line arguments

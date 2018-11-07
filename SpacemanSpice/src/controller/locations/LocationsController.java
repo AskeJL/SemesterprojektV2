@@ -9,13 +9,15 @@ import java.util.ArrayList;
  * The main controller for the Locations package. This will control all the
  * other classes within the package.
  */
-public abstract class LocationsController extends Controller{
+public class LocationsController extends Controller{
     
     private static Room currentRoom;
     private static Location currentLocation;
 
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
+    private LocationsController(){}
+    
     public static void init() {
         createLocations();
         

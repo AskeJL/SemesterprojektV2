@@ -7,8 +7,10 @@ import controller.locations.LocationsController;
 import controller.locations.Room;
 import java.util.List;
 
-public abstract class TerminalController extends Controller {
+public class TerminalController extends Controller {
 
+    private TerminalController(){}
+    
     public static void init() {
         LocationsController.init();
         Commands.init();

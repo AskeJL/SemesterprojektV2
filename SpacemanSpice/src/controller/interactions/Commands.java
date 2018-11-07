@@ -4,10 +4,12 @@ import controller.interactions.commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Commands {
+public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
 
+    private Commands(){}
+    
     /**
      * Initialize the Commands class.
      */
