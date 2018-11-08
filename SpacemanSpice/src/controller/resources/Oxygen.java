@@ -1,22 +1,25 @@
 
 package controller.resources;
 
+import controller.locations.LocationsController;
+
 /**
  * Class that controls the oxygen resource
  */
 public class Oxygen extends Element {
     
-    private int oxygen;
+    private static int oxygen = 100;
     
-    /**
-     * Constructor
-     */
-    public Oxygen(){
-        oxygen = 100;
-        this.setMax(100);
-        this.setMin(0);
+    public static void updateOxygen(){
+        if(Life.getLife() <= 50){
+                //LocationsController.getCurrentRoom().getName().equals("outside")){
+            oxygen -= (Time.getStartTime()-Time.getOxygenTime()-(Time.getcurrentTime()));
+        }
+        Time.setOxygenTime(Time.getcurrentTime());
+        System.out.println(oxygen);
+        System.out.println(Time.getOxygenTime());
+        System.out.println(Time.getcurrentTime());
     }
-    
     /**
      * Method used to decrease the oxygen variable
      * @param decreaseVariable

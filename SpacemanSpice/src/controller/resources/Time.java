@@ -6,36 +6,53 @@ import java.util.Date;
  */
 public class Time extends Element {
     
-    private static double time = 0;
+    private static long waveTime = 0;
+    private static long countdown = 60;
     
-    private static Date startTime = new Date();
-    private static long startTimeVariable;
+    private static long startWaveTime;
     
-    private static long maxTime;
+    private static long maxWaveTime;
     
-    private static Date compareTime = new Date();
-    private static long compareTimeVariable;
+    private static long currentTime;
+    
+    private static long oxygenTime;
     
     /**
      * Method that sets start time and maximum time.
      */
     public static void startTime(){
-       startTimeVariable = (startTime.getTime()/1000);
-       maxTime = startTimeVariable + 60;
+       startWaveTime = (new Date().getTime()/1000);
+       maxWaveTime = startWaveTime + countdown;
     }
     /**
      * Method that compares updates time variable, based on current time.
      */
     public static void updateTime(){
-        if(time == 0){
+        if(waveTime == 0){
             startTime();
         }
-        compareTimeVariable =(compareTime.getTime()/1000);
-        time = maxTime - compareTimeVariable;
+        currentTime =(new Date().getTime()/1000);
+        waveTime = maxWaveTime - currentTime;
+        System.out.println(waveTime);
     }
     
-    static double getTime(){
-        return time;
+    static long getTime(){
+        return waveTime;
     }
     
+    static long getcurrentTime(){
+        return currentTime;
+    }
+    
+    static long getOxygenTime(){
+        return oxygenTime;
+    }
+    
+    static long getStartTime(){
+        return startWaveTime;
+    }
+    
+    static void setOxygenTime(long newOxygenTime){
+        oxygenTime = newOxygenTime;
+    }
 }

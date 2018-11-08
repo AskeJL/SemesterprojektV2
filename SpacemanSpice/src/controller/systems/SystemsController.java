@@ -16,12 +16,13 @@ public class SystemsController {
     private static boolean mediumFragmentDestroyed = false;
     private static boolean largeFragmentDestroyed = false;
     
-    @Override 
+    
     public static void update(int fragmentIdentifier){
         
         if(ResourcesController.getTime() == 0){
             Wave.incrementNumberOfWaves();
             Wave.createWave();
+            ResourcesController.initTime();
         }
         
         if(smallFragmentDestroyed == true){
