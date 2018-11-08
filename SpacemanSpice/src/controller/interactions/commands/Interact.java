@@ -29,7 +29,7 @@ public class Interact extends Command {
     @Override
     public void helpInfo() {
         System.out.println("The ineract function lest you interact with object in the room you are in");
-        System.out.println("The interact function takes a parameter which is the thing you would like to interact with");
+//        System.out.println("The interact function takes a parameter which is the thing you would like to interact with");
     }
 
 }
