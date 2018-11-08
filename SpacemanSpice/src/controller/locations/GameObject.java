@@ -4,7 +4,7 @@ package controller.locations;
  * An object within the game that is interactable. Either by directly using it,
  * or picking it up for later use. An example could be a chair or an air tank.
  */
-public class GameObject {
+public abstract class GameObject {
 
     private String name;
     private String description;
@@ -26,14 +26,10 @@ public class GameObject {
     /**
      * Interact with the object.
      */
-    public void interact() {
-        System.out.println("Not yet implemented.");
-    }
+    public abstract void interact();
 
     @Override
-    public String toString() {
-        return "locations.GameObject : Name[" + this.name + "] Description[" + this.description + "]";
-    }
+    public abstract String toString();
 
     public void setName(String name) {
         this.name = name;
