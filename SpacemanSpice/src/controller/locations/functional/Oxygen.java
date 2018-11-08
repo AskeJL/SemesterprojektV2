@@ -4,6 +4,7 @@ import controller.locations.Exit;
 import controller.locations.ExitDirection;
 import controller.locations.Location;
 import controller.locations.Room;
+import controller.locations.gameobjects.OxygenControl;
 
 /**
  * Functional location, that refuels oxygen.
@@ -33,6 +34,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Refuel room", "Here oxygen suply can be refilled");
+        refuelRoom.addGameObject(new OxygenControl());
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

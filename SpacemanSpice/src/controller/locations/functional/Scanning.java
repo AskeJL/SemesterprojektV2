@@ -4,6 +4,7 @@ import controller.locations.Exit;
 import controller.locations.ExitDirection;
 import controller.locations.Location;
 import controller.locations.Room;
+import controller.locations.gameobjects.ScanningControl;
 
 /**
  * Functional location, where fragments can be identified.
@@ -25,6 +26,7 @@ public final class Scanning extends Location {
 
         /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning", "Space debris can be scanned from here.");
+        scanningRoom.addGameObject(new ScanningControl());
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/
