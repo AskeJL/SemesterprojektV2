@@ -4,6 +4,7 @@ import controller.locations.Exit;
 import controller.locations.ExitDirection;
 import controller.locations.Location;
 import controller.locations.Room;
+import controller.locations.gameobjects.DamageRepair;
 
 /**
  * Functional location, where the player can repair the spaceship. 
@@ -25,6 +26,7 @@ public final class Outside extends Location {
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
+        outside.addGameObject(new DamageRepair());
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/

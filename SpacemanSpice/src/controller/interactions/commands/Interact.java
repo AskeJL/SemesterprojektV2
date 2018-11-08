@@ -1,23 +1,24 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
+import controller.interactions.TerminalController;
 
 public class Interact extends Command {
 
     public Interact() {
-        super("interact", "Interact with an object.", true);
-        
-        super.addParameter("door");
+        super("interact", "Interact with an object.", false);
     }
 
     @Override
     protected void checkAvailableParameters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected void run() {
         System.out.println("Interacts...");
+        TerminalController.getCurrentRoom().getGameObjects().get(0).interact();
+        
     }
 
     @Override

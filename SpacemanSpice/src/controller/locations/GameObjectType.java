@@ -6,5 +6,6 @@ package controller.locations;
 public enum GameObjectType {
     WATER,
     AIR,
-    FIRE_EXTINGUISHER;
+    FIRE_EXTINGUISHER,
+    CONTROL;
 }

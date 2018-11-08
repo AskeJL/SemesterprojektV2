@@ -4,6 +4,7 @@ import controller.locations.Exit;
 import controller.locations.ExitDirection;
 import controller.locations.Location;
 import controller.locations.Room;
+import controller.locations.gameobjects.NetControl;
 
 /**
  * Functional location, that utilises nets to clear medium fragments.
@@ -25,6 +26,7 @@ public final class Net extends Location {
         
         /*Corridor------------------------------------------------------------*/
         Room NetCorridor = new Room("Net corridor","This is the main corridor in the location");
+        NetCorridor.addGameObject(new NetControl());
         super.addRoom(NetCorridor);
         
         /*Net control---------------------------------------------------------*/
