@@ -17,7 +17,7 @@ public abstract class GameObject {
      * @param description of the GameObject.
      * @param type of the GameObject.
      */
-    public GameObject(String name, String description, GameObjectType type) {
+    protected GameObject(String name, String description, GameObjectType type) {
         this.name = name;
         this.description = description;
         this.type = type;
