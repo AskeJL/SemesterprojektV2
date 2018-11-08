@@ -65,5 +65,9 @@ public class Help extends Command {
         for (int i = 0; i < TerminalController.getCurrentRoom().getExits().size(); i++) {
             System.out.println("You can go " + TerminalController.getCurrentRoom().getExits().get(i).getDirection().name());
         }
+        if (TerminalController.getCurrentRoom().getGameObjects() != null){
+            System.out.print("And you can interact with ");
+            System.out.println(TerminalController.getCurrentRoom().getGameObjects().get(0).getName());
+        }
     }
 }
