@@ -10,7 +10,11 @@ public class Life extends Element {
     private final int MEDIUM_FRAGMENT = 2;
     private final int LARGE_FRAGMENT = 3;
     
-    private int hit;
+    private int smallFragmentDamage = 5;
+    private int mediumFragmentDamage = 10;
+    private int largeFragmentDamage = 15;
+    private int repairAmount = 3;
+    
     private int repair;
     
     private int life;
@@ -26,31 +30,35 @@ public class Life extends Element {
     /**
      * The method that increases the life value of the ship.
      */
-    public void increaseLife(boolean repair) {
+    public void increaseLife(boolean repair, int repairTimes) {
         super.getIncrement();
         
-        if(repair == true) {
-            super.setIncrement(2);
+        if(life < 100 && repair == true) {
+            life += (repairAmount * repairTimes);
+        }
+        if(life >= 100) {
+            life = 100;
         }
         
         
     }
+    
     /**
      * The method that decreases the life value of the ship.
      */
-    public void decreaseLife(int hit) {
-        super.getDecrement();
-        
-        if(hit == SMALL_FRAGMENT) {
-            super.setDecrement(5);
+    public void decreaseLife(int hitType, int hitTimes) {
+        if(hitType == 1) {
+            life -= (smallFragmentDamage * hitTimes);
         }
-        if(hit == MEDIUM_FRAGMENT) {
-            super.setDecrement(10);
+        if(hitType == 2) {
+            life -= (mediumFragmentDamage * hitTimes);
         }
-        if(hit == LARGE_FRAGMENT) {
-            super.setDecrement(15);
+        if(hitType == 3) {
+            life -= (largeFragmentDamage * hitTimes);
         }
-        
+        if(life <= 0) {
+            //Game over.
+        }
     }
     
     @Override 
