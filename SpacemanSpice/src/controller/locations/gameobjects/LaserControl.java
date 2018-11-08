@@ -11,12 +11,11 @@ public class LaserControl extends GameObject {
     
     @Override
     public void interact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Interacting with laser control");
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "GameObject.LaserControl:[" + super.getName() + "] [" + super.getDescription() + "]";
     }
-    
 }
