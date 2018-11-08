@@ -6,52 +6,47 @@ package controller.resources;
  */
 public class Life extends Element {
     
-    private static final int SMALL_FRAGMENT = 1;
-    private static final int MEDIUM_FRAGMENT = 2;
-    private static final int LARGE_FRAGMENT = 3;
+    private static final int SMALL_FRAGMENT_DAMAGE = 5;
+    private static final int MEDIUM_FRAGMENT_DAMAGE = 10;
+    private static final int LARGE_FRAGMENT_DAMAGE = 15;
+    private static final int repairAmount = 5;
     
-    private static int smallFragmentDamage = 5;
-    private static int mediumFragmentDamage = 10;
-    private static int largeFragmentDamage = 15;
-    private static int repairAmount = 3;
-    
-    private static int repair;
+    private static boolean repair = false;
     
     private static int life = 50;
     
     /**
      * The method that increases the life value of the ship.
      */
-    public static void increaseLife(boolean repair, int repairTimes) {
+    public static void updateLife() {
         if(life < 100 && repair == true) {
-            life += (repairAmount * repairTimes);
+            life += repairAmount;
         }
         if(life >= 100) {
             life = 100;
         }
+        repair = false;
     }
     
     /**
      * The method that decreases the life value of the ship.
+     * @param hitSmallFragments, amount of small fragments
+     * @param hitMediumFragments, amount of medium fragments
+     * @param hitLargeFragments, amount of large fragments
      */
-    public static void decreaseLife(int hitType, int hitTimes) {
-        if(hitType == 1) {
-            life -= (smallFragmentDamage * hitTimes);
+    public static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+        if(hitSmallFragments >= 0) {
+            life -= (SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
         }
-        if(hitType == 2) {
-            life -= (mediumFragmentDamage * hitTimes);
+        if(hitMediumFragments >= 0) {
+            life -= (MEDIUM_FRAGMENT_DAMAGE * hitMediumFragments);
         }
-        if(hitType == 3) {
-            life -= (largeFragmentDamage * hitTimes);
-        }
+        if(hitLargeFragments >= 0) {
+            life -= (LARGE_FRAGMENT_DAMAGE * hitLargeFragments);
+            }
         if(life <= 0) {
             //Game over.
         }
-    }
-    
-    @Override 
-    public void update() {
-        
     }
     
     public static double getLife() {

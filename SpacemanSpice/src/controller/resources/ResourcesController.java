@@ -16,8 +16,11 @@ public class ResourcesController {
     public static void initTime(){
         Time.startTime();
     }
+    public static void hitLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments){
+        Life.decreaseLife(hitSmallFragments, hitMediumFragments, hitLargeFragments);
+    }
     public static void updateResources(){
         Time.updateTime();
-        
+        Life.updateLife();
     }
 }    

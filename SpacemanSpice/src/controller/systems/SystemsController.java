@@ -17,9 +17,10 @@ public class SystemsController {
     private static boolean largeFragmentDestroyed = false;
     
     
-    public static void update(int fragmentIdentifier){
+    public static void update(){
         
         if(ResourcesController.getTime() == 0){
+            ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
             Wave.incrementNumberOfWaves();
             Wave.createWave();
             ResourcesController.initTime();
@@ -62,6 +63,10 @@ public class SystemsController {
 
     public static void setLargeFragmentDestroyed(boolean aLargeFragmentDestroyed) {
         largeFragmentDestroyed = aLargeFragmentDestroyed;
+    }
+    
+    public static int getNumberOfSmallFragments(){
+        return Wave.getSmallFragments();
     }
 }
 
