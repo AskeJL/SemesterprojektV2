@@ -12,6 +12,7 @@ public class NetControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with net control.");
+        controller.systems.SystemsController.setMediumFragmentDestroyed(true);
     }
 
     @Override
