@@ -1,39 +1,37 @@
 package controller.resources;
 
+import java.util.Date;
 /**
- * Class used to count time in other systems
+ * Class used to count time.
  */
 public class Time extends Element {
     
+    private static double time = 0;
     
-    private static double time;
+    private static Date startTime = new Date();
+    private static long startTimeVariable;
     
-    /**
-     * Constructor
-     */
-    public Time(){
+    private static long maxTime;
     
-    }
-    
-    /**
-     * Method that increases the time variable
-     * @param decreaseVariable
-     */
-    public void decreaseTime(int decreaseVariable){
-        time -= decreaseVariable;
-    }
+    private static Date compareTime = new Date();
+    private static long compareTimeVariable;
     
     /**
-     * Method that decreases the time variable
+     * Method that sets start time and maximum time.
      */
-    public void increaseTime(){
-        
+    public static void startTime(){
+       startTimeVariable = (startTime.getTime()/1000);
+       maxTime = startTimeVariable + 60;
     }
-    
-    
-    @Override
-    public void update(){
-        
+    /**
+     * Method that compares updates time variable, based on current time.
+     */
+    public static void updateTime(){
+        if(time == 0){
+            startTime();
+        }
+        compareTimeVariable =(compareTime.getTime()/1000);
+        time = maxTime - compareTimeVariable;
     }
     
     static double getTime(){
