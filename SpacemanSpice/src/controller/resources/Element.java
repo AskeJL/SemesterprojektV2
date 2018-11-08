@@ -11,10 +11,12 @@ public class Element {
     private double max;
     private double min;
     
+    protected Element() {}
+    
     /**
      * method used to update value
      */
-    public void update(){
+    static void update(){
         
     }
     

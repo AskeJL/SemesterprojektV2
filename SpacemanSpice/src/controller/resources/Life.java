@@ -19,6 +19,10 @@ public class Life extends Element {
     
     private static int life = 50;
     
+    public static void update() {
+        
+    }
+    
     /**
      * The method that increases the life value of the ship.
      */
@@ -47,11 +51,6 @@ public class Life extends Element {
         if(life <= 0) {
             //Game over.
         }
-    }
-    
-    @Override 
-    public void update() {
-        
     }
     
     public static double getLife() {

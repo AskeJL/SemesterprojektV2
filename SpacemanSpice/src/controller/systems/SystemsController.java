@@ -1,12 +1,13 @@
 
 package controller.systems;
 
+import controller.game.Controller;
 import controller.resources.ResourcesController;
 
 /**
  * Class controlling oxygen and wave systems.
  */
-public class SystemsController {
+public class SystemsController extends Controller {
     
     private final static int SMALL_FRAGMENT_IDENTIFIER = 1;
     private final static int MEDIUM_FRAGMENT_IDENTIFIER = 2;
@@ -16,13 +17,16 @@ public class SystemsController {
     private static boolean mediumFragmentDestroyed = false;
     private static boolean largeFragmentDestroyed = false;
     
-    
-    public static void update(int fragmentIdentifier){
+    public static void init() {
         
-        if(ResourcesController.getTime() == 0){
+    }
+    
+    public static void update(){
+        
+        if(ResourcesController.getCurrentTime() == 0){
             Wave.incrementNumberOfWaves();
             Wave.createWave();
-            ResourcesController.initTime();
+            ResourcesController.getInitTime();
         }
         
         if(smallFragmentDestroyed == true){

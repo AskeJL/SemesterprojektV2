@@ -1,23 +1,22 @@
 package controller.resources;
 
-import controller.systems.SystemsController;
+import controller.game.Controller;
 
-public class ResourcesController {
+public class ResourcesController extends Controller {
     
-    
-    
-    /**
-     * Method used to manipulate the time resource
-     * @return time parameter
-     */
-    public static double getTime(){
-       return Time.getTime();
+    public static void init(){
+        Time.init();
     }
-    public static void initTime(){
-        Time.startTime();
+    public static void update(){
+        Time.update();
+        Oxygen.update();
     }
-    public static void updateResources(){
-        Time.updateTime();
-        
+    
+    public static long getCurrentTime() {
+        return Time.getCurrentTime();
+    }
+    
+    public static long getInitTime() {
+        return Time.getInitTime();
     }
 }    

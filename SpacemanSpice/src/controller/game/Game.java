@@ -2,6 +2,9 @@ package controller.game;
 
 import controller.interactions.TerminalController;
 import controller.locations.LocationsController;
+import controller.resources.ResourcesController;
+import controller.systems.SystemsController;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +30,8 @@ public class Game {
     private static void init() {
         LocationsController.init();
         TerminalController.init();
+        ResourcesController.init();
+        SystemsController.init();
     }
 
     /**
@@ -36,6 +41,8 @@ public class Game {
         while (running) {
             LocationsController.update();
             TerminalController.update();
+            ResourcesController.update();
+            SystemsController.update();
         }
     }
     
