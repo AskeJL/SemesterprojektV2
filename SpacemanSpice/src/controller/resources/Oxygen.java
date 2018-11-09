@@ -31,7 +31,7 @@ public class Oxygen extends Element {
      *
      * @param increaseValue
      */
-    public void increaseOxygen(int increaseValue) {
+    public static void increaseOxygen(int increaseValue) {
         oxygen += increaseValue;
     }
 

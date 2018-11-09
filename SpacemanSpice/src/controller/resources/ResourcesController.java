@@ -27,4 +27,8 @@ public class ResourcesController extends Controller {
     public static int getOxygen() {
         return Oxygen.getOxygen();
     }
+    
+    public static void increaseOxygen(int oxygen){
+        controller.resources.Oxygen.increaseOxygen(oxygen);
+    }
 }    
