@@ -68,4 +68,12 @@ public class SystemsController extends Controller {
     public static void setLargeFragmentDestroyed(boolean aLargeFragmentDestroyed) {
         largeFragmentDestroyed = aLargeFragmentDestroyed;
     }
+
+    public static int getMediumFragments() {
+        return controller.systems.Wave.getMediumFragments();
+    }
+
+    public static int getSmallFragments() {
+        return controller.systems.Wave.getSmallFragments();
+    }
 }
