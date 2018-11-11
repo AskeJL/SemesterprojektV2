@@ -16,9 +16,12 @@ public class Interact extends Command {
 
     @Override
     protected void run() {
-        System.out.println("Interacts...");
+        if (TerminalController.getCurrentRoom().getGameObjects().isEmpty() == false){
         TerminalController.getCurrentRoom().getGameObjects().get(0).interact();
-        
+        }
+        else {
+            System.out.println("There are nothing to interact with in this room");
+        }
     }
 
     @Override
