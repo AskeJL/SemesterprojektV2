@@ -74,7 +74,6 @@ public class SystemsController extends Controller {
     public static int getNumberOfSmallFragments(){
         return Wave.getSmallFragments();
     }
-}
     
     public static int getLargeFragments(){
         return controller.systems.Wave.getLargeFragments();

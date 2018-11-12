@@ -14,7 +14,6 @@ public class ResourcesController extends Controller {
     public static void update(){
         Time.update();
         Oxygen.update();
-        Life.updateLife();
     }
     public static void hitLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments){
         Life.decreaseLife(hitSmallFragments, hitMediumFragments, hitLargeFragments);
