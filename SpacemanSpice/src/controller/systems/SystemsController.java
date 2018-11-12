@@ -23,11 +23,12 @@ public class SystemsController extends Controller {
     
     public static void update(){
         
-        if(ResourcesController.getCurrentTime() == ResourcesController.getWaveTime()){
+        if(ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()){
             ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
             Wave.incrementNumberOfWaves();
             Wave.createWave();
             ResourcesController.getInitTime();
+            System.out.println(controller.systems.Wave.getSmallFragments() + controller.systems.Wave.getMediumFragments() + controller.systems.Wave.getLargeFragments());
         }
         
         if(smallFragmentDestroyed == true){
