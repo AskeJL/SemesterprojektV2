@@ -2,6 +2,7 @@
 
 package controller.systems;
 
+import controller.resources.ResourcesController;
 import java.util.Random;
 /**
  * Class that controls the various resources that make up a wave.
@@ -18,6 +19,7 @@ public class Wave {
      * Method that creates a wave and sets values on each fragment variable
      */
     public static void createWave(){
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+60);
         Random random = new Random();
         smallFragments = (random.nextInt(3)+1)*numberOfWaves;
         

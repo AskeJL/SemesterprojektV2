@@ -23,7 +23,7 @@ public class SystemsController extends Controller {
     
     public static void update(){
         
-        if(ResourcesController.getCurrentTime() == 0){
+        if(ResourcesController.getCurrentTime() == ResourcesController.getWaveTime()){
             ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
             Wave.incrementNumberOfWaves();
             Wave.createWave();

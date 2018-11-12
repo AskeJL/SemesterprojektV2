@@ -23,4 +23,12 @@ public class ResourcesController extends Controller {
     public static long getInitTime() {
         return Time.getInitTime();
     }
+    
+    public static void setWaveTime(long newWaveTime){
+        Time.setWaveTime(newWaveTime);
+    }
+    
+    public static long getWaveTime(){
+        return Time.getWaveTime();
+    }
 }    

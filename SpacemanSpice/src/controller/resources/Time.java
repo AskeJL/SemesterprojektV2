@@ -8,6 +8,7 @@ public class Time extends Element {
     
     private static long initTime;
     private static long currentTime;
+    private static long waveTime;
     
     /**
      * Method that sets start time and maximum time.
@@ -28,5 +29,13 @@ public class Time extends Element {
     
     static long getCurrentTime() {
         return Time.currentTime;
+    }
+    
+    static void setWaveTime(long newWaveTime){
+        waveTime = newWaveTime;
+    }
+    
+    static long getWaveTime(){
+        return waveTime;
     }
 }
