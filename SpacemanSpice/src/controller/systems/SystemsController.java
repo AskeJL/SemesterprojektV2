@@ -23,7 +23,8 @@ public class SystemsController extends Controller {
     
     public static void update(){
         
-        if(ResourcesController.getCurrentTime() == 0){
+        if(ResourcesController.getTime() == 0){
+            ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
             Wave.incrementNumberOfWaves();
             Wave.createWave();
             ResourcesController.getInitTime();
@@ -66,6 +67,10 @@ public class SystemsController extends Controller {
 
     public static void setLargeFragmentDestroyed(boolean aLargeFragmentDestroyed) {
         largeFragmentDestroyed = aLargeFragmentDestroyed;
+    }
+    
+    public static int getNumberOfSmallFragments(){
+        return Wave.getSmallFragments();
     }
 }
 
