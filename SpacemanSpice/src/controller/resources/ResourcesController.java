@@ -31,4 +31,8 @@ public class ResourcesController extends Controller {
     public static void increaseOxygen(int oxygen){
         controller.resources.Oxygen.increaseOxygen(oxygen);
     }
+    
+    public static void increaseLife(boolean repair, int repairTimes){
+        controller.resources.Life.increaseLife(repair, repairTimes);
+    }
 }    
