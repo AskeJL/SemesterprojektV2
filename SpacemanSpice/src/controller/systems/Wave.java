@@ -1,63 +1,78 @@
 
+
 package controller.systems;
 
+import controller.resources.ResourcesController;
+import java.util.Random;
+/**
+ * Class that controls the various resources that make up a wave.
+ */
 public class Wave {
-    //Variable that holds the number of the current wave
-    private int numberOfWaves;
+   private static int numberOfWaves = 0;
     
-    //Variables that hold the amount of fragments for each size
-    private int smallFragments;
-    private int mediumFragments;
-    private int largeFragments;
+    private static int smallFragments;
+    private static int mediumFragments;
+    private static int largeFragments;
     
-    //Constructor
-    Wave(){
         
+    /**
+     * Method that creates a wave and sets values on each fragment variable
+     */
+    public static void createWave(){
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+60);
+        Random random = new Random();
+        smallFragments = (random.nextInt(3)+1)*numberOfWaves;
+        
+        if(numberOfWaves%2==0){
+            mediumFragments = numberOfWaves/2;
+        }
+        else mediumFragments = 0;
+        
+        if(numberOfWaves%3==0){
+            largeFragments = numberOfWaves/3;
+        }
+        else largeFragments = 0;
     }
-    
-    //toString method
+    public static void updateWave(int fragmentIdentifier){
+        if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
+            --smallFragments;
+        if(smallFragments < 0){
+            smallFragments = 0;
+        }
+        }
+        if(fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()){
+             --mediumFragments;
+        if(mediumFragments < 0){
+            mediumFragments = 0;
+        }
+        }
+        if(fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()){
+             largeFragments=0;
+        if(largeFragments < 0){
+            largeFragments = 0;
+        }
+        }
+    }
     @Override
     public String toString(){
         String s = "";
         return s;
     }
-    
-    //Set number of waves
-    public void setNumberOfWaves(int n){
-        this.numberOfWaves = n;
+    /**
+     * Increase number of waves by 1.
+     */
+    static void incrementNumberOfWaves(){
+        numberOfWaves++;
     }
-    
-    //Get number of waves
-    public int getNumberOfWaves(){
-        return this.numberOfWaves;
+
+    static int getSmallFragments(){
+        return smallFragments;
     }
-    
-    //Set number of small fragments
-    public void setSmallFragments(int n){
-        this.smallFragments = n;
+
+    static int getMediumFragments(){
+        return mediumFragments;
     }
-    
-    //Get number of small fragments
-    public int getSmallFragments(){
-        return this.smallFragments;
-    }
-    
-    //Set number of medium fragments
-    public void setMediumFragments(int n){
-        this.mediumFragments = n;
-    }
-    
-    //Get number of medium fragments
-    public int getMediumFragments(){
-        return this.mediumFragments;
-    }
-    //Set number of large fragments
-    public void setLargeFragments(int n){
-        this.largeFragments = n;
-    }
-    
-    //Get number of large fragments
-    public int getLargeFragments(){
-        return this.largeFragments;
+    static int getLargeFragments(){
+        return largeFragments;
     }
 }

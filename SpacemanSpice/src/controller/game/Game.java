@@ -2,6 +2,9 @@ package controller.game;
 
 import controller.interactions.TerminalController;
 import controller.locations.LocationsController;
+import controller.resources.ResourcesController;
+import controller.systems.SystemsController;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,9 +13,10 @@ import controller.locations.LocationsController;
 public class Game {
 
     private static boolean running = true;
-    
-    private Game(){}
-    
+
+    private Game() {
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -27,6 +31,8 @@ public class Game {
     private static void init() {
         LocationsController.init();
         TerminalController.init();
+        ResourcesController.init();
+        SystemsController.init();
     }
 
     /**
@@ -36,17 +42,20 @@ public class Game {
         while (running) {
             LocationsController.update();
             TerminalController.update();
+            ResourcesController.update();
+            SystemsController.update();
         }
     }
-    
+
     /**
-     * Set if the game is running. 
-     * @param isRunning 
+     * Set if the game is running.
+     *
+     * @param isRunning
      */
     static void setRunning(boolean isRunning) {
         Game.running = isRunning;
     }
-    
+
     static boolean isRunning() {
         return Game.running;
     }

@@ -21,6 +21,9 @@ public class ScanningControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("You interact with the scanningstation");
+        System.out.print("There are "+ controller.systems.SystemsController.getSmallFragments() + " small fragments,");
+        System.out.print(controller.systems.SystemsController.getMediumFragments() + " medium fragments and ");
+        System.out.println(controller.systems.SystemsController.getLargeFragments() + " large fragments in the wave");
     }
 
     @Override
