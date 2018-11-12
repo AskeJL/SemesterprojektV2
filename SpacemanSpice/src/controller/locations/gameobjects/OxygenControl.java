@@ -21,6 +21,9 @@ public class OxygenControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("You interact with the Oxygen refilling control");
+        int difference;
+        difference = 100 - controller.resources.Oxygen.getOxygen();
+        controller.resources.ResourcesController.increaseOxygen(difference);
     }
 
     @Override

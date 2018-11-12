@@ -5,6 +5,7 @@ import controller.game.Game;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;
+import controller.resources.ResourcesController;
 import java.util.List;
 
 public class TerminalController extends Controller {
@@ -46,4 +47,13 @@ public class TerminalController extends Controller {
     public static List<Command> getCommandWords() {
         return Commands.getCommandwords();
     }
+    
+    public static int getOxygen() {
+        return ResourcesController.getOxygen();
+    }
+    
+    public static long getCurrentTime() {
+        return ResourcesController.getCurrentTime();
+    }
+    
 }

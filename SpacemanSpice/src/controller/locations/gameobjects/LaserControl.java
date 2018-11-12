@@ -12,6 +12,9 @@ public class LaserControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with laser control");
+        controller.systems.SystemsController.setSmallFragmentDestroyed(true);
+        System.out.println("You have destroyed a small fragment");
+        System.out.println("There are "+ controller.systems.SystemsController.getSmallFragments()+ " left");
     }
 
     @Override

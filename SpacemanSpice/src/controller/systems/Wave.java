@@ -47,7 +47,7 @@ public class Wave {
         }
         }
         if(fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()){
-             --largeFragments;
+             largeFragments=0;
         if(largeFragments < 0){
             largeFragments = 0;
         }
