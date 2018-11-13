@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * Class used to count time.
  */
-public class Time extends Element {
+public class Time {
     
     private static long initTime;
     private static long currentTime;

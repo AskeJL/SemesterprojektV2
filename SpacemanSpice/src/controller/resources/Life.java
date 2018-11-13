@@ -4,7 +4,7 @@ package controller.resources;
  * This class is used by other systems to consider the current life of the ship
  * in the game.
  */
-public class Life extends Element {
+public class Life {
 
     private static final int SMALL_FRAGMENT_DAMAGE = 5;
     private static final int MEDIUM_FRAGMENT_DAMAGE = 10;
