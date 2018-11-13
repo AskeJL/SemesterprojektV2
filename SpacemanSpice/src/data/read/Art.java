@@ -3,9 +3,9 @@ package data.read;
 /**
  * Class that reads art
  */
-public class ReadArt {
+public class Art {
     
-    ReadArt(){
+    Art(){
         
     }
     

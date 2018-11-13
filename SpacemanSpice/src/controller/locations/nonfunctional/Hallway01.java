@@ -22,7 +22,7 @@ public final class Hallway01 extends Location {
         /*The rooms in the hallway01 location are created---------------------*/
         
         /*Hallway-------------------------------------------------------------*/
-        Room hallway = new Room("Hallway", "This hallway connects the Personal, Laser and Net");
+        Room hallway = new Room("Hallway 01", "This hallway connects the Personal, Laser and Net");
         super.addRoom(hallway);
         
         /*Setting entrance----------------------------------------------------*/

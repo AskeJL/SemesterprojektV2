@@ -25,15 +25,15 @@ public final class Oxygen extends Location {
         /*The rooms in the oxygen location are created------------------------*/
 
         /*Main corridor-------------------------------------------------------*/
-        Room corridorRoom = new Room("Oxygen corridor", "Main corridor of the oxygen room");
+        Room corridorRoom = new Room("Oxygen Corridor", "Main corridor of the oxygen room");
         super.addRoom(corridorRoom);
 
         /*Storage room--------------------------------------------------------*/
-        Room storageRoom = new Room("Oxygen storage", "Here the oxygen is storaged");
+        Room storageRoom = new Room("Oxygen Storage", "Here the oxygen is storaged");
         super.addRoom(storageRoom);
 
         /*Oxygen room---------------------------------------------------------*/
-        Room refuelRoom = new Room("Refuel room", "Here oxygen suply can be refilled");
+        Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
         refuelRoom.addGameObject(new OxygenControl());
         super.addRoom(refuelRoom);
 

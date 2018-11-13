@@ -24,15 +24,15 @@ public final class Personal extends Location {
         /*The rooms in the personal location are created----------------------*/
 
         /*Corridor------------------------------------------------------------*/
-        Room corridorRoom = new Room("Personal corridor", "Main corridor of the personal room");
+        Room corridorRoom = new Room("Personal Corridor", "Main corridor of the personal room");
         super.addRoom(corridorRoom);
 
         /*Toilet--------------------------------------------------------------*/
-        Room toiletRoom = new Room("Toilet", "this is the toilet");
+        Room toiletRoom = new Room("Personal Toilet", "this is the toilet");
         super.addRoom(toiletRoom);
 
         /*bedroom-------------------------------------------------------------*/
-        Room bedroomRoom = new Room("Bedroom", "This is the bedroom");
+        Room bedroomRoom = new Room("Personal Bedroom", "This is the bedroom");
         super.addRoom(bedroomRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
