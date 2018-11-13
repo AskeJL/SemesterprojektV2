@@ -1,10 +1,10 @@
 package domain.game;
 
+import data.read.ReadController;
 import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
-
 
 /**
  * Methods to initialise and update the game
@@ -20,6 +20,10 @@ public class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        for (String string : ReadController.getText("Introduction.txt")) {
+            System.out.println(string);
+        }
+
         init();
         loop();
     }

@@ -2,6 +2,7 @@ package data.read;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Read {
@@ -12,14 +13,14 @@ public class Read {
         this.FILE = new File(folderpath + filename);
     }
 
-    protected String readTextFile() {
-        String data = "";
+    protected ArrayList<String> readTextFile() {
+        ArrayList<String> data = new ArrayList<>();
         Scanner scanner;
         try {
             scanner = new Scanner(this.FILE);
-
-            while (scanner.hasNext()) {
-                data += scanner.nextLine() + "\n";
+            
+            while(scanner.hasNext()) {
+                data.add(scanner.nextLine());
             }
             return data;
         } catch (FileNotFoundException ex) {

@@ -34,7 +34,9 @@ public class Show extends Command {
                 System.out.println("Life: " + ResourcesController.getLife());
                 break;
             case "map":
-                System.out.println(ReadController.getMapText(LocationsController.getCurrentRoom().getName() + ".txt"));
+                for(String string : ReadController.getMap(LocationsController.getCurrentRoom().getName() + ".txt")) {
+                    System.out.println(string);
+                }
                 break;
         }
     }

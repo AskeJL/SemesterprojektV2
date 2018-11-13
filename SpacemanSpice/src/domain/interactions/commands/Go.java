@@ -59,7 +59,7 @@ public class Go extends Command {
         }
         
         System.out.println("Current location: " + LocationsController.getCurrentLocation().getName());
-        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
+        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName() + "\n");
     }
 
     @Override
