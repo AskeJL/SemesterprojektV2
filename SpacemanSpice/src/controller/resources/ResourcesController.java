@@ -49,11 +49,11 @@ public class ResourcesController extends Controller {
     }
     
     public static void increaseOxygen(int oxygen){
-        controller.resources.Oxygen.increaseOxygen(oxygen);
+        Oxygen.increaseOxygen(oxygen);
     }
     
     public static void setRepairTrue(){
-        controller.resources.Life.setRepairTrue();
+        Life.setRepairTrue();
     }
     
     public static void setWaveTime(long newWaveTime){

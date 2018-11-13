@@ -3,6 +3,7 @@ package controller.interactions.commands;
 import controller.interactions.Command;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
+import controller.locations.LocationsController;
 import java.util.*;
 
 public class Help extends Command {
@@ -55,19 +56,19 @@ public class Help extends Command {
 
     @Override
     public void showAvailableParameters() {
-        System.out.println("Current location: " + TerminalController.getCurrentLocation().getName());
-        System.out.println("Current room: " + TerminalController.getCurrentRoom().getName());
-        for (Exit exit : TerminalController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(TerminalController.getCurrentRoom().getName())) {
+        System.out.println("Current location: " + LocationsController.getCurrentLocation().getName());
+        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
+        for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
                 System.out.println("You can go " + exit.getDirection().name());
             }
         }
-        for (int i = 0; i < TerminalController.getCurrentRoom().getExits().size(); i++) {
-            System.out.println("You can go " + TerminalController.getCurrentRoom().getExits().get(i).getDirection().name());
+        for (int i = 0; i < LocationsController.getCurrentRoom().getExits().size(); i++) {
+            System.out.println("You can go " + LocationsController.getCurrentRoom().getExits().get(i).getDirection().name());
         }
-        if (TerminalController.getCurrentRoom().getGameObjects().isEmpty() == false){
+        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false){
             System.out.print("And you can interact with ");
-            System.out.println(TerminalController.getCurrentRoom().getGameObjects().get(0).getName());
+            System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
     }
 }

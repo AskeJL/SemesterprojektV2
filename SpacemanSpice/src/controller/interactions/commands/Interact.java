@@ -1,7 +1,7 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
-import controller.interactions.TerminalController;
+import controller.locations.LocationsController;
 
 public class Interact extends Command {
 
@@ -16,8 +16,8 @@ public class Interact extends Command {
 
     @Override
     protected void run() {
-        if (TerminalController.getCurrentRoom().getGameObjects().isEmpty() == false){
-        TerminalController.getCurrentRoom().getGameObjects().get(0).interact();
+        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false){
+        LocationsController.getCurrentRoom().getGameObjects().get(0).interact();
         }
         else {
             System.out.println("There are nothing to interact with in this room");
