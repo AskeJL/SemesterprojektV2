@@ -35,6 +35,10 @@ public class ResourcesController extends Controller {
         return Life.getLife();
     }
     
+    public static long getRemainingTime(){
+        return Time.getRemainingTime();
+    }
+    
     public static void increaseOxygen(int oxygen){
         controller.resources.Oxygen.increaseOxygen(oxygen);
     }

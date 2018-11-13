@@ -59,4 +59,8 @@ public class TerminalController extends Controller {
     public static int getLife(){
         return ResourcesController.getLife();
     }
+    
+    public static long getRemainingTime(){
+        return ResourcesController.getRemainingTime();
+    }
 }

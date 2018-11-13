@@ -32,7 +32,7 @@ public class Show extends Command {
                 System.out.println("Oxygen: " + TerminalController.getOxygen());
                 break;
             case "time": 
-                System.out.println("Time: " + TerminalController.getCurrentTime());
+                System.out.println("Time: " + TerminalController.getRemainingTime());
                 break;
             case "life": 
                 System.out.println("Life: " + TerminalController.getLife());

@@ -9,6 +9,7 @@ public class Time extends Element {
     private static long initTime;
     private static long currentTime;
     private static long waveTime;
+    private static long remainingTime;
     
     /**
      * Method that sets start time and maximum time.
@@ -37,5 +38,9 @@ public class Time extends Element {
     
     static long getWaveTime(){
         return waveTime;
+    }
+    
+    static long getRemainingTime(){
+        return remainingTime = waveTime - currentTime;
     }
 }
