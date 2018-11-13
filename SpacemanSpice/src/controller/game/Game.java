@@ -4,11 +4,10 @@ import controller.interactions.TerminalController;
 import controller.locations.LocationsController;
 import controller.resources.ResourcesController;
 import controller.systems.SystemsController;
-import java.util.ArrayList;
+
 
 /**
- *
- * @author sbang
+ * Methods to initialise and update the game
  */
 public class Game {
 

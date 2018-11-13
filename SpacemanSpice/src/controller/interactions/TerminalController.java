@@ -1,7 +1,6 @@
 package controller.interactions;
 
 import controller.game.Controller;
-import controller.game.Game;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;

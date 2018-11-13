@@ -5,8 +5,8 @@ public class Controller {
     protected Controller(){}
     
     /**
-     * For initializing the controller. All the classes that needs to be
-     * initialized is initialized here.
+     * For initialising the controller. All the classes that needs to be
+     * initialised is initialised here.
      */
     public static void init() {
         System.out.println("Not implemented");

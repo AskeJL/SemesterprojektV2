@@ -4,6 +4,9 @@ import controller.locations.GameObject;
 import controller.locations.GameObjectType;
 import controller.systems.SystemsController;
 
+/**
+ * Laser control game object
+ */
 public class LaserControl extends GameObject {
 
     public LaserControl() {

@@ -4,6 +4,9 @@ import controller.locations.GameObject;
 import controller.locations.GameObjectType;
 import controller.systems.SystemsController;
 
+/**
+ * Net control game object
+ */
 public class NetControl extends GameObject {
 
     public NetControl() {

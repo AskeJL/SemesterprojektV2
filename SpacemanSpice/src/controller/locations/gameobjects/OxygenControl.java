@@ -9,8 +9,7 @@ import controller.locations.GameObject;
 import controller.locations.GameObjectType;
 
 /**
- *
- * @author askel
+ * Oxygen control game object
  */
 public class OxygenControl extends GameObject {
     

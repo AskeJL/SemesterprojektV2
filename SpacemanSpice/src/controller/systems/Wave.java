@@ -33,6 +33,7 @@ public class Wave {
         }
         else largeFragments = 0;
     }
+    
     public static void updateWave(int fragmentIdentifier){
         if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
             --smallFragments;
