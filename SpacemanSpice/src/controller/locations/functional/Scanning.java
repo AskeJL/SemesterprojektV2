@@ -25,16 +25,16 @@ public final class Scanning extends Location {
         /*The rooms in the scanning location are created----------------------*/
 
         /*Scanning room-------------------------------------------------------*/
-        Room scanningRoom = new Room("Scanning", "Space debris can be scanned from here.");
+        Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
         scanningRoom.addGameObject(new ScanningControl());
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/
-        Room displayRoom = new Room("Display", "The most recent scan can be viewed here.");
+        Room displayRoom = new Room("Scanning Display", "The most recent scan can be viewed here.");
         super.addRoom(displayRoom);
 
         /*Sensor room---------------------------------------------------------*/
-        Room sensorRoom = new Room("Sensor", "The sensor equipment");
+        Room sensorRoom = new Room("Scanning Sensor", "The sensor equipment");
         super.addRoom(sensorRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

@@ -3,9 +3,9 @@ package data.read;
 /**
  * Class that reads location
  */
-public class ReadLocation {
+public class Location {
     
-    ReadLocation(){
+    Location(){
         
     }
     

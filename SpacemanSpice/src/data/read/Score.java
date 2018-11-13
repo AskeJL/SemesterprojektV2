@@ -3,9 +3,9 @@ package data.read;
 /**
  * Class that reads score
  */
-public class ReadScore {
+public class Score {
     
-    ReadScore(){
+    Score(){
         
     }
     

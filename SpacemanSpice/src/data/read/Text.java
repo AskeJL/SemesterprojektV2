@@ -3,9 +3,9 @@ package data.read;
 /**
  * Class that reads text 
  */
-public class ReadText {
+public class Text {
     
-    ReadText(){
+    Text(){
         
     }
     

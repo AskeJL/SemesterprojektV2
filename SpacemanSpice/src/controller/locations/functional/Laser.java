@@ -25,15 +25,15 @@ public final class Laser extends Location {
         /*The rooms in the laser location are created-------------------------*/
 
         /*Corridor------------------------------------------------------------*/
-        Room corridorRoom = new Room("Laser corridor", "Main corridor for the laser.");
+        Room corridorRoom = new Room("Laser Corridor", "Main corridor for the laser.");
         super.addRoom(corridorRoom);
 
         /*Technic-------------------------------------------------------------*/
-        Room technicRoom = new Room("Laser technic", "The technical parts of the laser.");
+        Room technicRoom = new Room("Laser Technic", "The technical parts of the laser.");
         super.addRoom(technicRoom);
 
         /*Controls------------------------------------------------------------*/
-        Room controlsRoom = new Room("Laser controls", "The controls for the laser.");
+        Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
         controlsRoom.addGameObject(new LaserControl());
         
         super.addRoom(controlsRoom);

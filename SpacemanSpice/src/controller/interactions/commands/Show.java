@@ -1,11 +1,11 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
+import controller.locations.LocationsController;
 import controller.resources.ResourcesController;
-import data.DataRead;
-import java.util.ArrayList;
+import data.read.ReadController;
 
-public class Show extends Command implements DataRead {
+public class Show extends Command {
     
     public Show() {
         super("show", "Shows a resource to the player.", true);
@@ -13,17 +13,12 @@ public class Show extends Command implements DataRead {
         super.addParameter("oxygen");
         super.addParameter("time");
         super.addParameter("life");
+        super.addParameter("map");
     }
 
     @Override
     protected void checkAvailableParameters() {
-        ArrayList<String> parameters = new ArrayList<>();
-        
-        parameters.add("oxygen");
-        parameters.add("time");
-        parameters.add("life");
-        
-        super.setAvailableParameters(parameters);
+        super.setAvailableParameters(super.getParameters());
     }
 
     @Override
@@ -38,6 +33,9 @@ public class Show extends Command implements DataRead {
             case "life": 
                 System.out.println("Life: " + ResourcesController.getLife());
                 break;
+            case "map":
+                System.out.println(ReadController.getMapText(LocationsController.getCurrentRoom().getName() + ".txt"));
+                break;
         }
     }
 
@@ -48,12 +46,7 @@ public class Show extends Command implements DataRead {
 
     @Override
     public void helpInfo() {
-        System.out.println("Will display a resource to the player.");
+        System.out.println("This command displays a resource to the player, depending on its parameter."
+                + "\nshow <arg>");
     }
-
-    @Override
-    public String read(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

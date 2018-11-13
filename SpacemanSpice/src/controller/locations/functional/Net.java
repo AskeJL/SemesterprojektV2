@@ -25,16 +25,16 @@ public final class Net extends Location {
         /*The rooms in the net location are created---------------------------*/
         
         /*Corridor------------------------------------------------------------*/
-        Room NetCorridor = new Room("Net corridor","This is the main corridor in the location");
+        Room NetCorridor = new Room("Net Corridor","This is the main corridor in the location");
         super.addRoom(NetCorridor);
         
         /*Net control---------------------------------------------------------*/
-        Room NetRoom = new Room("net Room","Here you control the space net");
+        Room NetRoom = new Room("Net Control","Here you control the space net");
         NetRoom.addGameObject(new NetControl());
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/
-        Room NetBay = new Room("Net bay","Here you can fix your net");
+        Room NetBay = new Room("Net Bay","Here you can fix your net");
         super.addRoom(NetBay);
         
         /*Setting exits and entrances-----------------------------------------*/

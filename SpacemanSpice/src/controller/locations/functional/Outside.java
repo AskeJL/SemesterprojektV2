@@ -30,7 +30,7 @@ public final class Outside extends Location {
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/
-        Room airlock = new Room("airlock", "You are now in the airlock");
+        Room airlock = new Room("Airlock", "You are now in the airlock");
         super.addRoom(airlock);
 
         /*Setting exits and entrances-----------------------------------------*/
