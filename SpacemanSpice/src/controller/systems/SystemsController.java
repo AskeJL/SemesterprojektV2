@@ -74,10 +74,6 @@ public class SystemsController extends Controller {
         largeFragmentDestroyed = aLargeFragmentDestroyed;
     }
     
-    public static int getNumberOfSmallFragments(){
-        return Wave.getSmallFragments();
-    }
-    
     public static int getLargeFragments(){
         return Wave.getLargeFragments();
     }
