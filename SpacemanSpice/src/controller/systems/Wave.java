@@ -14,11 +14,11 @@ public class Wave {
     private static int mediumFragments;
     private static int largeFragments;
     
-        
+    private Wave(){}    
     /**
      * Method that creates a wave and sets values on each fragment variable
      */
-    public static void createWave(){
+    static void createWave(){
         System.out.println("New wave of fragments incoming!");
         System.out.println("Head to the scanning room to identify them");
         ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+60);
@@ -36,7 +36,12 @@ public class Wave {
         else largeFragments = 0;
     }
     
-    public static void updateWave(int fragmentIdentifier){
+    /**
+     * 
+     * Updates wave by decreasing a fragment depending on its identifier
+     * @param fragmentIdentifier 
+     */
+    static void updateWave(int fragmentIdentifier){
         if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
             --smallFragments;
         if(smallFragments < 0){
