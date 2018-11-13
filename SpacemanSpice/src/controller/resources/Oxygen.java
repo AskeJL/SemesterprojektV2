@@ -5,7 +5,7 @@ package controller.resources;
  */
 public class Oxygen {
 
-    private static int oxygen = 100;
+    private static int oxygen = 10;
     private static final long TIME_BEFORE_LOSING_OXYGEN = 5;
     private static long lastTime;
 
