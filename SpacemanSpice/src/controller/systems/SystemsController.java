@@ -23,7 +23,11 @@ public class SystemsController extends Controller {
     public static void update(){
         
         if(ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()){
-            ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
+            if(Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0){
+                ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
+                System.out.println("The ship was hit by fragments!");
+                System.out.println("Check the ships life using the 'show life' command!");
+            }
             Wave.incrementNumberOfWaves();
             Wave.createWave();
             ResourcesController.getInitTime();
@@ -84,5 +88,9 @@ public class SystemsController extends Controller {
 
     public static int getSmallFragments() {
         return Wave.getSmallFragments();
+    }
+    
+    public static int getScore(){
+        return Score.getScore();
     }
 }
