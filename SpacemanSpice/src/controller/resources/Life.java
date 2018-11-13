@@ -14,11 +14,15 @@ public class Life {
     private static boolean repair = false;
 
     private static int life = 1;
+    
+    private Life(){
+        
+    }
 
     /**
      * The method that increases the life value of the ship.
      */
-    public static void update() {
+    static void update() {
         if (life < 100 && repair == true) {
                 life += repairAmount;
             }
@@ -35,7 +39,7 @@ public class Life {
      * @param hitMediumFragments, amount of medium fragments
      * @param hitLargeFragments, amount of large fragments
      */
-    public static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+    static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
         if (hitSmallFragments >= 0) {
             life -= (SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
         }
@@ -49,12 +53,12 @@ public class Life {
             //Game over.
         }
     }
-    public static void setRepairTrue(){
+    static void setRepairTrue(){
         repair = true;
     }
     
 
-    public static int getLife() {
+    static int getLife() {
         return life;
     }
 
