@@ -24,10 +24,10 @@ public class Help extends Command {
 
     @Override
     public void run() {
-        for(String parameter : super.getAvailableParameters()) {
-            if(parameter.equalsIgnoreCase(super.getCurrentParameter())) {
-                 TerminalController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
-                 return;
+        for (String parameter : super.getAvailableParameters()) {
+            if (parameter.equalsIgnoreCase(super.getCurrentParameter())) {
+                TerminalController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
+                return;
             }
         }
         System.out.println("What command is it you need help with?");
@@ -47,15 +47,18 @@ public class Help extends Command {
     public void showAvailableParameters() {
         System.out.println("Current location: " + LocationsController.getCurrentLocation().getName());
         System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
+
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
-                System.out.println("You can go " + exit.getDirection().name());
+                System.out.format("You can go %-5s - %-10s\n", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName());
             }
         }
-        for (int i = 0; i < LocationsController.getCurrentRoom().getExits().size(); i++) {
-            System.out.println("You can go " + LocationsController.getCurrentRoom().getExits().get(i).getDirection().name());
+
+        for (Exit exit : LocationsController.getCurrentRoom().getExits()) {
+            System.out.format("You can go %-5s - %-10s\n", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName());
         }
-        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false){
+
+        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
             System.out.print("And you can interact with ");
             System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
