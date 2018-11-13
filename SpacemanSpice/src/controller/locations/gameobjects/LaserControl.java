@@ -2,6 +2,7 @@ package controller.locations.gameobjects;
 
 import controller.locations.GameObject;
 import controller.locations.GameObjectType;
+import controller.systems.SystemsController;
 
 public class LaserControl extends GameObject {
 
@@ -12,9 +13,10 @@ public class LaserControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with laser control");
+        if(SystemsController.getSmallFragments() != 0){
         controller.systems.SystemsController.setSmallFragmentDestroyed(true);
         System.out.println("You have destroyed a small fragment");
-        System.out.println("There are "+ controller.systems.SystemsController.getSmallFragments()+ " left");
+        }
     }
 
     @Override
