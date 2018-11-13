@@ -12,11 +12,12 @@ public class Score {
     private final static int MEDIUM_FRAGMENT_POINTS = 10;
     private final static int LARGE_FRAGMENT_POINTS = 15;
     
+    private Score(){}
     /**
      * Method that updates score, based on fragment type.
      * @param fragmentIdentifier 
      */
-    public static void updateScore(int fragmentIdentifier){
+    static void updateScore(int fragmentIdentifier){
         if(fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()){
             score += SMALL_FRAGMENT_POINTS;
         }
@@ -34,7 +35,7 @@ public class Score {
       return s;
     }
     
-    public static int getScore(){
+    static int getScore(){
         return score;
     }
 }
