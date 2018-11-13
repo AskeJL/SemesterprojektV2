@@ -14,8 +14,13 @@ public class ResourcesController extends Controller {
     public static void update(){
         Time.update();
         Oxygen.update();
-        if(Oxygen.getOxygen() <= 0 || Life.getLife() <= 0){
-            System.out.println("Too bad, you are dead..");
+        if(Oxygen.getOxygen() <= 0 ){
+            System.out.println("You are out of oxygen. Too bad, you are dead..");
+            Controller.setRunning(false);
+        }
+        Life.update();
+        if(Life.getLife() <= 0){
+            System.out.println("The ship is destroyed. Too bad, you are dead..");
             Controller.setRunning(false);
         }
     }
@@ -47,8 +52,8 @@ public class ResourcesController extends Controller {
         controller.resources.Oxygen.increaseOxygen(oxygen);
     }
     
-    public static void increaseLife(boolean repair, int repairTimes){
-        controller.resources.Life.increaseLife(repair, repairTimes);
+    public static void setRepairTrue(){
+        controller.resources.Life.setRepairTrue();
     }
     
     public static void setWaveTime(long newWaveTime){

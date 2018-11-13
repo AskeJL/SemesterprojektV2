@@ -21,8 +21,8 @@ public class DamageRepair extends GameObject {
     @Override
     public void interact() {
         System.out.println("You begin reparing the ship");
-        controller.resources.ResourcesController.increaseLife(true, 100);
-        System.out.println("The ships health is now "+ controller.resources.Life.getLife());
+        controller.resources.ResourcesController.setRepairTrue();
+        System.out.println("Type: 'show life', to see the remaining health of the ship");
     }
 
     @Override

@@ -18,16 +18,13 @@ public class Life {
     /**
      * The method that increases the life value of the ship.
      */
-    public static void increaseLife(boolean repair, int repairTimes) {
-        for (int i = 0; i < repairTimes; i++) {
-
-            if (life < 100 && repair == true) {
+    public static void update() {
+        if (life < 100 && repair == true) {
                 life += repairAmount;
             }
             if (life >= 100) {
                 life = 100;
             }
-        }
         repair = false;
     }
 
@@ -52,6 +49,10 @@ public class Life {
             //Game over.
         }
     }
+    public static void setRepairTrue(){
+        repair = true;
+    }
+    
 
     public static int getLife() {
         return life;
