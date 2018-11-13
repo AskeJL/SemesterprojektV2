@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * A room within a location. This needs to be within a location. Primarily used
  * within the Locations.createLocation(), as it is only to be sat at the
- * initialization of the game.
+ * initialisation of the game.
  */
 public class Room {
 

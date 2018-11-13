@@ -2,7 +2,11 @@ package controller.locations.gameobjects;
 
 import controller.locations.GameObject;
 import controller.locations.GameObjectType;
+import controller.systems.SystemsController;
 
+/**
+ * Net control game object
+ */
 public class NetControl extends GameObject {
 
     public NetControl() {
@@ -12,9 +16,10 @@ public class NetControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with net control.");
+        if(SystemsController.getMediumFragments() != 0){
         controller.systems.SystemsController.setMediumFragmentDestroyed(true);
         System.out.println("You caught a medium fragment");
-        System.out.println("There are now "+controller.systems.SystemsController.getMediumFragments()+" left");
+        }
     }
 
     @Override

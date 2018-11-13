@@ -4,7 +4,7 @@ package controller.resources;
  * This class is used by other systems to consider the current life of the ship
  * in the game.
  */
-public class Life extends Element {
+public class Life {
 
     private static final int SMALL_FRAGMENT_DAMAGE = 5;
     private static final int MEDIUM_FRAGMENT_DAMAGE = 10;
@@ -13,21 +13,18 @@ public class Life extends Element {
 
     private static boolean repair = false;
 
-    private static int life = 50;
+    private static int life = 1;
 
     /**
      * The method that increases the life value of the ship.
      */
-    public static void increaseLife(boolean repair, int repairTimes) {
-        for (int i = 0; i < repairTimes; i++) {
-
-            if (life < 100 && repair == true) {
+    public static void update() {
+        if (life < 100 && repair == true) {
                 life += repairAmount;
             }
             if (life >= 100) {
                 life = 100;
             }
-        }
         repair = false;
     }
 
@@ -52,8 +49,12 @@ public class Life extends Element {
             //Game over.
         }
     }
+    public static void setRepairTrue(){
+        repair = true;
+    }
+    
 
-    public static double getLife() {
+    public static int getLife() {
         return life;
     }
 

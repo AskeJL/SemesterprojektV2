@@ -3,7 +3,7 @@ package controller.resources;
 /**
  * Class that controls the oxygen resource
  */
-public class Oxygen extends Element {
+public class Oxygen {
 
     private static int oxygen = 100;
     private static final long TIME_BEFORE_LOSING_OXYGEN = 5;

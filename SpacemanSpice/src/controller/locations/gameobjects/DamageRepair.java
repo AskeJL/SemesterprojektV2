@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.locations.gameobjects;
 
 import controller.locations.GameObject;
 import controller.locations.GameObjectType;
 
 /**
- *
- * @author askel
+ * Damage repair game object
  */
 public class DamageRepair extends GameObject {
     
@@ -21,8 +15,8 @@ public class DamageRepair extends GameObject {
     @Override
     public void interact() {
         System.out.println("You begin reparing the ship");
-        controller.resources.ResourcesController.increaseLife(true, 100);
-        System.out.println("The ships health is now "+ controller.resources.Life.getLife());
+        controller.resources.ResourcesController.setRepairTrue();
+        System.out.println("Type: 'show life', to see the remaining health of the ship");
     }
 
     @Override

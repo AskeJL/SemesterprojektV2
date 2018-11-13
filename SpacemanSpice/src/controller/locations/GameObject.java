@@ -1,7 +1,7 @@
 package controller.locations;
 
 /**
- * An object within the game that is interactable. Either by directly using it,
+ * An object within the game that is interact-able. Either by directly using it,
  * or picking it up for later use. An example could be a chair or an air tank.
  */
 public abstract class GameObject {

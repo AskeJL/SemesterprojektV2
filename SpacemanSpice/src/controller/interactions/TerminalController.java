@@ -1,7 +1,6 @@
 package controller.interactions;
 
 import controller.game.Controller;
-import controller.game.Game;
 import controller.locations.Location;
 import controller.locations.LocationsController;
 import controller.locations.Room;
@@ -56,4 +55,11 @@ public class TerminalController extends Controller {
         return ResourcesController.getCurrentTime();
     }
     
+    public static int getLife(){
+        return ResourcesController.getLife();
+    }
+    
+    public static long getRemainingTime(){
+        return ResourcesController.getRemainingTime();
+    }
 }

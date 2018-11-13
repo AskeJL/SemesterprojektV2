@@ -11,7 +11,7 @@ public class Commands {
     private Commands(){}
     
     /**
-     * Initialize the Commands class.
+     * Initialise the Commands class.
      */
     static void init() {
         COMMAND_WORDS.clear();

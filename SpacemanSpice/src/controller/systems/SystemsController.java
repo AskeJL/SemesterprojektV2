@@ -27,7 +27,6 @@ public class SystemsController extends Controller {
             Wave.incrementNumberOfWaves();
             Wave.createWave();
             ResourcesController.getInitTime();
-            System.out.println(controller.systems.Wave.getSmallFragments() + controller.systems.Wave.getMediumFragments() + controller.systems.Wave.getLargeFragments());
         }
 
         if (smallFragmentDestroyed == true) {
