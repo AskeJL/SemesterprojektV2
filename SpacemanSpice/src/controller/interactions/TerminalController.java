@@ -28,4 +28,8 @@ public class TerminalController extends Controller {
     public static List<Command> getCommandWords() {
         return Commands.getCommandwords();
     }
+    
+    public static Command getCommand(String name) {
+        return Commands.getCommand(name);
+    }
 }

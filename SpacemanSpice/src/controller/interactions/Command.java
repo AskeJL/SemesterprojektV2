@@ -147,6 +147,10 @@ public abstract class Command {
         return this.currentParameter;
     }
 
+    protected ArrayList<String> getParameters() {
+        return this.parameters;
+    }
+    
     protected ArrayList<String> getAvailableParameters() {
         return this.availableParameters;
     }

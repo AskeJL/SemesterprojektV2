@@ -4,7 +4,6 @@ import controller.interactions.Command;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
 import controller.locations.LocationsController;
-import java.util.*;
 
 public class Help extends Command {
 
@@ -15,33 +14,23 @@ public class Help extends Command {
         super.addParameter("interact");
         super.addParameter("help");
         super.addParameter("quit");
+        super.addParameter("show");
     }
 
     @Override
     public void checkAvailableParameters() {
-        ArrayList<String> parameter = new ArrayList<>();
-        parameter.add("go");
-        parameter.add("interact");
-        parameter.add("help");
-        parameter.add("quit");
-
-        super.setAvailableParameters(parameter);
+        super.setAvailableParameters(super.getParameters());
     }
 
     @Override
     public void run() {
-
-        if (super.getAvailableParameters().get(0).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("go")) {
-            TerminalController.getCommandWords().get(0).helpInfo();
-        } else if (super.getAvailableParameters().get(1).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("interact")) {
-            TerminalController.getCommandWords().get(2).helpInfo();
-        } else if (super.getAvailableParameters().get(2).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("help")) {
-            TerminalController.getCommandWords().get(1).helpInfo();
-        } else if (super.getAvailableParameters().get(3).equalsIgnoreCase(super.getCurrentParameter()) && super.getCurrentParameter().equalsIgnoreCase("quit")) {
-            TerminalController.getCommandWords().get(3).helpInfo();
-        } else {
-            System.out.println("What command is it you need help with?");
+        for(String parameter : super.getAvailableParameters()) {
+            if(parameter.equalsIgnoreCase(super.getCurrentParameter())) {
+                 TerminalController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
+                 return;
+            }
         }
+        System.out.println("What command is it you need help with?");
     }
 
     @Override
