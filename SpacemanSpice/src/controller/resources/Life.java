@@ -13,7 +13,7 @@ public class Life {
 
     private static boolean repair = false;
 
-    private static int life = 50;
+    private static int life = 1;
 
     /**
      * The method that increases the life value of the ship.

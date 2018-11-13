@@ -14,8 +14,8 @@ public class ResourcesController extends Controller {
     public static void update(){
         Time.update();
         Oxygen.update();
-        if(Oxygen.getOxygen() <= 0){
-            System.out.println("You are out of oxygen. Too bad, you are dead..");
+        if(Oxygen.getOxygen() <= 0 || Life.getLife() <= 0){
+            System.out.println("Too bad, you are dead..");
             Controller.setRunning(false);
         }
     }
