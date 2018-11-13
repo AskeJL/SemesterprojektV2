@@ -1,7 +1,7 @@
 package controller.interactions.commands;
 
 import controller.interactions.Command;
-import controller.interactions.TerminalController;
+import controller.resources.ResourcesController;
 import java.util.ArrayList;
 
 public class Show extends Command {
@@ -29,13 +29,13 @@ public class Show extends Command {
     protected void run() {
         switch(super.getCurrentParameter()) {
             case "oxygen":
-                System.out.println("Oxygen: " + TerminalController.getOxygen());
+                System.out.println("Oxygen: " + ResourcesController.getOxygen());
                 break;
             case "time": 
-                System.out.println("Time: " + TerminalController.getRemainingTime());
+                System.out.println("Time: " + ResourcesController.getRemainingTime());
                 break;
             case "life": 
-                System.out.println("Life: " + TerminalController.getLife());
+                System.out.println("Life: " + ResourcesController.getLife());
                 break;
         }
     }

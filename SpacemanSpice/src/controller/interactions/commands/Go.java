@@ -3,6 +3,7 @@ package controller.interactions.commands;
 import controller.interactions.Command;
 import controller.interactions.TerminalController;
 import controller.locations.Exit;
+import controller.locations.LocationsController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +23,11 @@ public class Go extends Command {
     @Override
     public void checkAvailableParameters() {
         currentExits.clear();
-        ArrayList<Exit> roomExits = TerminalController.getCurrentRoom().getExits();
+        ArrayList<Exit> roomExits = LocationsController.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for (Exit exit : TerminalController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(TerminalController.getCurrentRoom().getName())) {
+        for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
                 parameters.add(exit.getDirection().name().toLowerCase());
                 currentExits.add(exit);
             }
@@ -51,14 +52,14 @@ public class Go extends Command {
         }
 
         if(exitTo != null && exitTo.isExitToLocation()) {
-            TerminalController.setCurrentLocation(exitTo.getToLocation());
-            TerminalController.setCurrentRoom(exitTo.getToRoom());
+            LocationsController.setCurrentLocation(exitTo.getToLocation());
+            LocationsController.setCurrentRoom(exitTo.getToRoom());
         } else if(exitTo != null) {
-            TerminalController.setCurrentRoom(exitTo.getFromRoom());
+            LocationsController.setCurrentRoom(exitTo.getFromRoom());
         }
         
-        System.out.println("Current location: " + TerminalController.getCurrentLocation().getName());
-        System.out.println("Current room: " + TerminalController.getCurrentRoom().getName());
+        System.out.println("Current location: " + LocationsController.getCurrentLocation().getName());
+        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
     }
 
     @Override

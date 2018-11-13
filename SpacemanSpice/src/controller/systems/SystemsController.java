@@ -75,14 +75,14 @@ public class SystemsController extends Controller {
     }
     
     public static int getLargeFragments(){
-        return controller.systems.Wave.getLargeFragments();
+        return Wave.getLargeFragments();
     }
 
     public static int getMediumFragments() {
-        return controller.systems.Wave.getMediumFragments();
+        return Wave.getMediumFragments();
     }
 
     public static int getSmallFragments() {
-        return controller.systems.Wave.getSmallFragments();
+        return Wave.getSmallFragments();
     }
 }
