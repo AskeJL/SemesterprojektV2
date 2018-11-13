@@ -1,6 +1,7 @@
 package controller.resources;
 
 import controller.game.Controller;
+import controller.systems.SystemsController;
 
 public class ResourcesController extends Controller {
     
@@ -16,11 +17,13 @@ public class ResourcesController extends Controller {
         Oxygen.update();
         if(Oxygen.getOxygen() <= 0 ){
             System.out.println("You are out of oxygen. Too bad, you are dead..");
+            System.out.println("Score: " + SystemsController.getScore());
             Controller.setRunning(false);
         }
         Life.update();
         if(Life.getLife() <= 0){
             System.out.println("The ship is destroyed. Too bad, you are dead..");
+            System.out.println("Score: " + SystemsController.getScore());
             Controller.setRunning(false);
         }
     }
