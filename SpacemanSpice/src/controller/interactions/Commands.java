@@ -21,6 +21,7 @@ public class Commands {
         COMMAND_WORDS.add(new Interact());
         COMMAND_WORDS.add(new Quit());
         COMMAND_WORDS.add(new Show());
+        COMMAND_WORDS.add(new Clear());
     }
 
     /**
