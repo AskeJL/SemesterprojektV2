@@ -53,7 +53,7 @@ public class Life extends Element {
         }
     }
 
-    public static double getLife() {
+    public static int getLife() {
         return life;
     }
 

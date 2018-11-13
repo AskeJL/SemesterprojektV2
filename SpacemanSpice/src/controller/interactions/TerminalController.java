@@ -56,4 +56,7 @@ public class TerminalController extends Controller {
         return ResourcesController.getCurrentTime();
     }
     
+    public static int getLife(){
+        return ResourcesController.getLife();
+    }
 }

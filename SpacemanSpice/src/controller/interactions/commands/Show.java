@@ -34,6 +34,9 @@ public class Show extends Command {
             case "time": 
                 System.out.println("Time: " + TerminalController.getCurrentTime());
                 break;
+            case "life": 
+                System.out.println("Life: " + TerminalController.getLife());
+                break;
         }
     }
 
