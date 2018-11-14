@@ -2,11 +2,11 @@ package domain.interactions.commands;
 
 import data.read.AssetType;
 import domain.interactions.Command;
+import domain.interfaces.DataReader;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
-import data.read.ReadController;
 
-public class Show extends Command {
+public class Show extends Command implements DataReader {
     
     public Show() {
         super("show", "Shows a resource to the player.", true);
@@ -35,7 +35,7 @@ public class Show extends Command {
                 System.out.println("Life: " + ResourcesController.getLife());
                 break;
             case "map":
-                for(String string : ReadController.getData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
+                for(String string : this.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
                     System.out.println(string);
                 }
                 break;
