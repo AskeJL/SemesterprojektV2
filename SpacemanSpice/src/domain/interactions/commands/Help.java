@@ -46,8 +46,8 @@ public class Help extends Command {
 
     @Override
     public void showAvailableParameters() {
-        System.out.println("Current location: " + LocationsController.getCurrentLocation().getName());
-        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
+        System.out.println("\nCurrent location: " + LocationsController.getCurrentLocation().getName());
+        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName() + "\n");
 
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
@@ -60,7 +60,7 @@ public class Help extends Command {
         }
 
         if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
-            System.out.print("And you can interact with ");
+            System.out.print("\nAnd you can interact with ");
             System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
         System.out.println("These are the available commands "+ super.getAvailableParameters());

@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import data.read.AssetType;
 import domain.interactions.Command;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
@@ -34,7 +35,9 @@ public class Show extends Command {
                 System.out.println("Life: " + ResourcesController.getLife());
                 break;
             case "map":
-                System.out.println(ReadController.getMapText(LocationsController.getCurrentRoom().getName() + ".txt"));
+                for(String string : ReadController.getData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
+                    System.out.println(string);
+                }
                 break;
         }
     }
