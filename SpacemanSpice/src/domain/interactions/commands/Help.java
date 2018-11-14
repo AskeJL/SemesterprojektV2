@@ -15,6 +15,7 @@ public class Help extends Command {
         super.addParameter("help");
         super.addParameter("quit");
         super.addParameter("show");
+        super.addParameter("clear");
     }
 
     @Override
@@ -62,5 +63,7 @@ public class Help extends Command {
             System.out.print("And you can interact with ");
             System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
+        System.out.println("These are the available commands "+ super.getAvailableParameters());
+        
     }
 }
