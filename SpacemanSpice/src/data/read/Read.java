@@ -12,7 +12,7 @@ import java.util.Scanner;
  * If you want to read a document(.txt) use the Text class. If you want to read
  * a map(.txt) use the Map class.
  */
-public class Read {
+class Read {
 
     /**
      * File to read from. Is created during instantiation.
@@ -26,7 +26,7 @@ public class Read {
      * @param folderpath The local folder path. (Relative to /src folder)
      * @param filename The name of the file. (Remember file extentions: .txt)
      */
-    protected Read(String folderpath, String filename) {
+    Read(String folderpath, String filename) {
         this.FILE = new File(folderpath + filename);
     }
 
@@ -36,23 +36,20 @@ public class Read {
      *
      * @return A list of data. Each element corresponds to a line.
      */
-    protected List<String> readTextFile() {
+    List<String> readTextFile() throws FileNotFoundException {
         List<String> data = new ArrayList<>();
         Scanner scanner;
-        try {
-            scanner = new Scanner(this.FILE);
+        
+        scanner = new Scanner(this.FILE);
 
-            while (scanner.hasNext()) {
-                data.add(scanner.nextLine());
-            }
-            scanner.close();
-        } catch (FileNotFoundException ex) {
-            System.out.println("This file does not exist. " + this.FILE.getAbsolutePath() + "\nReturns empty list.");
+        while (scanner.hasNext()) {
+            data.add(scanner.nextLine());
         }
+        scanner.close();
         return data;
     }
 
-    protected File getFile() {
+    File getFile() {
         return this.FILE;
     }
 }

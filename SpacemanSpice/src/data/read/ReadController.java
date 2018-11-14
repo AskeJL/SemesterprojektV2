@@ -1,5 +1,6 @@
 package data.read;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -10,25 +11,28 @@ import java.util.List;
  */
 public class ReadController {
 
-    /**
-     * Get the map that matches the inserted filename parameter. Will return a
-     * List of all the lines in the .txt file.
-     *
-     * @param filename Name of the Map.
-     * @return A List of all the lines in the .txt file.
-     */
-    public static List<String> getMap(String filename) {
-        return new Map(filename).readTextFile();
-    }
+    private static final String MAP_PATH = "assets/maps/";
+    private static final String TEXT_PATH = "assets/text/";
 
     /**
-     * Get the text that matches the inserted filename parameter. Will return a
-     * List of all the lines in the .txt file.
+     * Gets data based on its type and name.
      *
-     * @param filename Name of the Text.
-     * @return A list of all the lines in the .txt file.
+     * The types uses the Enum, AssetType which dictates where to look for the
+     * given file. The filename is the actual name of the file, this also
+     * includes its file extension.
+     *
+     * @param type The type of data to read.
+     * @param filename The name of the file.
+     * @return A list of data.
+     * @throws java.io.FileNotFoundException
      */
-    public static List<String> getText(String filename) {
-        return new Text(filename).readTextFile();
+    public static List<String> getData(AssetType type, String filename) throws FileNotFoundException {
+        switch (type) {
+            case MAP:
+                return new Read(MAP_PATH, filename).readTextFile();
+            case TEXT:
+                return new Read(TEXT_PATH, filename).readTextFile();
+        }
+        return null;
     }
 }

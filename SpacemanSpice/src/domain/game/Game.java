@@ -1,6 +1,6 @@
 package domain.game;
 
-import data.read.ReadController;
+import data.read.AssetType;
 import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
@@ -9,7 +9,7 @@ import domain.systems.SystemsController;
 /**
  * Methods to initialise and update the game
  */
-public class Game {
+public class Game implements DataReader {
 
     private static boolean running = true;
 
@@ -20,10 +20,10 @@ public class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for (String string : ReadController.getText("Introduction.txt")) {
+        for (String string : DataReader.requestData(AssetType.TEXT, "Introduction.txt")) {
             System.out.println(string);
         }
-
+        
         init();
         loop();
     }
