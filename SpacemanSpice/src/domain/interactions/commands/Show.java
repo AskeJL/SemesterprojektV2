@@ -1,10 +1,11 @@
 package domain.interactions.commands;
 
-import data.read.AssetType;
+import data.AssetType;
 import domain.interactions.Command;
-import domain.interfaces.DataReader;
+import data.read.DataReader;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
+import domain.systems.SystemsController;
 
 public class Show extends Command implements DataReader {
     
@@ -15,6 +16,7 @@ public class Show extends Command implements DataReader {
         super.addParameter("time");
         super.addParameter("life");
         super.addParameter("map");
+        super.addParameter("score");
     }
 
     @Override
@@ -38,6 +40,9 @@ public class Show extends Command implements DataReader {
                 for(String string : this.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
                     System.out.println(string);
                 }
+                break;
+            case "score":
+                System.out.println(SystemsController.getScore());
                 break;
         }
     }

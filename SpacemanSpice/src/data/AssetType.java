@@ -1,8 +1,9 @@
-package data.read;
+package data;
 
 public enum AssetType {
     PICTURE,
     TEXT,
     MAP,
-    SOUND;
+    SOUND,
+    SCORE;
 }

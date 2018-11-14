@@ -1,7 +1,6 @@
-package domain.interfaces;
+package data.read;
 
-import data.read.AssetType;
-import data.read.ReadController;
+import data.AssetType;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
