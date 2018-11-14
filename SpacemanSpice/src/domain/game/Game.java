@@ -1,8 +1,8 @@
 package domain.game;
 
-import data.read.AssetType;
+import data.AssetType;
 import domain.interactions.InteractionsController;
-import domain.interfaces.DataReader;
+import data.read.DataReader;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;

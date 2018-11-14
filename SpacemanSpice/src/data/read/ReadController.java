@@ -1,5 +1,6 @@
 package data.read;
 
+import data.AssetType;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ReadController {
      * @return A list of data.
      * @throws java.io.FileNotFoundException
      */
-    public static List<String> getData(AssetType type, String filename) throws FileNotFoundException {
+    static List<String> getData(AssetType type, String filename) throws FileNotFoundException {
         switch (type) {
             case MAP:
                 return new Read(MAP_PATH, filename).readTextFile();
