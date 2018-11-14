@@ -6,6 +6,7 @@ import domain.interactions.commands.Clear;
 import domain.interactions.commands.Show;
 import domain.interactions.commands.Quit;
 import domain.interactions.commands.Go;
+import domain.interactions.commands.Start;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class Commands {
         COMMAND_WORDS.add(new Quit());
         COMMAND_WORDS.add(new Show());
         COMMAND_WORDS.add(new Clear());
+        COMMAND_WORDS.add(new Start());
     }
 
     /**
