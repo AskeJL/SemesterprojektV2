@@ -13,7 +13,7 @@ public class Life {
 
     private static boolean repair = false;
 
-    private static int life = 1;
+    private static int life = 100;
     
     private Life(){
         
