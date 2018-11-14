@@ -1,6 +1,7 @@
 package data.read;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +33,8 @@ public class ReadController {
                 return new Read(MAP_PATH, filename).readTextFile();
             case TEXT:
                 return new Read(TEXT_PATH, filename).readTextFile();
+            default:
+                return new ArrayList<>();
         }
-        return null;
     }
 }
