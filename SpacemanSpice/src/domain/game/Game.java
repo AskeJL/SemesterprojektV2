@@ -2,6 +2,7 @@ package domain.game;
 
 import data.read.AssetType;
 import domain.interactions.InteractionsController;
+import domain.interfaces.DataReader;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
@@ -12,15 +13,14 @@ import domain.systems.SystemsController;
 public class Game implements DataReader {
 
     private static boolean running = true;
-
-    private Game() {
-    }
+    
+    private Game() {}
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for (String string : DataReader.requestData(AssetType.TEXT, "Introduction.txt")) {
+        for (String string : new Game().requestData(AssetType.TEXT, "Introduction.txt")) {
             System.out.println(string);
         }
         
