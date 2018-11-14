@@ -7,9 +7,6 @@ import java.util.List;
 
 /**
  * This controller is assigned the job to read all the different kinds of files.
- *
- * By using its associated classes, it will return the matching file as
- * requested.
  */
 public class ReadController {
 
@@ -23,8 +20,8 @@ public class ReadController {
      * given file. The filename is the actual name of the file, this also
      * includes its file extension.
      *
-     * @param type The type of data to read.
-     * @param filename The name of the file.
+     * @param type The type of data to read. (What folder to look through)
+     * @param filename The name of the file. (Remember file extensions)
      * @return A list of data.
      * @throws java.io.FileNotFoundException
      */

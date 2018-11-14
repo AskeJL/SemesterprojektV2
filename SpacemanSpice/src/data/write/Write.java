@@ -18,6 +18,7 @@ public class Write {
         for(String string : data) {
             writer.print(string);
         }
+        writer.close();
     }
     
     File getFile() {
