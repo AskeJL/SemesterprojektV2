@@ -21,7 +21,6 @@ public class InteractionsController extends Controller {
     }
     
     public static void setRunning(boolean running){
-        
         Controller.setRunning(running);
     }
 
@@ -31,5 +30,9 @@ public class InteractionsController extends Controller {
     
     public static Command getCommand(String name) {
         return Commands.getCommand(name);
+    }
+    
+    public static Command getLastCommand() {
+        return Commands.getLastCommand();
     }
 }

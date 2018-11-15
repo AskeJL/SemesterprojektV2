@@ -13,7 +13,8 @@ import java.util.List;
 public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
-
+    private static Command lastCommand;
+    
     private Commands(){}
     
     /**
@@ -55,6 +56,7 @@ public class Commands {
                 if (command.hasParameter()) {
                     if (command.checkAvailableParameter(parameter)) {
                         command.setCurrentParameter(parameter);
+                        lastCommand = command;
                     } else {
                         System.out.println("Wrong parameter.");
                         command.showAvailableParameters();
@@ -70,6 +72,7 @@ public class Commands {
                     command.showAvailableParameters();
                     return null;
                 }
+                lastCommand = command;
                 return command;
             }
         }
@@ -117,5 +120,9 @@ public class Commands {
      */
     static List<Command> getCommandwords() {
         return COMMAND_WORDS;
+    }
+    
+    static Command getLastCommand() {
+        return lastCommand;
     }
 }
