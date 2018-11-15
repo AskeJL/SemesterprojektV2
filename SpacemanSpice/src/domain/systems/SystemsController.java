@@ -24,7 +24,7 @@ public class SystemsController extends Controller {
 
     public static void update() {
 
-        if (playerReady == true) {
+        if (playerReady) {
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
@@ -36,17 +36,17 @@ public class SystemsController extends Controller {
                 ResourcesController.getInitTime();
             }
 
-            if (smallFragmentDestroyed == true) {
+            if (smallFragmentDestroyed) {
                 Score.updateScore(1);
                 Wave.updateWave(1);
                 setSmallFragmentDestroyed(false);
             }
-            if (mediumFragmentDestroyed == true) {
+            if (mediumFragmentDestroyed) {
                 Score.updateScore(2);
                 Wave.updateWave(2);
                 setMediumFragmentDestroyed(false);
             }
-            if (largeFragmentDestroyed == true) {
+            if (largeFragmentDestroyed) {
                 Score.updateScore(3);
                 Wave.updateWave(3);
                 setLargeFragmentDestroyed(false);
