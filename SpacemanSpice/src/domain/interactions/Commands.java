@@ -122,7 +122,7 @@ public class Commands {
         return COMMAND_WORDS;
     }
     
-    static Command getLastCommand() {
-        return lastCommand;
+    static String getLastCommandName() {
+        return lastCommand.getName();
     }
 }

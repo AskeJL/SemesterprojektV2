@@ -32,7 +32,7 @@ public class InteractionsController extends Controller {
         return Commands.getCommand(name);
     }
     
-    public static Command getLastCommand() {
-        return Commands.getLastCommand();
+    public static String getLastCommandName() {
+        return Commands.getLastCommandName();
     }
 }
