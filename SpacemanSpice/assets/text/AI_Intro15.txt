@@ -1,0 +1,14 @@
++-----------------------------------+
+| SAL153                            |
+| Well done! You figured it out.    |
+| Remember that whenever you are    |
+| outside or the ship has taken too |
+| much damange, your oxygen tank    |
+| will eventually deplete.          |
+| You will therefore need to refill |
+| it from time to time.             |
+| That is what the oxygen refueling |
+| room is for. Get to the oxygen    |
+| room to refill your tank.         |
++-----------------------------------+
+ Hint: Type help interact.
