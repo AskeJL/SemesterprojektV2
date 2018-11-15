@@ -47,6 +47,7 @@ public class Commands {
     static Command validateCommand(String commandWord, String parameter) {
         if (commandWord != null) {
             Command command = getCommand(commandWord);
+            lastCommand = command;
             if (command == null) {
                 System.out.println("I don't know that command. \nThese are the commands available:");
                 showCommands();
