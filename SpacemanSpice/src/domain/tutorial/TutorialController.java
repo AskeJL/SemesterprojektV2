@@ -9,7 +9,10 @@ import java.util.List;
 public class TutorialController extends Controller {
 
     private static List<String> introduction;
+    private static List<String> aIintro1;
 
+    private static boolean continuing = false;
+    
     private static boolean tutorial1 = true;
     private static boolean tutorial2 = false;
     private static boolean tutorial3 = false;
@@ -20,6 +23,7 @@ public class TutorialController extends Controller {
 
     public static void init() {
         introduction = TutorialData.getTextString("Introduction.txt");
+        aIintro1 = TutorialData.getTextString("AI_Intro1.txt");
     }
 
     public static void update() {
@@ -67,5 +71,13 @@ public class TutorialController extends Controller {
                 tutorial7 = false;
             }
         }
+    }
+    
+    public static void getContinuing(){
+        
+    }
+    
+    public static void setContinuing(){
+        continuing = true;
     }
 }
