@@ -2,7 +2,6 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.tutorial.TutorialController;
 
 /**
  *
@@ -20,7 +19,7 @@ public class Continue extends Command{
 
     @Override
     protected void run() {
-        TutorialController.setContinuing();
+        
     }
 
     @Override

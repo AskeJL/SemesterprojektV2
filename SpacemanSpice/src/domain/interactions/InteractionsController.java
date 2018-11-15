@@ -35,4 +35,8 @@ public class InteractionsController extends Controller {
     public static String getLastCommandName() {
         return Commands.getLastCommandName();
     }
+    
+    public static String getLastParameter() {
+        return Commands.getLastParameter();
+    }
 }

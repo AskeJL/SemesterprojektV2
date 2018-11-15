@@ -15,6 +15,7 @@ public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
     private static Command lastCommand;
+    private static String lastParameter;
     
     private Commands(){}
     
@@ -58,6 +59,7 @@ public class Commands {
                 if (command.hasParameter()) {
                     if (command.checkAvailableParameter(parameter)) {
                         command.setCurrentParameter(parameter);
+                        lastParameter = parameter;
                         lastCommand = command;
                     } else {
                         System.out.println("Wrong parameter.");
@@ -126,5 +128,9 @@ public class Commands {
     
     static String getLastCommandName() {
         return lastCommand.getName();
+    }
+    
+    static String getLastParameter() {
+        return lastParameter;
     }
 }
