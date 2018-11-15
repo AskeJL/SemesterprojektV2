@@ -2,12 +2,25 @@ package domain.interactions;
 
 import java.util.Scanner;
 
+/**
+ * The parser reads input Strings and redirects it for
+ * {@link Commands#validateCommand(String, String) command validation}. It then
+ * receives a validated command (if not validated will be null).
+ *
+ * @see InteractionsController
+ * @see Command
+ * @see Commands
+ */
 public class Parser {
 
+    /**
+     * The main scanner used for reading Strings in the class.
+     */
     private static final Scanner READER = new Scanner(System.in);
 
-    private Parser(){}
-    
+    private Parser() {
+    }
+
     /**
      * Read the two first inputs from the user. Then return the words
      * separately.
@@ -37,7 +50,8 @@ public class Parser {
 
     /**
      * Read the user input and determine what command to process. When found,
-     * will return the appropriate command.
+     * will return the appropriate command. Uses the {@link Parser#readInput()}
+     * method.
      *
      * @return The command that matches the user input.
      */
@@ -51,7 +65,8 @@ public class Parser {
     }
 
     /**
-     * Print a list of all the available commands.
+     * Print a list of all the available commands. Uses the
+     * {@link Commands#getCommandwords()}
      */
     void showCommands() {
         for (Command command : Commands.getCommandwords()) {
