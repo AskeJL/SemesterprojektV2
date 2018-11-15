@@ -14,8 +14,8 @@ import java.util.List;
 public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
-    private static Command lastCommand;
-    private static String lastParameter;
+    private static Command lastCommand = new Continue();
+    private static String lastParameter = "";
     
     private Commands(){}
     
