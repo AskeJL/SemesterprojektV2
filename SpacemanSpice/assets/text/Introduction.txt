@@ -9,31 +9,8 @@
 |                                                  |
 | The job of a LEODC is fairly simple, as my main  |
 | task is to oversee the AI of the spaceship and   |
-| ensure that  the ship function as intended.      |
+| ensure that the ship function as intended.       |
 |                                                  |
 | I wonder what the future has in store for me.    |
 +--------------------------------------------------+
  Type continue to continue.
-
-+----------------------------------+
-| SAL153                           |
-| Hello Spaceman Spice. I have     |
-| been expecting your arrival!     |
-| I am SAL153, the AI of the ship  |
-| LEO Control 153. Welcome aboard. |
-+----------------------------------+
-
-+----------------------------------+
-| SAL153                           |
-| As you may or may not know, you  |
-| will be expected to partake in   |
-| a crash course on how to operate |
-| the ship, in case of emergency.  |
-| However if you feel that this    |
-| course will not be necessary     |
-| you could always skip it.        |
-| Would you like to continue?      |
-+----------------------------------+
- Choose one:
- Type continue to start the tutorial. 
- Type start to skip the tutorial and start the game.
