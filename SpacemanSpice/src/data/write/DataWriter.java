@@ -32,10 +32,6 @@ public interface DataWriter {
      * @see data.write.Write
      */
     default void writeData(AssetType type, String filename, List<String> data) {
-        try {
-            WriteController.writeData(type, filename, data);
-        } catch (FileNotFoundException ex) {
-            System.out.println("No file was found. Nothing was written.");
-        }
+        WriteController.writeData(type, filename, data);
     }
 }

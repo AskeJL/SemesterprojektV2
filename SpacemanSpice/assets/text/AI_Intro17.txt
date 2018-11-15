@@ -1,0 +1,17 @@
++-----------------------------------+
+| SAL153                            |
+| To fully understand everything    |
+| I suggest using the help command  |
+| and have a look at what the       |
+| different commands can do before  |
+| progressing.                      |
+| AI's are allowed to break the     |
+| fourth wall.                      |
+|                                   |
+| Whenever you feel ready to begin  |
+| the game propperly, type "start". |
+|                                   |
+| To skip the tutorial when         |
+| you restart the game, just type   |
+| "start" at the start of the game. |
++-----------------------------------+

@@ -33,11 +33,6 @@ public interface DataReader {
      * @see data.read.Read
      */
     default List<String> requestData(AssetType type, String filename) {
-        try {
-            return ReadController.getData(type, filename);
-        } catch (FileNotFoundException ex) {
-            System.out.println("No file was found. Returning empty.");
-        }
-        return new ArrayList<>();
+        return ReadController.getData(type, filename);
     }
 }

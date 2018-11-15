@@ -24,7 +24,7 @@ public class WriteController {
      * @param data The list of data it will write to the file.
      * @throws FileNotFoundException
      */
-    static void writeData(AssetType type, String filename, List<String> data) throws FileNotFoundException {
+    static void writeData(AssetType type, String filename, List<String> data) {
         switch (type) {
             case SCORE:
                 new Write(SCORE_PATH, filename).writeTextFile(data);
