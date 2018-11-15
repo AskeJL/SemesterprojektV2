@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| Excellent! You have managed to    |
+| open your map. Bravo.             |
+| Try to store that in your         |
+| inferior human brain, will you?   |
+|                                   |
+| Now that you have some idea of    |
+| where what is, we can continue    |
+| to the next stage: scanning the   |
+| vicinity of the ship.             |
++-----------------------------------+
+ Type continue to continue.

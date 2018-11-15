@@ -1,14 +1,16 @@
 +--------------------------------------------------+
-| Spaceman Spice                       10/02/2133  |
+| Spaceman Spice                                   |
+| Log entry 003                        10/02/2133  |
 |                                                  |
-| Du er som spaceman Spice blevet indsat som rum-  |
-| skraldemand. Her har du til formaal at indsamle  |
-| nogle af de mange fragmenter der er blevet       |
-| efterladt i kredsloeb omkring jorden.            |
+| After having left Earth's atmosphere, I can      |
+| finally see the spaceship LEO Control 153, on    |
+| which I am to spend the next 3 months as a       |
+| Low Earth Orbit debris controller (LEODC).       |
 |                                                  |
-| Uheldigvis er stationen for nyligt blevet ramt   |
-| af omtalte fragmenter, saa det automative system |
-| ikke laengere er aktivt. Du kan derfor glemme alt|
-| om din traening hjemmefra, og i stedet deltage   |
-| i lynkurset om manuel operation af stationen.    |
+| The job of a LEODC is fairly simple, as my main  |
+| task is to oversee the AI of the spaceship and   |
+| ensure that the ship function as intended.       |
+|                                                  |
+| I wonder what the future has in store for me.    |
 +--------------------------------------------------+
+ Type continue to continue.

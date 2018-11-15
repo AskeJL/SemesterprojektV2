@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| First off we have the ship's      |
+| laser. You can use this to        |
+| destroy small debris within the   |
+| vicinity of the ship.             |
+|                                   |
+| To operate the ship's laser, head |
+| to the laser control room and     |
+| try out the controls.             |
+| Posthaste now!                    |
++-----------------------------------+
+ Hint: type help interact.
