@@ -12,16 +12,41 @@ import domain.interactions.commands.Start;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The main collection of {@link Command}'s as well as the main logic for
+ * managing all the commands.
+ *
+ * It is from here, the commands are
+ * {@link Commands#validateCommand(String, String) validate and checked for parameters}
+ * etc.
+ *
+ * @see Command
+ * @see InteractionsController
+ * @see Parser
+ */
 public class Commands {
 
-    private static final List<Command> COMMAND_WORDS = new ArrayList<>();
-    private static Command lastCommand = new Clear();
-    private static String lastParameter = "";
-    
-    private Commands(){}
-    
     /**
-     * Initialise the Commands class.
+     * A list of all the {@link Command}'s. These are initialized in the
+     * {@link Commands#init() init()} method.
+     */
+    private static final List<Command> COMMAND_WORDS = new ArrayList<>();
+    /**
+     * This is where the last called {@link Command} is stored. (Is sat to the
+     * {@link domain.interactions.commands.Clear Clear} command as default)
+     */
+    private static Command lastCommand = new Clear();
+    /**
+     * This is where the last called parameter is stored.
+     */
+    private static String lastParameter = "";
+
+    private Commands() {
+    }
+
+    /**
+     * Initializes the commands. This will add all the different commands to the
+     * {@link Commands#COMMAND_WORDS} list.
      */
     static void init() {
         COMMAND_WORDS.clear();
@@ -38,15 +63,18 @@ public class Commands {
     }
 
     /**
-     * Checks to see if the inserted Strings match any command. Will return the
-     * command with an assigned parameter (if given).
+     * Checks to see if the inserted Strings match any {@link Command}. Will
+     * then return the {@link Command} with an assigned parameter (if given).
      *
      * @param commandWord The String to validate. Needs to be the name of the
-     * command.
-     * @param parameter The parameter for the command.
-     * @return The command.
+     * {@link Command}.
+     * @param parameter The parameter for the {@link Command}.
+     * @return Returns null if no command matched.
      */
     static Command validateCommand(String commandWord, String parameter) {
+        // After the Continue() command was added some bugs arised. 
+        // As a result of this, this method has become slighty messy and needs
+        // refactoring.
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
@@ -58,7 +86,7 @@ public class Commands {
             lastCommand = command;
 
             command.checkAvailableParameters();
-            
+
             if (parameter != null) {
                 if (command.hasParameter()) {
                     if (command.checkAvailableParameter(parameter)) {
@@ -74,7 +102,7 @@ public class Commands {
                 return command;
             } else {
                 if (command.hasParameter()) {
-                    if(!command.getName().equalsIgnoreCase("help")){
+                    if (!command.getName().equalsIgnoreCase("help")) {
                         System.out.println("Missing parameter.");
                     }
                     command.showAvailableParameters();
@@ -88,29 +116,29 @@ public class Commands {
     }
 
     /**
-     * Displays the available commands to the user.
+     * Displays the {@link Commands#COMMAND_WORDS COMMAND_WORDS} to the user.
      */
     static void showCommands() {
-        for(Command command : COMMAND_WORDS) {
+        for (Command command : COMMAND_WORDS) {
             System.out.format("   %-10s\n", command.getName());
         }
     }
-    
+
     /**
-     * Gets the command based in its index.
+     * Gets the {@link Command} based in its index.
      *
-     * @param index Index of the command.
-     * @return The command.
+     * @param index Index of the {@link Command}.
+     * @return
      */
     static Command getCommand(int index) {
         return COMMAND_WORDS.get(index);
     }
 
     /**
-     * Get the command based on its name.
+     * Get the {@link Command} based on its name.
      *
-     * @param name Name of the command.
-     * @return The command.
+     * @param name Name of the {@link Command}.
+     * @return
      */
     static Command getCommand(String name) {
         for (Command command : COMMAND_WORDS) {
@@ -122,18 +150,28 @@ public class Commands {
     }
 
     /**
-     * Get all the command words.
+     * Get all the {@link Commands#COMMAND_WORDS COMMAND_WORDS}.
      *
      * @return A List of command words.
      */
     static List<Command> getCommandwords() {
         return COMMAND_WORDS;
     }
-    
+
+    /**
+     * Get the name of the {@link Commands#lastCommand last valid command} called.
+     *
+     * @return
+     */
     static String getLastCommandName() {
         return lastCommand.getName();
     }
-    
+
+    /**
+     * Get the {@link Commands#lastParameter last valid parameter}.
+     *
+     * @return
+     */
     static String getLastParameter() {
         return lastParameter;
     }
