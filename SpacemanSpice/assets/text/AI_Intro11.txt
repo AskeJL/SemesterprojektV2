@@ -1,12 +1,13 @@
 +-----------------------------------+
 | SAL153                            |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
+| And no, I am not just saying that |
+| because I am directly connected   |
+| to the ship and it therefore also |
+| hurts me *if I could feel pain*.  |
+|                                   |
+| Why are you still here? Go on!    |
+| Training waits for no one.        |
+| Get to the steering room at the   |
+| front of the ship.                |
 +-----------------------------------+
+ Hint: Type help interact.
