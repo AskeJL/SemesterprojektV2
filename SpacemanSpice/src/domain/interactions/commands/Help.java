@@ -38,7 +38,7 @@ public class Help extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
