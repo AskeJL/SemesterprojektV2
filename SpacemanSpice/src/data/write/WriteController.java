@@ -19,7 +19,7 @@ public class WriteController {
      * The function of this method demands that the file already exists.
      * Furthermore, the type specifies what folder to look through.
      *
-     * @param type The type of data to write. (What folder to look through)
+     * @param type The type of data to write. {@link data.AssetType}
      * @param filename The name of the file. (Remember file extensions)
      * @param data The list of data it will write to the file.
      * @throws FileNotFoundException
