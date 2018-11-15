@@ -49,6 +49,7 @@ public class Commands {
             Command command = getCommand(commandWord);
             if (command == null) {
                 System.out.println("I don't know that command. \nThese are the commands available:");
+                lastCommand = COMMAND_WORDS.get(0);
                 showCommands();
                 return null;
             }
