@@ -1,12 +1,15 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 import domain.locations.Exit;
 import domain.locations.LocationsController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This command is responsible for moving through rooms and locations.
+ * @author sbang
+ */
 public class Go extends Command {
 
     private List<Exit> currentExits = new ArrayList<>();
