@@ -1,8 +1,6 @@
 package domain.game;
 
-import data.AssetType;
 import domain.interactions.InteractionsController;
-import data.read.DataReader;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
@@ -11,7 +9,7 @@ import domain.tutorial.TutorialController;
 /**
  * Methods to initialise and update the game
  */
-public class Game implements DataReader {
+public class Game {
 
     private static boolean running = true;
     
