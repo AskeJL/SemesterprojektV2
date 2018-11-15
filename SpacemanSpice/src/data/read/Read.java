@@ -5,10 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * The main class for reading files. 
- * 
+ * The main class for reading files.
+ *
  * This is primarily used by the
  * {@link ReadController#getData(data.AssetType, java.lang.String) ReadController.getData}
  * method.
@@ -41,16 +43,20 @@ class Read {
      *
      * @return A list of data. Each element corresponds to a line.
      */
-    List<String> readTextFile() throws FileNotFoundException {
+    List<String> readTextFile() {
         List<String> data = new ArrayList<>();
         Scanner scanner;
 
-        scanner = new Scanner(this.FILE);
+        try {
+            scanner = new Scanner(this.FILE);
 
-        while (scanner.hasNext()) {
-            data.add(scanner.nextLine());
+            while (scanner.hasNext()) {
+                data.add(scanner.nextLine());
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("No file was found at " + FILE.getAbsolutePath() + "\nReturning empty.");
         }
-        scanner.close();
         return data;
     }
 
