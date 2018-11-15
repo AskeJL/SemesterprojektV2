@@ -97,4 +97,8 @@ public class SystemsController extends Controller {
      public static void setPlayerReady(boolean playerReady) {
         SystemsController.playerReady = playerReady;
     }
+
+    public static boolean getPlayerReady() {
+        return SystemsController.playerReady;
+    }
 }
