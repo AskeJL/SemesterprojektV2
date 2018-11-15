@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The main class for writing files.
@@ -40,13 +42,18 @@ public class Write {
      * @param data Data to write to file.
      * @throws FileNotFoundException
      */
-    void writeTextFile(List<String> data) throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(this.FILE);
+    void writeTextFile(List<String> data) {
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(this.FILE);
 
-        for (String string : data) {
-            writer.print(string);
+            for (String string : data) {
+                writer.print(string);
+            }
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("No file was found at " + FILE.getAbsolutePath() + "\nNothing was written.");
         }
-        writer.close();
     }
 
     /**

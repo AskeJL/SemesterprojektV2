@@ -15,6 +15,7 @@ class ReadController {
 
     private static final String MAP_PATH = "assets/maps/";
     private static final String TEXT_PATH = "assets/text/";
+    private static final String DESCRIPTION_PATH = "assets/descriptions/";
 
     /**
      * Gets data based on its {@link data.AssetType} and name.
@@ -30,12 +31,14 @@ class ReadController {
      *
      * @see data.AssetType
      */
-    static List<String> getData(AssetType type, String filename) throws FileNotFoundException {
+    static List<String> getData(AssetType type, String filename) {
         switch (type) {
             case MAP:
                 return new Read(MAP_PATH, filename).readTextFile();
             case TEXT:
                 return new Read(TEXT_PATH, filename).readTextFile();
+            case DESCRIPTION:
+                return new Read(DESCRIPTION_PATH, filename).readTextFile();
             default:
                 return new ArrayList<>();
         }
