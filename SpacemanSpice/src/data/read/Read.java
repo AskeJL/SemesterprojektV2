@@ -7,21 +7,26 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Reads files based on its inherited classes.
- *
- * If you want to read a document(.txt) use the Text class. If you want to read
- * a map(.txt) use the Map class.
+ * The main class for reading files. 
+ * 
+ * This is primarily used by the
+ * {@link ReadController#getData(data.AssetType, java.lang.String) ReadController.getData}
+ * method.
  */
 class Read {
 
     /**
      * File to read from. Is created during instantiation.
+     *
+     * @see Read(String, String)
      */
     private final File FILE;
 
     /**
      * Creates a file upon instantiation. The parameters are called from the
-     * inherited classes.
+     * controller in the
+     * {@link ReadController#getData(data.AssetType, java.lang.String) getData}
+     * method.
      *
      * @param folderpath The local folder path. (Relative to /src folder)
      * @param filename The name of the file. (Remember file extentions: .txt)
@@ -31,15 +36,15 @@ class Read {
     }
 
     /**
-     * Will read the file assigned to the class. The file gets assigned upon
-     * instantiation from inherited classes { Text, Map etc. }.
+     * Will read the {@link Read#FILE file} assigned to the class - uses the
+     * Scanner to read data an store it in a String List.
      *
      * @return A list of data. Each element corresponds to a line.
      */
     List<String> readTextFile() throws FileNotFoundException {
         List<String> data = new ArrayList<>();
         Scanner scanner;
-        
+
         scanner = new Scanner(this.FILE);
 
         while (scanner.hasNext()) {
@@ -49,6 +54,11 @@ class Read {
         return data;
     }
 
+    /**
+     * Get {@link Read#FILE file}.
+     *
+     * @return
+     */
     File getFile() {
         return this.FILE;
     }
