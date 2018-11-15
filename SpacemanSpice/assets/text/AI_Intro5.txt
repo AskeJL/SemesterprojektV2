@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| Scanning the vicinity of the ship |
+| is very important as you would    |
+| otherwise not know what could     |
+| potentially cause a collision and |
+| cause damage to the ship.         |
+|                                   |
+| To scan the vicinity of the ship, |
+| head to the scanning room         |
+| and have a go at the terminal.    |
++-----------------------------------+
+ Hint: type help interact.

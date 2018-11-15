@@ -3,6 +3,7 @@ package domain.interactions;
 import domain.interactions.commands.Help;
 import domain.interactions.commands.Interact;
 import domain.interactions.commands.Clear;
+import domain.interactions.commands.Continue;
 import domain.interactions.commands.Show;
 import domain.interactions.commands.Quit;
 import domain.interactions.commands.Go;
@@ -13,7 +14,9 @@ import java.util.List;
 public class Commands {
 
     private static final List<Command> COMMAND_WORDS = new ArrayList<>();
-
+    private static Command lastCommand = new Clear();
+    private static String lastParameter = "";
+    
     private Commands(){}
     
     /**
@@ -29,6 +32,7 @@ public class Commands {
         COMMAND_WORDS.add(new Show());
         COMMAND_WORDS.add(new Clear());
         COMMAND_WORDS.add(new Start());
+        COMMAND_WORDS.add(new Continue());
     }
 
     /**
@@ -48,6 +52,7 @@ public class Commands {
                 showCommands();
                 return null;
             }
+            lastCommand = command;
 
             command.checkAvailableParameters();
             
@@ -55,6 +60,8 @@ public class Commands {
                 if (command.hasParameter()) {
                     if (command.checkAvailableParameter(parameter)) {
                         command.setCurrentParameter(parameter);
+                        lastParameter = parameter;
+                        lastCommand = command;
                     } else {
                         System.out.println("Wrong parameter.");
                         command.showAvailableParameters();
@@ -70,6 +77,7 @@ public class Commands {
                     command.showAvailableParameters();
                     return null;
                 }
+                lastCommand = command;
                 return command;
             }
         }
@@ -117,5 +125,13 @@ public class Commands {
      */
     static List<Command> getCommandwords() {
         return COMMAND_WORDS;
+    }
+    
+    static String getLastCommandName() {
+        return lastCommand.getName();
+    }
+    
+    static String getLastParameter() {
+        return lastParameter;
     }
 }

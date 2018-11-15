@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| Marvelous! Let us get to it then. |
+|                                   |
+| Firstly I would recommend that    |
+| you learn where what is on the    |
+| ship.                             |
+| I have been informed that you     |
+| were given a map before you left  |
+| Earth, so let us have a look at   |
+| that, shall we?                   |
++-----------------------------------+
+ Hint: type help show.

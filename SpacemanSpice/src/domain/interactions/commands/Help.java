@@ -4,6 +4,7 @@ import domain.interactions.Command;
 import domain.interactions.InteractionsController;
 import domain.locations.Exit;
 import domain.locations.LocationsController;
+import domain.systems.SystemsController;
 
 public class Help extends Command {
 
@@ -16,6 +17,7 @@ public class Help extends Command {
         super.addParameter("quit");
         super.addParameter("show");
         super.addParameter("clear");
+        super.addParameter("start");
     }
 
     @Override
@@ -36,7 +38,7 @@ public class Help extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
@@ -63,7 +65,11 @@ public class Help extends Command {
             System.out.print("\nAnd you can interact with ");
             System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
+        if (SystemsController.getPlayerReady() == false){
         System.out.println("These are the available commands "+ super.getAvailableParameters());
-        
+        }
+        else {
+            System.out.println("These are the available commands " + super.getAvailableParameters().subList(0, super.getAvailableParameters().size()-1));
+        }
     }
 }
