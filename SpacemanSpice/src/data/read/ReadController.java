@@ -7,23 +7,28 @@ import java.util.List;
 
 /**
  * This controller is assigned the job to read all the different kinds of files.
+ *
+ * The controller is called from the {@link DataReader} interface, which is the
+ * only bridge to the data.read layer.
  */
-public class ReadController {
+class ReadController {
 
     private static final String MAP_PATH = "assets/maps/";
     private static final String TEXT_PATH = "assets/text/";
 
     /**
-     * Gets data based on its type and name.
+     * Gets data based on its {@link data.AssetType} and name.
      *
      * The types uses the Enum, AssetType which dictates where to look for the
-     * given file. The filename is the actual name of the file, this also
+     * given file. The filename is the actual name of the file - this also
      * includes its file extension.
      *
-     * @param type The type of data to read. (What folder to look through)
+     * @param type The type of data to read. {@link data.AssetType}
      * @param filename The name of the file. (Remember file extensions)
      * @return A list of data.
      * @throws java.io.FileNotFoundException
+     *
+     * @see data.AssetType
      */
     static List<String> getData(AssetType type, String filename) throws FileNotFoundException {
         switch (type) {
