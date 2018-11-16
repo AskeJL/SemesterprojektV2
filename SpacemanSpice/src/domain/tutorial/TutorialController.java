@@ -96,6 +96,7 @@ public class TutorialController extends Controller {
             case 7: 
                 if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
                     TutorialData.printText(aIintro7);
+                    counter++;
                 }
                 break;
             case 8:
