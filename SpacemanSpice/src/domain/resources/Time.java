@@ -10,6 +10,7 @@ public class Time {
     private static long initTime;
     private static long currentTime;
     private static long waveTime;
+    private static long randTime;
 
     private Time() {
         
@@ -47,5 +48,13 @@ public class Time {
 
     static long getRemainingTime() {
         return waveTime - currentTime;
+    }
+    
+    static void setRandTime(){
+        randTime = ((long )(Math.random() * 20 + 5)); 
+    }
+    
+    static long getRandTime(){
+        return randTime;
     }
 }

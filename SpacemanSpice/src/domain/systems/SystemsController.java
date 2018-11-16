@@ -36,6 +36,8 @@ public class SystemsController extends Controller implements DataReader {
                     ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
                 }
+                ResourcesController.setRandTime();
+                System.out.println(ResourcesController.getRandTime());
                 Wave.incrementNumberOfWaves();
                 Wave.createWave();
                 SystemsData.printText(newWaveIncoming);

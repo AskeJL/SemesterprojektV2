@@ -67,4 +67,12 @@ public class ResourcesController extends Controller {
     public static long getWaveTime(){
         return Time.getWaveTime();
     }
+    
+    public static void setRandTime(){
+        Time.setRandTime();
+    }
+    
+    public static long getRandTime(){
+        return Time.getRandTime();
+    }
 }    
