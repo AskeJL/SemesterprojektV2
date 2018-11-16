@@ -62,6 +62,7 @@ public class Oxygen {
      * @return
      */
     static int getOxygen() {
+        Oxygen.update();
         return oxygen;
     }
 }
