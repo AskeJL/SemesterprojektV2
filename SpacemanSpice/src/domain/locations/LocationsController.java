@@ -22,7 +22,7 @@ public class LocationsController extends Controller{
     
     private static Room currentRoom;
     private static Location currentLocation;
-
+    
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
     private LocationsController(){}
@@ -98,7 +98,7 @@ public class LocationsController extends Controller{
         // Oxygen connects to mainhall01 from corridor due WEST
         oxygen.addExit(new Exit(ExitDirection.WEST, hallway02, oxygen.getRooms().get(0), hallway02.getRooms().get(0)));
         oxygen.addExit(new Exit(ExitDirection.EAST, mainhall01, oxygen.getRooms().get(0), mainhall01.getRooms().get(0)));
-
+        
         // Personal connects to mainhall01 from corridor due WEST
         // Personal connects to hallway01 from corridor due SOUTH
         // Personal connects to scanning from corridor due NORTH
@@ -111,28 +111,28 @@ public class LocationsController extends Controller{
         scanning.addExit(new Exit(ExitDirection.SOUTH, personal, scanning.getRooms().get(0), personal.getRooms().get(0)));
         scanning.addExit(new Exit(ExitDirection.WEST, control, scanning.getRooms().get(0), control.getRooms().get(2)));
 
-        // Hallway01 connects to net from hallway due SOUTH
-        // Hallway01 connects to laser from hallway due WEST
-        // Hallway01 connects to personal from hallway due NORTH
+        // Hallway01 connects to net from hallway01 due SOUTH
+        // Hallway01 connects to laser from hallway01 due WEST
+        // Hallway01 connects to personal from hallway01 due NORTH
         hallway01.addExit(new Exit(ExitDirection.SOUTH, net, hallway01.getRooms().get(0), net.getRooms().get(1)));
         hallway01.addExit(new Exit(ExitDirection.WEST, laser, hallway01.getRooms().get(0), laser.getRooms().get(0)));
         hallway01.addExit(new Exit(ExitDirection.NORTH, personal, hallway01.getRooms().get(0), personal.getRooms().get(0)));
 
-        // Hallway02 connects to control from hallway due NORTH
-        // Hallway02 connects to oxygen from hallway due EAST
-        // Hallway02 conencts to outside from hallway due SOUTH
+        // Hallway02 connects to control from hallway02 due NORTH
+        // Hallway02 connects to oxygen from hallway02 due EAST
+        // Hallway02 conencts to outside from hallway02 due SOUTH
         hallway02.addExit(new Exit(ExitDirection.NORTH, control, hallway02.getRooms().get(0), control.getRooms().get(1)));
         hallway02.addExit(new Exit(ExitDirection.EAST, oxygen, hallway02.getRooms().get(0), oxygen.getRooms().get(0)));
         hallway02.addExit(new Exit(ExitDirection.SOUTH, outside, hallway02.getRooms().get(0), outside.getRooms().get(1)));
 
-        // Mainhall01 connects to oxygen from mainhall due WEST
-        // Mainhall01 connects to personal from mainhall due EAST
-        // Mainhall01 connects to control from mainhall due NORTH
+        // Mainhall01 connects to oxygen from mainhall01 due WEST
+        // Mainhall01 connects to personal from mainhall01 due EAST
+        // Mainhall01 connects to control from mainhall01 due NORTH
         mainhall01.addExit(new Exit(ExitDirection.WEST, oxygen, mainhall01.getRooms().get(0), oxygen.getRooms().get(0)));
         mainhall01.addExit(new Exit(ExitDirection.EAST, personal, mainhall01.getRooms().get(0), personal.getRooms().get(0)));
         mainhall01.addExit(new Exit(ExitDirection.NORTH, control, mainhall01.getRooms().get(0), control.getRooms().get(2)));
         mainhall01.addExit(new Exit(ExitDirection.SOUTH, mainhall02, mainhall01.getRooms().get(0), mainhall02.getRooms().get(0)));
-
+        
         // Mainhall02 connects to mainhall01 from mainhall due NORTH
         // Mainhall02 connects to outside from mainhall due WEST
         // Mainhall02 connects to laser from mainhall due EAST

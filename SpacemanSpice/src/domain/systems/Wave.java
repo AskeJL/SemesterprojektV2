@@ -19,10 +19,8 @@ public class Wave {
     /**
      * Method that creates a wave and sets values on each fragment variable
      */
-    static void createWave() {
-        System.out.println("New wave of fragments incoming!");
-        System.out.println("Head to the scanning room to identify them");
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime() + 120);
+    static void createWave(){
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+120);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 

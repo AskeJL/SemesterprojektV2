@@ -1,0 +1,12 @@
++---------------------------------------+
+| SAL153                                |
+| ALERT! ALERT!                         |
+| It would seem a new wave of fragments |
+| is on its way!                        |
+| It seems redundant to tell you again, |
+| but you should head to the            |
+|            "Scanning room"            |
+| in order to identify the number       |
+| and the type of the fragments.        |
+| Good luck, Spaceman Spice.            |
++---------------------------------------+

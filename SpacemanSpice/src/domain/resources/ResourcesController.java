@@ -1,6 +1,7 @@
 package domain.resources;
 
 import domain.game.Controller;
+import domain.locations.LocationsController;
 import domain.systems.SystemsController;
 
 public class ResourcesController extends Controller {

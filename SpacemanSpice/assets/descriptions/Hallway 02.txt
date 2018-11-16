@@ -1,0 +1,5 @@
++-----------------------------------+
+| This is the hallway that connects |
+| the rooms located on the port     |
+| side of the spaceship.            |
++-----------------------------------+
