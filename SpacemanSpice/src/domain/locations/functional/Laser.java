@@ -47,6 +47,6 @@ public final class Laser extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Laser : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Laser : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
     }
 }

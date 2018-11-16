@@ -46,6 +46,6 @@ public final class Oxygen extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Oxygen : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
     }
 }

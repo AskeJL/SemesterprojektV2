@@ -15,7 +15,7 @@ public abstract class Location {
     /**
      * Name of the Location.
      */
-    private String name;
+    private final String NAME;
 
     /**
      * Description of the location.
@@ -33,7 +33,7 @@ public abstract class Location {
     private ArrayList<Room> rooms = new ArrayList<>();
 
     protected Location(String name, String description) {
-        this.name = name;
+        this.NAME = name;
         this.description = description;
     }
 
@@ -92,12 +92,12 @@ public abstract class Location {
     }
 
     /**
-     * Get the {@link #name name} of this Location.
+     * Get the {@link #NAME name} of this Location.
      *
      * @return
      */
-    public String getName() {
-        return this.name;
+    public String getNAME() {
+        return this.NAME;
     }
 
     /**

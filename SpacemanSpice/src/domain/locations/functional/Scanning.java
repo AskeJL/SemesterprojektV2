@@ -46,6 +46,6 @@ public final class Scanning extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Scanning : Name [" + this.getName() + "] Description [" + this.getDescription() + "]";
+        return "locations.functional.Scanning : Name [" + this.getNAME() + "] Description [" + this.getDescription() + "]";
     }
 }

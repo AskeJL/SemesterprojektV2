@@ -1,7 +1,7 @@
 package domain.locations;
 
 /**
- * Different types of objects within the game.
+ * Different types of objects within the game. [CONTROL]
  */
 public enum GameObjectType {
     /**

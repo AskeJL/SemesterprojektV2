@@ -40,7 +40,7 @@ public final class Outside extends Location {
 
     @Override
     public String toString() {
-        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + this.getExits() + "]";
+        return "locations.Room : Name[" + this.getNAME() + "] Description[" + this.getDescription() + this.getExits() + "]";
     }
 
 }

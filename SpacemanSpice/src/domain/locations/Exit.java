@@ -79,7 +79,7 @@ public class Exit {
         if (EXIT_TO_ROOM) {
             return "locations.RoomExit : Exit[" + this.fromRoom.getName() + "] Direction[" + this.direction + "]";
         } else {
-            return "locations.LocationExit : Exit[" + this.toLocation.getName() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
+            return "locations.LocationExit : Exit[" + this.toLocation.getNAME() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
         }
     }
 

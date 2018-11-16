@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.locations.gameobjects;
 
 import domain.locations.GameObject;
@@ -10,19 +5,32 @@ import domain.locations.GameObjectType;
 import domain.resources.ResourcesController;
 
 /**
- * Oxygen control game object
+ * Used to fill up the players oxygen.
+ * <br><br>
+ * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
+ *
+ * @see GameObject
+ * @see domain.locations.functional.Oxygen
  */
 public class OxygenControl extends GameObject {
-    
-    public OxygenControl(){
-        super("Oxygen control","This is the refilling station for oxygen",GameObjectType.CONTROL);
+
+    public OxygenControl() {
+        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);
     }
 
+    /**
+     * Refills the players {@link domain.resources.Oxygen}. This will call the
+     * {@link ResourcesController#increaseOxygen(int)}
+     * <br><br>
+     * This will always fill the {@link domain.resources.Oxygen} completely.
+     *
+     * @see domain.resources.Oxygen
+     * @see domain.resources.ResourcesController
+     */
     @Override
     public void interact() {
         System.out.println("You interact with the Oxygen refilling control");
-        int difference;
-        difference = 100 - ResourcesController.getOxygen();
+        int difference = 100 - ResourcesController.getOxygen();
         ResourcesController.increaseOxygen(difference);
     }
 
@@ -30,5 +38,5 @@ public class OxygenControl extends GameObject {
     public String toString() {
         return super.getName() + super.getDescription();
     }
-    
+
 }

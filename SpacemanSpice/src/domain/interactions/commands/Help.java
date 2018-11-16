@@ -72,12 +72,12 @@ public class Help extends Command {
     @Override
     public void showAvailableParameters() {
         System.out.println("Current room:");
-        System.out.format("%10s %s\n", "", LocationsController.getCurrentLocation().getName() + "/" + LocationsController.getCurrentRoom().getName());
+        System.out.format("%10s %s\n", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName());
 
         System.out.println("You can go:");
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
-                System.out.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName());
+                System.out.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME());
             }
         }
         for (Exit exit : LocationsController.getCurrentRoom().getExits()) {

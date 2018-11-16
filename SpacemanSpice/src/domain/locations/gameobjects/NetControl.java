@@ -5,20 +5,35 @@ import domain.locations.GameObjectType;
 import domain.systems.SystemsController;
 
 /**
- * Net control game object
+ * Used to catch medium fragments.
+ * <br><br>
+ * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
+ *
+ * @see GameObject
+ * @see domain.locations.functional.Net
  */
 public class NetControl extends GameObject {
 
     public NetControl() {
         super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL);
     }
-    
+
+    /**
+     * Catch a medium fragment. This will set the
+     * {@link domain.systems.SystemsController#setMediumFragmentDestroyed(boolean)}
+     * boolean.
+     * <br><br>
+     * Only runs if there are any medium fragments to destroy.
+     *
+     * @see domain.systems.Wave
+     * @see domain.systems.SystemsController
+     */
     @Override
     public void interact() {
         System.out.println("Interacting with net control.");
-        if(SystemsController.getMediumFragments() != 0){
+        if (SystemsController.getMediumFragments() != 0) {
             domain.systems.SystemsController.setMediumFragmentDestroyed(true);
-        System.out.println("You caught a medium fragment");
+            System.out.println("You caught a medium fragment");
         }
     }
 
@@ -26,5 +41,5 @@ public class NetControl extends GameObject {
     public String toString() {
         return "GameObject.NetControl:[" + super.getName() + "] [" + super.getDescription() + "]";
     }
-    
+
 }
