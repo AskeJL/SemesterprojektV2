@@ -7,7 +7,7 @@ import domain.locations.Room;
 import domain.locations.gameobjects.NetControl;
 
 /**
- * Functional location, that utilises nets to clear medium fragments.
+ * Functional location, that utilizes nets to clear medium fragments.
  */
 public final class Net extends Location {
     
@@ -38,8 +38,6 @@ public final class Net extends Location {
         super.addRoom(NetBay);
         
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(NetCorridor);
-        
         NetCorridor.addExit(new Exit(ExitDirection.EAST,NetRoom));
         NetCorridor.addExit(new Exit(ExitDirection.WEST,NetBay));
         NetRoom.addExit(new Exit(ExitDirection.WEST,NetCorridor));
@@ -48,7 +46,7 @@ public final class Net extends Location {
 
     @Override
     public String toString() {
-        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + this.getExits()+ "]";
+        return "locations.Room : Name[" + this.getNAME() + "] Description[" + this.getDescription() + this.getExits()+ "]";
     }
     
 }

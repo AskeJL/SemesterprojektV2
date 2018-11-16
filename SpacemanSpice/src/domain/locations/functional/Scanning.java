@@ -38,8 +38,6 @@ public final class Scanning extends Location {
         super.addRoom(sensorRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(scanningRoom);
-
         scanningRoom.addExit(new Exit(ExitDirection.NORTH, sensorRoom));
         scanningRoom.addExit(new Exit(ExitDirection.EAST, displayRoom));
         displayRoom.addExit(new Exit(ExitDirection.WEST, scanningRoom));
@@ -48,6 +46,6 @@ public final class Scanning extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Scanning : Name [" + this.getName() + "] Description [" + this.getDescription() + "]";
+        return "locations.functional.Scanning : Name [" + this.getNAME() + "] Description [" + this.getDescription() + "]";
     }
 }

@@ -5,6 +5,12 @@ import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import java.util.List;
 
+/**
+ * The main controller for the domain.tutorial package. This will control all
+ * the other classes within the package.
+ *
+ * @see TutorialData
+ */
 public class TutorialController extends Controller {
 
     private static List<String> introduction;
@@ -29,6 +35,10 @@ public class TutorialController extends Controller {
     private static int counter = 0;
     private static boolean tutorial = true;
 
+    /**
+     * Pre-load all the introduction files. Uses the
+     * {@link TutorialData#getTextString(java.lang.String)} to get the files.
+     */
     public static void init() {
         introduction = TutorialData.getTextString("Introduction.txt");
         aIintro1 = TutorialData.getTextString("AI_Intro1.txt");
@@ -50,8 +60,12 @@ public class TutorialController extends Controller {
         aIintro17 = TutorialData.getTextString("AI_Intro17.txt");
     }
 
+    /**
+     * Check how far the player has come in the introduction. Will use
+     * {@link TutorialData#printText(List)} to print the next dialog for the
+     * player.
+     */
     public static void update() {
-
         switch (counter) {
             case 0:
                 TutorialData.printText(introduction);
@@ -123,7 +137,7 @@ public class TutorialController extends Controller {
                     TutorialData.printText(aIintro11);
                     counter++;
                 }
-                break;   
+                break;
             case 12:
                 if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") &&InteractionsController.getLastCommandName().equalsIgnoreCase("interact") && tutorial == true){
                     TutorialData.printText(aIintro12);

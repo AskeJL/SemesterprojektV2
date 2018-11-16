@@ -36,8 +36,6 @@ public final class Personal extends Location {
         super.addRoom(bedroomRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(corridorRoom);
-
         corridorRoom.addExit(new Exit(ExitDirection.EAST, bedroomRoom));
         toiletRoom.addExit(new Exit(ExitDirection.SOUTH, bedroomRoom));
         bedroomRoom.addExit(new Exit(ExitDirection.NORTH, toiletRoom));
@@ -46,6 +44,6 @@ public final class Personal extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Personal : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Personal : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
     }
 }

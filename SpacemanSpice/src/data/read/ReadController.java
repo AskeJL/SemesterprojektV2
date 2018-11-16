@@ -1,7 +1,6 @@
 package data.read;
 
 import data.AssetType;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,6 @@ class ReadController {
      * @param type The type of data to read. {@link data.AssetType}
      * @param filename The name of the file. (Remember file extensions)
      * @return A list of data.
-     * @throws java.io.FileNotFoundException
      *
      * @see data.AssetType
      */

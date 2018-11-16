@@ -5,8 +5,6 @@ package data;
  *
  * The type is associated with a path to a folder, i.e: AssetType.TEXT =
  * "assets/text/"
- * 
- * @see data.read.ReadController#getData(AssetType, String) ReadController.getData
  */
 public enum AssetType {
     PICTURE,    // "assets/pictures/"

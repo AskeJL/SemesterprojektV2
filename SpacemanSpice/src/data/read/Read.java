@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The main class for reading files.
@@ -14,6 +12,8 @@ import java.util.logging.Logger;
  * This is primarily used by the
  * {@link ReadController#getData(data.AssetType, java.lang.String) ReadController.getData}
  * method.
+ * 
+ * @see Read#readTextFile() 
  */
 class Read {
 

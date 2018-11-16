@@ -5,8 +5,8 @@ import domain.interactions.Command;
 /**
  * This command is responsible for clearing the screen when prompted.
  *
- * @see Command
- * @see Commands
+ * @see domain.interactions.Command
+ * @see domain.interactions.Commands
  */
 public class Clear extends Command {
 
@@ -39,5 +39,4 @@ public class Clear extends Command {
     public void helpInfo() {
         System.out.println("Clears the terminal.");
     }
-
 }

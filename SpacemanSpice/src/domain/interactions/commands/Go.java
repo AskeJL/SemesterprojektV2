@@ -17,7 +17,7 @@ public class Go extends Command {
      * The current exits based on the
      * {@link domain.locations.LocationsController#getCurrentRoom() current room}.
      */
-    private List<Exit> CURRENT_EXITS = new ArrayList<>();
+    private final List<Exit> CURRENT_EXITS = new ArrayList<>();
 
     public Go() {
         super("go", "Walk the player in a direction. [North, South, West, East]", true);
@@ -63,7 +63,7 @@ public class Go extends Command {
             }
         }
 
-        if (exitTo != null && exitTo.isExitToLocation()) {
+        if (exitTo != null && exitTo.isEXIT_TO_LOCATION()) {
             LocationsController.setCurrentLocation(exitTo.getToLocation());
             LocationsController.setCurrentRoom(exitTo.getToRoom());
         } else if (exitTo != null) {
