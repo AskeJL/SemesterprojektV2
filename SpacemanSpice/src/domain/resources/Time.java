@@ -40,7 +40,6 @@ public class Time {
      * Update the class. This will update the {@link #currentTime currentTime}.
      */
     static void update() {
-        currentTime = new Date().getTime() / 1000 - initTime;
     }
 
     /**
@@ -67,7 +66,7 @@ public class Time {
      * @return
      */
     static long getCurrentTime() {
-        return Time.currentTime;
+        return new Date().getTime() / 1000 - initTime;
     }
 
     /**
