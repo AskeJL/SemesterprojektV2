@@ -27,7 +27,7 @@ public class TutorialController extends Controller {
     private static List<String> aIintro17;
 
     private static int counter = 0;
-    public static boolean tutorial = true;
+    private static boolean tutorial = true;
 
     public static void init() {
         introduction = TutorialData.getTextString("Introduction.txt");
@@ -158,9 +158,15 @@ public class TutorialController extends Controller {
                 if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue") && tutorial == true){
                     TutorialData.printText(aIintro17);
                     counter++;
-                    tutorial = false;
+                    TutorialController.setTutorial(false);
                 }
                 break;
         }
+    }
+    public static void getTutorial(){
+        
+    }
+    public static void setTutorial(boolean bool){
+        tutorial = bool;
     }
 }

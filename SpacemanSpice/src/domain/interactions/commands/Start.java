@@ -7,6 +7,7 @@ package domain.interactions.commands;
 
 import domain.interactions.Command;
 import domain.systems.SystemsController;
+import domain.tutorial.TutorialController;
 
 public class Start extends Command {
 
@@ -22,6 +23,7 @@ public class Start extends Command {
     @Override
     public void run() {
         SystemsController.setPlayerReady(true);
+        TutorialController.setTutorial(false);
     }
 
     @Override

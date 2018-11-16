@@ -10,4 +10,5 @@
 | head to the scanning room         |
 | and have a go at the terminal.    |
 +-----------------------------------+
+ Hint: type help go.
  Hint: type help interact.
