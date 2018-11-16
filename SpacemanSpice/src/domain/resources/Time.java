@@ -85,6 +85,6 @@ public class Time {
      * @return
      */
     static long getRemainingTime() {
-        return waveTime - currentTime;
+        return waveTime - (new Date().getTime() / 1000 - initTime);
     }
 }
