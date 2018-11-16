@@ -1,12 +1,14 @@
 package domain.systems;
 
+import data.read.DataReader;
 import domain.game.Controller;
 import domain.resources.ResourcesController;
+import java.util.List;
 
 /**
  * Class controlling oxygen and wave systems.
  */
-public class SystemsController extends Controller {
+public class SystemsController extends Controller implements DataReader {
 
     private final static int SMALL_FRAGMENT_IDENTIFIER = 1;
     private final static int MEDIUM_FRAGMENT_IDENTIFIER = 2;
@@ -17,9 +19,13 @@ public class SystemsController extends Controller {
     private static boolean smallFragmentDestroyed = false;
     private static boolean mediumFragmentDestroyed = false;
     private static boolean largeFragmentDestroyed = false;
+    
+    private static List<String> newWaveIncoming;
+    private static List<String> waveHit;
 
     public static void init() {
-
+        newWaveIncoming = SystemsData.getTextString("newWaveIncoming.txt");
+        waveHit = SystemsData.getTextString("waveHit");
     }
 
     public static void update() {
@@ -28,11 +34,13 @@ public class SystemsController extends Controller {
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
+                    SystemsData.printText(waveHit);
                     System.out.println("The ship was hit by fragments!");
                     System.out.println("Check the ships life using the 'show life' command!");
                 }
                 Wave.incrementNumberOfWaves();
                 Wave.createWave();
+                SystemsData.printText(newWaveIncoming);
                 ResourcesController.getInitTime();
             }
 

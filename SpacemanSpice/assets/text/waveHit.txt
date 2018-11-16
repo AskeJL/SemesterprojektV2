@@ -1,0 +1,12 @@
++-----------------------------------+
+| SAL153                            |
+| It seems the wave has passed..    |
+| You should check to see if there  |
+| are any damages to the sheep.     |
+| *Hint: use "show life"            |
+| Should there be any damaged to the|
+| ship, I would advise that you head|
+| "outside", in order to repair any |
+| damages.                          |
+| *Hint: use "interact"             |
++-----------------------------------+
