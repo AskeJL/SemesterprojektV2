@@ -24,9 +24,6 @@ public final class Mainhall01 extends Location {
         /*Mainhall 01---------------------------------------------------------*/
         Room mainhall01 = new Room("Mainhall 01", "This is the upper part of the mainhall.");
         super.addRoom(mainhall01);
-        
-        /*Adding entrance-----------------------------------------------------*/
-        super.addEntrance(mainhall01);
     }
     
     @Override

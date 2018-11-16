@@ -38,8 +38,6 @@ public final class Scanning extends Location {
         super.addRoom(sensorRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(scanningRoom);
-
         scanningRoom.addExit(new Exit(ExitDirection.NORTH, sensorRoom));
         scanningRoom.addExit(new Exit(ExitDirection.EAST, displayRoom));
         displayRoom.addExit(new Exit(ExitDirection.WEST, scanningRoom));

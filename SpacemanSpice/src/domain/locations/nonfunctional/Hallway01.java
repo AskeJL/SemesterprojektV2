@@ -24,9 +24,6 @@ public final class Hallway01 extends Location {
         /*Hallway-------------------------------------------------------------*/
         Room hallway = new Room("Hallway 01", "This hallway connects the Personal, Laser and Net");
         super.addRoom(hallway);
-        
-        /*Setting entrance----------------------------------------------------*/
-        super.addEntrance(hallway);
     }
 
     @Override

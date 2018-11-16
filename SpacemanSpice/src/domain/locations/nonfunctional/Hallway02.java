@@ -24,9 +24,6 @@ public final class Hallway02 extends Location {
         /*Hallway 02----------------------------------------------------------*/
         Room hallway02 = new Room("Hallway 02","This hallway connects the airlock, navigation and oxygen");
         super.addRoom(hallway02);
-        
-        /*Setting entrance----------------------------------------------------*/
-        super.addEntrance(hallway02);
     }
 
     @Override

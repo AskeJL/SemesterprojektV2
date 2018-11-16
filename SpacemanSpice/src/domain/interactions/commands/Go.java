@@ -63,7 +63,7 @@ public class Go extends Command {
             }
         }
 
-        if (exitTo != null && exitTo.isExitToLocation()) {
+        if (exitTo != null && exitTo.isEXIT_TO_LOCATION()) {
             LocationsController.setCurrentLocation(exitTo.getToLocation());
             LocationsController.setCurrentRoom(exitTo.getToRoom());
         } else if (exitTo != null) {

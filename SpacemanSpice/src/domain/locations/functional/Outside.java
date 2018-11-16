@@ -34,8 +34,6 @@ public final class Outside extends Location {
         super.addRoom(airlock);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(airlock);
-
         outside.addExit(new Exit(ExitDirection.EAST, airlock));
         airlock.addExit(new Exit(ExitDirection.WEST, outside));
     }

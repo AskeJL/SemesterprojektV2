@@ -38,8 +38,6 @@ public final class Net extends Location {
         super.addRoom(NetBay);
         
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(NetCorridor);
-        
         NetCorridor.addExit(new Exit(ExitDirection.EAST,NetRoom));
         NetCorridor.addExit(new Exit(ExitDirection.WEST,NetBay));
         NetRoom.addExit(new Exit(ExitDirection.WEST,NetCorridor));

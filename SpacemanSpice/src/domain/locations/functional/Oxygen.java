@@ -38,8 +38,6 @@ public final class Oxygen extends Location {
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(corridorRoom);
-
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, refuelRoom));
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
