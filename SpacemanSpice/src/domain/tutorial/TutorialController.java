@@ -5,6 +5,12 @@ import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import java.util.List;
 
+/**
+ * The main controller for the domain.tutorial package. This will control all
+ * the other classes within the package.
+ *
+ * @see TutorialData
+ */
 public class TutorialController extends Controller {
 
     private static List<String> introduction;
@@ -28,6 +34,10 @@ public class TutorialController extends Controller {
 
     private static int counter = 0;
 
+    /**
+     * Pre-load all the introduction files. Uses the
+     * {@link TutorialData#getTextString(java.lang.String)} to get the files.
+     */
     public static void init() {
         introduction = TutorialData.getTextString("Introduction.txt");
         aIintro1 = TutorialData.getTextString("AI_Intro1.txt");
@@ -49,8 +59,12 @@ public class TutorialController extends Controller {
         aIintro17 = TutorialData.getTextString("AI_Intro17.txt");
     }
 
+    /**
+     * Check how far the player has come in the introduction. Will use
+     * {@link TutorialData#printText(List)} to print the next dialog for the
+     * player.
+     */
     public static void update() {
-
         switch (counter) {
             case 0:
                 TutorialData.printText(introduction);
@@ -93,67 +107,67 @@ public class TutorialController extends Controller {
                     counter++;
                 }
                 break;
-            case 7: 
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+            case 7:
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                     TutorialData.printText(aIintro7);
                 }
                 break;
             case 8:
-                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")){
+                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
                     TutorialData.printText(aIintro8);
                     counter++;
                 }
                 break;
             case 9:
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                     TutorialData.printText(aIintro9);
                     counter++;
                 }
                 break;
             case 10:
-                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")){
-                   TutorialData.printText(aIintro10);
-                   counter++;
+                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                    TutorialData.printText(aIintro10);
+                    counter++;
                 }
                 break;
             case 11:
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                     TutorialData.printText(aIintro11);
                     counter++;
                 }
-                break;   
+                break;
             case 12:
-                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") &&InteractionsController.getLastCommandName().equalsIgnoreCase("interact")){
+                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
                     TutorialData.printText(aIintro12);
                     counter++;
                 }
                 break;
             case 13:
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                     TutorialData.printText(aIintro13);
                     counter++;
                 }
                 break;
             case 14:
-                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Outside") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")){
+                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Outside") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
                     TutorialData.printText(aIintro14);
                     counter++;
                 }
                 break;
             case 15:
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("oxygen")){
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("oxygen")) {
                     TutorialData.printText(aIintro15);
                     counter++;
                 }
                 break;
             case 16:
-                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")){
+                if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
                     TutorialData.printText(aIintro16);
                     counter++;
                 }
                 break;
             case 17:
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                     TutorialData.printText(aIintro17);
                     counter++;
                 }
