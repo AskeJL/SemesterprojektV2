@@ -68,7 +68,7 @@ public class SystemsController extends Controller implements DataReader {
         if (playerReady) {
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
-                    ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
+                    ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
                 }
                 Wave.incrementNumberOfWaves();
