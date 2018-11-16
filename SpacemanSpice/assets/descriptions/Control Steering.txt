@@ -8,4 +8,7 @@
 | steer the spaceship, though that  |
 | is rarely needed these days with  |
 | the plethora of automated systems.|
+|                                   |
+| Unless said system would be out   |
+| of order..                        |
 +-----------------------------------+

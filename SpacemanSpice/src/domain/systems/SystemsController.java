@@ -53,8 +53,8 @@ public class SystemsController extends Controller implements DataReader {
      * needed classes.
      */
     public static void init() {
-        newWaveIncoming = SystemsData.getTextString("newWaveIncoming.txt");
-        waveHit = SystemsData.getTextString("waveHit.txt");
+        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 2 + 1) + ".txt");
+        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 2 + 1) + ".txt");
     }
 
     /**
@@ -70,11 +70,16 @@ public class SystemsController extends Controller implements DataReader {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
+                    Wave.setSmallFragments(0);
+                    Wave.setMediumFragments(0);
+                    Wave.setLargeFragments(0);
                 }
-                Wave.incrementNumberOfWaves();
-                Wave.createWave();
-                SystemsData.printText(newWaveIncoming);
-                ResourcesController.getInitTime();
+                
+                if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()){
+                    Wave.incrementNumberOfWaves();
+                    Wave.createWave();
+                    SystemsData.printText(newWaveIncoming);
+                }
             }
 
             if (smallFragmentDestroyed) {

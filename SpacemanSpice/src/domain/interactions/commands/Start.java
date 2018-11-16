@@ -2,6 +2,7 @@ package domain.interactions.commands;
 
 import domain.interactions.Command;
 import domain.systems.SystemsController;
+import domain.tutorial.TutorialController;
 
 /**
  * This command is responsible for starting the {@link domain.systems.Wave}.
@@ -29,6 +30,7 @@ public class Start extends Command {
     @Override
     public void run() {
         SystemsController.setPlayerReady(true);
+        TutorialController.setTutorial(false);
     }
 
     @Override

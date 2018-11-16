@@ -84,8 +84,8 @@ public class Help extends Command {
             System.out.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName());
         }
 
-        System.out.println("You can interact with:");
         if (!LocationsController.getCurrentRoom().getGameObjects().isEmpty()) {
+            System.out.println("You can interact with:");
             System.out.format("%10s %s\n", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
 

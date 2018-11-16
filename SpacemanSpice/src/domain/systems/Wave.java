@@ -59,9 +59,7 @@ public class Wave {
      * @see domain.resources.ResourcesController#setWaveTime(long)
      */
     static void createWave() {
-        System.out.println("New wave of fragments incoming!");
-        System.out.println("Head to the scanning room to identify them");
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime() + 120);
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+120);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
@@ -76,6 +74,7 @@ public class Wave {
         } else {
             largeFragments = 0;
         }
+        ResourcesController.setRandTime();
     }
 
     /**
@@ -150,7 +149,11 @@ public class Wave {
     static void incrementNumberOfWaves() {
         numberOfWaves++;
     }
-
+    
+    static void setSmallFragments(int smallValue){
+        smallFragments = 0;
+    }
+    
     /**
      * Get number of {@link #smallFragments smallFragments}.
      *
@@ -159,7 +162,11 @@ public class Wave {
     static int getSmallFragments() {
         return smallFragments;
     }
-
+    
+    static void setMediumFragments(int mediumValue){
+        mediumFragments = 0;
+    }
+    
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
@@ -168,7 +175,11 @@ public class Wave {
     static int getMediumFragments() {
         return mediumFragments;
     }
-
+    
+    static void setLargeFragments(int largeValue){
+        largeFragments = 0;
+    }
+    
     /**
      * Get number of {@link #largeFragments largeFragments}.
      *

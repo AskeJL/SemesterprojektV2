@@ -24,6 +24,7 @@ public class Time {
      * For how long time the wave elapses.
      */
     private static long waveTime;
+    private static long randTime;
 
     private Time() {
     }
@@ -85,5 +86,13 @@ public class Time {
      */
     static long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
+    }
+    
+    static void setRandTime(){
+        randTime = ((long )(Math.random() * 20 + 5)); 
+    }
+    
+    static long getRandTime(){
+        return randTime;
     }
 }

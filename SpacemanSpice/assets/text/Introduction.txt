@@ -5,7 +5,7 @@
 | After having left Earth's atmosphere, I can      |
 | finally see the spaceship LEO Control 153, on    |
 | which I am to spend the next 3 months as a       |
-| Low Earth Orbit debris controller (LEODC).       |
+| low Earth orbit debris controller (LEODC).       |
 |                                                  |
 | The job of a LEODC is fairly simple, as my main  |
 | task is to oversee the AI of the spaceship and   |

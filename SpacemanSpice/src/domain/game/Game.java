@@ -29,8 +29,9 @@ public class Game {
     private static void init() {
         TutorialController.init();
         LocationsController.init();
-        InteractionsController.init();
         ResourcesController.init();
+        InteractionsController.init();
+        
         SystemsController.init();
     }
 

@@ -10,4 +10,5 @@
 | Earth, so let us have a look at   |
 | that, shall we?                   |
 +-----------------------------------+
+ Hint: the "help" command is useful.
  Hint: type help show.
