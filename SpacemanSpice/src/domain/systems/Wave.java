@@ -22,7 +22,7 @@ public class Wave {
     static void createWave() {
         System.out.println("New wave of fragments incoming!");
         System.out.println("Head to the scanning room to identify them");
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime() + 120);
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime() + 90);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 

@@ -17,7 +17,7 @@ public class Go extends Command {
      * The current exits based on the
      * {@link domain.locations.LocationsController#getCurrentRoom() current room}.
      */
-    private List<Exit> CURRENT_EXITS = new ArrayList<>();
+    private final List<Exit> CURRENT_EXITS = new ArrayList<>();
 
     public Go() {
         super("go", "Walk the player in a direction. [North, South, West, East]", true);

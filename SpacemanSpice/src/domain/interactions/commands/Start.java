@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.interactions.commands;
 
 import domain.interactions.Command;
 import domain.systems.SystemsController;
 
+/**
+ * This command is responsible for starting the {@link domain.systems.Wave}.
+ * When the user enters this Command, the 'game' will begin. (No more idle
+ * phase)
+ *
+ * @see domain.systems.SystemsController
+ * @see domain.systems.Wave
+ */
 public class Start extends Command {
 
     public Start() {
@@ -16,9 +19,13 @@ public class Start extends Command {
 
     @Override
     public void checkAvailableParameters() {
-        
+        // Nothing to check
     }
 
+    /**
+     * Will set the {@link SystemsController#setPlayerReady(boolean)} to true.
+     * This will make the waves active.
+     */
     @Override
     public void run() {
         SystemsController.setPlayerReady(true);
@@ -31,7 +38,6 @@ public class Start extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The start function will start the waves and score system");
+        System.out.println("The start command will start the waves and score system");
     }
-
 }

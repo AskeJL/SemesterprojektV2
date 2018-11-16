@@ -6,6 +6,13 @@ import domain.locations.Exit;
 import domain.locations.LocationsController;
 import domain.systems.SystemsController;
 
+/**
+ * This command is responsible for helping the player with information. The
+ * 'help' command can be called by itself or accompanied by a parameter.
+ *
+ * Say, if the player needed help with a specific command, it could be achieved
+ * with: 'help show'. This will call the helpInfo from the Show command.
+ */
 public class Help extends Command {
 
     public Help() {
@@ -20,11 +27,21 @@ public class Help extends Command {
         super.addParameter("start");
     }
 
+    /**
+     * All {@link Command#availableParameters available parameters} are set to
+     * all the {@link Command#parameters primary parameters}.
+     */
     @Override
     public void checkAvailableParameters() {
         super.setAvailableParameters(super.getParameters());
     }
 
+    /**
+     * Calls the 'parameters' helpInfo() method.
+     *
+     * Say, if the player entered 'help go', the {@link Go#helpInfo()} method
+     * would be called. (A method that the implementation overrides).
+     */
     @Override
     public void run() {
         for (String parameter : super.getAvailableParameters()) {
@@ -46,30 +63,37 @@ public class Help extends Command {
         System.out.println("The help function can tell you which commands you can use in the given room");
     }
 
+    /**
+     * This showAvailableParameters() method is special, because it will only
+     * show if the {@link Help} {@link Command} is called by itself. If that
+     * happens, the {@link Help} command will print out specific guidance to
+     * that room. (Directions, interactions and available commands)
+     */
     @Override
     public void showAvailableParameters() {
-        System.out.println("\nCurrent location: " + LocationsController.getCurrentLocation().getName());
-        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName() + "\n");
+        System.out.println("Current room:");
+        System.out.format("%10s %s\n", "", LocationsController.getCurrentLocation().getName() + "/" + LocationsController.getCurrentRoom().getName());
 
+        System.out.println("You can go:");
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
-                System.out.format("You can go %-5s - %-10s\n", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName());
+                System.out.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName());
             }
         }
-
         for (Exit exit : LocationsController.getCurrentRoom().getExits()) {
-            System.out.format("You can go %-5s - %-10s\n", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName());
+            System.out.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName());
         }
 
-        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
-            System.out.print("\nAnd you can interact with ");
-            System.out.println(LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
+        System.out.println("You can interact with:");
+        if (!LocationsController.getCurrentRoom().getGameObjects().isEmpty()) {
+            System.out.format("%10s %s\n", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName());
         }
-        if (SystemsController.getPlayerReady() == false){
-        System.out.println("These are the available commands "+ super.getAvailableParameters());
-        }
-        else {
-            System.out.println("These are the available commands " + super.getAvailableParameters().subList(0, super.getAvailableParameters().size()-1));
+
+        System.out.println("Available commands: ");
+        if (!SystemsController.getPlayerReady()) {
+            System.out.println(super.getAvailableParameters());
+        } else {
+            System.out.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1));
         }
     }
 }

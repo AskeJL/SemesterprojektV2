@@ -1,8 +1,16 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.locations.GameObject;
 import domain.locations.LocationsController;
 
+/**
+ * This command is responsible for interacting with {@link GameObject}'s in the
+ * current room.
+ *
+ * @see domain.locations.GameObject
+ * @see domain.locations.GameObjectType
+ */
 public class Interact extends Command {
 
     public Interact() {
@@ -11,28 +19,29 @@ public class Interact extends Command {
 
     @Override
     protected void checkAvailableParameters() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Nothing to check
     }
 
+    /**
+     * Gets the first {@link GameObject} in the room and calls its
+     * {@link GameObject#interact() interact()} method.
+     */
     @Override
     protected void run() {
-        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false){
-        LocationsController.getCurrentRoom().getGameObjects().get(0).interact();
-        }
-        else {
+        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
+            LocationsController.getCurrentRoom().getGameObjects().get(0).interact();
+        } else {
             System.out.println("There are nothing to interact with in this room");
         }
     }
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
+        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        System.out.println("The ineract function lest you interact with object in the room you are in");
-//        System.out.println("The interact function takes a parameter which is the thing you would like to interact with");
+        System.out.println("The interact command lets you interact with objects in the current room.");
     }
-
 }
