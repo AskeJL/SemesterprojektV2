@@ -2,7 +2,6 @@ package domain.locations.gameobjects;
 
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
 
 /**
  * Used to destroy small fragments.
