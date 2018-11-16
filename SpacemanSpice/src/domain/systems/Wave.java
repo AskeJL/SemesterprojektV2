@@ -93,13 +93,16 @@ public class Wave {
      * @param fragmentIdentifier
      */
     static void updateWave(int fragmentIdentifier) {
+        // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
         if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
             int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
-            int destructionIndex = (int) (Math.random() * newIndex + 1);
+            int destructionIndex = (int) (Math.random() * (newIndex + 1));
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
                 System.out.println("You destroyed " + destructionIndex + " small fragments!");
+            } else if (destructionIndex <= 0) {
+                System.out.println("You missed!");
             } else {
                 System.out.println("You destroyed " + destructionIndex + " small fragment!");
             }
@@ -111,11 +114,13 @@ public class Wave {
 
         if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
             int newIndex = mediumFragments > MEDIUM_DESCTRUCTION_INDEX ? MEDIUM_DESCTRUCTION_INDEX : mediumFragments;
-            int destructionIndex = (int) (Math.random() * newIndex);
+            int destructionIndex = (int) (Math.random() * (newIndex + 1));
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
                 System.out.println("You caught " + destructionIndex + " medium fragments!");
+            } else if (destructionIndex <= 0) {
+                System.out.println("You missed!");
             } else {
                 System.out.println("You caught " + destructionIndex + " medium fragment!");
             }
