@@ -33,7 +33,6 @@ public class NetControl extends GameObject {
         System.out.println("Interacting with net control.");
         if (SystemsController.getMediumFragments() != 0) {
             domain.systems.SystemsController.setMediumFragmentDestroyed(true);
-            System.out.println("You caught a medium fragment");
         }
     }
 

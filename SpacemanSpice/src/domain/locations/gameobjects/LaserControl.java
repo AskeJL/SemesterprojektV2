@@ -33,7 +33,6 @@ public class LaserControl extends GameObject {
         System.out.println("Interacting with laser control");
         if (SystemsController.getSmallFragments() != 0) {
             domain.systems.SystemsController.setSmallFragmentDestroyed(true);
-            System.out.println("You have destroyed a small fragment");
         }
     }
 
