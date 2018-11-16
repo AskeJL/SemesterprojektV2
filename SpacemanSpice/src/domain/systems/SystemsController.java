@@ -2,6 +2,7 @@ package domain.systems;
 
 import data.read.DataReader;
 import domain.game.Controller;
+import domain.interactions.InteractionsController;
 import domain.resources.ResourcesController;
 import java.util.List;
 
@@ -45,6 +46,9 @@ public class SystemsController extends Controller implements DataReader {
      */
     private static boolean largeFragmentDestroyed = false;
     
+    private static boolean intro = true;
+    
+    private static List<String> finalIntro;
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
 
@@ -53,8 +57,9 @@ public class SystemsController extends Controller implements DataReader {
      * needed classes.
      */
     public static void init() {
-        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 2 + 1) + ".txt");
-        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 2 + 1) + ".txt");
+        finalIntro = SystemsData.getTextString("Finalintro.txt");
+        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
+        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
     }
 
     /**
@@ -66,7 +71,13 @@ public class SystemsController extends Controller implements DataReader {
      */
     public static void update() {
         if (playerReady) {
-            if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()) {
+            if (intro) {
+                SystemsData.printText(finalIntro);
+                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                    intro = false;
+                }
+            }
+            if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == false) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
@@ -82,17 +93,17 @@ public class SystemsController extends Controller implements DataReader {
                 }
             }
 
-            if (smallFragmentDestroyed) {
+            if (smallFragmentDestroyed && intro == false) {
                 Score.updateScore(1);
                 Wave.updateWave(1);
                 setSmallFragmentDestroyed(false);
             }
-            if (mediumFragmentDestroyed) {
+            if (mediumFragmentDestroyed && intro == false) {
                 Score.updateScore(2);
                 Wave.updateWave(2);
                 setMediumFragmentDestroyed(false);
             }
-            if (largeFragmentDestroyed) {
+            if (largeFragmentDestroyed && intro == false) {
                 Score.updateScore(3);
                 Wave.updateWave(3);
                 setLargeFragmentDestroyed(false);
