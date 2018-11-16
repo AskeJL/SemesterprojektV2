@@ -1,6 +1,3 @@
-/**
- * The read package in the data layer. This package is in charge of reading data.
- */
 package data.read;
 
 import data.AssetType;

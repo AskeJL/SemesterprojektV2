@@ -6,7 +6,7 @@ import domain.game.Controller;
 import java.util.ArrayList;
 
 /**
- * The main controller for the Locations package. This will control all the
+ * The main controller for the domain.locations package. This will control all the
  * other classes within the package.
  *
  * @see Exit

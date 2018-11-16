@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The main class for writing files.
@@ -14,7 +12,7 @@ import java.util.logging.Logger;
  * {@link WriteController#writeData(data.AssetType, java.lang.String, java.util.List) WriteController.writeData}
  * method.
  */
-public class Write {
+class Write {
 
     /**
      * File to write to. Is created during instantiation.
@@ -40,7 +38,6 @@ public class Write {
      * Will write the assigned data to the {@link Write#FILE file} in the class.
      *
      * @param data Data to write to file.
-     * @throws FileNotFoundException
      */
     void writeTextFile(List<String> data) {
         PrintWriter writer;

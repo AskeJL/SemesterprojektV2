@@ -155,7 +155,7 @@ public abstract class Command {
     /**
      * Set the {@link Command#name name} of the command.
      *
-     * @param name
+     * @param name Name of the Command.
      */
     protected void setName(String name) {
         this.name = name;
@@ -164,7 +164,7 @@ public abstract class Command {
     /**
      * Set the {@link Command#description description} of the command.
      *
-     * @param description
+     * @param description Description of the Command.
      */
     protected void setDescription(String description) {
         this.description = description;
@@ -173,7 +173,7 @@ public abstract class Command {
     /**
      * Set the {@link Command#hasParameter hasParameter} of the command.
      *
-     * @param bool
+     * @param bool Whether or not this command has a parameter.
      */
     protected void setHasParameter(boolean bool) {
         this.hasParameter = bool;
@@ -182,7 +182,7 @@ public abstract class Command {
     /**
      * Set the {@link Command#currentParameter currentParameter} of the command.
      *
-     * @param parameter
+     * @param parameter The name of the current parameter.
      */
     protected void setCurrentParameter(String parameter) {
         this.currentParameter = parameter;
@@ -192,7 +192,7 @@ public abstract class Command {
      * Set the {@link Command#availableParameters available parameters} of the
      * command.
      *
-     * @param parameters
+     * @param parameters Available parameters to set.
      */
     protected void setAvailableParameters(ArrayList<String> parameters) {
         this.availableParameters = parameters;
@@ -201,7 +201,7 @@ public abstract class Command {
     /**
      * Get the {@link Command#name} of the command.
      *
-     * @return
+     * @return {@link #name}
      */
     protected String getName() {
         return this.name;

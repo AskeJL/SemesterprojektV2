@@ -5,8 +5,8 @@ import domain.interactions.Command;
 /**
  * This command is responsible for continuing a dialog when prompted.
  *
- * @see Command
- * @see Commands
+ * @see domain.interactions.Command
+ * @see domain.interactions.Commands
  * @see domain.tutorial.TutorialController
  */
 public class Continue extends Command {
