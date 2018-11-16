@@ -26,6 +26,8 @@ public class Start extends Command {
     /**
      * Will set the {@link SystemsController#setPlayerReady(boolean)} to true.
      * This will make the waves active.
+     * Will also set the {@link TutorialController.setTutorial(boolean)} to
+     * false. This will cancel and deactivate the tutorial.
      */
     @Override
     public void run() {
