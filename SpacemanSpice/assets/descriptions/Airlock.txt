@@ -1,1 +1,12 @@
-This is the airlock.
++-------------------------------------+
+|                                     |
+|  The "door", each spaceman will     |
+|  casually refer to this room as     |
+|  such. Though in reality there are  |
+|  two doors separating life inside   |
+|  the spaceship and the absolute     |
+|  death of the void, the entire rooms|
+|  purpose is preciselly that, the    |
+|  "door".                            |
+|                                     |
++-------------------------------------+

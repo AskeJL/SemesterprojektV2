@@ -1,1 +1,6 @@
-This is the control navigation.
++-----------------------------------+
+|                                   |
+|  Inside this room, lies the       |
+|  navigation system that controls  |
+|  the movevement of the spaceship. |
++-----------------------------------+

@@ -25,7 +25,7 @@ public class SystemsController extends Controller implements DataReader {
 
     public static void init() {
         newWaveIncoming = SystemsData.getTextString("newWaveIncoming.txt");
-        waveHit = SystemsData.getTextString("waveHit");
+        waveHit = SystemsData.getTextString("waveHit.txt");
     }
 
     public static void update() {
@@ -35,8 +35,6 @@ public class SystemsController extends Controller implements DataReader {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
-                    System.out.println("The ship was hit by fragments!");
-                    System.out.println("Check the ships life using the 'show life' command!");
                 }
                 Wave.incrementNumberOfWaves();
                 Wave.createWave();

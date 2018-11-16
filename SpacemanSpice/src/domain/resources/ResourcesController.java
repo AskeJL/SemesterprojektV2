@@ -22,13 +22,7 @@ public class ResourcesController extends Controller {
             Controller.setRunning(false);
         }
         Life.update();
-        if(Life.getLife() < 80){
-            LocationsController.disableMainhalls();
-        }
-        else if(Life.getLife() >= 80){
-            LocationsController.enableMainhalls();
-        }
-        else if(Life.getLife() <= 0){
+        if(Life.getLife() <= 0){
             System.out.println("The ship is destroyed. Too bad, you are dead..");
             System.out.println("Score: " + SystemsController.getScore());
             Controller.setRunning(false);

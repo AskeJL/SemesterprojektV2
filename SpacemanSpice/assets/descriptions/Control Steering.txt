@@ -1,1 +1,11 @@
-This is the control steering.
++-----------------------------------+
+| An empty room with a single chair.|
+| This scene before your eyes, is   |
+| something that could easily be    |
+| misunderstood as an interrogation |
+| room in the previous century.     |
+| Here via a BCI, you can manually  |
+| steer the spaceship, though that  |
+| is rarely needed these days with  |
+| the plethora of automated systems.|
++-----------------------------------+
