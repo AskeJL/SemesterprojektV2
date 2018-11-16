@@ -2,7 +2,6 @@ package domain.locations.gameobjects;
 
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
 
 /**
  * Used to destroy small fragments.
@@ -31,10 +30,8 @@ public class LaserControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with laser control");
-        if (SystemsController.getSmallFragments() != 0) {
-            domain.systems.SystemsController.setSmallFragmentDestroyed(true);
-            System.out.println("You have destroyed a small fragment");
-        }
+        domain.systems.SystemsController.setSmallFragmentDestroyed(true);
+
     }
 
     @Override

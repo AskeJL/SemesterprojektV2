@@ -36,6 +36,19 @@ public class Wave {
      */
     private static int largeFragments;
 
+    /**
+     * The max amount of randomly destroyed small fragments.
+     */
+    private final static int SMALL_DESTRUCTION_INDEX = 3;
+    /**
+     * The max amount of randomly destroyed medium fragments.
+     */
+    private final static int MEDIUM_DESCTRUCTION_INDEX = 2;
+    /**
+     * The max amount of randomly destroyed large fragments.
+     */
+    private final static int LARGE_DESCRUCTION_INDEX = 1;
+
     private Wave() {
     }
 
@@ -48,7 +61,7 @@ public class Wave {
     static void createWave() {
         System.out.println("New wave of fragments incoming!");
         System.out.println("Head to the scanning room to identify them");
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+120);
+        ResourcesController.setWaveTime(ResourcesController.getCurrentTime() + 120);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
@@ -71,23 +84,52 @@ public class Wave {
      * {@link SystemsController#SMALL_FRAGMENT_IDENTIFIER}<br>
      * {@link SystemsController#MEDIUM_FRAGMENT_IDENTIFIER}<br>
      * {@link SystemsController#LARGE_FRAGMENT_IDENTIFIER}<br>
+     * <br><br>
+     * Also randomized the amount of fragments destroyed when the player
+     * interacts with the controllers. This depends on each of the fragments
+     * {@link #SMALL_DESTRUCTION_INDEX}
      *
      * @see SystemsController
      * @param fragmentIdentifier
      */
     static void updateWave(int fragmentIdentifier) {
+        // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
         if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
-            --smallFragments;
+            int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
+            int destructionIndex = (int) (Math.random() * (newIndex + 1));
+            smallFragments -= destructionIndex;
+
+            if (destructionIndex > 1) {
+                System.out.println("You destroyed " + destructionIndex + " small fragments!");
+            } else if (destructionIndex <= 0) {
+                System.out.println("You missed!");
+            } else {
+                System.out.println("You destroyed " + destructionIndex + " small fragment!");
+            }
+
             if (smallFragments < 0) {
                 smallFragments = 0;
             }
         }
+
         if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
-            --mediumFragments;
+            int newIndex = mediumFragments > MEDIUM_DESCTRUCTION_INDEX ? MEDIUM_DESCTRUCTION_INDEX : mediumFragments;
+            int destructionIndex = (int) (Math.random() * (newIndex + 1));
+            mediumFragments -= destructionIndex;
+
+            if (destructionIndex > 1) {
+                System.out.println("You caught " + destructionIndex + " medium fragments!");
+            } else if (destructionIndex <= 0) {
+                System.out.println("You missed!");
+            } else {
+                System.out.println("You caught " + destructionIndex + " medium fragment!");
+            }
+
             if (mediumFragments < 0) {
                 mediumFragments = 0;
             }
         }
+
         if (fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()) {
             largeFragments = 0;
             if (largeFragments < 0) {

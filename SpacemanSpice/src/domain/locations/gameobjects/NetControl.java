@@ -2,7 +2,6 @@ package domain.locations.gameobjects;
 
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
 
 /**
  * Used to catch medium fragments.
@@ -31,10 +30,7 @@ public class NetControl extends GameObject {
     @Override
     public void interact() {
         System.out.println("Interacting with net control.");
-        if (SystemsController.getMediumFragments() != 0) {
-            domain.systems.SystemsController.setMediumFragmentDestroyed(true);
-            System.out.println("You caught a medium fragment");
-        }
+        domain.systems.SystemsController.setMediumFragmentDestroyed(true);
     }
 
     @Override
