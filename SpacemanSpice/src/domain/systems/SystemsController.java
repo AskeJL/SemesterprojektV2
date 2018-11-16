@@ -47,6 +47,7 @@ public class SystemsController extends Controller implements DataReader {
     
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
+    private static List<String> waveNoHit;
 
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
@@ -55,6 +56,7 @@ public class SystemsController extends Controller implements DataReader {
     public static void init() {
         newWaveIncoming = SystemsData.getTextString("newWaveIncoming.txt");
         waveHit = SystemsData.getTextString("waveHit.txt");
+        waveNoHit = SystemsData.getTextString("waveNoHit.txt");
     }
 
     /**
@@ -70,13 +72,16 @@ public class SystemsController extends Controller implements DataReader {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
+                    Wave.setSmallFragments(0);
+                    Wave.setMediumFragments(0);
+                    Wave.setLargeFragments(0);
                 }
-                ResourcesController.setRandTime();
-                System.out.println(ResourcesController.getRandTime());
-                Wave.incrementNumberOfWaves();
-                Wave.createWave();
-                SystemsData.printText(newWaveIncoming);
-                ResourcesController.getInitTime();
+                
+                if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()){
+                    Wave.incrementNumberOfWaves();
+                    Wave.createWave();
+                    SystemsData.printText(newWaveIncoming);
+                }
             }
 
             if (smallFragmentDestroyed) {
