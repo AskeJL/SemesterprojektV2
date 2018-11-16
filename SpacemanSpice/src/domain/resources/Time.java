@@ -13,7 +13,7 @@ import java.util.Date;
 public class Time {
 
     /**
-     * The time when the {@link Game} initialized.
+     * The time when the {@link domain.game.Game} initialized.
      */
     private static long initTime;
     /**

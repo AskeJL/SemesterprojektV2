@@ -10,7 +10,6 @@ import domain.systems.SystemsController;
  * @see Life
  * @see Oxygen
  * @see Time
- * @see ResourceController
  */
 public class ResourcesController extends Controller {
 

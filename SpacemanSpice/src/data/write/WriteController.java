@@ -9,7 +9,7 @@ import java.util.List;
  * This controller is assigned the job to write all specified data to designated
  * files.
  */
-public class WriteController {
+class WriteController {
 
     private static final String SCORE_PATH = "assets/score/";
 
@@ -22,7 +22,6 @@ public class WriteController {
      * @param type The type of data to write. {@link data.AssetType}
      * @param filename The name of the file. (Remember file extensions)
      * @param data The list of data it will write to the file.
-     * @throws FileNotFoundException
      */
     static void writeData(AssetType type, String filename, List<String> data) {
         switch (type) {
