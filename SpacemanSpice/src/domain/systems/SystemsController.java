@@ -27,7 +27,7 @@ public class SystemsController extends Controller {
         if (playerReady) {
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime()) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
-                    ResourcesController.hitLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
+                    ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     System.out.println("The ship was hit by fragments!");
                     System.out.println("Check the ships life using the 'show life' command!");
                 }

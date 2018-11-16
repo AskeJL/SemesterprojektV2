@@ -1,8 +1,11 @@
 package domain.resources;
 
 /**
- * This class is used by other systems to compute the current life of the ship
+ * This is used by other systems to compute the current life of the ship
  * in the game.
+ * 
+ * @see domain.systems.Wave
+ * @see domain.systems.SystemsController
  */
 public class Life {
 
@@ -51,7 +54,7 @@ public class Life {
     }
 
     /**
-     * Will update life based on the {@link Life#repair repair} boolean.
+     * Will update {@link #life} based on the {@link Life#repair repair} boolean.
      */
     static void update() {
         if (life < 100 && repair == true) {
@@ -64,7 +67,7 @@ public class Life {
     }
 
     /**
-     * Decrease the life based on the number of fragments assigned.
+     * Decrease the {@link #life} based on the number of fragments assigned.
      *
      * @param hitSmallFragments, amount of small fragments
      * @param hitMediumFragments, amount of medium fragments
