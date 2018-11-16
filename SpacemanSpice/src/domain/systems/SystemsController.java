@@ -46,7 +46,7 @@ public class SystemsController extends Controller implements DataReader {
      */
     private static boolean largeFragmentDestroyed = false;
     
-    private static boolean intro = true;
+    private static int intro = 1;
     
     private static List<String> finalIntro;
     private static List<String> newWaveIncoming;
@@ -71,13 +71,18 @@ public class SystemsController extends Controller implements DataReader {
      */
     public static void update() {
         if (playerReady) {
-            if (intro) {
-                SystemsData.printText(finalIntro);
-                if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                    intro = false;
-                }
+            
+            switch (intro) {
+                case 1:
+                    SystemsData.printText(finalIntro);
+                    intro++;
+                case 2: 
+                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                        intro++;
+                    }
             }
-            if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == false) {
+            
+            if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == 3) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
                     SystemsData.printText(waveHit);
@@ -93,17 +98,17 @@ public class SystemsController extends Controller implements DataReader {
                 }
             }
 
-            if (smallFragmentDestroyed && intro == false) {
+            if (smallFragmentDestroyed && intro == 3) {
                 Score.updateScore(1);
                 Wave.updateWave(1);
                 setSmallFragmentDestroyed(false);
             }
-            if (mediumFragmentDestroyed && intro == false) {
+            if (mediumFragmentDestroyed && intro == 3) {
                 Score.updateScore(2);
                 Wave.updateWave(2);
                 setMediumFragmentDestroyed(false);
             }
-            if (largeFragmentDestroyed && intro == false) {
+            if (largeFragmentDestroyed && intro == 3) {
                 Score.updateScore(3);
                 Wave.updateWave(3);
                 setLargeFragmentDestroyed(false);
