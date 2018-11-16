@@ -24,13 +24,10 @@ public final class Mainhall02 extends Location {
         /*Mainhall 02---------------------------------------------------------*/
         Room mainhall02 = new Room("Mainhall 02", "This is the lower part of the mainhall.");
         super.addRoom(mainhall02);
-        
-        /*Adding entrance-----------------------------------------------------*/
-        super.addEntrance(mainhall02);
     }
     
     @Override
     public String toString(){
-        return "locations.nonfunctional.Mainhall02 : Name[" + this.getName() + "] Description [" + this.getDescription() + "]";
+        return "locations.nonfunctional.Mainhall02 : Name[" + this.getNAME() + "] Description [" + this.getDescription() + "]";
     }
 }

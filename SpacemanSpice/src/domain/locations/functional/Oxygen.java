@@ -38,8 +38,6 @@ public final class Oxygen extends Location {
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(corridorRoom);
-
         corridorRoom.addExit(new Exit(ExitDirection.NORTH, storageRoom));
         corridorRoom.addExit(new Exit(ExitDirection.SOUTH, refuelRoom));
         storageRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
@@ -48,6 +46,6 @@ public final class Oxygen extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Oxygen : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
     }
 }

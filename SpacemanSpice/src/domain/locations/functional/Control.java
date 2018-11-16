@@ -40,8 +40,6 @@ public final class Control extends Location {
         super.addRoom(controlRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
-        super.addEntrance(controlRoom);
-
         controlRoom.addExit(new Exit(ExitDirection.NORTH, steeringRoom));
         controlRoom.addExit(new Exit(ExitDirection.WEST, navigationRoom));
 
@@ -52,7 +50,7 @@ public final class Control extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Control : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Control : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
     }
 
 }

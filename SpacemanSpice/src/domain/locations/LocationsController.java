@@ -1,47 +1,67 @@
 package domain.locations;
 
-import domain.locations.functional.Control;
-import domain.locations.functional.Oxygen;
-import domain.locations.functional.Scanning;
-import domain.locations.functional.Net;
-import domain.locations.functional.Personal;
-import domain.locations.functional.Laser;
-import domain.locations.functional.Outside;
-import domain.locations.nonfunctional.Hallway01;
-import domain.locations.nonfunctional.Mainhall02;
-import domain.locations.nonfunctional.Mainhall01;
-import domain.locations.nonfunctional.Hallway02;
+import domain.locations.functional.*;
+import domain.locations.nonfunctional.*;
 import domain.game.Controller;
 import java.util.ArrayList;
 
 /**
  * The main controller for the Locations package. This will control all the
  * other classes within the package.
+ *
+ * @see Exit
+ * @see ExitDirection
+ * @see GameObject
+ * @see GameObjectType
+ * @see Location
+ * @see LocationsController
+ * @see Room
  */
-public class LocationsController extends Controller{
-    
+public class LocationsController extends Controller {
+
+    /**
+     * The {@link Room} the player is currently in.
+     */
     private static Room currentRoom;
+
+    /**
+     * The {@link Location} the player is currently in.
+     */
     private static Location currentLocation;
-    
+
+    /**
+     * All the {@link Location}s.
+     */
     private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
 
-    private LocationsController(){}
-    
+    private LocationsController() {
+    }
+
+    /**
+     * Initialize the {@link domain.game.Controller controller}. Will initialize
+     * needed classes.
+     * <br><br>
+     * Uses the {@link #createLocations()} method.
+     */
     public static void init() {
         createLocations();
-        
+
         // The player starts in their bedroom/Personal
         currentRoom = LOCATIONS.get(5).getRooms().get(2);
         currentLocation = LOCATIONS.get(5);
     }
-    
+
+    /**
+     * Update the {@link domain.game.Controller controller}. Nothing to update.
+     */
     public static void update() {
         // Update locations.
     }
 
     /**
      * Creates all the predetermined locations. This is created based on a map
-     * (Hard-coded).
+     * (Hard-coded). <br><br>
+     * Exits are added after creation.
      */
     private static void createLocations() {
         Location laser = new Laser(),
@@ -144,25 +164,46 @@ public class LocationsController extends Controller{
     }
 
     /**
-     * Get all the locations.
-     * @return the locations.
+     * Get all the {@link Location}s created in {@link #createLocations()}.
+     *
+     * @return
      */
     public static ArrayList<Location> getLocations() {
         return LocationsController.LOCATIONS;
     }
-    
-    public static void setCurrentRoom(Room room){
+
+    /**
+     * Set the {@link #currentRoom currentRoom}.
+     *
+     * @param room Room to set.
+     */
+    public static void setCurrentRoom(Room room) {
         LocationsController.currentRoom = room;
     }
-    
+
+    /**
+     * Set the {@link #currentLocation currentLocation}.
+     *
+     * @param location Location to set.
+     */
     public static void setCurrentLocation(Location location) {
         LocationsController.currentLocation = location;
     }
-    
-    public static Room getCurrentRoom(){
+
+    /**
+     * Get the {@link #currentRoom currentRoom}.
+     *
+     * @return
+     */
+    public static Room getCurrentRoom() {
         return LocationsController.currentRoom;
     }
-    
+
+    /**
+     * Get the {@link #currentLocation currentLocation}.
+     *
+     * @return
+     */
     public static Location getCurrentLocation() {
         return LocationsController.currentLocation;
     }

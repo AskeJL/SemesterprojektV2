@@ -1,7 +1,9 @@
 package domain.locations;
 
 /**
- * Exit directions, enum class
+ * Directions for the exits. [NORTH, SOUTH, WEST, EAST]
+ * 
+ * @see Exit
  */
 public enum ExitDirection {
     NORTH, SOUTH, WEST, EAST;

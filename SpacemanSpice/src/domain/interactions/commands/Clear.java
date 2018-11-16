@@ -39,5 +39,4 @@ public class Clear extends Command {
     public void helpInfo() {
         System.out.println("Clears the terminal.");
     }
-
 }

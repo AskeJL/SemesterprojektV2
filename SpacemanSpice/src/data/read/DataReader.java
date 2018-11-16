@@ -4,8 +4,6 @@
 package data.read;
 
 import data.AssetType;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +16,8 @@ import java.util.List;
  * requestData}({@link data.AssetType}, String)
  *
  * @see data.write.DataWriter
+ * @see Read
+ * @see ReadController
  */
 public interface DataReader {
 

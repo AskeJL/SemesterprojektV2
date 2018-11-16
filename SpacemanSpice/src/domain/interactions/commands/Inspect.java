@@ -5,6 +5,15 @@ import data.read.DataReader;
 import domain.interactions.Command;
 import domain.locations.LocationsController;
 
+/**
+ * This command is responsible for inspecting a room when prompted. Upon
+ * calling, the terminal will print the associated description for the current
+ * room.
+ *
+ * It will refer to the description files specified in {@link data.AssetType}.
+ * Because of this reference, this class also implements the {@link data.read.DataReader}
+ * interface.
+ */
 public class Inspect extends Command implements DataReader {
 
     public Inspect() {
@@ -13,9 +22,14 @@ public class Inspect extends Command implements DataReader {
 
     @Override
     protected void checkAvailableParameters() {
-
+        // Nothing to check
     }
 
+    /**
+     * Reads the description file associated with the current room.
+     * 
+     * @see data.read.DataReader
+     */
     @Override
     protected void run() {
         for (String string : this.requestData(AssetType.DESCRIPTION, LocationsController.getCurrentRoom().getName() + ".txt")) {
