@@ -47,16 +47,14 @@ public class SystemsController extends Controller implements DataReader {
     
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
-    private static List<String> waveNoHit;
 
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
      */
     public static void init() {
-        newWaveIncoming = SystemsData.getTextString("newWaveIncoming.txt");
-        waveHit = SystemsData.getTextString("waveHit.txt");
-        waveNoHit = SystemsData.getTextString("waveNoHit.txt");
+        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 2 + 1) + ".txt");
+        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 2 + 1) + ".txt");
     }
 
     /**

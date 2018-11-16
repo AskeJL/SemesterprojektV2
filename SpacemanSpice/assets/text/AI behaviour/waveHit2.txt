@@ -1,0 +1,11 @@
++-----------------------------------+
+| SAL153                            |
+| Come on, Spaceman Spice, it is    |
+| not that hard to defend the ship. |
+| I used to do this all by myself   |
+| when I could control the systems. |
+|                                   |
+| You can probably fix some of the  |
+| damage you have caused before any |
+| more fragments appear.            |
++-----------------------------------+
