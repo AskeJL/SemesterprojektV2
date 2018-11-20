@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 
 /**
  * This command is responsible for clearing the screen when prompted.
@@ -37,6 +38,6 @@ public class Clear extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("Clears the terminal.");
+        InteractionsController.println("Clears the terminal.");
     }
 }

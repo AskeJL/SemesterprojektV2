@@ -1,5 +1,6 @@
 package domain.locations.gameobjects;
 
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsController;
@@ -22,7 +23,7 @@ public class SteeringControl extends GameObject {
      * Destroy a large fragment. This will set the
      * {@link domain.systems.SystemsController#setLargeFragmentDestroyed(boolean)}
      * boolean.
-     * <br><br>
+     * <p>
      * Only runs if there are any small fragments to destroy.
      *
      * @see domain.systems.Wave
@@ -30,10 +31,10 @@ public class SteeringControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("Interacting with the steering controls.");
+        InteractionsController.println("Interacting with the steering controls.");
         if (SystemsController.getLargeFragments() != 0) {
             domain.systems.SystemsController.setLargeFragmentDestroyed(true);
-            System.out.println("You have moved the ship out of danger");
+            InteractionsController.println("You have moved the ship out of danger");
         }
     }
 
