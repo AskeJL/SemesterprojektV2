@@ -188,4 +188,14 @@ public class Wave {
     static int getLargeFragments() {
         return largeFragments;
     }
+    
+    /**
+     * Get number of waves {@link #numberOfWaves}.
+     * 
+     * 
+     * @return 
+     */
+    static int getNumberofWaves(){
+        return numberOfWaves;
+    }
 }

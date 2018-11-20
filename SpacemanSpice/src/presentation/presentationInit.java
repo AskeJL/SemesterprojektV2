@@ -1,5 +1,6 @@
 package presentation;
 
+import java.io.IOException;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +16,7 @@ public interface presentationInit {
      * Request initialization from {@link ViewManager}.
      *
      */
-    default void initRequest() {
+    default void initRequest() throws IOException {
         ViewManager.init();
     }
 
