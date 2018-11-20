@@ -8,7 +8,10 @@ package domain.systems;
  * @see SystemsController
  */
 public interface SystemsReader {
-
+    
+    default int readWaveNumber(){
+        return SystemsController.getNumberOfWaves();
+    }
     /**
      * Read the amount of small fragments.
      *

@@ -5,7 +5,12 @@
  */
 package presentation.game;
 
+
+import domain.resources.ResourcesReader;
+import domain.systems.SystemsReader;
+import java.awt.Event;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,13 +18,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
  *
  * @author Nikos
  */
-public class GameViewController implements Initializable {
+public class GameViewController implements Initializable, ResourcesReader, SystemsReader{
     
     /**
      * Progress bar visualising life variable.
@@ -68,13 +75,54 @@ public class GameViewController implements Initializable {
      */
     @FXML
     private TextArea infoText;
-
+    
+    
+    private ArrayList<String> consoleText = new ArrayList<>();
     /**
      * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
+    void update(){
+        progressBarLife.setProgress(this.readLife());
+        progressBarOxygen.setProgress(this.readOxygen());
+        waveNumber.setText(Integer.toString(this.readWaveNumber()));
+        timeNumber.setText(Long.toString(this.readWaveTime()));
+        
+    }
+
+    /**
+     * When enter is pressed, handle inputText and outputText.
+     * @param event 
+     */
+    @FXML
+    private void enterPressedHandler(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            if(inputText.getText().equals(""))
+                return;
+            }
+            else{
+            consoleText.add(inputText.getText());
+            outputText.setText(textToString(consoleText));
+            outputText.setScrollTop(100);
+            inputText.setText("");
+        }
+    }
+    
+    /**
+     * Method that takes text as input and returns it as String.
+     * @param consoleText 
+     * @return 
+     */
+    private String textToString(ArrayList<String> consoleText) {
+        String consoleString = "";
+        
+        for(String string : consoleText){
+            consoleString += "> " + string + "\n";
+        }
+        return consoleString;
+    }
 }

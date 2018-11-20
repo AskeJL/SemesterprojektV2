@@ -205,7 +205,15 @@ public class SystemsController extends Controller implements DataReader {
     public static int getLargeFragments() {
         return Wave.getLargeFragments();
     }
-
+    
+    /**
+     * Get {@link Wave#numberOfWaves}.
+     * 
+     * @return 
+     */
+    public static int getNumberOfWaves(){
+        return Wave.getNumberofWaves();
+    }
     /**
      * Get {@link Score#score}.
      *

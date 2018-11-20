@@ -70,7 +70,7 @@
                   <VBox prefHeight="198.0" prefWidth="296.0">
                      <children>
                         <TextArea fx:id="outputText" prefHeight="200.0" prefWidth="200.0" />
-                        <TextField fx:id="inputText" />
+                        <TextField fx:id="inputText" onKeyPressed="#enterPressedHandler" />
                      </children>
                   </VBox>
                   <TextArea fx:id="infoText" prefHeight="198.0" prefWidth="296.0" />
