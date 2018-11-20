@@ -5,32 +5,40 @@ import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import presentation.presentationInit;
 import presentation.presentationUpdate;
 
 /**
  * Methods to initialize and update the game
  */
-public class Game implements presentationInit, presentationUpdate{
+public class Game extends Application implements presentationInit, presentationUpdate {
 
     private static boolean running = true;
-    
-    private Game() {}
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        init();
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        this.sendStageRequest(primaryStage);
+        
+        initialize();
         loop();
     }
 
     /**
      * Initializes all the controllers.
      */
-    private static void init() {
-        new Game().initRequest(0);
-        
+    private static void initialize() {
+        new Game().initRequest();
+
         TutorialController.init();
         LocationsController.init();
         ResourcesController.init();
@@ -42,15 +50,19 @@ public class Game implements presentationInit, presentationUpdate{
      * Loops through all the controllers.
      */
     private static void loop() {
-        while (running) {
-            new Game().updateRequest();
-            
-            TutorialController.update();
-            LocationsController.update();
-            InteractionsController.update();
-            ResourcesController.update();
-            SystemsController.update();
-        }
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (running) {
+                    new Game().updateRequest();
+                    TutorialController.update();
+                    LocationsController.update();
+                    InteractionsController.update();
+                    ResourcesController.update();
+                    SystemsController.update();
+                }
+            }
+        };
     }
 
     /**

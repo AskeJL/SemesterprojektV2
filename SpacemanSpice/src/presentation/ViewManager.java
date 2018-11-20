@@ -1,18 +1,21 @@
 package presentation;
 
+import javafx.stage.Stage;
+
 /**
  * The main controller of all the view from the presentation layer. This will
  * control which views to update and initialize.
  */
 class ViewManager {
 
+    private static Stage currentStage;
+    
     /**
      * Initialize the necessary scene.
-     *
-     * @param viewIndex The index of a view.
      */
-    static void init(int viewIndex) {
-        
+    static void init() {
+        currentStage.setTitle("Spaceman Spice");
+        currentStage.show();
     }
 
     /**
@@ -20,5 +23,9 @@ class ViewManager {
      */
     static void update() {
         
+    }
+    
+    static void setStage(Stage stage) {
+        currentStage = stage;
     }
 }
