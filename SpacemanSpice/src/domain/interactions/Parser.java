@@ -56,10 +56,35 @@ public class Parser {
      * @return The command that matches the user input.
      */
     static Command getCommand() {
-        String[] input = readInput();
+        String[] inputs = readInput();
 
-        String word1 = input[0];
-        String word2 = input[1];
+        String word1 = inputs[0];
+        String word2 = inputs[1];
+
+        return Commands.validateCommand(word1, word2);
+    }
+
+    private static String[] convertInput(String input) {
+        String word1 = null;
+        String word2 = null;
+
+        Scanner tokenizer = new Scanner(input);
+        if (tokenizer.hasNext()) {
+            word1 = tokenizer.next().toLowerCase();
+            if (tokenizer.hasNext()) {
+                word2 = tokenizer.next().toLowerCase();
+            }
+        }
+
+        String[] words = {word1, word2};
+        return words;
+    }
+
+    static Command getCommand(String input) {
+        String[] inputs = convertInput(input);
+
+        String word1 = inputs[0];
+        String word2 = inputs[1];
 
         return Commands.validateCommand(word1, word2);
     }
