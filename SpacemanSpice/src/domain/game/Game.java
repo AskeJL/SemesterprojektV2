@@ -62,7 +62,7 @@ public class Game extends Application implements presentationInit, presentationU
                     SystemsController.update();
                 }
             }
-        };
+        }.start();
     }
 
     /**
