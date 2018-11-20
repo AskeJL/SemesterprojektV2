@@ -65,7 +65,6 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     @FXML
     private void onQuitHandler(ActionEvent event) {
         this.requestQuit();
-        stage.close();
     }
 
     @FXML
