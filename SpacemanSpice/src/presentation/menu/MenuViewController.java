@@ -5,6 +5,7 @@
  */
 package presentation.menu;
 
+import domain.interactions.InteractionsRequest;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author askel
  */
-public class MenuViewController implements Initializable {
+public class MenuViewController implements Initializable, InteractionsRequest {
 
     @FXML
     private Button highscoreButton;
@@ -63,6 +64,8 @@ public class MenuViewController implements Initializable {
 
     @FXML
     private void onQuitHandler(ActionEvent event) {
+        this.requestQuit();
+        stage.close();
     }
 
     @FXML
