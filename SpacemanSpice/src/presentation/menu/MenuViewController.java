@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
@@ -52,27 +53,34 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+    
+    public static void init() throws IOException{
+        String menu = new ViewManager().getMenuPath();
+        new ViewManager().loadView(menu);
+    }
 
     @FXML
     private void onHighScore(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("highscoreView.fxml"));
-        Stage stage = new Stage();
-         stage.setScene(new Scene(pane));
-         stage.show();
-         stage.close();
+        String highScore = new ViewManager().gethighScorePath();
+        new ViewManager().loadView(highScore);
     }
 
     @FXML
     private void onQuitHandler(ActionEvent event) {
         this.requestQuit();
+        ViewManager.getCurrentStage().close();
     }
 
     @FXML
-    private void onPlayHandler(ActionEvent event) {
+    private void onPlayHandler(ActionEvent event) throws IOException {
+        String gameView = new ViewManager().getgameViewPath();
+        new ViewManager().loadView(gameView);
     }
 
     @FXML
-    private void onSettingsHandler(ActionEvent event) {
+    private void onSettingsHandler(ActionEvent event) throws IOException {
+        String settingsView = new ViewManager().getSettingsViewPath();
+        new ViewManager().loadView(settingsView);        
     }
     
 }

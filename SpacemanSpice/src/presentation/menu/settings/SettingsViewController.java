@@ -5,6 +5,7 @@
  */
 package presentation.menu.settings;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.ToggleButton;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
@@ -82,7 +84,9 @@ public class SettingsViewController implements Initializable {
     }
 
     @FXML
-    private void backButtonHandler(ActionEvent event) {
+    private void backButtonHandler(ActionEvent event) throws IOException {
+        String menu = new ViewManager().getMenuPath();
+        new ViewManager().loadView(menu);
     }
     
 }

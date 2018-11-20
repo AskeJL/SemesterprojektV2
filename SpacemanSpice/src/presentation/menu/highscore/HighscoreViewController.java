@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
@@ -42,11 +43,8 @@ public class HighscoreViewController implements Initializable {
 
     @FXML
     private void onBackHandler(ActionEvent event) throws IOException {
-         GridPane pane = FXMLLoader.load(getClass().getResource("menuView.fxml"));
-         Stage stage = new Stage();
-         stage.setScene(new Scene(pane));
-         stage.show();
-         stage.close();
+         String menu = new ViewManager().getMenuPath();
+        new ViewManager().loadView(menu);
     }
     
 }
