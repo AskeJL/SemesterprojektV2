@@ -31,12 +31,17 @@ public class InteractionsController extends Controller {
      * from the user.
      */
     public static void update() {
-        Command command = Parser.getCommand();
-        if (command != null) {
+        // Nothing to update
+    }
+
+    public static void runCommand(String input) {
+        Command command = Parser.getCommand(input);
+        
+        if(command != null) {
             command.run();
         }
     }
-
+    
     /**
      * Set the running of the {@link domain.game.Game Game}. Will shutdown the
      * game if turned to false.
