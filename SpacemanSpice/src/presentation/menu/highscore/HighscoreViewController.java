@@ -46,6 +46,7 @@ public class HighscoreViewController implements Initializable {
          Stage stage = new Stage();
          stage.setScene(new Scene(pane));
          stage.show();
+         stage.close();
     }
     
 }
