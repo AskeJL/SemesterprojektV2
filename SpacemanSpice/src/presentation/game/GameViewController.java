@@ -9,6 +9,7 @@ import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
 import java.awt.Event;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
@@ -86,12 +88,19 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         // TODO
     }
 
-    void update() {
+    void update() throws IOException {
         progressBarLife.setProgress(this.readLife());
+        if(this.readLife() <= 0){
+          String gameOver = new ViewManager().getGameOverPath();
+        new ViewManager().loadView(gameOver); 
+        }
         progressBarOxygen.setProgress(this.readOxygen());
+        if(this.readOxygen() <= 0){
+          String gameOver = new ViewManager().getGameOverPath();
+        new ViewManager().loadView(gameOver); 
+        }
         waveNumber.setText(Integer.toString(this.readWaveNumber()));
         timeNumber.setText(Long.toString(this.readWaveTime()));
-
     }
 
     /**

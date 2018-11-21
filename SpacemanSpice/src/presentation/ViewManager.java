@@ -64,7 +64,7 @@ public class ViewManager {
         return SETTINGS_PATH;
     }
     
-    public String getGameOverPth(){
+    public String getGameOverPath(){
         return GAME_OVER_PATH;
     }
     
