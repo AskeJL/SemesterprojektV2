@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -88,7 +90,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        waveNumber.setText(Integer.toString(this.readWaveNumber()));
+        timeNumber.setText(Long.toString(this.readWaveTime()));
+        
+        progressBarLife.setProgress(this.readLife());
+        progressBarOxygen.setProgress(this.readOxygen());
     }
 
     void update() throws IOException {
