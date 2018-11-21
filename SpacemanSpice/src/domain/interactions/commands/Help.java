@@ -71,21 +71,21 @@ public class Help extends Command {
     @Override
     public void showAvailableParameters() {
         InteractionsController.println("Current room:");
-        InteractionsController.println(String.format("%10s %s\n", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName()));
+        InteractionsController.println(String.format("%10s %s", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName()));
 
         InteractionsController.println("You can go:");
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
-                InteractionsController.println(String.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
+                InteractionsController.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
             }
         }
         for (Exit exit : LocationsController.getCurrentRoom().getExits()) {
-            InteractionsController.println(String.format("%10s %-5s - %-10s\n", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
+            InteractionsController.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
         }
 
         if (!LocationsController.getCurrentRoom().getGameObjects().isEmpty()) {
             InteractionsController.println("You can interact with:");
-            InteractionsController.println(String.format("%10s %s\n", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName()));
+            InteractionsController.println(String.format("%10s %s", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName()));
         }
 
         InteractionsController.println("Available commands: ");
