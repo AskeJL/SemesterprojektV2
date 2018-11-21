@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import presentation.game.GameViewController;
 import presentation.menu.MenuViewController;
 
 /**
@@ -33,7 +34,9 @@ public class ViewManager {
     /**
      * Update a particular view. 
      */
-    static void update() {
+    static void update() throws IOException {
+        GameViewController update = new GameViewController();
+        update.update();
         
     }
     

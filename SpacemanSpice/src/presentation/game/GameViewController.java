@@ -97,7 +97,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         progressBarOxygen.setProgress(this.readOxygen());
     }
 
-    void update() throws IOException {
+    public void update() throws IOException {
         progressBarLife.setProgress(this.readLife());
         if(this.readLife() <= 0){
           String gameOver = new ViewManager().getGameOverPath();
