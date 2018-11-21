@@ -5,6 +5,7 @@ import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
+import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -36,7 +37,7 @@ public class Game extends Application implements presentationInit, presentationU
     /**
      * Initializes all the controllers.
      */
-    private static void initialize() {
+    private static void initialize() throws IOException {
         new Game().initRequest();
 
         TutorialController.init();
