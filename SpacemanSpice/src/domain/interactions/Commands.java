@@ -78,7 +78,7 @@ public class Commands {
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
-                System.out.println("I don't know that command. \nThese are the commands available:");
+                InteractionsController.println("I don't know that command. \nThese are the commands available:");
                 lastCommand = COMMAND_WORDS.get(0);
                 showCommands();
                 return null;
@@ -94,7 +94,7 @@ public class Commands {
                         lastParameter = parameter;
                         lastCommand = command;
                     } else {
-                        System.out.println("Wrong parameter.");
+                        InteractionsController.println("Wrong parameter.");
                         command.showAvailableParameters();
                         return null;
                     }
@@ -103,7 +103,7 @@ public class Commands {
             } else {
                 if (command.hasParameter()) {
                     if (!command.getName().equalsIgnoreCase("help")) {
-                        System.out.println("Missing parameter.");
+                        InteractionsController.println("Missing parameter.");
                     }
                     command.showAvailableParameters();
                     return null;
@@ -119,9 +119,11 @@ public class Commands {
      * Displays the {@link Commands#COMMAND_WORDS COMMAND_WORDS} to the user.
      */
     static void showCommands() {
+        String data = "";
         for (Command command : COMMAND_WORDS) {
-            System.out.format("   %-10s\n", command.getName());
+            data += "   " + command.getName() + "\n";
         }
+        InteractionsController.println(data);
     }
 
     /**
@@ -159,7 +161,8 @@ public class Commands {
     }
 
     /**
-     * Get the name of the {@link Commands#lastCommand last valid command} called.
+     * Get the name of the {@link Commands#lastCommand last valid command}
+     * called.
      *
      * @return
      */

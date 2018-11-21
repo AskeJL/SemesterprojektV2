@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
 
@@ -25,9 +26,9 @@ public class Start extends Command {
 
     /**
      * Will set the {@link SystemsController#setPlayerReady(boolean)} to true.
-     * This will make the waves active.
-     * Will also set the {@link TutorialController.setTutorial(boolean)} to
-     * false. This will cancel and deactivate the tutorial.
+     * This will make the waves active. Will also set the
+     * {@link TutorialController.setTutorial(boolean)} to false. This will
+     * cancel and deactivate the tutorial.
      */
     @Override
     public void run() {
@@ -42,6 +43,6 @@ public class Start extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The start command will start the waves and score system");
+        InteractionsController.println("The start command will start the waves and score system");
     }
 }

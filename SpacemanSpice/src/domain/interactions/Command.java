@@ -121,11 +121,12 @@ public abstract class Command {
      */
     protected void showParameters() {
         if (this.hasParameter) {
-            System.out.println("These are the parameters to the command " + this.name + ":");
-
+            String data = "";
             for (String parameter : this.parameters) {
-                System.out.format("  %10s\n", parameter);
+                data += "    " + parameter + "\n";
             }
+
+            InteractionsController.println("These are the parameters to the command " + this.name + ":\n" + data);
         }
     }
 
@@ -135,11 +136,12 @@ public abstract class Command {
      */
     protected void showAvailableParameters() {
         if (this.hasParameter) {
-            System.out.println("These are the available parameters to the command " + this.name + ":");
-
+            String data = "";
             for (String parameter : this.availableParameters) {
-                System.out.format("   %10s\n", parameter);
+                data += "    " + parameter + "\n";
             }
+            
+            InteractionsController.println("These are the available parameters to the command " + this.name + ":\n" + data);
         }
     }
 

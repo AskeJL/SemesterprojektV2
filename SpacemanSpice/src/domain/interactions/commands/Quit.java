@@ -28,9 +28,9 @@ public class Quit extends Command {
      */
     @Override
     public void run() {
-        System.out.println("You are now exiting the game - thank you for playing!"
-                + "\nGoodbye...");
         InteractionsController.setRunning(false);
+        InteractionsController.println("You are now exiting the game - thank you for playing!"
+                + "\nGoodbye...");
     }
 
     @Override
@@ -40,7 +40,6 @@ public class Quit extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The quit function lets you quit the game");
+        InteractionsController.println("The quit function lets you quit the game");
     }
-
 }

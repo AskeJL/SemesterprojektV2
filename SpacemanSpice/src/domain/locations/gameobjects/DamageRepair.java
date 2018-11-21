@@ -1,5 +1,6 @@
 package domain.locations.gameobjects;
 
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.ResourcesController;
@@ -27,9 +28,9 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("You begin reparing the ship");
+        InteractionsController.println("You begin reparing the ship");
         ResourcesController.setRepairTrue();
-        System.out.println("Type: 'show life', to see the remaining health of the ship");
+        InteractionsController.println("Type: 'show life', to see the remaining health of the ship");
     }
 
     @Override

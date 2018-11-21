@@ -31,25 +31,25 @@ import presentation.ViewManager;
 public class GameViewController implements Initializable, ResourcesReader, SystemsReader, InteractionsRequest {
 
     /**
-     * Progress bar visualising life variable.
+     * Progress bar visualizing life variable.
      */
     @FXML
     private ProgressBar progressBarLife;
 
     /**
-     * Number visualising the number of current wave.
+     * Number visualizing the number of current wave.
      */
     @FXML
     private TextArea waveNumber;
 
     /**
-     * Number visualising the remaining time for the current wave.
+     * Number visualizing the remaining time for the current wave.
      */
     @FXML
     private TextArea timeNumber;
 
     /**
-     * Progress bar visualising oxygen variable.
+     * Progress bar visualizing oxygen variable.
      */
     @FXML
     private ProgressBar progressBarOxygen;
@@ -81,7 +81,10 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     private ArrayList<String> consoleText = new ArrayList<>();
 
     /**
-     * Initialises the controller class.
+     * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,7 +121,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
             outputText.setScrollTop(100);
-            this.requestRunCommand(inputText.getText());
+            
+            String commandOutput = this.requestRunCommand(inputText.getText());
+            infoText.setText(commandOutput);
+            infoText.setScrollTop(100);
+            
             inputText.setText("");
         }
     }

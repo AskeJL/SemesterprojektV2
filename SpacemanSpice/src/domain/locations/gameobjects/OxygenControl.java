@@ -1,5 +1,6 @@
 package domain.locations.gameobjects;
 
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.ResourcesController;
@@ -29,7 +30,7 @@ public class OxygenControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("You interact with the Oxygen refilling control");
+        InteractionsController.println("You interact with the Oxygen refilling control");
         int difference = 100 - ResourcesController.getOxygen();
         ResourcesController.increaseOxygen(difference);
     }
