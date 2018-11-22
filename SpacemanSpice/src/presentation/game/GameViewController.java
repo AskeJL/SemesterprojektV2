@@ -92,21 +92,21 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     public void initialize(URL url, ResourceBundle rb) {
         waveNumber.setText(Integer.toString(this.readWaveNumber()));
         timeNumber.setText(Long.toString(this.readWaveTime()));
-        
-        progressBarLife.setProgress(this.readLife());
-        progressBarOxygen.setProgress(this.readOxygen());
+
+        progressBarLife.setProgress(this.readLife()/100);
+        progressBarOxygen.setProgress(this.readOxygen()/100);
     }
 
     public void update() throws IOException {
-        progressBarLife.setProgress(this.readLife());
-        if(this.readLife() <= 0){
-          String gameOver = new ViewManager().getGameOverPath();
-        new ViewManager().loadView(gameOver); 
+        progressBarLife.setProgress(this.readLife()/100);
+        if (this.readLife() <= 0) {
+            String gameOver = new ViewManager().getGameOverPath();
+            new ViewManager().loadView(gameOver);
         }
-        progressBarOxygen.setProgress(this.readOxygen());
-        if(this.readOxygen() <= 0){
-          String gameOver = new ViewManager().getGameOverPath();
-        new ViewManager().loadView(gameOver); 
+        progressBarOxygen.setProgress(this.readOxygen()/100);
+        if (this.readOxygen() <= 0) {
+            String gameOver = new ViewManager().getGameOverPath();
+            new ViewManager().loadView(gameOver);
         }
         waveNumber.setText(Integer.toString(this.readWaveNumber()));
         timeNumber.setText(Long.toString(this.readWaveTime()));
@@ -127,11 +127,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
             outputText.setScrollTop(100);
-            
+
             String commandOutput = this.requestRunCommand(inputText.getText());
             infoText.setText(commandOutput);
             infoText.setScrollTop(100);
-            
+
             inputText.setText("");
         }
     }

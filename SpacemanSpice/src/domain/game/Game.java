@@ -6,6 +6,8 @@ import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -55,7 +57,11 @@ public class Game extends Application implements presentationInit, presentationU
             @Override
             public void handle(long now) {
                 if (running) {
-                    new Game().updateRequest();
+                    try {
+                        new Game().updateRequest();
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                     TutorialController.update();
                     LocationsController.update();
                     InteractionsController.update();
