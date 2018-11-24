@@ -68,12 +68,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @FXML
     private TextArea infoText;
-
-    private static ProgressBar life;
-    private static ProgressBar oxygen;
+    
+    private static String lastOutput = "";
     
     private ArrayList<String> consoleText = new ArrayList<>();
-    private static GameViewController controller = new GameViewController();
+    private static GameViewController interfaces = new GameViewController();
 
     /**
      * Initializes the controller class.
@@ -83,17 +82,27 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        controller.progressBarLife = progressBarLife;
-        controller.progressBarOxygen = progressBarOxygen;
-        controller.waveTimeLabel = waveTimeLabel;
-        controller.waveNumberValue = waveNumberValue;
+        interfaces.progressBarLife = progressBarLife;
+        interfaces.progressBarOxygen = progressBarOxygen;
+        interfaces.waveTimeLabel = waveTimeLabel;
+        interfaces.waveNumberValue = waveNumberValue;
+        interfaces.infoText = infoText;
     }
 
     public static void update() {
-            controller.progressBarLife.setProgress((double)controller.readLife() / 100);
-            controller.progressBarOxygen.setProgress((double)controller.readOxygen() / 100);
-            controller.waveTimeLabel.setText(Long.toString(controller.readWaveTime()));
-            controller.waveNumberValue.setText(Integer.toString(controller.readWaveNumber()));
+        interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
+        interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
+        interfaces.waveTimeLabel.setText(Long.toString(interfaces.readWaveTime()));
+        interfaces.waveNumberValue.setText(Integer.toString(interfaces.readWaveNumber()));
+        
+        String output = interfaces.requestOutputText();
+        
+        if (!lastOutput.equals(output)) {
+            interfaces.infoText.setText(output);
+            lastOutput = output;
+            interfaces.infoText.setScrollTop(10000);
+            interfaces.infoText.positionCaret(output.length());
+        }
     }
 
     /**
@@ -109,13 +118,14 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             }
 
             consoleText.add(inputText.getText());
-            outputText.setText(textToString(consoleText));
+            outputText.appendText(textToString(consoleText));
             outputText.setScrollTop(10000);
 
-            String commandOutput = this.requestRunCommand(inputText.getText());
-            infoText.setText(commandOutput);
-            infoText.setScrollTop(10000);
-            infoText.positionCaret(commandOutput.length());
+            String commandOutput = interfaces.requestRunCommand(inputText.getText());
+            interfaces.infoText.setText(commandOutput);
+            interfaces.infoText.setScrollTop(10000);
+            interfaces.infoText.positionCaret(commandOutput.length());
+            lastOutput = commandOutput;
 
             inputText.setText("");
         }

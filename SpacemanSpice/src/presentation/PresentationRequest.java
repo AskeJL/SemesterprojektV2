@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.util.List;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +30,7 @@ public interface PresentationRequest {
         ViewManager.setStage(stage);
     }
     
-    default void sendMessageBoxRequest(List<String> message) {
-        
+    default String lastPathRequest() {
+        return ViewManager.getLastPath();
     }
 }

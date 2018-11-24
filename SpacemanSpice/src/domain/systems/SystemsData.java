@@ -7,12 +7,14 @@ import java.util.List;
 
 class SystemsData implements DataReader {
     
+    private static SystemsData interfaces = new SystemsData();
+    
     static List<String> getTextString(String filename) {
-        return new SystemsData().requestData(AssetType.TEXT, filename);
+        return interfaces.requestData(AssetType.TEXT, filename);
     }
     
     static List<String> getAIString(String filename) {
-        return new SystemsData().requestData(AssetType.AIWAVE, filename);
+        return interfaces.requestData(AssetType.AIWAVE, filename);
     }
     
     static void printText(List<String> text) {

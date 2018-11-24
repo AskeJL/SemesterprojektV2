@@ -16,7 +16,8 @@ import presentation.PresentationUpdate;
  * Methods to initialize and update the game
  */
 public class Game extends Application implements PresentationRequest, PresentationUpdate {
-    private static Game game = new Game();
+
+    private static Game interfaces = new Game();
     private static boolean running = true;
 
     /**
@@ -55,12 +56,14 @@ public class Game extends Application implements PresentationRequest, Presentati
             @Override
             public void handle(long now) {
                 if (running) {
-                    TutorialController.update();
+                    if (interfaces.lastPathRequest().equals("game/gameView.fxml")) {
+                        TutorialController.update();
+                    }
+                    interfaces.sendUpdateRequest();
                     LocationsController.update();
                     InteractionsController.update();
                     ResourcesController.update();
                     SystemsController.update();
-                    game.updateRequest();
                 }
             }
         }.start();

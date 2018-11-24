@@ -22,6 +22,14 @@ public interface InteractionsRequest {
     }
 
     /**
+     * Request {@link InteractionsController#outputText}.
+     * @return 
+     */
+    default String requestOutputText() {
+        return InteractionsController.getOutputText();
+    }
+    
+    /**
      * Request {@link InteractionsController#setRunning(boolean)} is set to
      * false.
      */

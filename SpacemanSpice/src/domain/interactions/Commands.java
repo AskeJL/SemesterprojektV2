@@ -126,6 +126,10 @@ public class Commands {
         InteractionsController.println(data);
     }
 
+    static void setLastCommand(Command command) {
+        lastCommand = command;
+    }
+    
     /**
      * Gets the {@link Command} based in its index.
      *

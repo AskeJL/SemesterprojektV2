@@ -58,6 +58,10 @@ public class ViewManager {
         lastPath = path;
     }
 
+    public static String getLastPath() {
+        return lastPath;
+    }
+    
     public String getMenuPath() {
         return MENU_PATH;
     }

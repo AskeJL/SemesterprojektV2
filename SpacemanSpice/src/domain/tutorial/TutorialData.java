@@ -17,6 +17,8 @@ import presentation.PresentationRequest;
  */
 class TutorialData implements DataReader, PresentationRequest {
 
+    private static TutorialData interfaces = new TutorialData();
+    
     /**
      * Request data from the data-layer using
      * {@link TutorialData#requestData(data.AssetType, java.lang.String)}.
@@ -25,7 +27,7 @@ class TutorialData implements DataReader, PresentationRequest {
      * @return
      */
     static List<String> getTextString(String filename) {
-        return new TutorialData().requestData(AssetType.TEXT, filename);
+        return interfaces.requestData(AssetType.TEXT, filename);
     }
 
     /**
