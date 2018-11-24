@@ -29,7 +29,7 @@ public class Game extends Application implements PresentationRequest, Presentati
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.sendStageRequest(primaryStage);
+        interfaces.sendStageRequest(primaryStage);
 
         initialize();
         loop();
@@ -39,7 +39,7 @@ public class Game extends Application implements PresentationRequest, Presentati
      * Initializes all the controllers.
      */
     private static void initialize() throws IOException {
-        new Game().sendInitRequest();
+        interfaces.sendInitRequest();
 
         TutorialController.init();
         LocationsController.init();

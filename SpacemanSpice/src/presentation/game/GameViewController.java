@@ -118,7 +118,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             }
 
             consoleText.add(inputText.getText());
-            outputText.appendText(textToString(consoleText));
+            outputText.setText(textToString(consoleText));
             outputText.setScrollTop(10000);
 
             String commandOutput = interfaces.requestRunCommand(inputText.getText());
