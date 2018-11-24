@@ -11,13 +11,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import presentation.ViewManager;
 
 /**
@@ -44,25 +40,37 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     @FXML
     private Label nameLabel2;
 
+    private static ViewManager vman = new ViewManager();
+
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
-    public static void init() throws IOException{
-        String menu = new ViewManager().getMenuPath();
-        new ViewManager().loadView(menu);
+
+    }
+
+    public static void init() throws IOException {
+        vman.loadView(vman.getMenuPath());
+    }
+
+    @FXML
+    private void onPlayHandler(ActionEvent event) throws IOException {
+        vman.loadView(new ViewManager().getGameViewPath());
+        ViewManager.setLastPath(vman.getGameViewPath());
+    }
+
+    @FXML
+    private void onSettingsHandler(ActionEvent event) throws IOException {
+        vman.loadView(new ViewManager().getSettingsViewPath());
     }
 
     @FXML
     private void onHighScore(ActionEvent event) throws IOException {
-        String highScore = new ViewManager().gethighScorePath();
-        new ViewManager().loadView(highScore);
+        vman.loadView(vman.gethighScorePath());
     }
 
     @FXML
@@ -71,16 +79,4 @@ public class MenuViewController implements Initializable, InteractionsRequest {
         ViewManager.getCurrentStage().close();
     }
 
-    @FXML
-    private void onPlayHandler(ActionEvent event) throws IOException {
-        String gameView = new ViewManager().getgameViewPath();
-        new ViewManager().loadView(gameView);
-    }
-
-    @FXML
-    private void onSettingsHandler(ActionEvent event) throws IOException {
-        String settingsView = new ViewManager().getSettingsViewPath();
-        new ViewManager().loadView(settingsView);        
-    }
-    
 }

@@ -9,14 +9,14 @@ import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import presentation.presentationInit;
-import presentation.presentationUpdate;
+import presentation.PresentationRequest;
+import presentation.PresentationUpdate;
 
 /**
  * Methods to initialize and update the game
  */
-public class Game extends Application implements presentationInit, presentationUpdate {
-
+public class Game extends Application implements PresentationRequest, PresentationUpdate {
+    private static Game game = new Game();
     private static boolean running = true;
 
     /**
@@ -29,7 +29,7 @@ public class Game extends Application implements presentationInit, presentationU
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.sendStageRequest(primaryStage);
-        
+
         initialize();
         loop();
     }
@@ -38,7 +38,7 @@ public class Game extends Application implements presentationInit, presentationU
      * Initializes all the controllers.
      */
     private static void initialize() throws IOException {
-        new Game().initRequest();
+        new Game().sendInitRequest();
 
         TutorialController.init();
         LocationsController.init();
@@ -55,12 +55,12 @@ public class Game extends Application implements presentationInit, presentationU
             @Override
             public void handle(long now) {
                 if (running) {
-                    new Game().updateRequest();
                     TutorialController.update();
                     LocationsController.update();
                     InteractionsController.update();
                     ResourcesController.update();
                     SystemsController.update();
+                    game.updateRequest();
                 }
             }
         }.start();

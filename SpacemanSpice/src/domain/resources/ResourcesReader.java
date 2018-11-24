@@ -33,7 +33,7 @@ public interface ResourcesReader {
      * @return Amount of wave time.
      */
     default long readWaveTime() {
-        return ResourcesController.getWaveTime();
+        return ResourcesController.getRemainingTime();
     }
 
     /**

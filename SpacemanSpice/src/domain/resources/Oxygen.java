@@ -39,9 +39,9 @@ public class Oxygen {
      */
     static void update() {
         if (Life.getLife() <= 50) {
-            oxygen -= (Time.getCurrentTime() - lastTime) / TIME_BEFORE_LOSING_OXYGEN;
+            oxygen -= (Time.getCurrentTime() - lastTime);
         } else if(LocationsController.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
-            oxygen -= (Time.getCurrentTime() - lastTime) / TIME_BEFORE_LOSING_OXYGEN;
+            oxygen -= (Time.getCurrentTime() - lastTime);
         }
 
         lastTime = Time.getCurrentTime();

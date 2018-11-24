@@ -2,6 +2,7 @@ package domain.systems;
 
 import data.AssetType;
 import data.read.DataReader;
+import domain.interactions.InteractionsController;
 import java.util.List;
 
 class SystemsData implements DataReader {
@@ -16,7 +17,7 @@ class SystemsData implements DataReader {
     
     static void printText(List<String> text) {
         for(String line : text) {
-            System.out.println(line);
+            InteractionsController.println(line);
         }
     }
 }

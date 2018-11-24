@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import presentation.game.GameViewController;
 import presentation.menu.MenuViewController;
 
 /**
@@ -11,15 +12,16 @@ import presentation.menu.MenuViewController;
  * control which views to update and initialize.
  */
 public class ViewManager {
-    
-    private final static String MENU_PATH = "menu/menuView.fxml"; 
+
+    private final static String MENU_PATH = "menu/menuView.fxml";
     private final static String SETTINGS_PATH = "menu/settings/settingsView.fxml";
     private final static String HIGH_SCORE_PATH = "menu/highscore/highscoreView.fxml";
     private final static String GAME_VIEW_PATH = "game/gameView.fxml";
-    
-    
+
+    private static String lastPath = "";
     private static Stage currentStage;
-    
+    private static Scene currentScene;
+
     /**
      * Initialize the necessary scene.
      */
@@ -30,40 +32,49 @@ public class ViewManager {
     }
 
     /**
-     * Update a particular view. 
+     * Update a particular view.
      */
     static void update() {
-        
+        switch (lastPath) {
+            case MENU_PATH:
+                break;
+            case GAME_VIEW_PATH:
+                GameViewController.update();
+                break;
+        }
     }
-    
+
+    public void loadView(String FXMLFile) throws IOException {
+        currentScene = new Scene(FXMLLoader.load(getClass().getResource(FXMLFile)));
+        currentStage.setScene(currentScene);
+        currentStage.show();
+    }
+
     static void setStage(Stage stage) {
         currentStage = stage;
     }
-    
-    public void loadView(String FXMLFile) throws IOException{
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource(FXMLFile)));
-        currentStage.setScene(scene);
-        currentStage.show();
-        System.out.println("it runs");
+
+    public static void setLastPath(String path) {
+        lastPath = path;
     }
-    
-    public String getMenuPath(){
+
+    public String getMenuPath() {
         return MENU_PATH;
     }
-    
-    public String gethighScorePath(){
+
+    public String gethighScorePath() {
         return HIGH_SCORE_PATH;
     }
-    
-    public String getgameViewPath(){
+
+    public String getGameViewPath() {
         return GAME_VIEW_PATH;
     }
-    
-    public String getSettingsViewPath(){
+
+    public String getSettingsViewPath() {
         return SETTINGS_PATH;
     }
-    
-    public static Stage getCurrentStage(){
+
+    public static Stage getCurrentStage() {
         return currentStage;
     }
 }

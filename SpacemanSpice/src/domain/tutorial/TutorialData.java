@@ -2,7 +2,9 @@ package domain.tutorial;
 
 import data.AssetType;
 import data.read.DataReader;
+import domain.interactions.InteractionsController;
 import java.util.List;
+import presentation.PresentationRequest;
 
 /**
  * Responsible for reading and printing data for the tutorial/introduction.
@@ -13,7 +15,7 @@ import java.util.List;
  * @see TutorialController
  * @see DataReader
  */
-class TutorialData implements DataReader {
+class TutorialData implements DataReader, PresentationRequest {
 
     /**
      * Request data from the data-layer using
@@ -31,9 +33,9 @@ class TutorialData implements DataReader {
      *
      * @param text List to print.
      */
-    static void printText(List<String> text) {
-        for (String line : text) {
-            System.out.println(line);
+    static void println(List<String> text) {
+        for (String string : text) {
+            InteractionsController.println(string);
         }
     }
 }

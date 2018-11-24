@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,23 +35,16 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     private ProgressBar progressBarLife;
 
     /**
-     * Number visualizing the number of current wave.
-     */
-    @FXML
-    private TextArea waveNumber;
-
-    /**
-     * Number visualizing the remaining time for the current wave.
-     */
-    @FXML
-    private TextArea timeNumber;
-
-    /**
      * Progress bar visualizing oxygen variable.
      */
     @FXML
     private ProgressBar progressBarOxygen;
 
+    @FXML
+    private Label waveNumberValue;
+
+    @FXML
+    private Label waveTimeLabel;
     /**
      * Canvas, where the games maps will be drawn.
      */
@@ -75,7 +69,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     @FXML
     private TextArea infoText;
 
+    private static ProgressBar life;
+    private static ProgressBar oxygen;
+    
     private ArrayList<String> consoleText = new ArrayList<>();
+    private static GameViewController controller = new GameViewController();
 
     /**
      * Initializes the controller class.
@@ -85,15 +83,17 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        controller.progressBarLife = progressBarLife;
+        controller.progressBarOxygen = progressBarOxygen;
+        controller.waveTimeLabel = waveTimeLabel;
+        controller.waveNumberValue = waveNumberValue;
     }
 
-    void update() {
-        progressBarLife.setProgress(this.readLife());
-        progressBarOxygen.setProgress(this.readOxygen());
-        waveNumber.setText(Integer.toString(this.readWaveNumber()));
-        timeNumber.setText(Long.toString(this.readWaveTime()));
-
+    public static void update() {
+            controller.progressBarLife.setProgress((double)controller.readLife() / 100);
+            controller.progressBarOxygen.setProgress((double)controller.readOxygen() / 100);
+            controller.waveTimeLabel.setText(Long.toString(controller.readWaveTime()));
+            controller.waveNumberValue.setText(Integer.toString(controller.readWaveNumber()));
     }
 
     /**
@@ -110,12 +110,13 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
 
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(100);
-            
+            outputText.setScrollTop(10000);
+
             String commandOutput = this.requestRunCommand(inputText.getText());
             infoText.setText(commandOutput);
-            infoText.setScrollTop(100);
-            
+            infoText.setScrollTop(10000);
+            infoText.positionCaret(commandOutput.length());
+
             inputText.setText("");
         }
     }
