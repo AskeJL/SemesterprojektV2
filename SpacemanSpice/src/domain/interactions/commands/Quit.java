@@ -13,7 +13,7 @@ import domain.interactions.InteractionsController;
 public class Quit extends Command {
 
     public Quit() {
-        super("quit", "Quit the game.", false);
+        super("quit", "Quit the game.", false);        
     }
 
     @Override
@@ -31,6 +31,7 @@ public class Quit extends Command {
         InteractionsController.setRunning(false);
         InteractionsController.println("You are now exiting the game - thank you for playing!"
                 + "\nGoodbye...");
+        System.exit(0);
     }
 
     @Override

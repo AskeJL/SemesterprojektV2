@@ -15,7 +15,7 @@ public class Oxygen {
     /**
      * Amount of oxygen the player currently has.
      */
-    private static int oxygen = 100;
+    private static int oxygen = 75;
     /**
      * How fast the oxygen will decline.
      */

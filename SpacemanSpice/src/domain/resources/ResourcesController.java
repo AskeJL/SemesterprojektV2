@@ -120,7 +120,11 @@ public class ResourcesController extends Controller {
      * @return
      */
     public static long getRemainingTime() {
+        if(SystemsController.getPlayerReady() == true){
         return Time.getRemainingTime();
+        }
+        long nullTime = 0;
+        return nullTime;
     }
 
     /**
