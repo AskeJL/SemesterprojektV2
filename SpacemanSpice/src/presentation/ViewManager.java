@@ -46,6 +46,7 @@ public class ViewManager {
 
     public void loadView(String FXMLFile) throws IOException {
         currentScene = new Scene(FXMLLoader.load(getClass().getResource(FXMLFile)));
+        currentScene.getStylesheets().add("presentation/game/GameViewStyleSheet.css");
         currentStage.setScene(currentScene);
         currentStage.show();
     }

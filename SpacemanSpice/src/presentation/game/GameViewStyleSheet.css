@@ -1,0 +1,172 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 25, 2018, 10:07:25 PM
+    Author     : Lupo
+*/
+.root {
+    -fx-background-color: black;
+}
+.progress-bar .track{
+    -fx-text-box-border: forestgreen;
+    -fx-control-inner-background: palegreen;
+    -fx-opacity: 0.4;
+}
+
+.progress-bar-life {
+    -fx-background-color: white;
+    -fx-text-box-border: forestgreen;
+    -fx-control-inner-background: palegreen;
+    -fx-accent: red;
+}
+
+.progress-bar-oxygen{
+    -fx-background-color: white;
+    -fx-text-box-border: forestgreen;
+    -fx-control-inner-background: palegreen;
+    -fx-accent: blue;
+}
+.button{
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+.button:hover{
+    -fx-background-color: rgba(246,246,246,0.2);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 36;
+    -fx-translate-x: 15;
+}
+
+/* Split menu button styling*/
+/*These buttons are used for settings and difficulty*/
+
+.split-menu-button{
+    -fx-background-color: rgba(204,204,204,0.1);
+
+}
+.split-menu-button .label{
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+.split-menu-button .arrow-button{
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+.split-menu-button .arrow-button:hover{
+    -fx-background-color: rgba(246,246,246,0.2);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+}
+.split-menu-button .button{
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+
+.context-menu{
+    -fx-background-color: rgba(0,0,0,0.1);
+}
+.menu-item .label{
+    -fx-background-color: transparent;
+}
+.menu-item:focused .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+.menu-item:focused{
+    -fx-background-color: rgba(246,246,246,0.2);
+}
+
+/*Style Toggle button for sound toggling*/
+.toggle-button{
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+.toggle-button:selected{
+    -fx-background-color: rgba(246,246,246,0.2);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+
+/*Style list view, where scores will be shown*/
+.list-view{
+    -fx-background-color: rgba(204,204,204,0.1);
+}
+
+/* Style label for main menu title*/
+.label-title{
+    -fx-background-color: transparent;
+    -fx-effect:dropshadow(one-pass-box, gray, 10, 1, 3, 3);
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 52px;
+}
+
+.label-resources{
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.label-authors{
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-highlight-fill: #00ff00;
+    -fx-highlight-text-fill: #000000;
+    -fx-text-fill: #00ff00;
+    -fx-background-color: #000000;
+    -fx-background-color: rgba(53,89,119,0.2);
+
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-field{
+    -fx-font-family: Consolas;
+    -fx-highlight-fill: #00ff00;
+    -fx-highlight-text-fill: #000000;
+    -fx-text-fill: #00ff00;
+    -fx-background-color: #000000;
+    -fx-background-color: rgba(53,89,119,0.2);
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+}
+

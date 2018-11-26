@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,11 +26,15 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="spacemanspiceLabel" prefHeight="84.0" prefWidth="322.0" text="Spaceman Spice" textAlignment="CENTER" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-         <font>
-            <Font name="Lucida Console" size="38.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
+         <children>
+            <Label fx:id="spacemanspiceLabel" alignment="CENTER" prefHeight="306.0" prefWidth="427.0" text="Spaceman Spice" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Lucida Console" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlayHandler" prefHeight="100.0" prefWidth="425.0" text="Play" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -38,6 +43,12 @@
                </font>
             </Button>
          </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
@@ -47,6 +58,9 @@
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
@@ -56,6 +70,9 @@
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <children>
@@ -65,6 +82,9 @@
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
          <children>
@@ -75,12 +95,12 @@
                         <Font size="9.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameLabel1" prefHeight="17.0" prefWidth="200.0" text="Samuel Bangslund, Nikolaus Patelakis,">
+                  <Label fx:id="nameLabel1" prefHeight="20.0" prefWidth="350.0" text="Samuel Bangslund, Nikolaos Pattelakis,">
                      <font>
                         <Font size="9.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameLabel2" prefHeight="14.0" prefWidth="126.0" text="Oliver Pickardt and Aske Lorenz">
+                  <Label fx:id="nameLabel2" prefHeight="20.0" prefWidth="350.0" text="Oliver Pickardt and Aske Lorenz">
                      <font>
                         <Font size="9.0" />
                      </font>
