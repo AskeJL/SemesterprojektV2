@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : Nov 25, 2018, 10:07:25 PM
     Author     : Lupo
 */
+@font-face{
+    font-family: 'ArcadeClassic';
+    src: url('ArcadeClassic.TTF');
+}
 .root {
     -fx-background-color: black;
 }
@@ -31,15 +35,17 @@ and open the template in the editor.
 }
 .button{
     -fx-background-color: rgba(204,204,204,0.1);
+    -fx-font-family: 'ArcadeClassic';
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 .button:hover{
     -fx-background-color: rgba(246,246,246,0.2);
+    -fx-font-family: 'ArcadeClassic';
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 36;
+    -fx-font-size: 48;
     -fx-translate-x: 15;
 }
 
@@ -51,28 +57,32 @@ and open the template in the editor.
 
 }
 .split-menu-button .label{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 24;
 }
 .split-menu-button .arrow-button{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 .split-menu-button .arrow-button:hover{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 30;
+    -fx-font-size: 40;
 }
 .split-menu-button .button{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 
 .context-menu{
@@ -82,10 +92,11 @@ and open the template in the editor.
     -fx-background-color: transparent;
 }
 .menu-item:focused .label{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: transparent;
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 .menu-item:focused{
     -fx-background-color: rgba(246,246,246,0.2);
@@ -93,16 +104,18 @@ and open the template in the editor.
 
 /*Style Toggle button for sound toggling*/
 .toggle-button{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 .toggle-button:selected{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 24;
+    -fx-font-size: 36;
 }
 
 /*Style list view, where scores will be shown*/
@@ -112,12 +125,13 @@ and open the template in the editor.
 
 /* Style label for main menu title*/
 .label-title{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: transparent;
     -fx-effect:dropshadow(one-pass-box, gray, 10, 1, 3, 3);
     -fx-alignment: center;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 52px;
+    -fx-font-size: 72px;
 }
 
 .label-resources{
@@ -129,11 +143,12 @@ and open the template in the editor.
 }
 
 .label-authors{
+    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: transparent;
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 18px;
 }
 
 .text-area {
