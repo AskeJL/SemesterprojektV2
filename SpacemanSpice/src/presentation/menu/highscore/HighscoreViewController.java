@@ -10,13 +10,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import presentation.ViewManager;
 
 /**
@@ -43,7 +39,7 @@ public class HighscoreViewController implements Initializable {
 
     @FXML
     private void onBackHandler(ActionEvent event) throws IOException {
-         String menu = new ViewManager().getMenuPath();
+        String menu = new ViewManager().getMenuPath();
         new ViewManager().loadView(menu);
     }
     

@@ -1,0 +1,8 @@
+#infoText, #outputText, #inputText {
+    -fx-opacity: 0.7;
+}
+
+#infoText:focused, #outputText:focused, #inputText:focused {
+    -fx-opacity: 1.0;
+}
+
