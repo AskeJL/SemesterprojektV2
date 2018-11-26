@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.Exit;
 import domain.locations.LocationsController;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class Go extends Command {
             LocationsController.setCurrentRoom(exitTo.getFromRoom());
         }
 
-        System.out.println("Current room: " + LocationsController.getCurrentRoom().getName());
+        InteractionsController.println("Current room: " + LocationsController.getCurrentRoom().getName());
     }
 
     @Override
@@ -80,7 +81,6 @@ public class Go extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The go command is used to move through rooms.");
-        System.out.println("go <direction>");
+        InteractionsController.println("The go command is used to move through rooms.\ngo <direction>");
     }
 }

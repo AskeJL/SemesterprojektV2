@@ -1,7 +1,7 @@
 package domain.resources;
 
 import domain.game.Controller;
-import domain.locations.LocationsController;
+import domain.interactions.InteractionsController;
 import domain.systems.SystemsController;
 
 /**
@@ -36,14 +36,14 @@ public class ResourcesController extends Controller {
         Time.update();
         Oxygen.update();
         if (Oxygen.getOxygen() <= 0) {
-            System.out.println("You are out of oxygen. Too bad, you are dead..");
-            System.out.println("Score: " + SystemsController.getScore());
+            InteractionsController.println("You are out of oxygen. Too bad, you are dead..");
+            InteractionsController.println("Score: " + SystemsController.getScore());
             Controller.setRunning(false);
         }
         Life.update();
         if (Life.getLife() <= 0) {
-            System.out.println("The ship is destroyed. Too bad, you are dead..");
-            System.out.println("Score: " + SystemsController.getScore());
+            InteractionsController.println("The ship is destroyed. Too bad, you are dead..");
+            InteractionsController.println("Score: " + SystemsController.getScore());
             Controller.setRunning(false);
         }
     }

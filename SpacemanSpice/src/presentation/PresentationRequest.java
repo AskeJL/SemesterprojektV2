@@ -10,13 +10,14 @@ import javafx.stage.Stage;
  *
  * @see ViewManager#init()
  */
-public interface presentationInit {
+public interface PresentationRequest {
 
     /**
      * Request initialization from {@link ViewManager}.
      *
+     * @throws java.io.IOException
      */
-    default void initRequest() throws IOException {
+    default void sendInitRequest() throws IOException {
         ViewManager.init();
     }
 
@@ -27,5 +28,9 @@ public interface presentationInit {
      */
     default void sendStageRequest(Stage stage) {
         ViewManager.setStage(stage);
+    }
+    
+    default String lastPathRequest() {
+        return ViewManager.getLastPath();
     }
 }

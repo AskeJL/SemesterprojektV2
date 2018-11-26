@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class InteractionsController extends Controller {
 
+    private static String outputText = "";
+
     private InteractionsController() {
     }
 
@@ -36,10 +38,18 @@ public class InteractionsController extends Controller {
 
     public static void runCommand(String input) {
         Command command = Parser.getCommand(input);
-        
-        if(command != null) {
+
+        if (command != null) {
             command.run();
         }
+    }
+
+    public static void println(String text) {
+        InteractionsController.outputText += text + "\n";
+    }
+
+    public static void setLastCommand(Command command) {
+        Commands.setLastCommand(command);
     }
     
     /**
@@ -50,6 +60,10 @@ public class InteractionsController extends Controller {
      */
     public static void setRunning(boolean running) {
         Controller.setRunning(running);
+    }
+
+    public static String getOutputText() {
+        return InteractionsController.outputText;
     }
 
     /**

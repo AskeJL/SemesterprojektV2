@@ -5,17 +5,19 @@ import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
+import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import presentation.presentationInit;
-import presentation.presentationUpdate;
+import presentation.PresentationRequest;
+import presentation.PresentationUpdate;
 
 /**
  * Methods to initialize and update the game
  */
-public class Game extends Application implements presentationInit, presentationUpdate {
+public class Game extends Application implements PresentationRequest, PresentationUpdate {
 
+    private static Game interfaces = new Game();
     private static boolean running = true;
 
     /**
@@ -27,8 +29,8 @@ public class Game extends Application implements presentationInit, presentationU
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.sendStageRequest(primaryStage);
-        
+        interfaces.sendStageRequest(primaryStage);
+
         initialize();
         loop();
     }
@@ -36,8 +38,8 @@ public class Game extends Application implements presentationInit, presentationU
     /**
      * Initializes all the controllers.
      */
-    private static void initialize() {
-        new Game().initRequest();
+    private static void initialize() throws IOException {
+        interfaces.sendInitRequest();
 
         TutorialController.init();
         LocationsController.init();
@@ -54,8 +56,10 @@ public class Game extends Application implements presentationInit, presentationU
             @Override
             public void handle(long now) {
                 if (running) {
-                    new Game().updateRequest();
-                    TutorialController.update();
+                    if (interfaces.lastPathRequest().equals("game/gameView.fxml")) {
+                        TutorialController.update();
+                    }
+                    interfaces.sendUpdateRequest();
                     LocationsController.update();
                     InteractionsController.update();
                     ResourcesController.update();

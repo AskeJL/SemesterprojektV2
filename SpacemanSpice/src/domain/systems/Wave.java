@@ -1,5 +1,6 @@
 package domain.systems;
 
+import domain.interactions.InteractionsController;
 import domain.resources.ResourcesController;
 import java.util.Random;
 
@@ -83,7 +84,7 @@ public class Wave {
      * {@link SystemsController#SMALL_FRAGMENT_IDENTIFIER}<br>
      * {@link SystemsController#MEDIUM_FRAGMENT_IDENTIFIER}<br>
      * {@link SystemsController#LARGE_FRAGMENT_IDENTIFIER}<br>
-     * <br><br>
+     * <p>
      * Also randomized the amount of fragments destroyed when the player
      * interacts with the controllers. This depends on each of the fragments
      * {@link #SMALL_DESTRUCTION_INDEX}
@@ -99,11 +100,11 @@ public class Wave {
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                System.out.println("You destroyed " + destructionIndex + " small fragments!");
+                InteractionsController.println("You destroyed " + destructionIndex + " small fragments!");
             } else if (destructionIndex <= 0) {
-                System.out.println("You missed!");
+                InteractionsController.println("You missed!");
             } else {
-                System.out.println("You destroyed " + destructionIndex + " small fragment!");
+                InteractionsController.println("You destroyed " + destructionIndex + " small fragment!");
             }
 
             if (smallFragments < 0) {
@@ -117,11 +118,11 @@ public class Wave {
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                System.out.println("You caught " + destructionIndex + " medium fragments!");
+                InteractionsController.println("You caught " + destructionIndex + " medium fragments!");
             } else if (destructionIndex <= 0) {
-                System.out.println("You missed!");
+                InteractionsController.println("You missed!");
             } else {
-                System.out.println("You caught " + destructionIndex + " medium fragment!");
+                InteractionsController.println("You caught " + destructionIndex + " medium fragment!");
             }
 
             if (mediumFragments < 0) {

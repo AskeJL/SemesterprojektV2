@@ -1,5 +1,6 @@
 package domain.locations.gameobjects;
 
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 
@@ -29,7 +30,7 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("Interacting with laser control");
+        InteractionsController.println("Interacting with laser control");
         domain.systems.SystemsController.setSmallFragmentDestroyed(true);
 
     }

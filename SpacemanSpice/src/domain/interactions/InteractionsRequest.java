@@ -14,11 +14,21 @@ public interface InteractionsRequest {
      * {@link InteractionsController#runCommand(java.lang.String) runCommand}.
      *
      * @param input The input string from the console.
+     * @return
      */
-    default void requestRunCommand(String input) {
+    default String requestRunCommand(String input) {
         InteractionsController.runCommand(input);
+        return InteractionsController.getOutputText();
     }
 
+    /**
+     * Request {@link InteractionsController#outputText}.
+     * @return 
+     */
+    default String requestOutputText() {
+        return InteractionsController.getOutputText();
+    }
+    
     /**
      * Request {@link InteractionsController#setRunning(boolean)} is set to
      * false.

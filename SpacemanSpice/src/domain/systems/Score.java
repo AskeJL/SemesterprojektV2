@@ -57,8 +57,7 @@ public class Score {
 
     @Override
     public String toString() {
-        String s = "";
-        return s;
+        return "";
     }
 
     /**

@@ -8,18 +8,21 @@ package presentation.game;
 import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
-import java.awt.Event;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import presentation.game.draw.DrawController;
 
 /**
  * FXML Controller class
@@ -29,29 +32,22 @@ import javafx.scene.input.KeyEvent;
 public class GameViewController implements Initializable, ResourcesReader, SystemsReader, InteractionsRequest {
 
     /**
-     * Progress bar visualising life variable.
+     * Progress bar visualizing life variable.
      */
     @FXML
     private ProgressBar progressBarLife;
 
     /**
-     * Number visualising the number of current wave.
-     */
-    @FXML
-    private TextArea waveNumber;
-
-    /**
-     * Number visualising the remaining time for the current wave.
-     */
-    @FXML
-    private TextArea timeNumber;
-
-    /**
-     * Progress bar visualising oxygen variable.
+     * Progress bar visualizing oxygen variable.
      */
     @FXML
     private ProgressBar progressBarOxygen;
 
+    @FXML
+    private Label waveNumberValue;
+
+    @FXML
+    private Label waveTimeLabel;
     /**
      * Canvas, where the games maps will be drawn.
      */
@@ -76,22 +72,44 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     @FXML
     private TextArea infoText;
 
+    private static String lastOutput = "";
+
     private ArrayList<String> consoleText = new ArrayList<>();
+    private static GraphicsContext gc;
+    private static GameViewController interfaces = new GameViewController();
 
     /**
-     * Initialises the controller class.
+     * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        interfaces.progressBarLife = progressBarLife;
+        interfaces.progressBarOxygen = progressBarOxygen;
+        interfaces.waveTimeLabel = waveTimeLabel;
+        interfaces.waveNumberValue = waveNumberValue;
+        interfaces.infoText = infoText;
+
+        gc = canvasMap.getGraphicsContext2D();
+        DrawController.setup();
     }
 
-    void update() {
-        progressBarLife.setProgress(this.readLife());
-        progressBarOxygen.setProgress(this.readOxygen());
-        waveNumber.setText(Integer.toString(this.readWaveNumber()));
-        timeNumber.setText(Long.toString(this.readWaveTime()));
+    public static void update() {
+        interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
+        interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
+        interfaces.waveTimeLabel.setText(Long.toString(interfaces.readWaveTime()));
+        interfaces.waveNumberValue.setText(Integer.toString(interfaces.readWaveNumber()));
 
+        String output = interfaces.requestOutputText();
+
+        if (!lastOutput.equals(output)) {
+            interfaces.infoText.setText(output);
+            lastOutput = output;
+            interfaces.infoText.setScrollTop(10000);
+            interfaces.infoText.positionCaret(output.length());
+        }
     }
 
     /**
@@ -108,8 +126,14 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
 
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(100);
-            this.requestRunCommand(inputText.getText());
+            outputText.setScrollTop(10000);
+
+            String commandOutput = interfaces.requestRunCommand(inputText.getText());
+            infoText.setText(commandOutput);
+            infoText.setScrollTop(10000);
+            infoText.positionCaret(commandOutput.length());
+            lastOutput = commandOutput;
+
             inputText.setText("");
         }
     }
@@ -127,5 +151,9 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             consoleString += "> " + string + "\n";
         }
         return consoleString;
+    }
+
+    public static GraphicsContext getGraphicsContext() {
+        return gc;
     }
 }

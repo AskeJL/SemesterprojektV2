@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.LocationsController;
 
@@ -31,7 +32,7 @@ public class Interact extends Command {
         if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
             LocationsController.getCurrentRoom().getGameObjects().get(0).interact();
         } else {
-            System.out.println("There are nothing to interact with in this room");
+            InteractionsController.println("There are nothing to interact with in this room");
         }
     }
 
@@ -42,6 +43,6 @@ public class Interact extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The interact command lets you interact with objects in the current room.");
+        InteractionsController.println("The interact command lets you interact with objects in the current room.");
     }
 }

@@ -3,6 +3,7 @@ package domain.interactions.commands;
 import data.AssetType;
 import domain.interactions.Command;
 import data.read.DataReader;
+import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
@@ -49,22 +50,19 @@ public class Show extends Command implements DataReader {
     protected void run() {
         switch (super.getCurrentParameter()) {
             case "oxygen":
-                System.out.println("Oxygen: " + ResourcesController.getOxygen());
-                break;
+                InteractionsController.println("Oxygen: " + ResourcesController.getOxygen());
             case "time":
-                System.out.println("Time: " + ResourcesController.getRemainingTime());
-                break;
+                InteractionsController.println("Time: " + ResourcesController.getRemainingTime());
             case "life":
-                System.out.println("Life: " + ResourcesController.getLife());
-                break;
+                InteractionsController.println("Life: " + ResourcesController.getLife());
             case "map":
+                String data = "";
                 for (String string : this.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
-                    System.out.println(string);
+                    data += string;
                 }
-                break;
+                InteractionsController.println(data);
             case "score":
-                System.out.println(SystemsController.getScore());
-                break;
+                InteractionsController.println(Integer.toString(SystemsController.getScore()));
         }
     }
 
@@ -75,7 +73,7 @@ public class Show extends Command implements DataReader {
 
     @Override
     public void helpInfo() {
-        System.out.println("This command displays a resource to the player, depending on its parameter."
+        InteractionsController.println("This command displays a resource to the player, depending on its parameter."
                 + "\nshow <arg>");
     }
 }
