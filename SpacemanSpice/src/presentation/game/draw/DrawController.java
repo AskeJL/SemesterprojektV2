@@ -4,6 +4,7 @@ import data.AssetType;
 import data.read.DataReader;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import presentation.game.GameViewController;
 
 public class DrawController implements DataReader {
@@ -13,6 +14,7 @@ public class DrawController implements DataReader {
 
     public static void setup() {
         GraphicsContext gc = GameViewController.getGraphicsContext();
+        gc.setStroke(Color.WHITE);
 
         List<String> data = interfaces.requestData(AssetType.MAP, "Airlock.txt");
         characters = convertToCharArray(data);
