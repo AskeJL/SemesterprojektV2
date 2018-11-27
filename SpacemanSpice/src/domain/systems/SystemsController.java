@@ -57,6 +57,7 @@ public class SystemsController extends Controller implements DataReader {
      * needed classes.
      */
     public static void init() {
+        Score.setScore(0);
         finalIntro = SystemsData.getTextString("Finalintro.txt");
         newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
         waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
@@ -230,5 +231,9 @@ public class SystemsController extends Controller implements DataReader {
      */
     public static boolean getPlayerReady() {
         return SystemsController.playerReady;
+    }
+
+    public static void setNumberOfWaves(int i) {
+        Wave.setNumberOfWaves(i);
     }
 }

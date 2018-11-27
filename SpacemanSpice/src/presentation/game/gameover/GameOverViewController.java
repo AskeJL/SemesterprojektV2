@@ -6,7 +6,11 @@
 package presentation.game.gameover;
 
 import domain.interactions.InteractionsRequest;
+import domain.locations.LocationsController;
+import domain.resources.ResourcesController;
+import domain.systems.SystemsController;
 import domain.systems.SystemsReader;
+import domain.tutorial.TutorialController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +46,13 @@ public class GameOverViewController implements Initializable, InteractionsReques
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.scoreField.setText("Your score was " + this.readScore());
+        ResourcesController.setOxygen(100);
+        ResourcesController.setLife(100);
+        SystemsController.setNumberOfWaves(0);
+        SystemsController.setPlayerReady(false);
+        SystemsController.init();
+        LocationsController.init();
+        TutorialController.init();
     }    
 
     @FXML

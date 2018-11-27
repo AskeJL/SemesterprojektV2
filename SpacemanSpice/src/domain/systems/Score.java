@@ -68,4 +68,8 @@ public class Score {
     static int getScore() {
         return score;
     }
+    
+    static void setScore(int Score){
+        score = Score;
+    }
 }

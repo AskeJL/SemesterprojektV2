@@ -99,6 +99,10 @@ public class Life {
     static void setRepairTrue() {
         repair = true;
     }
+    
+     static void setLife(int Life) {
+        life = Life;
+    }
 
     /**
      * Get the {@link Life#life life} of the ship.

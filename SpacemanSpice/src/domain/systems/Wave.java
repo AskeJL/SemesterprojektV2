@@ -168,6 +168,9 @@ public class Wave {
         mediumFragments = 0;
     }
     
+    static void setNumberOfWaves(int i) {
+        numberOfWaves = i;
+    }
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
