@@ -50,7 +50,10 @@ public class MenuViewController implements Initializable, InteractionsRequest {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        spacemanspiceLabel.getStyleClass().add("label-title");
+        createdByLabel.getStyleClass().add("label-authors");
+        nameLabel1.getStyleClass().add("label-authors");
+        nameLabel2.getStyleClass().add("label-authors");
     }
 
     public static void init() throws IOException {

@@ -76,12 +76,18 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @FXML
     private TextArea infoText;
-
+    
+    @FXML
+    private Label waveLabel;
+    @FXML
+    private Label timeLabel;
+    
     private static String lastOutput = "";
 
     private ArrayList<String> consoleText = new ArrayList<>();
     private static GraphicsContext gc;
     private static GameViewController interfaces = new GameViewController();
+    
 
     /**
      * Initializes the controller class.
@@ -92,9 +98,15 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         interfaces.progressBarLife = progressBarLife;
+        progressBarLife.getStyleClass().add("progress-bar-life");
         interfaces.progressBarOxygen = progressBarOxygen;
+        progressBarOxygen.getStyleClass().add("progress-bar-oxygen");
         interfaces.waveTimeLabel = waveTimeLabel;
+        waveTimeLabel.getStyleClass().add("label-resources");
+        waveLabel.getStyleClass().add("label-resources");
+        timeLabel.getStyleClass().add("label-resources");
         interfaces.waveNumberValue = waveNumberValue;
+        waveNumberValue.getStyleClass().add("label-resources");
         interfaces.infoText = infoText;
 
         gc = canvasMap.getGraphicsContext2D();

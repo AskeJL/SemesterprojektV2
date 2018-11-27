@@ -48,7 +48,7 @@ public class Life {
      * increase upon
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
-    private static int life = 100;
+    private static int life = 50;
 
     private Life() {
     }
