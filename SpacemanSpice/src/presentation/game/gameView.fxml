@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="18.0" prefWidth="1280.0">
                <children>
-                  <ProgressBar fx:id="progressBarLife" prefHeight="25.0" prefWidth="300.0" progress="0.0" stylesheets="@lifeProgressBar.css">
+                  <ProgressBar fx:id="progressBarLife" prefHeight="25.0" prefWidth="300.0" progress="0.0">
                      <HBox.margin>
                         <Insets left="50.0" top="5.0" />
                      </HBox.margin>
