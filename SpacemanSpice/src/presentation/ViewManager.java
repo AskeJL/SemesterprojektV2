@@ -17,6 +17,9 @@ public class ViewManager {
     private final static String SETTINGS_PATH = "menu/settings/settingsView.fxml";
     private final static String HIGH_SCORE_PATH = "menu/highscore/highscoreView.fxml";
     private final static String GAME_VIEW_PATH = "game/gameView.fxml";
+    private final static String GAME_OVER_PATH = "game/gameover/GameOverView.fxml";
+    
+    
 
     private static String lastPath = "";
     private static Stage currentStage;
@@ -78,8 +81,12 @@ public class ViewManager {
     public String getSettingsViewPath() {
         return SETTINGS_PATH;
     }
-
-    public static Stage getCurrentStage() {
+    
+    public String getGameOverPath(){
+        return GAME_OVER_PATH;
+    }
+    
+    public static Stage getCurrentStage(){
         return currentStage;
     }
 }

@@ -40,7 +40,7 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     @FXML
     private Label nameLabel2;
 
-    private static ViewManager vman = new ViewManager();
+    private static ViewManager viewManager = new ViewManager();
 
     /**
      * Initializes the controller class.
@@ -57,23 +57,23 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     }
 
     public static void init() throws IOException {
-        vman.loadView(vman.getMenuPath());
+        viewManager.loadView(viewManager.getMenuPath());
     }
 
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
-        vman.loadView(new ViewManager().getGameViewPath());
-        ViewManager.setLastPath(vman.getGameViewPath());
+        viewManager.loadView(new ViewManager().getGameViewPath());
+        ViewManager.setLastPath(viewManager.getGameViewPath());
     }
 
     @FXML
     private void onSettingsHandler(ActionEvent event) throws IOException {
-        vman.loadView(new ViewManager().getSettingsViewPath());
+        viewManager.loadView(viewManager.getSettingsViewPath());
     }
 
     @FXML
     private void onHighScore(ActionEvent event) throws IOException {
-        vman.loadView(vman.gethighScorePath());
+        viewManager.loadView(viewManager.gethighScorePath());
     }
 
     @FXML

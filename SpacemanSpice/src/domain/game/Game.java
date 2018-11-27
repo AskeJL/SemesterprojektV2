@@ -6,6 +6,8 @@ import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;

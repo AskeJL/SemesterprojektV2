@@ -11,7 +11,7 @@ import domain.systems.SystemsController;
  * 'help' command can be called by itself or accompanied by a parameter.
  *
  * Say, if the player needed help with a specific command, it could be achieved
- * with: 'help show'. This will call the helpInfo from the Show command.
+ * with: 'help go'. This will call the helpInfo from the Go command.
  */
 public class Help extends Command {
 
@@ -22,7 +22,6 @@ public class Help extends Command {
         super.addParameter("interact");
         super.addParameter("help");
         super.addParameter("quit");
-        super.addParameter("show");
         super.addParameter("clear");
         super.addParameter("start");
     }
