@@ -1,6 +1,7 @@
 package domain.resources;
 
 import domain.game.Controller;
+import domain.game.DomainOutput;
 import domain.interactions.InteractionsController;
 import domain.systems.SystemsController;
 
@@ -14,37 +15,37 @@ import domain.systems.SystemsController;
  */
 public class ResourcesController extends Controller {
 
+    private DomainOutput output = new DomainOutput();
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
      */
-    public static void init() {
+    @Override
+    public void init() {
         Time.init();
-
         Time.update();
         Oxygen.update();
     }
 
     /**
      * Update the {@link domain.game.Controller controller}.
-     * <br><br>
+     * <p>
      * As well as updating the some of the classes this will also look for
      * changes regarding {@link Life} and {@link Oxygen}. If one of them reaches
      * below 0, the {@link domain.game.Game} will end.
      */
-    public static void update() {
+    @Override
+    public void update() {
         Time.update();
         Oxygen.update();
         if (Oxygen.getOxygen() <= 0) {
             InteractionsController.println("You are out of oxygen. Too bad, you are dead..");
             InteractionsController.println("Score: " + SystemsController.getScore());
-            Controller.setRunning(false);
         }
         Life.update();
         if (Life.getLife() <= 0) {
             InteractionsController.println("The ship is destroyed. Too bad, you are dead..");
             InteractionsController.println("Score: " + SystemsController.getScore());
-            Controller.setRunning(false);
         }
     }
 

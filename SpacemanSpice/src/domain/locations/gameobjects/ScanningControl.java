@@ -27,8 +27,8 @@ public class ScanningControl extends GameObject {
      * @see domain.systems.SystemsController
      */
     @Override
-    public void interact() {
-        InteractionsController.println("You interact with the scanningstation\nThere are:\n"
+    public void interact(InteractionsController controller) {
+        controller.println("You interact with the scanningstation\nThere are:\n"
                 + "    " + SystemsController.getSmallFragments() + " small fragments.\n"
                 + "    " + SystemsController.getMediumFragments() + " medium fragments.\n"
                 + "    " + SystemsController.getLargeFragments() + " large fragments.\n");

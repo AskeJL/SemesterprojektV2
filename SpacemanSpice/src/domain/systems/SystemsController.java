@@ -1,6 +1,7 @@
 package domain.systems;
 
-import data.read.DataReader;
+import data.AssetType;
+import data.Data;
 import domain.game.Controller;
 import domain.interactions.InteractionsController;
 import domain.resources.ResourcesController;
@@ -13,7 +14,7 @@ import java.util.List;
  * @see Score
  * @see Wave
  */
-public class SystemsController extends Controller implements DataReader {
+public class SystemsController extends Controller {
 
     /**
      * The identifier for a small fragment. (1)
@@ -51,30 +52,34 @@ public class SystemsController extends Controller implements DataReader {
     private static List<String> finalIntro;
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
+    
+    private Data data = new Data();
 
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
      */
-    public static void init() {
-        finalIntro = SystemsData.getTextString("Finalintro.txt");
-        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
-        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
+    @Override
+    public void init() {
+        finalIntro = getTextString("Finalintro.txt");
+        newWaveIncoming = getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
+        waveHit = getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
     }
 
     /**
      * Update the {@link domain.game.Controller controller}. If
      * {@link #playerReady playerReady} is true, the {@link Wave} will begin.
-     * <br><br>
+     * <p>
      * This checks for fragment destruction and when the {@link Wave}s start and
      * end.
      */
-    public static void update() {
+    @Override
+    public void update() {
         if (playerReady) {
             
             switch (intro) {
                 case 1:
-                    SystemsData.printText(finalIntro);
+                    printText(finalIntro);
                     intro++;
                 case 2: 
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
@@ -85,7 +90,7 @@ public class SystemsController extends Controller implements DataReader {
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == 3) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
-                    SystemsData.printText(waveHit);
+                    printText(waveHit);
                     Wave.setSmallFragments(0);
                     Wave.setMediumFragments(0);
                     Wave.setLargeFragments(0);
@@ -94,7 +99,7 @@ public class SystemsController extends Controller implements DataReader {
                 if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()){
                     Wave.incrementNumberOfWaves();
                     Wave.createWave();
-                    SystemsData.printText(newWaveIncoming);
+                    printText(newWaveIncoming);
                 }
             }
 
@@ -152,6 +157,20 @@ public class SystemsController extends Controller implements DataReader {
         SystemsController.playerReady = bool;
     }
 
+    private List<String> getTextString(String filename) {
+        return data.requestData(AssetType.TEXT, filename);
+    }
+    
+    private List<String> getAIString(String filename) {
+        return data.requestData(AssetType.AIWAVE, filename);
+    }
+    
+    private void printText(List<String> text) {
+        for(String line : text) {
+            InteractionsController.println(line);
+        }
+    }
+    
     /**
      * Get {@link #SMALL_FRAGMENT_IDENTIFIER}.
      *

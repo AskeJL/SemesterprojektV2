@@ -51,12 +51,6 @@ public class GameOverViewController implements Initializable, InteractionsReques
     }
 
     @FXML
-    private void quitButtonHandler(ActionEvent event) {
-        this.requestQuit();
-        ViewManager.getCurrentStage().close();
-    }
-
-    @FXML
     private void initialize(ActionEvent event) {
         this.scoreField.setText("Your score was " + this.readScore());
     }

@@ -1,7 +1,6 @@
 package domain.interactions;
 
 import domain.game.Controller;
-import domain.locations.LocationsController;
 import java.util.List;
 
 /**
@@ -13,57 +12,50 @@ import java.util.List;
  * @see Parser
  */
 public class InteractionsController extends Controller {
-
-    private static String outputText = "";
-
-    private InteractionsController() {
+    
+    private final Commands commands = new Commands(this);
+    private final Parser parser = new Parser(this);
+    
+    public InteractionsController() {
+        
     }
-
+    
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
      */
-    public static void init() {
-        LocationsController.init();
-        Commands.init();
+    @Override
+    public void init() {
+        
     }
 
     /**
      * Update the {@link domain.game.Controller controller}. Will wait for input
      * from the user.
      */
-    public static void update() {
+    @Override
+    public void update() {
         // Nothing to update
     }
 
-    public static void runCommand(String input) {
-        Command command = Parser.getCommand(input);
+    public void runCommand(String input) {
+        Command command = parser.getCommand(input);
 
         if (command != null) {
             command.run();
         }
     }
-
-    public static void println(String text) {
-        InteractionsController.outputText += text + "\n";
+    
+    public void setLastCommand(Command command) {
+        commands.setLastCommand(command);
     }
 
-    public static void setLastCommand(Command command) {
-        Commands.setLastCommand(command);
+    public Commands getCommands() {
+        return this.commands;
     }
     
-    /**
-     * Set the running of the {@link domain.game.Game Game}. Will shutdown the
-     * game if turned to false.
-     *
-     * @param running
-     */
-    public static void setRunning(boolean running) {
-        Controller.setRunning(running);
-    }
-
-    public static String getOutputText() {
-        return InteractionsController.outputText;
+    public Parser getParser() {
+        return this.parser;
     }
 
     /**
@@ -73,8 +65,8 @@ public class InteractionsController extends Controller {
      *
      * @return
      */
-    public static List<Command> getCommandWords() {
-        return Commands.getCommandwords();
+    public List<Command> getCommandWords() {
+        return commands.getCommandwords();
     }
 
     /**
@@ -84,8 +76,8 @@ public class InteractionsController extends Controller {
      * @param name Name of the command.
      * @return
      */
-    public static Command getCommand(String name) {
-        return Commands.getCommand(name);
+    public Command getCommand(String name) {
+        return commands.getCommand(name);
     }
 
     /**
@@ -94,8 +86,8 @@ public class InteractionsController extends Controller {
      *
      * @return
      */
-    public static String getLastCommandName() {
-        return Commands.getLastCommandName();
+    public String getLastCommandName() {
+        return commands.getLastCommandName();
     }
 
     /**
@@ -105,7 +97,7 @@ public class InteractionsController extends Controller {
      *
      * @return
      */
-    public static String getLastParameter() {
-        return Commands.getLastParameter();
+    public String getLastParameter() {
+        return commands.getLastParameter();
     }
 }

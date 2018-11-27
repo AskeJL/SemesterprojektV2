@@ -1,7 +1,6 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 
 /**
  * This command is responsible for continuing a dialog when prompted.
@@ -37,7 +36,7 @@ public class Continue extends Command {
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("This command lets you continue a dialogue.");
+        output.println("This command lets you continue a dialogue.");
     }
 
 }

@@ -63,7 +63,6 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
         viewManager.loadView(new ViewManager().getGameViewPath());
-        ViewManager.setLastPath(viewManager.getGameViewPath());
     }
 
     @FXML
@@ -75,11 +74,4 @@ public class MenuViewController implements Initializable, InteractionsRequest {
     private void onHighScore(ActionEvent event) throws IOException {
         viewManager.loadView(viewManager.gethighScorePath());
     }
-
-    @FXML
-    private void onQuitHandler(ActionEvent event) {
-        this.requestQuit();
-        ViewManager.getCurrentStage().close();
-    }
-
 }

@@ -32,7 +32,5 @@ public interface DataWriter {
      * @see data.write.WriteController
      * @see data.write.Write
      */
-    default void writeData(AssetType type, String filename, List<String> data) {
-        WriteController.writeData(type, filename, data);
-    }
+    void writeData(AssetType type, String filename, List<String> data);
 }

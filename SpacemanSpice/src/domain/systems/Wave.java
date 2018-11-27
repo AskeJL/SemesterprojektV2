@@ -1,13 +1,13 @@
 package domain.systems;
 
-import domain.interactions.InteractionsController;
+import domain.game.DomainOutput;
 import domain.resources.ResourcesController;
 import java.util.Random;
 
 /**
  * This creates the waves for the game and destroys it as the player interacts
  * with various controls.
- * <br><br>
+ * <p>
  * Mainly spawn in the number of fragments and then continues to keep track of
  * said numbers.
  *
@@ -50,6 +50,8 @@ public class Wave {
      */
     private final static int LARGE_DESCRUCTION_INDEX = 1;
 
+    private final DomainOutput output = new DomainOutput();
+    
     private Wave() {
     }
 
@@ -92,7 +94,7 @@ public class Wave {
      * @see SystemsController
      * @param fragmentIdentifier
      */
-    static void updateWave(int fragmentIdentifier) {
+    void updateWave(int fragmentIdentifier) {
         // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
         if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
             int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
@@ -100,11 +102,11 @@ public class Wave {
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                InteractionsController.println("You destroyed " + destructionIndex + " small fragments!");
+                output.println("You destroyed " + destructionIndex + " small fragments!");
             } else if (destructionIndex <= 0) {
-                InteractionsController.println("You missed!");
+                output.println("You missed!");
             } else {
-                InteractionsController.println("You destroyed " + destructionIndex + " small fragment!");
+                output.println("You destroyed " + destructionIndex + " small fragment!");
             }
 
             if (smallFragments < 0) {
@@ -118,11 +120,11 @@ public class Wave {
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                InteractionsController.println("You caught " + destructionIndex + " medium fragments!");
+                output.println("You caught " + destructionIndex + " medium fragments!");
             } else if (destructionIndex <= 0) {
-                InteractionsController.println("You missed!");
+                output.println("You missed!");
             } else {
-                InteractionsController.println("You caught " + destructionIndex + " medium fragment!");
+                output.println("You caught " + destructionIndex + " medium fragment!");
             }
 
             if (mediumFragments < 0) {

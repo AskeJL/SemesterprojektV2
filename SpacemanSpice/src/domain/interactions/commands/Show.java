@@ -1,9 +1,8 @@
 package domain.interactions.commands;
 
 import data.AssetType;
+import data.Data;
 import domain.interactions.Command;
-import data.read.DataReader;
-import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
@@ -16,8 +15,10 @@ import domain.systems.SystemsController;
  * of this reference, this class also implements the
  * {@link data.write.DataWriter} interface.
  */
-public class Show extends Command implements DataReader {
+public class Show extends Command {
 
+    private final Data dataAccess = new Data();
+    
     public Show() {
         super("show", "Shows a resource to the player.", true);
 
@@ -50,19 +51,19 @@ public class Show extends Command implements DataReader {
     protected void run() {
         switch (super.getCurrentParameter()) {
             case "oxygen":
-                InteractionsController.println("Oxygen: " + ResourcesController.getOxygen());
+                output.println("Oxygen: " + ResourcesController.getOxygen());
             case "time":
-                InteractionsController.println("Time: " + ResourcesController.getRemainingTime());
+                output.println("Time: " + ResourcesController.getRemainingTime());
             case "life":
-                InteractionsController.println("Life: " + ResourcesController.getLife());
+                output.println("Life: " + ResourcesController.getLife());
             case "map":
                 String data = "";
-                for (String string : this.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
+                for (String string : dataAccess.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
                     data += string;
                 }
-                InteractionsController.println(data);
+                output.println(data);
             case "score":
-                InteractionsController.println(Integer.toString(SystemsController.getScore()));
+                output.println(Integer.toString(SystemsController.getScore()));
         }
     }
 
@@ -73,7 +74,7 @@ public class Show extends Command implements DataReader {
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("This command displays a resource to the player, depending on its parameter."
+        output.println("This command displays a resource to the player, depending on its parameter."
                 + "\nshow <arg>");
     }
 }

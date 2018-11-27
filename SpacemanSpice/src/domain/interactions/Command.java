@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @see Parser
  * @see InteractionsController
  */
-public abstract class Command {
+public abstract class Command extends InteractionsElement {
 
     /**
      * Name of the Command. (Part of the constructor)
@@ -33,17 +33,17 @@ public abstract class Command {
      * class.
      */
     private String currentParameter;
-
+    
     /**
      * All the parameters assigned to this command.
      */
-    private ArrayList<String> parameters = new ArrayList<>();
+    private final ArrayList<String> parameters = new ArrayList<>();
     /**
      * All the available parameters to this command. (Could vary depending on
      * the {@link domain.locations.Room room} etc.)
      */
     private ArrayList<String> availableParameters = new ArrayList<>();
-
+    
     protected Command(String name, String description, boolean hasParameter) {
         this.name = name;
         this.description = description;
@@ -126,7 +126,7 @@ public abstract class Command {
                 data += "    " + parameter + "\n";
             }
 
-            InteractionsController.println("These are the parameters to the command " + this.name + ":\n" + data);
+            output.println("These are the parameters to the command " + this.name + ":\n" + data);
         }
     }
 
@@ -141,7 +141,7 @@ public abstract class Command {
                 data += "    " + parameter + "\n";
             }
             
-            InteractionsController.println("These are the available parameters to the command " + this.name + ":\n" + data);
+            output.println("These are the available parameters to the command " + this.name + ":\n" + data);
         }
     }
 
@@ -205,7 +205,7 @@ public abstract class Command {
      *
      * @return {@link #name}
      */
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 

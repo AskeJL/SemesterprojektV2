@@ -6,21 +6,19 @@ import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.tutorial.TutorialController;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import presentation.PresentationRequest;
-import presentation.PresentationUpdate;
 
 /**
  * Methods to initialize and update the game
  */
-public class Game extends Application implements PresentationRequest, PresentationUpdate {
+public class Game extends Application {
 
-    private static Game interfaces = new Game();
-    private static boolean running = true;
+    private boolean running = true;
+    private List<Controller> controllers = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -31,7 +29,11 @@ public class Game extends Application implements PresentationRequest, Presentati
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        interfaces.sendStageRequest(primaryStage);
+        controllers.add(new TutorialController());
+        controllers.add(new LocationsController());
+        controllers.add(new ResourcesController());
+        controllers.add(new InteractionsController());
+        controllers.add(new SystemsController());
 
         initialize();
         loop();
@@ -40,35 +42,39 @@ public class Game extends Application implements PresentationRequest, Presentati
     /**
      * Initializes all the controllers.
      */
-    private static void initialize() throws IOException {
-        interfaces.sendInitRequest();
-
-        TutorialController.init();
-        LocationsController.init();
-        ResourcesController.init();
-        InteractionsController.init();
-        SystemsController.init();
+    private void initialize() throws IOException {
+        new DomainInput(this).init();
+        new DomainOutput(this).init();
+        
+        for (Controller c : controllers) {
+            c.init();
+        }
     }
 
     /**
      * Loops through all the controllers.
      */
-    private static void loop() {
+    private void loop() {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (running) {
-                    if (interfaces.lastPathRequest().equals("game/gameView.fxml")) {
-                        TutorialController.update();
+                    for (Controller c : controllers) {
+                        c.update();
                     }
-                    interfaces.sendUpdateRequest();
-                    LocationsController.update();
-                    InteractionsController.update();
-                    ResourcesController.update();
-                    SystemsController.update();
                 }
             }
         }.start();
+    }
+
+    public <T extends Controller> Controller getController(T t) {
+        for (Controller c : controllers) {
+            if (t.equals(c)) {
+                return c;
+            }
+        }
+        
+        return null;
     }
 
     /**
@@ -76,11 +82,15 @@ public class Game extends Application implements PresentationRequest, Presentati
      *
      * @param isRunning
      */
-    static void setRunning(boolean isRunning) {
-        Game.running = isRunning;
+    void setRunning(boolean isRunning) {
+        this.running = isRunning;
     }
 
-    static boolean isRunning() {
-        return Game.running;
+    boolean isRunning() {
+        return this.running;
+    }
+
+    List<Controller> getControllers() {
+        return this.controllers;
     }
 }

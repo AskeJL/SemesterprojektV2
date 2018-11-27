@@ -1,9 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 import domain.systems.SystemsController;
-import domain.tutorial.TutorialController;
 
 /**
  * This command is responsible for starting the {@link domain.systems.Wave}.
@@ -32,8 +30,7 @@ public class Start extends Command {
      */
     @Override
     public void run() {
-        SystemsController.setPlayerReady(true);
-        TutorialController.setTutorial(false);
+        // Start the game mechanics.
     }
 
     @Override
@@ -43,6 +40,6 @@ public class Start extends Command {
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("The start command will start the waves and score system");
+        output.println("The start command will start the waves and score system");
     }
 }

@@ -29,7 +29,5 @@ public interface DataReader {
      * @see data.read.ReadController
      * @see data.read.Read
      */
-    default List<String> requestData(AssetType type, String filename) {
-        return ReadController.getData(type, filename);
-    }
+    List<String> requestData(AssetType type, String filename);
 }

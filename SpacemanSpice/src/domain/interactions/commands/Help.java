@@ -45,7 +45,7 @@ public class Help extends Command {
     public void run() {
         for (String parameter : super.getAvailableParameters()) {
             if (parameter.equalsIgnoreCase(super.getCurrentParameter())) {
-                InteractionsController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
+                interactionsController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
                 return;
             }
         }
@@ -58,7 +58,7 @@ public class Help extends Command {
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("The help function can tell you which commands you can use in the given room");
+        output.println("The help function can tell you which commands you can use in the given room");
     }
 
     /**
@@ -69,29 +69,29 @@ public class Help extends Command {
      */
     @Override
     public void showAvailableParameters() {
-        InteractionsController.println("Current room:");
-        InteractionsController.println(String.format("%10s %s", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName()));
+        output.println("Current room:");
+        output.println(String.format("%10s %s", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName()));
 
-        InteractionsController.println("You can go:");
+        output.println("You can go:");
         for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
-                InteractionsController.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
+                output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
             }
         }
         for (Exit exit : LocationsController.getCurrentRoom().getExits()) {
-            InteractionsController.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
+            output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
         }
 
         if (!LocationsController.getCurrentRoom().getGameObjects().isEmpty()) {
-            InteractionsController.println("You can interact with:");
-            InteractionsController.println(String.format("%10s %s", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName()));
+            output.println("You can interact with:");
+            output.println(String.format("%10s %s", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName()));
         }
 
-        InteractionsController.println("Available commands: ");
+        output.println("Available commands: ");
         if (!SystemsController.getPlayerReady()) {
-            InteractionsController.println(super.getAvailableParameters().toString());
+            output.println(super.getAvailableParameters().toString());
         } else {
-            InteractionsController.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
+            output.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
         }
     }
 }

@@ -11,14 +11,18 @@ import java.util.Scanner;
  * @see Command
  * @see Commands
  */
-public class Parser {
+public class Parser extends InteractionsElement {
 
     /**
      * The main scanner used for reading Strings in the class.
      */
     private static final Scanner READER = new Scanner(System.in);
-
-    private Parser() {
+    
+    private final Commands commands;
+    
+    Parser(InteractionsController interact) {
+        super(interact);
+        this.commands = super.interactionsController.getCommands();
     }
 
     /**
@@ -55,13 +59,13 @@ public class Parser {
      *
      * @return The command that matches the user input.
      */
-    static Command getCommand() {
+    Command getCommand() {
         String[] inputs = readInput();
 
         String word1 = inputs[0];
         String word2 = inputs[1];
 
-        return Commands.validateCommand(word1, word2);
+        return commands.validateCommand(word1, word2);
     }
 
     private static String[] convertInput(String input) {
@@ -80,13 +84,13 @@ public class Parser {
         return words;
     }
 
-    static Command getCommand(String input) {
+    Command getCommand(String input) {
         String[] inputs = convertInput(input);
 
         String word1 = inputs[0];
         String word2 = inputs[1];
 
-        return Commands.validateCommand(word1, word2);
+        return commands.validateCommand(word1, word2);
     }
 
     /**
@@ -94,7 +98,7 @@ public class Parser {
      * {@link Commands#getCommandwords()}
      */
     void showCommands() {
-        for (Command command : Commands.getCommandwords()) {
+        for (Command command : commands.getCommandwords()) {
             System.out.println(command);
         }
     }

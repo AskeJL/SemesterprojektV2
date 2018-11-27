@@ -19,16 +19,14 @@ public class ViewManager {
     private final static String GAME_VIEW_PATH = "game/gameView.fxml";
     private final static String GAME_OVER_PATH = "game/gameover/GameOverView.fxml";
     
-    
-
-    private static String lastPath = "";
-    private static Stage currentStage;
-    private static Scene currentScene;
+    private String lastPath = "";
+    private Stage currentStage;
+    private Scene currentScene;
 
     /**
      * Initialize the necessary scene.
      */
-    static void init() throws IOException {
+    void init() throws IOException {
         currentStage.setTitle("Spaceman Spice");
         currentStage.show();
         MenuViewController.init();
@@ -37,7 +35,7 @@ public class ViewManager {
     /**
      * Update a particular view.
      */
-    static void update() {
+    void update() {
         switch (lastPath) {
             case MENU_PATH:
                 break;
@@ -54,15 +52,15 @@ public class ViewManager {
         currentStage.show();
     }
 
-    static void setStage(Stage stage) {
+    void setStage(Stage stage) {
         currentStage = stage;
     }
 
-    public static void setLastPath(String path) {
+    public void setLastPath(String path) {
         lastPath = path;
     }
 
-    public static String getLastPath() {
+    public String getLastPath() {
         return lastPath;
     }
     
@@ -86,7 +84,7 @@ public class ViewManager {
         return GAME_OVER_PATH;
     }
     
-    public static Stage getCurrentStage(){
+    public Stage getCurrentStage(){
         return currentStage;
     }
 }

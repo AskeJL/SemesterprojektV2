@@ -2,14 +2,13 @@ package data.write;
 
 import data.AssetType;
 import static data.AssetType.SCORE;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
  * This controller is assigned the job to write all specified data to designated
  * files.
  */
-class WriteController {
+public class WriteController {
 
     private static final String SCORE_PATH = "assets/score/";
 
@@ -23,7 +22,7 @@ class WriteController {
      * @param filename The name of the file. (Remember file extensions)
      * @param data The list of data it will write to the file.
      */
-    static void writeData(AssetType type, String filename, List<String> data) {
+    public void writeData(AssetType type, String filename, List<String> data) {
         switch (type) {
             case SCORE:
                 new Write(SCORE_PATH, filename).writeTextFile(data);

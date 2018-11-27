@@ -1,5 +1,7 @@
 package domain.tutorial;
 
+import data.AssetType;
+import data.Data;
 import domain.game.Controller;
 import domain.interactions.InteractionsController;
 import domain.interactions.commands.Clear;
@@ -14,51 +16,52 @@ import java.util.List;
  */
 public class TutorialController extends Controller {
 
-    private static List<String> introduction;
-    private static List<String> aIintro1;
-    private static List<String> aIintro2;
-    private static List<String> aIintro3;
-    private static List<String> aIintro4;
-    private static List<String> aIintro5;
-    private static List<String> aIintro6;
-    private static List<String> aIintro7;
-    private static List<String> aIintro8;
-    private static List<String> aIintro9;
-    private static List<String> aIintro10;
-    private static List<String> aIintro11;
-    private static List<String> aIintro12;
-    private static List<String> aIintro13;
-    private static List<String> aIintro14;
-    private static List<String> aIintro15;
-    private static List<String> aIintro16;
-    private static List<String> aIintro17;
+    private List<String> introduction,
+            aIintro1,
+            aIintro2,
+            aIintro3,
+            aIintro4,
+            aIintro5,
+            aIintro6,
+            aIintro7,
+            aIintro8,
+            aIintro9,
+            aIintro10,
+            aIintro11,
+            aIintro12,
+            aIintro13,
+            aIintro14,
+            aIintro15,
+            aIintro16,
+            aIintro17;
 
-    private static int counter = 0;
-    private static boolean tutorial = true;
+    private int counter = 0;
+    private boolean tutorial = true;
 
     /**
      * Pre-load all the introduction files. Uses the
      * {@link TutorialData#getTextString(java.lang.String)} to get the files.
      */
-    public static void init() {
-        introduction = TutorialData.getTextString("Introduction.txt");
-        aIintro1 = TutorialData.getTextString("AI_Intro1.txt");
-        aIintro2 = TutorialData.getTextString("AI_Intro2.txt");
-        aIintro3 = TutorialData.getTextString("AI_Intro3.txt");
-        aIintro4 = TutorialData.getTextString("AI_Intro4.txt");
-        aIintro5 = TutorialData.getTextString("AI_Intro5.txt");
-        aIintro6 = TutorialData.getTextString("AI_Intro6.txt");
-        aIintro7 = TutorialData.getTextString("AI_Intro7.txt");
-        aIintro8 = TutorialData.getTextString("AI_Intro8.txt");
-        aIintro9 = TutorialData.getTextString("AI_Intro9.txt");
-        aIintro10 = TutorialData.getTextString("AI_Intro10.txt");
-        aIintro11 = TutorialData.getTextString("AI_Intro11.txt");
-        aIintro12 = TutorialData.getTextString("AI_Intro12.txt");
-        aIintro13 = TutorialData.getTextString("AI_Intro13.txt");
-        aIintro14 = TutorialData.getTextString("AI_Intro14.txt");
-        aIintro15 = TutorialData.getTextString("AI_Intro15.txt");
-        aIintro16 = TutorialData.getTextString("AI_Intro16.txt");
-        aIintro17 = TutorialData.getTextString("AI_Intro17.txt");
+    @Override
+    public void init() {
+        introduction = getTextToString("Introduction.txt");
+        aIintro1 = getTextToString("AI_Intro1.txt");
+        aIintro2 = getTextToString("AI_Intro2.txt");
+        aIintro3 = getTextToString("AI_Intro3.txt");
+        aIintro4 = getTextToString("AI_Intro4.txt");
+        aIintro5 = getTextToString("AI_Intro5.txt");
+        aIintro6 = getTextToString("AI_Intro6.txt");
+        aIintro7 = getTextToString("AI_Intro7.txt");
+        aIintro8 = getTextToString("AI_Intro8.txt");
+        aIintro9 = getTextToString("AI_Intro9.txt");
+        aIintro10 = getTextToString("AI_Intro10.txt");
+        aIintro11 = getTextToString("AI_Intro11.txt");
+        aIintro12 = getTextToString("AI_Intro12.txt");
+        aIintro13 = getTextToString("AI_Intro13.txt");
+        aIintro14 = getTextToString("AI_Intro14.txt");
+        aIintro15 = getTextToString("AI_Intro15.txt");
+        aIintro16 = getTextToString("AI_Intro16.txt");
+        aIintro17 = getTextToString("AI_Intro17.txt");
     }
 
     /**
@@ -66,129 +69,154 @@ public class TutorialController extends Controller {
      * {@link TutorialData#println(List)} to print the next dialog for the
      * player.
      */
-    public static void update() {
+    @Override
+    public void update() {
         if (tutorial) {
             switch (counter) {
                 case 0:
-                    TutorialData.println(introduction);
+                    println(introduction);
                     counter++;
 
                     break;
                 case 1:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro1);
+                        tutorialData.println(aIintro1);
                         InteractionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 2:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro2);
+                        tutorialData.println(aIintro2);
                         InteractionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 3:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro3);
+                        tutorialData.println(aIintro3);
                         InteractionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 4:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("map")) {
-                        TutorialData.println(aIintro4);
+                        tutorialData.println(aIintro4);
                         counter++;
                     }
                     break;
                 case 5:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro5);
+                        tutorialData.println(aIintro5);
                         counter++;
                     }
                     break;
                 case 6:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Scanning Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro6);
+                        tutorialData.println(aIintro6);
                         counter++;
                     }
                     break;
                 case 7:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro7);
+                        tutorialData.println(aIintro7);
                         counter++;
                     }
                     break;
                 case 8:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro8);
+                        tutorialData.println(aIintro8);
                         counter++;
                     }
                     break;
                 case 9:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro9);
+                        tutorialData.println(aIintro9);
                         counter++;
                     }
                     break;
                 case 10:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro10);
+                        tutorialData.println(aIintro10);
                         counter++;
                     }
                     break;
                 case 11:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro11);
+                        tutorialData.println(aIintro11);
                         counter++;
                     }
                     break;
                 case 12:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro12);
+                        tutorialData.println(aIintro12);
                         counter++;
                     }
                     break;
                 case 13:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro13);
+                        tutorialData.println(aIintro13);
                         counter++;
                     }
                     break;
                 case 14:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Outside") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro14);
+                        tutorialData.println(aIintro14);
                         counter++;
                     }
                     break;
                 case 15:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("oxygen")) {
-                        TutorialData.println(aIintro15);
+                        tutorialData.println(aIintro15);
                         counter++;
                     }
                     break;
                 case 16:
                     if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        TutorialData.println(aIintro16);
+                        tutorialData.println(aIintro16);
                         counter++;
                     }
                     break;
                 case 17:
                     if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        TutorialData.println(aIintro17);
+                        tutorialData.println(aIintro17);
                         counter++;
-                        TutorialController.setTutorial(false);
+                        setTutorial(false);
                     }
                     break;
             }
         }
     }
 
-    public static boolean getTutorial() {
-        return tutorial;
+    private final Data data = new Data();
+    
+    /**
+     * Request data from the data-layer using
+     * {@link TutorialData#requestData(data.AssetType, java.lang.String)}.
+     *
+     * @param filename The name of the file.
+     * @return
+     */
+    List<String> getTextToString(String filename) {
+        return data.requestData(AssetType.TEXT, filename);
     }
 
-    public static void setTutorial(boolean bool) {
-        tutorial = bool;
+    /**
+     * Print a List of Strings to the console.
+     *
+     * @param text List to print.
+     */
+    void println(List<String> text) {
+        for (String string : text) {
+            InteractionsController.println(string);
+        }
+    }
+    
+    public boolean getTutorial() {
+        return this.tutorial;
+    }
+
+    public void setTutorial(boolean bool) {
+        this.tutorial = bool;
     }
 }

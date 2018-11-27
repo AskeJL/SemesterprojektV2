@@ -22,48 +22,48 @@ public class LocationsController extends Controller {
     /**
      * The {@link Room} the player is currently in.
      */
-    private static Room currentRoom;
+    private Room currentRoom;
 
     /**
      * The {@link Location} the player is currently in.
      */
-    private static Location currentLocation;
+    private Location currentLocation;
 
     /**
      * All the {@link Location}s.
      */
-    private final static ArrayList<Location> LOCATIONS = new ArrayList<>();
-
-    private LocationsController() {
-    }
+    private final ArrayList<Location> locations = new ArrayList<>();
 
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
-     * <br><br>
+     * <p>
      * Uses the {@link #createLocations()} method.
      */
-    public static void init() {
+    @Override
+    public void init() {
         createLocations();
 
         // The player starts in their bedroom/Personal
-        currentRoom = LOCATIONS.get(5).getRooms().get(2);
-        currentLocation = LOCATIONS.get(5);
+        currentRoom = locations.get(5).getRooms().get(2);
+        currentLocation = locations.get(5);
     }
 
     /**
      * Update the {@link domain.game.Controller controller}. Nothing to update.
      */
-    public static void update() {
+    @Override
+    public void update() {
         // Update locations.
     }
 
     /**
      * Creates all the predetermined locations. This is created based on a map
-     * (Hard-coded). <br><br>
+     * (Hard-coded). 
+     * <p>
      * Exits are added after creation.
      */
-    private static void createLocations() {
+    private void createLocations() {
         Location laser = new Laser(),
                 control = new Control(),
                 net = new Net(),
@@ -77,19 +77,19 @@ public class LocationsController extends Controller {
                 mainhall02 = new Mainhall02();
 
         // Adding functional locations
-        LOCATIONS.add(laser);     // 0
-        LOCATIONS.add(control);   // 1
-        LOCATIONS.add(net);       // 2
-        LOCATIONS.add(outside);   // 3
-        LOCATIONS.add(oxygen);    // 4
-        LOCATIONS.add(personal);  // 5
-        LOCATIONS.add(scanning);  // 6
+        locations.add(laser);     // 0
+        locations.add(control);   // 1
+        locations.add(net);       // 2
+        locations.add(outside);   // 3
+        locations.add(oxygen);    // 4
+        locations.add(personal);  // 5
+        locations.add(scanning);  // 6
 
         // Adding non-functional locations
-        LOCATIONS.add(hallway01); // 7
-        LOCATIONS.add(hallway02); // 8
-        LOCATIONS.add(mainhall01);// 9
-        LOCATIONS.add(mainhall02);// 10
+        locations.add(hallway01); // 7
+        locations.add(hallway02); // 8
+        locations.add(mainhall01);// 9
+        locations.add(mainhall02);// 10
 
         // Connecting locations (Should be moved to another method: connectLocations)
         // Laser connects to mainhall02 from corridor due WEST
@@ -168,8 +168,8 @@ public class LocationsController extends Controller {
      *
      * @return
      */
-    public static ArrayList<Location> getLocations() {
-        return LocationsController.LOCATIONS;
+    public ArrayList<Location> getLocations() {
+        return LocationsController.locations;
     }
 
     /**
@@ -177,7 +177,7 @@ public class LocationsController extends Controller {
      *
      * @param room Room to set.
      */
-    public static void setCurrentRoom(Room room) {
+    public void setCurrentRoom(Room room) {
         LocationsController.currentRoom = room;
     }
 
@@ -186,7 +186,7 @@ public class LocationsController extends Controller {
      *
      * @param location Location to set.
      */
-    public static void setCurrentLocation(Location location) {
+    public void setCurrentLocation(Location location) {
         LocationsController.currentLocation = location;
     }
 
@@ -195,7 +195,7 @@ public class LocationsController extends Controller {
      *
      * @return
      */
-    public static Room getCurrentRoom() {
+    public Room getCurrentRoom() {
         return LocationsController.currentRoom;
     }
 
@@ -204,7 +204,7 @@ public class LocationsController extends Controller {
      *
      * @return
      */
-    public static Location getCurrentLocation() {
+    public Location getCurrentLocation() {
         return LocationsController.currentLocation;
     }
 }

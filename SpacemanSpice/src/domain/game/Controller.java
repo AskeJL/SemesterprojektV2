@@ -1,25 +1,37 @@
 package domain.game;
 
-public class Controller {
+import java.util.ArrayList;
+import java.util.List;
 
-    protected Controller(){}
+public abstract class Controller {
+    private static List<Controller> CONTROLLERS = new ArrayList<>();
     
     /**
-     * For initialising the controller. All the classes that needs to be
-     * initialised is initialised here.
+     * For initializing the controller. All the classes that needs to be
+     * initialized is initialized here.
      */
-    public static void init() {
-        System.out.println("Not implemented");
-    }
+    public abstract void init();
 
     /**
      * An update that is continously called from Game.
      */
-    public static void update() {
-        System.out.println("Not implemented");
+    public abstract void update();
+    
+    static void setControllers(List<Controller> controllers) {
+        CONTROLLERS = controllers;
     }
     
-    protected static void setRunning(boolean isRunning) {
-        Game.setRunning(isRunning);
+    public <T extends Controller> Controller getController(T t) {
+        for (Controller c : CONTROLLERS) {
+            if (t.equals(c)) {
+                return c;
+            }
+        }
+        
+        return null;
+    }
+    
+    public List<Controller> getControllers() {
+        return CONTROLLERS;
     }
 }

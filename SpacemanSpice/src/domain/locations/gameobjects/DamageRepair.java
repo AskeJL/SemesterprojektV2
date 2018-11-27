@@ -7,7 +7,7 @@ import domain.resources.ResourcesController;
 
 /**
  * Used to repair the hull of the ship.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -27,10 +27,10 @@ public class DamageRepair extends GameObject {
      * @see domain.resources.Life
      */
     @Override
-    public void interact() {
-        InteractionsController.println("You begin reparing the ship");
+    public void interact(InteractionsController controller) {
+        controller.println("You begin reparing the ship");
+        
         ResourcesController.setRepairTrue();
-        InteractionsController.println("Type: 'show life', to see the remaining health of the ship");
     }
 
     @Override

@@ -1,9 +1,8 @@
 package domain.interactions.commands;
 
 import data.AssetType;
-import data.read.DataReader;
+import data.Data;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 
 /**
@@ -15,8 +14,10 @@ import domain.locations.LocationsController;
  * Because of this reference, this class also implements the
  * {@link data.read.DataReader} interface.
  */
-public class Inspect extends Command implements DataReader {
+public class Inspect extends Command {
 
+    private final Data dataAccess = new Data();
+    
     public Inspect() {
         super("inspect", "Inspect the room you are in.", false);
     }
@@ -34,10 +35,10 @@ public class Inspect extends Command implements DataReader {
     @Override
     protected void run() {
         String data = "";
-        for (String string : this.requestData(AssetType.DESCRIPTION, LocationsController.getCurrentRoom().getName() + ".txt")) {
+        for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, LocationsController.getCurrentRoom().getName() + ".txt")) {
             data += string;
         }
-        InteractionsController.println(data);
+        output.println(data);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Inspect extends Command implements DataReader {
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
+        output.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
     }
 
 }

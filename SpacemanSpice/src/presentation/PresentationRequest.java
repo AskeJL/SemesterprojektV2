@@ -17,20 +17,14 @@ public interface PresentationRequest {
      *
      * @throws java.io.IOException
      */
-    default void sendInitRequest() throws IOException {
-        ViewManager.init();
-    }
+    public void sendInit() throws IOException;
 
     /**
      * Set the current stage of the application.
      *
      * @param stage Stage to set.
      */
-    default void sendStageRequest(Stage stage) {
-        ViewManager.setStage(stage);
-    }
+    public void sendStage(Stage stage);
     
-    default String lastPathRequest() {
-        return ViewManager.getLastPath();
-    }
+    public String requestLastPath();
 }
