@@ -103,7 +103,25 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
 
     public static void update() {
         interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
+        if(interfaces.readLife()== 0){
+            ViewManager gameOver = new ViewManager();
+            try {
+                gameOver.loadView(gameOver.getGameOverPath());
+            } catch (IOException ex) {
+                System.out.println("Der er en fejl. Du skal finde den! ps. Det kunne have nået at gøre med forkert file path");
+                System.out.println(ex);
+            }
+        }
         interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
+        if(interfaces.readOxygen()== 0){
+            ViewManager gameOver = new ViewManager();
+            try {
+                gameOver.loadView(gameOver.getGameOverPath());
+            } catch (IOException ex) {
+                System.out.println("Der er en fejl. Du skal finde den! ps. Det kunne have nået at gøre med forkert file path");
+                System.out.println(ex);
+            }
+        }
         interfaces.waveTimeLabel.setText(Long.toString(interfaces.readWaveTime()));
         interfaces.waveNumberValue.setText(Integer.toString(interfaces.readWaveNumber()));
 
