@@ -18,11 +18,15 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import presentation.game.draw.DrawController;
 import presentation.ViewManager;
 
 /**
@@ -39,23 +43,16 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     private ProgressBar progressBarLife;
 
     /**
-     * Number visualizing the number of current wave.
-     */
-    @FXML
-    private TextArea waveNumber;
-
-    /**
-     * Number visualizing the remaining time for the current wave.
-     */
-    @FXML
-    private TextArea timeNumber;
-
-    /**
      * Progress bar visualizing oxygen variable.
      */
     @FXML
     private ProgressBar progressBarOxygen;
 
+    @FXML
+    private Label waveNumberValue;
+
+    @FXML
+    private Label waveTimeLabel;
     /**
      * Canvas, where the games maps will be drawn.
      */
@@ -80,7 +77,11 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     @FXML
     private TextArea infoText;
 
+    private static String lastOutput = "";
+
     private ArrayList<String> consoleText = new ArrayList<>();
+    private static GraphicsContext gc;
+    private static GameViewController interfaces = new GameViewController();
 
     /**
      * Initializes the controller class.
@@ -90,26 +91,30 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        waveNumber.setText(Integer.toString(this.readWaveNumber()));
-        timeNumber.setText(Long.toString(this.readWaveTime()));
+        interfaces.progressBarLife = progressBarLife;
+        interfaces.progressBarOxygen = progressBarOxygen;
+        interfaces.waveTimeLabel = waveTimeLabel;
+        interfaces.waveNumberValue = waveNumberValue;
+        interfaces.infoText = infoText;
 
-        progressBarLife.setProgress(this.readLife()/100);
-        progressBarOxygen.setProgress(this.readOxygen()/100);
+        gc = canvasMap.getGraphicsContext2D();
+        DrawController.setup();
     }
 
-    public void update() throws IOException {
-        progressBarLife.setProgress(this.readLife()/100);
-        if (this.readLife() <= 0) {
-            String gameOver = new ViewManager().getGameOverPath();
-            new ViewManager().loadView(gameOver);
+    public static void update() {
+        interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
+        interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
+        interfaces.waveTimeLabel.setText(Long.toString(interfaces.readWaveTime()));
+        interfaces.waveNumberValue.setText(Integer.toString(interfaces.readWaveNumber()));
+
+        String output = interfaces.requestOutputText();
+
+        if (!lastOutput.equals(output)) {
+            interfaces.infoText.setText(output);
+            lastOutput = output;
+            interfaces.infoText.setScrollTop(10000);
+            interfaces.infoText.positionCaret(output.length());
         }
-        progressBarOxygen.setProgress(this.readOxygen()/100);
-        if (this.readOxygen() <= 0) {
-            String gameOver = new ViewManager().getGameOverPath();
-            new ViewManager().loadView(gameOver);
-        }
-        waveNumber.setText(Integer.toString(this.readWaveNumber()));
-        timeNumber.setText(Long.toString(this.readWaveTime()));
     }
 
     /**
@@ -126,11 +131,13 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
 
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(100);
+            outputText.setScrollTop(10000);
 
-            String commandOutput = this.requestRunCommand(inputText.getText());
+            String commandOutput = interfaces.requestRunCommand(inputText.getText());
             infoText.setText(commandOutput);
-            infoText.setScrollTop(100);
+            infoText.setScrollTop(10000);
+            infoText.positionCaret(commandOutput.length());
+            lastOutput = commandOutput;
 
             inputText.setText("");
         }
@@ -149,5 +156,9 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             consoleString += "> " + string + "\n";
         }
         return consoleString;
+    }
+
+    public static GraphicsContext getGraphicsContext() {
+        return gc;
     }
 }

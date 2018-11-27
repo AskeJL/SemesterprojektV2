@@ -3,18 +3,17 @@ package presentation;
 import java.io.IOException;
 
 /**
- * An interface to the presentation-layer for requesting an update. The intent
- * of this, is for the domain layer to continuously update the presentation
- * layer.
- * 
- * @see ViewManager#update() 
+ * An interface to the presentation-layer for requesting updates. The intent of
+ * this, is for the domain layer to update the presentation layer when prompted.
+ *
+ * @see ViewManager#update()
  */
-public interface presentationUpdate {
+public interface PresentationUpdate {
 
     /**
-     * Request an update to the current view.
+     * Request update from {@link ViewManager}.
      */
-    default void updateRequest() throws IOException {
+    default void sendUpdateRequest() {
         ViewManager.update();
     }
 }

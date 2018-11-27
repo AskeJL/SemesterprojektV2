@@ -2,21 +2,24 @@ package domain.systems;
 
 import data.AssetType;
 import data.read.DataReader;
+import domain.interactions.InteractionsController;
 import java.util.List;
 
 class SystemsData implements DataReader {
     
+    private static SystemsData interfaces = new SystemsData();
+    
     static List<String> getTextString(String filename) {
-        return new SystemsData().requestData(AssetType.TEXT, filename);
+        return interfaces.requestData(AssetType.TEXT, filename);
     }
     
     static List<String> getAIString(String filename) {
-        return new SystemsData().requestData(AssetType.AIWAVE, filename);
+        return interfaces.requestData(AssetType.AIWAVE, filename);
     }
     
     static void printText(List<String> text) {
         for(String line : text) {
-            System.out.println(line);
+            InteractionsController.println(line);
         }
     }
 }
