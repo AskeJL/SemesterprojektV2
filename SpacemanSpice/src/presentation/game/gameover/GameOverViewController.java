@@ -5,6 +5,8 @@
  */
 package presentation.game.gameover;
 
+import data.AssetType;
+import data.write.DataWriter;
 import domain.interactions.InteractionsRequest;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
@@ -13,6 +15,8 @@ import domain.systems.SystemsReader;
 import domain.tutorial.TutorialController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +31,7 @@ import presentation.ViewManager;
  *
  * @author askel
  */
-public class GameOverViewController implements Initializable, InteractionsRequest, SystemsReader {
+public class GameOverViewController implements Initializable, InteractionsRequest, SystemsReader, DataWriter {
 
     @FXML
     private Label gameOverField;
@@ -46,6 +50,9 @@ public class GameOverViewController implements Initializable, InteractionsReques
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.scoreField.setText("Your score was " + this.readScore());
+        List <String> score = new ArrayList<>();
+        score.add(Integer.toString(this.readScore()));
+        this.writeData(AssetType.SCORE, "highscore.txt",score);
         ResourcesController.setOxygen(100);
         ResourcesController.setLife(100);
         SystemsController.setNumberOfWaves(0);
