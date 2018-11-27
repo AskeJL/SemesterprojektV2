@@ -41,7 +41,7 @@ public class GameOverViewController implements Initializable, InteractionsReques
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.scoreField.setText("Your score was " + this.readScore());
     }    
 
     @FXML
