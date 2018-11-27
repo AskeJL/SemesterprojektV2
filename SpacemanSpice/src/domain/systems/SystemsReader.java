@@ -38,4 +38,8 @@ public interface SystemsReader {
     default int readLargeFragments() {
         return SystemsController.getLargeFragments();
     }
+    
+    default int readScore(){
+        return SystemsController.getScore();
+    }
 }

@@ -8,9 +8,13 @@ package presentation.game;
 import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
+import java.awt.Event;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -23,6 +27,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import presentation.game.draw.DrawController;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
