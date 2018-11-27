@@ -6,6 +6,7 @@
 package presentation.game.gameover;
 
 import data.AssetType;
+import data.read.DataReader;
 import data.write.DataWriter;
 import domain.interactions.InteractionsRequest;
 import domain.locations.LocationsController;
@@ -31,7 +32,7 @@ import presentation.ViewManager;
  *
  * @author askel
  */
-public class GameOverViewController implements Initializable, InteractionsRequest, SystemsReader, DataWriter {
+public class GameOverViewController implements Initializable, InteractionsRequest, SystemsReader, DataWriter, DataReader {
 
     @FXML
     private Label gameOverField;
