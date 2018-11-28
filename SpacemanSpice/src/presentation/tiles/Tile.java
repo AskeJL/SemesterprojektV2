@@ -1,5 +1,6 @@
 package presentation.tiles;
 
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import presentation.game.GameViewController;
@@ -12,15 +13,18 @@ public abstract class Tile {
     private int tileLocationXAxis;
     private int tileLocationYAxis;
     private Color tileColor;
+    
 
     public void drawTile(int xAxis, int yAxis) {
         this.tileLocationXAxis = xAxis;
         this.tileLocationYAxis = yAxis;
         GraphicsContext gc = GameViewController.getGraphicsContext();
-        gc.setFill(Color.WHITE);
+        gc.setFill(Color.TRANSPARENT);
         gc.fillRect(tileLocationXAxis, tileLocationYAxis, TILE_WIDTH, TILE_HEIGHT);
         gc.setFill(getTileColor());
         gc.fillRect(tileLocationXAxis + 2, tileLocationYAxis + 2, TILE_WIDTH - 2, TILE_HEIGHT - 2);
+       
+        
     }
 
     public int getTILE_WIDTH() {
