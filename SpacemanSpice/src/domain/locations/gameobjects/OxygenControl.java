@@ -15,14 +15,18 @@ import domain.resources.ResourcesController;
  */
 public class OxygenControl extends GameObject {
 
+    private final ResourcesController resourcesController;
+    
     public OxygenControl() {
         super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);
+        
+        this.resourcesController = locationsController.getResourcesController();
     }
 
     /**
      * Refills the players {@link domain.resources.Oxygen}. This will call the
      * {@link ResourcesController#increaseOxygen(int)}
-     * <br><br>
+     * <p>
      * This will always fill the {@link domain.resources.Oxygen} completely.
      *
      * @see domain.resources.Oxygen
@@ -31,8 +35,8 @@ public class OxygenControl extends GameObject {
     @Override
     public void interact(InteractionsController controller) {
         output.println("You interact with the Oxygen refilling control");
-        int difference = 100 - ResourcesController.getOxygen();
-        ResourcesController.increaseOxygen(difference);
+        int difference = 100 - resourcesController.getOxygenValue();
+        resourcesController.increaseOxygen(difference);
     }
 
     @Override

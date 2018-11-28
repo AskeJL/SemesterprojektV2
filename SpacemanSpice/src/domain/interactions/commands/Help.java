@@ -17,8 +17,8 @@ public class Help extends Command {
 
     private final LocationsController locationsController;
     
-    public Help() {
-        super("help", "Display the help list.", true);
+    public Help(InteractionsController interactions) {
+        super(interactions, "help", "Display the help list.", true);
 
         super.addParameter("go");
         super.addParameter("interact");
@@ -57,7 +57,7 @@ public class Help extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
+        return "domain.interactions.commands.Help: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
@@ -74,12 +74,12 @@ public class Help extends Command {
     @Override
     public void showAvailableParameters() {
         output.println("Current room:");
-        output.println(String.format("%10s %s", "", locationsController.getCurrentLocation().getNAME() + "/" + locationsController.getCurrentRoom().getName()));
+        output.println(String.format("%10s %s", "", locationsController.getCurrentLocation().getName() + "/" + locationsController.getCurrentRoom().getName()));
 
         output.println("You can go:");
         for (Exit exit : locationsController.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(locationsController.getCurrentRoom().getName())) {
-                output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
+                output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
             }
         }
         for (Exit exit : locationsController.getCurrentRoom().getExits()) {
@@ -97,5 +97,10 @@ public class Help extends Command {
         } else {
             output.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
         }
+    }
+
+    @Override
+    protected boolean runTest() {
+        return locationsController == null;
     }
 }

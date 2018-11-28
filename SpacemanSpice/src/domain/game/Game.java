@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  */
 public class Game extends Application {
 
+    private final boolean runTests = true;
     private boolean running = true;
     private List<Controller> controllers = new ArrayList<>();
 
@@ -43,11 +44,21 @@ public class Game extends Application {
      * Initializes all the controllers.
      */
     private void initialize() throws IOException {
-        new DomainInput(this).init();
         new DomainOutput(this).init();
-        
+
         for (Controller c : controllers) {
             c.init();
+        }
+
+        if (runTests) {
+            for (Controller c : controllers) {
+                System.out.println("\nRunning tests for " + c + ":");
+                if(!c.runTest()) {
+                    System.out.println("FAILED test for " + c + "\n");
+                } else {
+                    System.out.println("PASSED test for " + c + "\n");
+                }
+            }
         }
     }
 
@@ -73,7 +84,7 @@ public class Game extends Application {
                 return c;
             }
         }
-        
+
         return null;
     }
 

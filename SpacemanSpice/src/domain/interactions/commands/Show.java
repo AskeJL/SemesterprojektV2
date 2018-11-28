@@ -3,6 +3,7 @@ package domain.interactions.commands;
 import data.AssetType;
 import data.Data;
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
@@ -19,9 +20,10 @@ public class Show extends Command {
     
     private final Data dataAccess = new Data();
     private final LocationsController locationsController;
+    private final ResourcesController resourcesController;
     
-    public Show() {
-        super("show", "Shows a resource to the player.", true);
+    public Show(InteractionsController interactions) {
+        super(interactions, "show", "Shows a resource to the player.", true);
 
         super.addParameter("oxygen");
         super.addParameter("time");
@@ -30,6 +32,7 @@ public class Show extends Command {
         super.addParameter("score");
         
         locationsController = interactionsController.getLocationsController();
+        resourcesController = interactionsController.getResourcesController();
     }
 
     /**
@@ -54,11 +57,11 @@ public class Show extends Command {
     protected void run() {
         switch (super.getCurrentParameter()) {
             case "oxygen":
-                output.println("Oxygen: " + ResourcesController.getOxygen());
+                output.println("Oxygen: " + resourcesController.getOxygenValue());
             case "time":
-                output.println("Time: " + ResourcesController.getRemainingTime());
+                output.println("Time: " + resourcesController.getRemainingTime());
             case "life":
-                output.println("Life: " + ResourcesController.getLife());
+                output.println("Life: " + resourcesController.getLifeValue());
             case "map":
                 String data = "";
                 for (String string : dataAccess.requestData(AssetType.MAP, locationsController.getCurrentRoom().getName() + ".txt")) {
@@ -72,12 +75,22 @@ public class Show extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
+        return "domain.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
     public void helpInfo() {
         output.println("This command displays a resource to the player, depending on its parameter."
                 + "\nshow <arg>");
+    }
+
+    @Override
+    protected boolean runTest() {
+        boolean passed = true;
+        if(locationsController == null || resourcesController == null || interactionsController == null) {
+            passed = false;
+            System.out.println("Wrong reference");
+        }
+        return passed;
     }
 }

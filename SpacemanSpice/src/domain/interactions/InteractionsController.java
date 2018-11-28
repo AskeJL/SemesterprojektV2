@@ -3,6 +3,7 @@ package domain.interactions;
 import domain.game.Controller;
 import domain.game.Game;
 import domain.locations.LocationsController;
+import domain.resources.ResourcesController;
 import java.util.List;
 
 /**
@@ -15,15 +16,17 @@ import java.util.List;
  */
 public class InteractionsController extends Controller {
     
-    private final LocationsController locationsController;
+    private final Game game;
     
-    private final Commands commands = new Commands(this);
-    private final Parser parser = new Parser(this);
+    private LocationsController locationsController;
+    private ResourcesController resourcesController;
+    private Commands commands;
+    private Parser parser;
     
     public InteractionsController(Game game) {
         super(game);
         
-        locationsController = (LocationsController)game.getController(new LocationsController(game));
+        this.game = game;
     }
     
     /**
@@ -32,7 +35,10 @@ public class InteractionsController extends Controller {
      */
     @Override
     public void init() {
-        
+        locationsController = (LocationsController)game.getController(new LocationsController(game));
+        resourcesController = (ResourcesController)game.getController(new ResourcesController(game));
+        commands = new Commands(this);
+        parser = new Parser(this);
     }
 
     /**
@@ -109,5 +115,22 @@ public class InteractionsController extends Controller {
     
     public LocationsController getLocationsController() {
         return this.locationsController;
+    }
+    
+    public ResourcesController getResourcesController() {
+        return this.resourcesController;
+    }
+
+    @Override
+    public boolean runTest() {
+        boolean passed = true;
+        System.out.println("Running tests for interactions.Commands...");
+        if(!commands.runTest()) {
+            passed = false;
+        }
+        if(!parser.runTest()) {
+            passed = false;
+        }
+        return passed;
     }
 }

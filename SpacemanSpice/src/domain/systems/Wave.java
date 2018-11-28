@@ -51,8 +51,13 @@ public class Wave {
     private final static int LARGE_DESCRUCTION_INDEX = 1;
 
     private final DomainOutput output = new DomainOutput();
-    
-    private Wave() {
+    private final SystemsController systemsController;
+    private final ResourcesController resourcesController;
+
+    Wave(SystemsController systems) {
+        this.systemsController = systems;
+
+        this.resourcesController = systemsController.getResourcesController();
     }
 
     /**
@@ -61,8 +66,8 @@ public class Wave {
      *
      * @see domain.resources.ResourcesController#setWaveTime(long)
      */
-    static void createWave() {
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+120);
+    void createWave() {
+        resourcesController.setWaveTime(resourcesController.getCurrentTime() + 120);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
@@ -77,7 +82,7 @@ public class Wave {
         } else {
             largeFragments = 0;
         }
-        ResourcesController.setRandTime();
+        resourcesController.setRandomTime();
     }
 
     /**
@@ -96,7 +101,7 @@ public class Wave {
      */
     void updateWave(int fragmentIdentifier) {
         // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
-        if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsController.getSmallFragmentIdentifier()) {
             int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             smallFragments -= destructionIndex;
@@ -114,7 +119,7 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsController.getMediumFragmentIdentifier()) {
             int newIndex = mediumFragments > MEDIUM_DESCTRUCTION_INDEX ? MEDIUM_DESCTRUCTION_INDEX : mediumFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             mediumFragments -= destructionIndex;
@@ -132,7 +137,7 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsController.getLargeFragmentIdentifier()) {
             largeFragments = 0;
             if (largeFragments < 0) {
                 largeFragments = 0;
@@ -149,56 +154,56 @@ public class Wave {
     /**
      * Increase {@link #numberOfWaves numberOfWaves} by 1.
      */
-    static void incrementNumberOfWaves() {
+    void incrementNumberOfWaves() {
         numberOfWaves++;
     }
-    
-    static void setSmallFragments(int smallValue){
+
+    void setSmallFragments(int smallValue) {
         smallFragments = 0;
     }
-    
+
     /**
      * Get number of {@link #smallFragments smallFragments}.
      *
      * @return
      */
-    static int getSmallFragments() {
+    int getSmallFragments() {
         return smallFragments;
     }
-    
-    static void setMediumFragments(int mediumValue){
+
+    void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
-    
+
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
      * @return
      */
-    static int getMediumFragments() {
+    int getMediumFragments() {
         return mediumFragments;
     }
-    
-    static void setLargeFragments(int largeValue){
+
+    void setLargeFragments(int largeValue) {
         largeFragments = 0;
     }
-    
+
     /**
      * Get number of {@link #largeFragments largeFragments}.
      *
      * @return
      */
-    static int getLargeFragments() {
+    int getLargeFragments() {
         return largeFragments;
     }
-    
+
     /**
      * Get number of waves {@link #numberOfWaves}.
-     * 
-     * 
-     * @return 
+     *
+     *
+     * @return
      */
-    static int getNumberofWaves(){
+    int getNumberofWaves() {
         return numberOfWaves;
     }
 }

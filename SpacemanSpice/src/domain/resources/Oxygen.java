@@ -10,24 +10,30 @@ import domain.locations.LocationsController;
  * @see domain.systems.Wave
  * @see domain.systems.SystemsController
  */
-public class Oxygen {
+public class Oxygen extends ResourcesElement {
 
     /**
      * Amount of oxygen the player currently has.
      */
     private static int oxygen = 75;
-    /**
-     * How fast the oxygen will decline.
-     */
-    private static final long TIME_BEFORE_LOSING_OXYGEN = 2;
 
     /**
      * Holds the last time the oxygen was computed. Used for calculation between
      * updates.
      */
-    private static long lastTime;
+    private long lastTime;
 
-    private Oxygen() {
+    private final LocationsController locationsController;
+    
+    private final Time time;
+    private final Life life;
+    
+    Oxygen(ResourcesController resources) {
+        super(resources);
+        
+        this.locationsController = resourcesController.getLocationsController();
+        this.time = resourcesController.getTime();
+        this.life = resourcesController.getLife();
     }
 
     /**
@@ -37,14 +43,14 @@ public class Oxygen {
      * @see domain.locations.functional.Outside
      * @see domain.locations.functional.Oxygen
      */
-    static void update() {
-        if (Life.getLife() <= 50) {
-            oxygen -= (Time.getCurrentTime() - lastTime);
-        } else if(LocationsController.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
-            oxygen -= (Time.getCurrentTime() - lastTime);
+    void update() {
+        if (life.getLife() <= 50) {
+            oxygen -= (time.getCurrentTime() - lastTime);
+        } else if(locationsController.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
+            oxygen -= (time.getCurrentTime() - lastTime);
         }
 
-        lastTime = Time.getCurrentTime();
+        lastTime = time.getCurrentTime();
     }
 
     /**
@@ -52,7 +58,7 @@ public class Oxygen {
      *
      * @param value How much to increase.
      */
-    static void increaseOxygen(int value) {
+    void increaseOxygen(int value) {
         oxygen += value;
     }
 
@@ -61,8 +67,12 @@ public class Oxygen {
      *
      * @return
      */
-    static int getOxygen() {
-        Oxygen.update();
+    int getOxygen() {
         return oxygen;
+    }
+
+    @Override
+    protected boolean runTest() {
+        return true;
     }
 }

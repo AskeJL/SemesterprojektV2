@@ -93,21 +93,21 @@ public class TutorialController extends Controller {
                 case 1:
                     if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro1);
-                        interactionsController.setLastCommand(new Clear());
+                        interactionsController.setLastCommand(new Clear(interactionsController));
                         counter++;
                     }
                     break;
                 case 2:
                     if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro2);
-                        interactionsController.setLastCommand(new Clear());
+                        interactionsController.setLastCommand(new Clear(interactionsController));
                         counter++;
                     }
                     break;
                 case 3:
                     if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro3);
-                        interactionsController.setLastCommand(new Clear());
+                        interactionsController.setLastCommand(new Clear(interactionsController));
                         counter++;
                     }
                     break;
@@ -230,5 +230,10 @@ public class TutorialController extends Controller {
 
     public void setTutorial(boolean bool) {
         this.tutorial = bool;
+    }
+
+    @Override
+    public boolean runTest() {
+        return true;
     }
 }

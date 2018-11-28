@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.LocationsController;
 
@@ -14,8 +15,8 @@ import domain.locations.LocationsController;
 public class Interact extends Command {
     private final LocationsController locationsController;
     
-    public Interact(){
-        super("interact", "Interact with an object.", false);
+    public Interact(InteractionsController interactions){
+        super(interactions, "interact", "Interact with an object.", false);
         
         locationsController = interactionsController.getLocationsController();
     }
@@ -40,11 +41,16 @@ public class Interact extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
         output.println("The interact command lets you interact with objects in the current room.");
+    }
+
+    @Override
+    protected boolean runTest() {
+        return locationsController == null;
     }
 }

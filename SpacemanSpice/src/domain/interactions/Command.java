@@ -44,7 +44,9 @@ public abstract class Command extends InteractionsElement {
      */
     private ArrayList<String> availableParameters = new ArrayList<>();
     
-    protected Command(String name, String description, boolean hasParameter) {
+    protected Command(InteractionsController interactions, String name, String description, boolean hasParameter) {
+        super(interactions);
+        
         this.name = name;
         this.description = description;
         this.hasParameter = hasParameter;

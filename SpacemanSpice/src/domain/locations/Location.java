@@ -96,7 +96,7 @@ public abstract class Location {
      *
      * @return
      */
-    public String getNAME() {
+    public String getName() {
         return this.NAME;
     }
 

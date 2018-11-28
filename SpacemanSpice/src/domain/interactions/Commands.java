@@ -1,7 +1,6 @@
 package domain.interactions;
 
 import domain.interactions.commands.*;
-import domain.locations.LocationsController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +22,12 @@ public class Commands extends InteractionsElement {
      * A list of all the {@link Command}'s. These are initialized in the
      * {@link Commands#init() init()} method.
      */
-    private static final List<Command> COMMAND_WORDS = new ArrayList<>();
+    private final List<Command> commandWords = new ArrayList<>();
     /**
      * This is where the last called {@link Command} is stored. (Is sat to the
      * {@link domain.interactions.commands.Clear Clear} command as default)
      */
-    private static Command lastCommand = new Clear();
+    private static Command lastCommand;
     /**
      * This is where the last called parameter is stored.
      */
@@ -36,14 +35,16 @@ public class Commands extends InteractionsElement {
 
     public Commands(InteractionsController interact) {
         super(interact);
+
+        lastCommand = new Clear(interactionsController);
         
-        COMMAND_WORDS.add(new Go());
-        COMMAND_WORDS.add(new Help());
-        COMMAND_WORDS.add(new Interact());
-        COMMAND_WORDS.add(new Clear());
-        COMMAND_WORDS.add(new Start());
-        COMMAND_WORDS.add(new Continue());
-        COMMAND_WORDS.add(new Inspect());
+        commandWords.add(new Go(interactionsController));
+        commandWords.add(new Help(interactionsController));
+        commandWords.add(new Interact(interactionsController));
+        commandWords.add(new Clear(interactionsController));
+        commandWords.add(new Start(interactionsController));
+        commandWords.add(new Continue(interactionsController));
+        commandWords.add(new Inspect(interactionsController));
     }
 
     /**
@@ -63,7 +64,7 @@ public class Commands extends InteractionsElement {
             Command command = getCommand(commandWord);
             if (command == null) {
                 output.println("I don't know that command. \nThese are the commands available:");
-                lastCommand = COMMAND_WORDS.get(0);
+                lastCommand = commandWords.get(0);
                 showCommands();
                 return null;
             }
@@ -100,11 +101,11 @@ public class Commands extends InteractionsElement {
     }
 
     /**
-     * Displays the {@link Commands#COMMAND_WORDS COMMAND_WORDS} to the user.
+     * Displays the {@link Commands#commandWords COMMAND_WORDS} to the user.
      */
     void showCommands() {
         String data = "";
-        for (Command command : COMMAND_WORDS) {
+        for (Command command : commandWords) {
             data += "   " + command.getName() + "\n";
         }
         output.println(data);
@@ -113,7 +114,7 @@ public class Commands extends InteractionsElement {
     void setLastCommand(Command command) {
         lastCommand = command;
     }
-    
+
     /**
      * Gets the {@link Command} based in its index.
      *
@@ -121,7 +122,7 @@ public class Commands extends InteractionsElement {
      * @return
      */
     Command getCommand(int index) {
-        return COMMAND_WORDS.get(index);
+        return commandWords.get(index);
     }
 
     /**
@@ -131,7 +132,7 @@ public class Commands extends InteractionsElement {
      * @return
      */
     Command getCommand(String name) {
-        for (Command command : COMMAND_WORDS) {
+        for (Command command : commandWords) {
             if (name.equals(command.getName())) {
                 return command;
             }
@@ -140,12 +141,12 @@ public class Commands extends InteractionsElement {
     }
 
     /**
-     * Get all the {@link Commands#COMMAND_WORDS COMMAND_WORDS}.
+     * Get all the {@link Commands#commandWords COMMAND_WORDS}.
      *
      * @return A List of command words.
      */
     List<Command> getCommandwords() {
-        return COMMAND_WORDS;
+        return commandWords;
     }
 
     /**
@@ -165,5 +166,25 @@ public class Commands extends InteractionsElement {
      */
     String getLastParameter() {
         return lastParameter;
+    }
+
+    @Override
+    protected boolean runTest() {
+        boolean passed = true;
+        for (Command command : commandWords) {
+            if (command != null) {
+                System.out.format("  %2s %-10s: ", "Testing", command.getName());
+                if (command.runTest()) {
+                    System.out.println("[Passed] " + command);
+                } else {
+                    System.out.println("[Failed] " + command);
+                    passed = false;
+                }
+            } else {
+                System.out.println("[Failed][null] " + command);
+                passed = false;
+            }
+        }
+        return passed;
     }
 }

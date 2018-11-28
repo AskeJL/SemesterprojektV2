@@ -3,6 +3,7 @@ package domain.systems;
 import data.AssetType;
 import data.Data;
 import domain.game.Controller;
+import domain.game.DomainOutput;
 import domain.interactions.InteractionsController;
 import domain.resources.ResourcesController;
 import domain.game.Game;
@@ -54,10 +55,19 @@ public class SystemsController extends Controller {
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
     
-    private Data data = new Data();
+    private final Game game;
+    
+    private final Data data = new Data();
+    private final DomainOutput output = new DomainOutput();
+    private InteractionsController interactionsController;
+    private ResourcesController resourcesController;
+    
+    private Wave wave;
 
     public SystemsController(Game game) {
         super(game);
+        
+        this.game = game;
     }
     
     /**
@@ -66,6 +76,11 @@ public class SystemsController extends Controller {
      */
     @Override
     public void init() {
+        interactionsController = (InteractionsController)game.getController(new InteractionsController(game));
+        resourcesController = (ResourcesController)game.getController(new ResourcesController(game));
+        
+        this.wave = new Wave(this);
+        
         finalIntro = getTextString("Finalintro.txt");
         newWaveIncoming = getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
         waveHit = getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
@@ -84,43 +99,43 @@ public class SystemsController extends Controller {
             
             switch (intro) {
                 case 1:
-                    printText(finalIntro);
+                    println(finalIntro);
                     intro++;
                 case 2: 
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")){
                         intro++;
                     }
             }
             
-            if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == 3) {
-                if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
-                    ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
-                    printText(waveHit);
-                    Wave.setSmallFragments(0);
-                    Wave.setMediumFragments(0);
-                    Wave.setLargeFragments(0);
+            if (resourcesController.getCurrentTime() >= resourcesController.getWaveTime() && intro == 3) {
+                if (wave.getSmallFragments() > 0 || wave.getMediumFragments() > 0 || wave.getLargeFragments() > 0) {
+                    resourcesController.decreaseLife(wave.getSmallFragments(), wave.getMediumFragments(), wave.getLargeFragments());
+                    println(waveHit);
+                    wave.setSmallFragments(0);
+                    wave.setMediumFragments(0);
+                    wave.setLargeFragments(0);
                 }
                 
-                if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()){
-                    Wave.incrementNumberOfWaves();
-                    Wave.createWave();
-                    printText(newWaveIncoming);
+                if (resourcesController.getCurrentTime() >= resourcesController.getRandomTime() + resourcesController.getWaveTime()){
+                    wave.incrementNumberOfWaves();
+                    wave.createWave();
+                    println(newWaveIncoming);
                 }
             }
 
             if (smallFragmentDestroyed && intro == 3) {
                 Score.updateScore(1);
-                Wave.updateWave(1);
+                wave.updateWave(1);
                 setSmallFragmentDestroyed(false);
             }
             if (mediumFragmentDestroyed && intro == 3) {
                 Score.updateScore(2);
-                Wave.updateWave(2);
+                wave.updateWave(2);
                 setMediumFragmentDestroyed(false);
             }
             if (largeFragmentDestroyed && intro == 3) {
                 Score.updateScore(3);
-                Wave.updateWave(3);
+                wave.updateWave(3);
                 setLargeFragmentDestroyed(false);
             }
         }
@@ -170,9 +185,9 @@ public class SystemsController extends Controller {
         return data.requestData(AssetType.AIWAVE, filename);
     }
     
-    private void printText(List<String> text) {
+    private void println(List<String> text) {
         for(String line : text) {
-            InteractionsController.println(line);
+            output.println(line);
         }
     }
     
@@ -181,7 +196,7 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getSmallFragmentIdentifier() {
+    public int getSmallFragmentIdentifier() {
         return SMALL_FRAGMENT_IDENTIFIER;
     }
 
@@ -190,7 +205,7 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getMediumFragmentIdentifier() {
+    public int getMediumFragmentIdentifier() {
         return MEDIUM_FRAGMENT_IDENTIFIER;
     }
 
@@ -199,7 +214,7 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getLargeFragmentIdentifier() {
+    public int getLargeFragmentIdentifier() {
         return LARGE_FRAGMENT_IDENTIFIER;
     }
 
@@ -208,8 +223,8 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getSmallFragments() {
-        return Wave.getSmallFragments();
+    public int getSmallFragments() {
+        return wave.getSmallFragments();
     }
 
     /**
@@ -217,8 +232,8 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getMediumFragments() {
-        return Wave.getMediumFragments();
+    public int getMediumFragments() {
+        return wave.getMediumFragments();
     }
 
     /**
@@ -226,8 +241,8 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static int getLargeFragments() {
-        return Wave.getLargeFragments();
+    public int getLargeFragments() {
+        return wave.getLargeFragments();
     }
     
     /**
@@ -235,15 +250,15 @@ public class SystemsController extends Controller {
      * 
      * @return 
      */
-    public static int getNumberOfWaves(){
-        return Wave.getNumberofWaves();
+    public int getNumberOfWaves(){
+        return wave.getNumberofWaves();
     }
     /**
      * Get {@link Score#score}.
      *
      * @return
      */
-    public static int getScore() {
+    public int getScore() {
         return Score.getScore();
     }
 
@@ -252,7 +267,16 @@ public class SystemsController extends Controller {
      *
      * @return
      */
-    public static boolean getPlayerReady() {
+    public boolean getPlayerReady() {
         return SystemsController.playerReady;
+    }
+
+    ResourcesController getResourcesController() {
+        return this.resourcesController;
+    }
+    
+    @Override
+    public boolean runTest() {
+        return true;
     }
 }

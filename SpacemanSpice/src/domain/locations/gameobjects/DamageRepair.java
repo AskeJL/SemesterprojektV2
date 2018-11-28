@@ -3,6 +3,7 @@ package domain.locations.gameobjects;
 import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.locations.LocationsController;
 import domain.resources.ResourcesController;
 
 /**
@@ -15,8 +16,12 @@ import domain.resources.ResourcesController;
  */
 public class DamageRepair extends GameObject {
 
+    private final ResourcesController resourcesController;
+    
     public DamageRepair() {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL);
+        
+        this.resourcesController = locationsController.getResourcesController();
     }
 
     /**
@@ -30,7 +35,7 @@ public class DamageRepair extends GameObject {
     public void interact(InteractionsController controller) {
         output.println("You begin reparing the ship");
         
-        ResourcesController.setRepairTrue();
+        resourcesController.setRepairTrue();
     }
 
     @Override

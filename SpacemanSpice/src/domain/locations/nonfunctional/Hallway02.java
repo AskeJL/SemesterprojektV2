@@ -28,6 +28,6 @@ public final class Hallway02 extends Location {
 
     @Override
     public String toString() {
-        return "locations.Room : Name[" + this.getNAME() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
+        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
     }
 }

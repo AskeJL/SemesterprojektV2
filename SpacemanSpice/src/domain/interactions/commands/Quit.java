@@ -12,8 +12,8 @@ import domain.interactions.InteractionsController;
  */
 public class Quit extends Command {
 
-    public Quit() {
-        super("quit", "Quit the game.", false);        
+    public Quit(InteractionsController interactions) {
+        super(interactions, "quit", "Quit the game.", false);        
     }
 
     @Override
@@ -35,11 +35,16 @@ public class Quit extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Quit: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Quit: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
         output.println("The quit function lets you quit the game");
+    }
+
+    @Override
+    protected boolean runTest() {
+        return true;
     }
 }

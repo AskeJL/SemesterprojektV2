@@ -14,34 +14,26 @@ public interface ResourcesReader {
      *
      * @return Amount of life.
      */
-    default int readLife() {
-        return ResourcesController.getLife();
-    }
+    public int requestLifeValue();
 
     /**
      * Read the current amount of {@link Oxygen}.
      *
      * @return Amount of oxygen.
      */
-    default int readOxygen() {
-        return ResourcesController.getOxygen();
-    }
+    public int requestOxygenValue();
 
     /**
      * Read the remaining {@link Time#waveTime}.
      *
      * @return Amount of wave time.
      */
-    default long readWaveTime() {
-        return ResourcesController.getRemainingTime();
-    }
+    public long requestWaveTime();
 
     /**
      * Read the {@link Time#currentTime}.
      *
      * @return Amount of current time.
      */
-    default long readCurrentTime() {
-        return ResourcesController.getCurrentTime();
-    }
+    public long requestCurrentTime();
 }

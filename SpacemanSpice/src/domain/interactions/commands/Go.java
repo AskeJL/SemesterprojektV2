@@ -1,6 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.Exit;
 import domain.locations.LocationsController;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class Go extends Command {
      */
     private final List<Exit> CURRENT_EXITS = new ArrayList<>();
 
-    public Go() {
-        super("go", "Walk the player in a direction. [North, South, West, East]", true);
+    public Go(InteractionsController interactions) {
+        super(interactions, "go", "Walk the player in a direction. [North, South, West, East]", true);
 
         super.addParameter("north");
         super.addParameter("west");
@@ -78,11 +79,23 @@ public class Go extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Go: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
+        return "domain.interactions.commands.Go: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
     public void helpInfo() {
         output.println("The go command is used to move through rooms.\ngo <direction>");
+    }
+
+    @Override
+    protected boolean runTest() {
+        boolean passed = true;
+        if(interactionsController == null) {
+            passed = false;
+        }
+        if(locationsController == null) {
+            passed = false;
+        }
+        return passed;
     }
 }

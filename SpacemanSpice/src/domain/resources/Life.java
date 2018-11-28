@@ -7,7 +7,7 @@ package domain.resources;
  * @see domain.systems.Wave
  * @see domain.systems.SystemsController
  */
-public class Life {
+public class Life extends ResourcesElement {
 
     /**
      * The damage the ship receives when hit by a small fragment.
@@ -41,7 +41,7 @@ public class Life {
      * Whether or not to repair the ship in the next
      * {@link Life#update() update}.
      */
-    private static boolean repair = false;
+    private boolean repair = false;
 
     /**
      * Life of the ship. Will decrease upon collision with fragments. Will
@@ -50,13 +50,14 @@ public class Life {
      */
     private static int life = 50;
 
-    private Life() {
+    Life(ResourcesController resources) {
+        super(resources);
     }
 
     /**
      * Will update {@link #life} based on the {@link Life#repair repair} boolean.
      */
-    static void update() {
+    void update() {
         if (life < 100 && repair == true) {
             life += REPAIR_AMOUNT;
         }
@@ -77,7 +78,7 @@ public class Life {
      * @see Life#MEDIUM_FRAGMENT_DAMAGE
      * @see Life#LARGE_FRAGMENT_DAMAGE
      */
-    static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+    void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
         if (hitSmallFragments >= 0) {
             life -= (SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
         }
@@ -96,7 +97,7 @@ public class Life {
      * Set the {@link Life#repair repair} to true. Preparing the reparation for
      * the next update.
      */
-    static void setRepairTrue() {
+    void setRepairTrue() {
         repair = true;
     }
 
@@ -105,7 +106,12 @@ public class Life {
      *
      * @return
      */
-    static int getLife() {
+    int getLife() {
         return life;
+    }
+
+    @Override
+    protected boolean runTest() {
+        return true;
     }
 }

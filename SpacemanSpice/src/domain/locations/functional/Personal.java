@@ -44,6 +44,6 @@ public final class Personal extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Personal : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Personal : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
 }

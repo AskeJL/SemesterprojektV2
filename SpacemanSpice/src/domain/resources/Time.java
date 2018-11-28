@@ -10,7 +10,7 @@ import java.util.Date;
  * @see domain.systems.Wave
  * @see domain.systems.SystemsController
  */
-public class Time {
+public class Time extends ResourcesElement {
 
     /**
      * The time when the {@link domain.game.Game} initialized.
@@ -26,21 +26,17 @@ public class Time {
     private static long waveTime;
     private static long randTime;
 
-    private Time() {
-    }
-
-    /**
-     * Initialize the class. This needs to be called before anything else. Will
-     * set the {@link #initTime initTime}.
-     */
-    static void init() {
+    Time(ResourcesController resources) {
+        super(resources);
+        
         initTime = new Date().getTime() / 1000;
     }
 
     /**
      * Update the class. This will update the {@link #currentTime currentTime}.
      */
-    static void update() {
+    void update() {
+        
     }
 
     /**
@@ -48,7 +44,7 @@ public class Time {
      *
      * @param time The new time.
      */
-    static void setWaveTime(long time) {
+    void setWaveTime(long time) {
         waveTime = time;
     }
 
@@ -57,7 +53,7 @@ public class Time {
      *
      * @return
      */
-    static long getInitTime() {
+    long getInitTime() {
         return Time.initTime;
     }
 
@@ -66,7 +62,7 @@ public class Time {
      *
      * @return
      */
-    static long getCurrentTime() {
+    long getCurrentTime() {
         return new Date().getTime() / 1000 - initTime;
     }
 
@@ -75,7 +71,7 @@ public class Time {
      *
      * @return
      */
-    static long getWaveTime() {
+    long getWaveTime() {
         return waveTime;
     }
 
@@ -84,15 +80,20 @@ public class Time {
      *
      * @return
      */
-    static long getRemainingTime() {
+    long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
     }
     
-    static void setRandTime(){
+    void setRandTime(){
         randTime = ((long )(Math.random() * 20 + 5)); 
     }
     
-    static long getRandTime(){
+    long getRandTime(){
         return randTime;
+    }
+
+    @Override
+    protected boolean runTest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

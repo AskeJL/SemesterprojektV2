@@ -14,9 +14,7 @@ public interface LocationsReader {
      *
      * @return The name of the room.
      */
-    default String readCurrentRoom() {
-        return LocationsController.getCurrentRoom().getName();
-    }
+    public String requestCurrentRoom();
 
     /**
      * Read the name of the {@link Location} the player is currently standing
@@ -24,7 +22,5 @@ public interface LocationsReader {
      *
      * @return THe name of the location.
      */
-    default String readCurrentLocation() {
-        return LocationsController.getCurrentLocation().getNAME();
-    }
+    public String requestCurrentLocation();
 }

@@ -1,5 +1,6 @@
 package domain.interactions;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,9 +18,9 @@ public class Parser extends InteractionsElement {
      * The main scanner used for reading Strings in the class.
      */
     private static final Scanner READER = new Scanner(System.in);
-    
+
     private final Commands commands;
-    
+
     Parser(InteractionsController interact) {
         super(interact);
         this.commands = super.interactionsController.getCommands();
@@ -101,5 +102,55 @@ public class Parser extends InteractionsElement {
         for (Command command : commands.getCommandwords()) {
             System.out.println(command);
         }
+    }
+
+    @Override
+    protected boolean runTest() {
+        ArrayList<String> commandsToTest = new ArrayList<>();
+        commandsToTest.add("go west");
+        commandsToTest.add("help go");
+        commandsToTest.add("clear");
+        commandsToTest.add("inspect");
+        commandsToTest.add("interact");
+        commandsToTest.add("start");
+        commandsToTest.add("continue");
+
+        boolean passed = true;
+
+        System.out.println("Running test for interactions.Parser...");
+
+        if (commands == null) {
+            passed = false;
+        }
+
+        for (String commandStr : commandsToTest) {
+            Command command = getCommand(commandStr);
+            String[] words = convertInput(commandStr);
+            System.out.format("  %2s %-10s | %-6s: ", "Testing", words[0], words[1]);
+
+            if (command != null) {
+                if (words[1] == null) {
+                    if (!(words[0].equals(command.getName()))) {
+                        System.out.println("[Failed]");
+                        passed = false;
+                    } else {
+                        System.out.println("[Passed]");
+                    }
+                } else {
+                    if(!(words[0].equals(command.getName()) && words[1].equals(command.getCurrentParameter()))) {
+                        System.out.println("[Failed]");
+                        passed = false;
+                    }else {
+                        System.out.println("[Passed]");
+                    }
+                }
+            } else {
+                System.out.println("[Failed]");
+                passed = false;
+            }
+
+        }
+
+        return passed;
     }
 }

@@ -4,6 +4,7 @@ import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
 import domain.game.Controller;
 import domain.game.Game;
+import domain.resources.ResourcesController;
 import java.util.ArrayList;
 
 /**
@@ -35,8 +36,14 @@ public class LocationsController extends Controller {
      */
     private final ArrayList<Location> locations = new ArrayList<>();
     
+    private final Game game;
+    
+    private ResourcesController resourcesController;
+    
     public LocationsController(Game game) {
         super(game);
+        
+        this.game = game;
     }
     
     /**
@@ -47,6 +54,10 @@ public class LocationsController extends Controller {
      */
     @Override
     public void init() {
+        this.resourcesController = (ResourcesController)game.getController(new ResourcesController(game));
+        
+        new LocationsElement().init(this);
+        
         createLocations();
 
         // The player starts in their bedroom/Personal
@@ -211,5 +222,14 @@ public class LocationsController extends Controller {
      */
     public Location getCurrentLocation() {
         return this.currentLocation;
+    }
+
+    public ResourcesController getResourcesController() {
+        return this.resourcesController;
+    }
+    
+    @Override
+    public boolean runTest() {
+        return true;
     }
 }

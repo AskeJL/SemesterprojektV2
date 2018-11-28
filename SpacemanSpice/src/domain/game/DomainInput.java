@@ -3,13 +3,18 @@ package domain.game;
 import domain.interactions.Command;
 import domain.interactions.InteractionsController;
 import domain.interactions.InteractionsReader;
+import domain.locations.LocationsController;
+import domain.locations.LocationsReader;
+import domain.resources.ResourcesController;
+import domain.resources.ResourcesReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DomainInput implements InteractionsReader {
-
-    private static Game game;
-    private static InteractionsController interactionsController;
+public class DomainInput implements InteractionsReader, LocationsReader, ResourcesReader {
+    
+    private InteractionsController interactionsController;
+    private LocationsController locationsController;
+    private ResourcesController resourcesController;
     
     private final DomainOutput output = new DomainOutput();
     
@@ -18,15 +23,9 @@ public class DomainInput implements InteractionsReader {
     }
     
     DomainInput(Game game) {
-        DomainInput.game = game;
-    }
-    
-    public void init() {
-        for(Controller c : game.getControllers()) {
-            if(c instanceof InteractionsController) {
-                interactionsController = (InteractionsController) c;
-            }
-        }
+        interactionsController = (InteractionsController)game.getController(new InteractionsController(game));
+        locationsController = (LocationsController)game.getController(new LocationsController(game));
+        resourcesController = (ResourcesController)game.getController(new ResourcesController(game));
     }
 
     @Override
@@ -58,5 +57,35 @@ public class DomainInput implements InteractionsReader {
     @Override
     public String requestOutputText() {
         return output.getOutputText();
+    }
+
+    @Override
+    public String requestCurrentRoom() {
+        return locationsController.getCurrentRoom().getName();
+    }
+
+    @Override
+    public String requestCurrentLocation() {
+        return locationsController.getCurrentLocation().getName();
+    }
+
+    @Override
+    public int requestLifeValue() {
+        return resourcesController.getLifeValue();
+    }
+
+    @Override
+    public int requestOxygenValue() {
+        return resourcesController.getOxygenValue();
+    }
+
+    @Override
+    public long requestWaveTime() {
+        return resourcesController.getWaveTime();
+    }
+
+    @Override
+    public long requestCurrentTime() {
+        return resourcesController.getCurrentTime();
     }
 }

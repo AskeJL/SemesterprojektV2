@@ -4,6 +4,7 @@ import domain.game.Controller;
 import domain.game.DomainOutput;
 import domain.game.Game;
 import domain.interactions.InteractionsController;
+import domain.locations.LocationsController;
 import domain.systems.SystemsController;
 
 /**
@@ -16,21 +17,35 @@ import domain.systems.SystemsController;
  */
 public class ResourcesController extends Controller {
 
+    private final Game game;
+
+    private InteractionsController interactionsController;
+    private LocationsController locationsController;
+
     private final DomainOutput output = new DomainOutput();
+
+    private Time time;
+    private Oxygen oxygen;
+    private Life life;
 
     public ResourcesController(Game game) {
         super(game);
+
+        this.game = game;
     }
-    
+
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
      */
     @Override
     public void init() {
-        Time.init();
-        Time.update();
-        Oxygen.update();
+        locationsController = (LocationsController) game.getController(new LocationsController(game));
+        interactionsController = (InteractionsController) game.getController(new InteractionsController(game));
+
+        this.time = new Time(this);
+        this.oxygen = new Oxygen(this);
+        this.life = new Life(this);
     }
 
     /**
@@ -42,14 +57,15 @@ public class ResourcesController extends Controller {
      */
     @Override
     public void update() {
-        Time.update();
-        Oxygen.update();
-        if (Oxygen.getOxygen() <= 0) {
+        time.update();
+        oxygen.update();
+
+        if (oxygen.getOxygen() <= 0) {
             output.println("You are out of oxygen. Too bad, you are dead..");
             output.println("Score: " + SystemsController.getScore());
         }
-        Life.update();
-        if (Life.getLife() <= 0) {
+        life.update();
+        if (life.getLife() <= 0) {
             output.println("The ship is destroyed. Too bad, you are dead..");
             output.println("Score: " + SystemsController.getScore());
         }
@@ -63,26 +79,26 @@ public class ResourcesController extends Controller {
      * @param hitMediumFragments Amount of medium fragments that hit.
      * @param hitLargeFragments Amount of Large fragments that hit.
      */
-    public static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
-        Life.decreaseLife(hitSmallFragments, hitMediumFragments, hitLargeFragments);
+    public void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+        life.decreaseLife(hitSmallFragments, hitMediumFragments, hitLargeFragments);
     }
 
     /**
      * Increase the {@link Oxygen#oxygen} from {@link Oxygen}. Uses the
      * {@link Oxygen#increaseOxygen(int)} method.
      *
-     * @param oxygen Amount to increase with.
+     * @param oxygenValue Amount to increase with.
      */
-    public static void increaseOxygen(int oxygen) {
-        Oxygen.increaseOxygen(oxygen);
+    public void increaseOxygen(int oxygenValue) {
+        oxygen.increaseOxygen(oxygenValue);
     }
 
-    public static void setRepairTrue() {
-        Life.setRepairTrue();
+    public void setRepairTrue() {
+        life.setRepairTrue();
     }
 
-    public static void setWaveTime(long newWaveTime) {
-        Time.setWaveTime(newWaveTime);
+    public void setWaveTime(long newWaveTime) {
+        time.setWaveTime(newWaveTime);
     }
 
     /**
@@ -90,8 +106,8 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static long getCurrentTime() {
-        return Time.getCurrentTime();
+    public long getCurrentTime() {
+        return time.getCurrentTime();
     }
 
     /**
@@ -99,8 +115,8 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static long getInitTime() {
-        return Time.getInitTime();
+    public long getInitTime() {
+        return time.getInitTime();
     }
 
     /**
@@ -108,8 +124,8 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static int getOxygen() {
-        return Oxygen.getOxygen();
+    public int getOxygenValue() {
+        return oxygen.getOxygen();
     }
 
     /**
@@ -117,8 +133,8 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static int getLife() {
-        return Life.getLife();
+    public int getLifeValue() {
+        return life.getLife();
     }
 
     /**
@@ -126,9 +142,9 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static long getRemainingTime() {
-        if (SystemsController.getPlayerReady() == true) {
-            return Time.getRemainingTime();
+    public long getRemainingTime() {
+        if (SystemsController.getPlayerReady()) {
+            return time.getRemainingTime();
         }
         long nullTime = 0;
         return nullTime;
@@ -139,15 +155,40 @@ public class ResourcesController extends Controller {
      *
      * @return
      */
-    public static long getWaveTime() {
-        return Time.getWaveTime();
+    public long getWaveTime() {
+        return time.getWaveTime();
     }
 
-    public static void setRandTime() {
-        Time.setRandTime();
+    public void setRandomTime() {
+        time.setRandTime();
     }
 
-    public static long getRandTime() {
-        return Time.getRandTime();
+    public long getRandomTime() {
+        return time.getRandTime();
+    }
+
+    InteractionsController getInteractionsController() {
+        return this.interactionsController;
+    }
+
+    LocationsController getLocationsController() {
+        return this.locationsController;
+    }
+
+    Oxygen getOxygen() {
+        return this.oxygen;
+    }
+
+    Time getTime() {
+        return this.time;
+    }
+
+    Life getLife() {
+        return this.life;
+    }
+
+    @Override
+    public boolean runTest() {
+        return true;
     }
 }

@@ -19,6 +19,8 @@ public abstract class Controller {
      */
     public abstract void update();
     
+    public abstract boolean runTest();
+    
     public <T extends Controller> Controller getController(T t) {
         for (Controller c : game.getControllers()) {
             if (t.equals(c)) {

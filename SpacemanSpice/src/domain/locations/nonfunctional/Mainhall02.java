@@ -28,6 +28,6 @@ public final class Mainhall02 extends Location {
     
     @Override
     public String toString(){
-        return "locations.nonfunctional.Mainhall02 : Name[" + this.getNAME() + "] Description [" + this.getDescription() + "]";
+        return "locations.nonfunctional.Mainhall02 : Name[" + this.getName() + "] Description [" + this.getDescription() + "]";
     }
 }

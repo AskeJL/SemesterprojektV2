@@ -3,6 +3,7 @@ package domain.interactions.commands;
 import data.AssetType;
 import data.Data;
 import domain.interactions.Command;
+import domain.interactions.InteractionsController;
 import domain.locations.LocationsController;
 
 /**
@@ -19,8 +20,8 @@ public class Inspect extends Command {
     private final Data dataAccess = new Data();
     private final LocationsController locationsController;
     
-    public Inspect() {
-        super("inspect", "Inspect the room you are in.", false);
+    public Inspect(InteractionsController interactions) {
+        super(interactions, "inspect", "Inspect the room you are in.", false);
         
         locationsController = interactionsController.getLocationsController();
     }
@@ -46,12 +47,17 @@ public class Inspect extends Command {
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Inspect: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Inspect: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
         output.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
+    }
+
+    @Override
+    protected boolean runTest() {
+        return locationsController == null;
     }
 
 }
