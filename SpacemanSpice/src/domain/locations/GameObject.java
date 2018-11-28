@@ -10,7 +10,7 @@ import domain.interactions.InteractionsController;
  * @see GameObjectType
  * @see domain.interactions.commands.Interact
  */
-public abstract class GameObject {
+public abstract class GameObject extends LocationsElement {
 
     /**
      * The name of the GameObject.

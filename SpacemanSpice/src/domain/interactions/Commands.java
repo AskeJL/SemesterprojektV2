@@ -1,6 +1,5 @@
 package domain.interactions;
 
-import domain.game.DomainOutput;
 import domain.interactions.commands.*;
 import domain.locations.LocationsController;
 import java.util.ArrayList;

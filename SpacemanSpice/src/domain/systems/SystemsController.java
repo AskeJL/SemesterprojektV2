@@ -5,6 +5,7 @@ import data.Data;
 import domain.game.Controller;
 import domain.interactions.InteractionsController;
 import domain.resources.ResourcesController;
+import domain.game.Game;
 import java.util.List;
 
 /**
@@ -55,6 +56,10 @@ public class SystemsController extends Controller {
     
     private Data data = new Data();
 
+    public SystemsController(Game game) {
+        super(game);
+    }
+    
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.

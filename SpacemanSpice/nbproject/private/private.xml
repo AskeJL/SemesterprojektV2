@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/ViewManager.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/game/Game.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/game/GameViewController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/systems/SystemsReader.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/presentationUpdate.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/game/gameover/GameOverViewController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/interactions/InteractionsController.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/InteractionsController.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/commands/Help.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/DamageRepair.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/Commands.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/GameObject.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/Parser.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/InteractionsElement.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/Command.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/interactions/commands/Interact.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/LocationsElement.java</file>
+            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/LocationsController.java</file>
         </group>
     </open-files>
 </project-private>

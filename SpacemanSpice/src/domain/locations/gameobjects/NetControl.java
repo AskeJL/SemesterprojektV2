@@ -30,7 +30,7 @@ public class NetControl extends GameObject {
      */
     @Override
     public void interact(InteractionsController controller) {
-        controller.println("Interacting with net control.");
+        output.println("Interacting with net control.");
         domain.systems.SystemsController.setMediumFragmentDestroyed(true);
     }
 

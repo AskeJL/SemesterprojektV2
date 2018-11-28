@@ -12,12 +12,12 @@ import domain.locations.LocationsController;
  * @see domain.locations.GameObjectType
  */
 public class Interact extends Command {
-    
     private final LocationsController locationsController;
     
-    public Interact(LocationsController locations){
+    public Interact(){
         super("interact", "Interact with an object.", false);
-        this.locationsController = locations;
+        
+        locationsController = interactionsController.getLocationsController();
     }
 
     @Override
@@ -31,8 +31,8 @@ public class Interact extends Command {
      */
     @Override
     protected void run() {
-        if (locationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
-            locationsController.getCurrentRoom().getGameObjects().get(0).interact();
+        if (!locationsController.getCurrentRoom().getGameObjects().isEmpty()) {
+            locationsController.getCurrentRoom().getGameObjects().get(0).interact(interactionsController);
         } else {
             output.println("There are nothing to interact with in this room");
         }

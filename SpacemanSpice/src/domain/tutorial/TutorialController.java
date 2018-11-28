@@ -3,6 +3,8 @@ package domain.tutorial;
 import data.AssetType;
 import data.Data;
 import domain.game.Controller;
+import domain.game.DomainOutput;
+import domain.game.Game;
 import domain.interactions.InteractionsController;
 import domain.interactions.commands.Clear;
 import domain.locations.LocationsController;
@@ -16,6 +18,16 @@ import java.util.List;
  */
 public class TutorialController extends Controller {
 
+    private final InteractionsController interactionsController;
+    private final LocationsController locationsController;
+    private final DomainOutput output = new DomainOutput();
+    
+    public TutorialController(Game game) {
+        super(game);
+        interactionsController = (InteractionsController)game.getController(new InteractionsController(game));
+        locationsController = (LocationsController)game.getController(new LocationsController(game));
+    }
+    
     private List<String> introduction,
             aIintro1,
             aIintro2,
@@ -79,107 +91,107 @@ public class TutorialController extends Controller {
 
                     break;
                 case 1:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro1);
-                        InteractionsController.setLastCommand(new Clear());
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro1);
+                        interactionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 2:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro2);
-                        InteractionsController.setLastCommand(new Clear());
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro2);
+                        interactionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 3:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro3);
-                        InteractionsController.setLastCommand(new Clear());
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro3);
+                        interactionsController.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 4:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("map")) {
-                        tutorialData.println(aIintro4);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("show") && interactionsController.getLastParameter().equals("map")) {
+                        println(aIintro4);
                         counter++;
                     }
                     break;
                 case 5:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro5);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro5);
                         counter++;
                     }
                     break;
                 case 6:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Scanning Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro6);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Scanning Control") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro6);
                         counter++;
                     }
                     break;
                 case 7:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro7);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro7);
                         counter++;
                     }
                     break;
                 case 8:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro8);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro8);
                         counter++;
                     }
                     break;
                 case 9:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro9);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro9);
                         counter++;
                     }
                     break;
                 case 10:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro10);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro10);
                         counter++;
                     }
                     break;
                 case 11:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro11);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro11);
                         counter++;
                     }
                     break;
                 case 12:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro12);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro12);
                         counter++;
                     }
                     break;
                 case 13:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro13);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro13);
                         counter++;
                     }
                     break;
                 case 14:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Outside") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro14);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Outside") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro14);
                         counter++;
                     }
                     break;
                 case 15:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("show") && InteractionsController.getLastParameter().equals("oxygen")) {
-                        tutorialData.println(aIintro15);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("show") && interactionsController.getLastParameter().equals("oxygen")) {
+                        println(aIintro15);
                         counter++;
                     }
                     break;
                 case 16:
-                    if (LocationsController.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && InteractionsController.getLastCommandName().equalsIgnoreCase("interact")) {
-                        tutorialData.println(aIintro16);
+                    if (locationsController.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && interactionsController.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro16);
                         counter++;
                     }
                     break;
                 case 17:
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
-                        tutorialData.println(aIintro17);
+                    if (interactionsController.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro17);
                         counter++;
                         setTutorial(false);
                     }
@@ -208,7 +220,7 @@ public class TutorialController extends Controller {
      */
     void println(List<String> text) {
         for (String string : text) {
-            InteractionsController.println(string);
+            output.println(string);
         }
     }
     

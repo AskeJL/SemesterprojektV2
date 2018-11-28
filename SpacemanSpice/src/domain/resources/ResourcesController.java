@@ -2,6 +2,7 @@ package domain.resources;
 
 import domain.game.Controller;
 import domain.game.DomainOutput;
+import domain.game.Game;
 import domain.interactions.InteractionsController;
 import domain.systems.SystemsController;
 
@@ -15,7 +16,12 @@ import domain.systems.SystemsController;
  */
 public class ResourcesController extends Controller {
 
-    private DomainOutput output = new DomainOutput();
+    private final DomainOutput output = new DomainOutput();
+
+    public ResourcesController(Game game) {
+        super(game);
+    }
+    
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
@@ -39,13 +45,13 @@ public class ResourcesController extends Controller {
         Time.update();
         Oxygen.update();
         if (Oxygen.getOxygen() <= 0) {
-            InteractionsController.println("You are out of oxygen. Too bad, you are dead..");
-            InteractionsController.println("Score: " + SystemsController.getScore());
+            output.println("You are out of oxygen. Too bad, you are dead..");
+            output.println("Score: " + SystemsController.getScore());
         }
         Life.update();
         if (Life.getLife() <= 0) {
-            InteractionsController.println("The ship is destroyed. Too bad, you are dead..");
-            InteractionsController.println("Score: " + SystemsController.getScore());
+            output.println("The ship is destroyed. Too bad, you are dead..");
+            output.println("Score: " + SystemsController.getScore());
         }
     }
 
@@ -121,8 +127,8 @@ public class ResourcesController extends Controller {
      * @return
      */
     public static long getRemainingTime() {
-        if(SystemsController.getPlayerReady() == true){
-        return Time.getRemainingTime();
+        if (SystemsController.getPlayerReady() == true) {
+            return Time.getRemainingTime();
         }
         long nullTime = 0;
         return nullTime;
@@ -136,12 +142,12 @@ public class ResourcesController extends Controller {
     public static long getWaveTime() {
         return Time.getWaveTime();
     }
-    
-    public static void setRandTime(){
+
+    public static void setRandTime() {
         Time.setRandTime();
     }
-    
-    public static long getRandTime(){
+
+    public static long getRandTime() {
         return Time.getRandTime();
     }
-}    
+}

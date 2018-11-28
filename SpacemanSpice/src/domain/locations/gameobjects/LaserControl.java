@@ -30,7 +30,7 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact(InteractionsController controller) {
-        controller.println("Interacting with laser control");
+        output.println("Interacting with laser control");
         domain.systems.SystemsController.setSmallFragmentDestroyed(true);
 
     }

@@ -16,8 +16,9 @@ import domain.systems.SystemsController;
  * {@link data.write.DataWriter} interface.
  */
 public class Show extends Command {
-
+    
     private final Data dataAccess = new Data();
+    private final LocationsController locationsController;
     
     public Show() {
         super("show", "Shows a resource to the player.", true);
@@ -27,6 +28,8 @@ public class Show extends Command {
         super.addParameter("life");
         super.addParameter("map");
         super.addParameter("score");
+        
+        locationsController = interactionsController.getLocationsController();
     }
 
     /**
@@ -58,7 +61,7 @@ public class Show extends Command {
                 output.println("Life: " + ResourcesController.getLife());
             case "map":
                 String data = "";
-                for (String string : dataAccess.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
+                for (String string : dataAccess.requestData(AssetType.MAP, locationsController.getCurrentRoom().getName() + ".txt")) {
                     data += string;
                 }
                 output.println(data);

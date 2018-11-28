@@ -15,6 +15,8 @@ import domain.systems.SystemsController;
  */
 public class Help extends Command {
 
+    private final LocationsController locationsController;
+    
     public Help() {
         super("help", "Display the help list.", true);
 
@@ -24,6 +26,8 @@ public class Help extends Command {
         super.addParameter("quit");
         super.addParameter("clear");
         super.addParameter("start");
+        
+        locationsController = interactionsController.getLocationsController();
     }
 
     /**
@@ -70,21 +74,21 @@ public class Help extends Command {
     @Override
     public void showAvailableParameters() {
         output.println("Current room:");
-        output.println(String.format("%10s %s", "", LocationsController.getCurrentLocation().getNAME() + "/" + LocationsController.getCurrentRoom().getName()));
+        output.println(String.format("%10s %s", "", locationsController.getCurrentLocation().getNAME() + "/" + locationsController.getCurrentRoom().getName()));
 
         output.println("You can go:");
-        for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
+        for (Exit exit : locationsController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(locationsController.getCurrentRoom().getName())) {
                 output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getNAME()));
             }
         }
-        for (Exit exit : LocationsController.getCurrentRoom().getExits()) {
+        for (Exit exit : locationsController.getCurrentRoom().getExits()) {
             output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
         }
 
-        if (!LocationsController.getCurrentRoom().getGameObjects().isEmpty()) {
+        if (!locationsController.getCurrentRoom().getGameObjects().isEmpty()) {
             output.println("You can interact with:");
-            output.println(String.format("%10s %s", "", LocationsController.getCurrentRoom().getGameObjects().get(0).getName()));
+            output.println(String.format("%10s %s", "", locationsController.getCurrentRoom().getGameObjects().get(0).getName()));
         }
 
         output.println("Available commands: ");

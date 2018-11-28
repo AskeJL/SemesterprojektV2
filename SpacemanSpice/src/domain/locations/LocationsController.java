@@ -3,6 +3,7 @@ package domain.locations;
 import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
 import domain.game.Controller;
+import domain.game.Game;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +34,11 @@ public class LocationsController extends Controller {
      * All the {@link Location}s.
      */
     private final ArrayList<Location> locations = new ArrayList<>();
-
+    
+    public LocationsController(Game game) {
+        super(game);
+    }
+    
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
      * needed classes.
@@ -169,7 +174,7 @@ public class LocationsController extends Controller {
      * @return
      */
     public ArrayList<Location> getLocations() {
-        return LocationsController.locations;
+        return this.locations;
     }
 
     /**
@@ -178,7 +183,7 @@ public class LocationsController extends Controller {
      * @param room Room to set.
      */
     public void setCurrentRoom(Room room) {
-        LocationsController.currentRoom = room;
+        this.currentRoom = room;
     }
 
     /**
@@ -187,7 +192,7 @@ public class LocationsController extends Controller {
      * @param location Location to set.
      */
     public void setCurrentLocation(Location location) {
-        LocationsController.currentLocation = location;
+        this.currentLocation = location;
     }
 
     /**
@@ -196,7 +201,7 @@ public class LocationsController extends Controller {
      * @return
      */
     public Room getCurrentRoom() {
-        return LocationsController.currentRoom;
+        return this.currentRoom;
     }
 
     /**
@@ -205,6 +210,6 @@ public class LocationsController extends Controller {
      * @return
      */
     public Location getCurrentLocation() {
-        return LocationsController.currentLocation;
+        return this.currentLocation;
     }
 }

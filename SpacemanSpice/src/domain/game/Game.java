@@ -29,14 +29,14 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        controllers.add(new TutorialController());
-        controllers.add(new LocationsController());
-        controllers.add(new ResourcesController());
-        controllers.add(new InteractionsController());
-        controllers.add(new SystemsController());
+        controllers.add(new TutorialController(this));
+        controllers.add(new LocationsController(this));
+        controllers.add(new ResourcesController(this));
+        controllers.add(new InteractionsController(this));
+        controllers.add(new SystemsController(this));
 
         initialize();
-        loop();
+        //loop();
     }
 
     /**
@@ -69,7 +69,7 @@ public class Game extends Application {
 
     public <T extends Controller> Controller getController(T t) {
         for (Controller c : controllers) {
-            if (t.equals(c)) {
+            if (c.getClass().getCanonicalName().equals(t.getClass().getCanonicalName())) {
                 return c;
             }
         }

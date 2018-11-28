@@ -28,7 +28,7 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact(InteractionsController controller) {
-        controller.println("You begin reparing the ship");
+        output.println("You begin reparing the ship");
         
         ResourcesController.setRepairTrue();
     }

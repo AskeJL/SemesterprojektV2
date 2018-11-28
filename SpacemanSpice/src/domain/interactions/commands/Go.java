@@ -12,7 +12,8 @@ import java.util.List;
  * @author sbang
  */
 public class Go extends Command {
-
+    private final LocationsController locationsController;
+    
     /**
      * The current exits based on the
      * {@link domain.locations.LocationsController#getCurrentRoom() current room}.
@@ -26,16 +27,18 @@ public class Go extends Command {
         super.addParameter("west");
         super.addParameter("east");
         super.addParameter("south");
+        
+        locationsController = interactionsController.getLocationsController();
     }
 
     @Override
     public void checkAvailableParameters() {
         CURRENT_EXITS.clear();
-        ArrayList<Exit> roomExits = LocationsController.getCurrentRoom().getExits();
+        ArrayList<Exit> roomExits = locationsController.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for (Exit exit : LocationsController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(LocationsController.getCurrentRoom().getName())) {
+        for (Exit exit : locationsController.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(locationsController.getCurrentRoom().getName())) {
                 parameters.add(exit.getDirection().name().toLowerCase());
                 CURRENT_EXITS.add(exit);
             }
@@ -64,13 +67,13 @@ public class Go extends Command {
         }
 
         if (exitTo != null && exitTo.isEXIT_TO_LOCATION()) {
-            LocationsController.setCurrentLocation(exitTo.getToLocation());
-            LocationsController.setCurrentRoom(exitTo.getToRoom());
+            locationsController.setCurrentLocation(exitTo.getToLocation());
+            locationsController.setCurrentRoom(exitTo.getToRoom());
         } else if (exitTo != null) {
-            LocationsController.setCurrentRoom(exitTo.getFromRoom());
+            locationsController.setCurrentRoom(exitTo.getFromRoom());
         }
 
-        output.println("Current room: " + LocationsController.getCurrentRoom().getName());
+        output.println("Current room: " + locationsController.getCurrentRoom().getName());
     }
 
     @Override

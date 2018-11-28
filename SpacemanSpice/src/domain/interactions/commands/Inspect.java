@@ -17,9 +17,12 @@ import domain.locations.LocationsController;
 public class Inspect extends Command {
 
     private final Data dataAccess = new Data();
+    private final LocationsController locationsController;
     
     public Inspect() {
         super("inspect", "Inspect the room you are in.", false);
+        
+        locationsController = interactionsController.getLocationsController();
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Inspect extends Command {
     @Override
     protected void run() {
         String data = "";
-        for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, LocationsController.getCurrentRoom().getName() + ".txt")) {
+        for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, locationsController.getCurrentRoom().getName() + ".txt")) {
             data += string;
         }
         output.println(data);

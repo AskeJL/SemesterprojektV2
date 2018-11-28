@@ -1,6 +1,8 @@
 package domain.interactions;
 
 import domain.game.Controller;
+import domain.game.Game;
+import domain.locations.LocationsController;
 import java.util.List;
 
 /**
@@ -13,11 +15,15 @@ import java.util.List;
  */
 public class InteractionsController extends Controller {
     
+    private final LocationsController locationsController;
+    
     private final Commands commands = new Commands(this);
     private final Parser parser = new Parser(this);
     
-    public InteractionsController() {
+    public InteractionsController(Game game) {
+        super(game);
         
+        locationsController = (LocationsController)game.getController(new LocationsController(game));
     }
     
     /**
@@ -99,5 +105,9 @@ public class InteractionsController extends Controller {
      */
     public String getLastParameter() {
         return commands.getLastParameter();
+    }
+    
+    public LocationsController getLocationsController() {
+        return this.locationsController;
     }
 }

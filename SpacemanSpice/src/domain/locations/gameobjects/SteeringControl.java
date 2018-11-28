@@ -31,10 +31,10 @@ public class SteeringControl extends GameObject {
      */
     @Override
     public void interact(InteractionsController controller) {
-        controller.println("Interacting with the steering controls.");
+        output.println("Interacting with the steering controls.");
         if (SystemsController.getLargeFragments() != 0) {
             domain.systems.SystemsController.setLargeFragmentDestroyed(true);
-            controller.println("You have moved the ship out of danger");
+            output.println("You have moved the ship out of danger");
         }
     }
 
