@@ -4,7 +4,6 @@ import data.AssetType;
 import data.read.DataReader;
 import java.util.HashMap;
 import java.util.List;
-import javafx.scene.input.KeyEvent;
 import presentation.player.*;
 import presentation.tiles.*;
 
@@ -37,7 +36,7 @@ public class DrawController implements DataReader {
         tileMap.put(eastExit.getSYMBOL(), eastExit);
         tileMap.put(nothing.getSYMBOL(), nothing);
 
-        List<String> map = interfaces.requestData(AssetType.MAP, "testMap.txt");
+        List<String> map = interfaces.requestData(AssetType.MAP, "hallway02Map.txt");
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
