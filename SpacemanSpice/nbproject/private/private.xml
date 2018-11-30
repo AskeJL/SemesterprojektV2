@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/ViewManager.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/game/Game.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/AssetType.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/read/Read.java</file>
             <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/game/GameViewController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/systems/SystemsReader.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/presentationUpdate.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/game/Game.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/write/DataWriter.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/write/Write.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/PresentationRequest.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/read/ReadController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/write/WriteController.java</file>
             <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/game/gameover/GameOverViewController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/interactions/InteractionsController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/data/read/DataReader.java</file>
         </group>
     </open-files>
 </project-private>
