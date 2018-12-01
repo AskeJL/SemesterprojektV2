@@ -14,18 +14,22 @@ public class Tile {
     private int tileLocationYAxis;
     private Color tileColor;
     private final char SYMBOL;
+    private Boolean solid; 
+   
     
     /**
      * 
      * @param type
      * @param color
      * @param symbol 
+     * @param isSolid 
      */
-    public Tile(TileType type, Color color, char symbol){
+    public Tile(TileType type, Color color, char symbol, Boolean isSolid){
         
         this.tileType = type;
         this.tileColor = color;
         this.SYMBOL = symbol;
+        this.solid = isSolid;
         
     }
     
@@ -89,5 +93,12 @@ public class Tile {
      */
     public char getSYMBOL() {
         return SYMBOL;
+    }
+
+    /**
+     * @return the solid
+     */
+    public Boolean getSolid() {
+        return solid;
     }
 }

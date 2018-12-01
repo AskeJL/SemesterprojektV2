@@ -17,14 +17,14 @@ public class TileController {
     private Tile nothing;
     
     public TileController(){
-        this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.');
-        this.wall = new Tile(TileType.WALL, Color.BROWN, '+');
-        this.console = new Tile(TileType.CONSOLE, Color.RED, '-');
-        this.northExit = new Tile(TileType.NORTH_EXIT, Color.DARKCYAN, 'N');
-        this.westExit = new Tile(TileType.WEST_EXIT, Color.GREEN, 'W');
-        this.southExit = new Tile(TileType.SOUTH_EXIT, Color.GREY, 'S');
-        this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E');
-        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, ' ');
+        this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.', false);
+        this.wall = new Tile(TileType.WALL, Color.BROWN, '+', true);
+        this.console = new Tile(TileType.CONSOLE, Color.RED, '-', true);
+        this.northExit = new Tile(TileType.NORTH_EXIT, Color.DARKCYAN, 'N', true);
+        this.westExit = new Tile(TileType.WEST_EXIT, Color.GREEN, 'W', true);
+        this.southExit = new Tile(TileType.SOUTH_EXIT, Color.GREY, 'S', true);
+        this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E',true);
+        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, ' ',true);
         
         tileMap.put(floor.getSYMBOL(), floor);
         tileMap.put(wall.getSYMBOL(), wall);

@@ -9,7 +9,7 @@ import javafx.scene.input.KeyEvent;
 import presentation.player.*;
 import presentation.tiles.*;
 
-public class DrawController implements DataReader{
+public class DrawController implements DataReader {
 
     private static DrawController interfaces = new DrawController();
     private static char[][] characters;
@@ -21,9 +21,9 @@ public class DrawController implements DataReader{
     private static String textMapLocation;
     private static int xTiles;
     private static int yTiles;
-    
+
     private static int tileSize;
-    
+
     private static Player player = new Player();
     private static int playerXLocation;
     private static int playerYLocation;
@@ -32,24 +32,24 @@ public class DrawController implements DataReader{
 
         TileController tileController = new TileController();
         LocationController locationController = new LocationController();
-        
+
         currentLocationName = "Personal";
         locationMap = locationController.getLocationMap();
         currentMapLocation = locationMap.get(currentLocationName);
-        
+
         currentTileMap = tileController.getTileMap();
         textMapLocation = currentMapLocation.getTextMapFileLocation();
-        
+
         tileSize = currentMapLocation.getTILE_SIZE();
         xTiles = currentMapLocation.getNUMBER_OF_TILES_X_AXIS();
         yTiles = currentMapLocation.getNUMBER_OF_TILES_Y_AXIS();
-        
+
         playerXLocation = player.getPlayerLocationXAxis() + 5;
         playerYLocation = player.getPlayerLocationYAxis() + 5;
     }
-    
-    public static void drawLocation(){
-        
+
+    public static void drawLocation() {
+
         List<String> map = interfaces.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
@@ -58,74 +58,81 @@ public class DrawController implements DataReader{
             }
         }
     }
-    
-    public static void drawPlayer(){
-        
+
+    public static void drawPlayer() {
+
         player.drawPlayer(playerXLocation * tileSize, playerYLocation * tileSize);
     }
-    
-    public static void goNorthLocation(){
+
+    public static void goNorthLocation() {
         String newDirection = currentMapLocation.getNorthExitString();
-       if(newDirection != null){
-        currentMapLocation = locationMap.get(newDirection);
-        textMapLocation = currentMapLocation.getTextMapFileLocation();
-        DrawController.drawLocation();
+        if (newDirection != null) {
+            currentMapLocation = locationMap.get(newDirection);
+            textMapLocation = currentMapLocation.getTextMapFileLocation();
+            DrawController.drawLocation();
         }
     }
-    
-    public static void goWestLocation(){
+
+    public static void goWestLocation() {
         String newDirection = currentMapLocation.getWestExitString();
-        if(newDirection != null){
-        currentMapLocation = locationMap.get(newDirection);
-        textMapLocation = currentMapLocation.getTextMapFileLocation();
-        DrawController.drawLocation();
+        if (newDirection != null) {
+            currentMapLocation = locationMap.get(newDirection);
+            textMapLocation = currentMapLocation.getTextMapFileLocation();
+            DrawController.drawLocation();
         }
     }
-    
-    public static void goSouthLocation(){
+
+    public static void goSouthLocation() {
         String newDirection = currentMapLocation.getSouthExitString();
-        if(newDirection != null){
-        currentMapLocation = locationMap.get(newDirection);
-        textMapLocation = currentMapLocation.getTextMapFileLocation();
-        DrawController.drawLocation();
+        if (newDirection != null) {
+            currentMapLocation = locationMap.get(newDirection);
+            textMapLocation = currentMapLocation.getTextMapFileLocation();
+            DrawController.drawLocation();
         }
         DrawController.drawLocation();
     }
-    
-    public static void goEastLocation(){
+
+    public static void goEastLocation() {
         String newDirection = currentMapLocation.getEastExitString();
-        if(newDirection != null){
-        currentMapLocation = locationMap.get(newDirection);
-        textMapLocation = currentMapLocation.getTextMapFileLocation();
-        DrawController.drawLocation();
+        if (newDirection != null) {
+            currentMapLocation = locationMap.get(newDirection);
+            textMapLocation = currentMapLocation.getTextMapFileLocation();
+            DrawController.drawLocation();
         }
         DrawController.drawLocation();
     }
-    
-    
-    
-    public static void movePlayerUP(){
-        playerYLocation -= 1;
-        DrawController.drawLocation();
-        DrawController.drawPlayer();
+
+    public static void movePlayerUP() {
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation - 1]).getSolid() == false) {
+            playerYLocation -= 1;
+            DrawController.drawLocation();
+            DrawController.drawPlayer();
+        }
+
     }
-    
-    public static void movePlayerLeft(){
-        playerXLocation -= 1;
-        DrawController.drawLocation();
-        DrawController.drawPlayer();
+
+    public static void movePlayerLeft() {
+        if (currentTileMap.get(characters[playerXLocation - 1][playerYLocation]).getSolid() == false) {
+            playerXLocation -= 1;
+            DrawController.drawLocation();
+            DrawController.drawPlayer();
+        }
     }
-    
-    public static void movePlayerDown(){
-        playerYLocation += 1;
-        DrawController.drawLocation();
-        DrawController.drawPlayer();
+
+    public static void movePlayerDown() {
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation + 1]).getSolid() == false) {
+            playerYLocation += 1;
+            DrawController.drawLocation();
+            DrawController.drawPlayer();
+        }
     }
-    
-    public static void movePlayerRight(){
-        playerXLocation += 1;
-        DrawController.drawLocation();
-        DrawController.drawPlayer();
+
+    public static void movePlayerRight() {
+        if (currentTileMap.get(characters[playerXLocation + 1][playerYLocation]).getSolid() == false) {
+            playerXLocation += 1;
+            DrawController.drawLocation();
+            DrawController.drawPlayer();
+        }
     }
 
     /**
