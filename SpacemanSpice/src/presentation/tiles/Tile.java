@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import presentation.game.GameViewController;
 
-public abstract class Tile {
+public class Tile {
 
     private final int TILE_WIDTH = 32;
     private final int TILE_HEIGHT = 32;
@@ -13,6 +13,23 @@ public abstract class Tile {
     private int tileLocationXAxis;
     private int tileLocationYAxis;
     private Color tileColor;
+    private final char SYMBOL;
+    
+    /**
+     * 
+     * @param type
+     * @param color
+     * @param symbol 
+     */
+    public Tile(TileType type, Color color, char symbol){
+        
+        this.tileType = type;
+        this.tileColor = color;
+        this.SYMBOL = symbol;
+        
+    }
+    
+    
     
 
     public void drawTile(int xAxis, int yAxis) {
@@ -65,5 +82,12 @@ public abstract class Tile {
 
     public void setTileColor(Color tileColor) {
         this.tileColor = tileColor;
+    }
+
+    /**
+     * @return the SYMBOL
+     */
+    public char getSYMBOL() {
+        return SYMBOL;
     }
 }

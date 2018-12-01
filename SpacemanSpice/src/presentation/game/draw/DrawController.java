@@ -4,52 +4,130 @@ import data.AssetType;
 import data.read.DataReader;
 import java.util.HashMap;
 import java.util.List;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 import presentation.player.*;
 import presentation.tiles.*;
 
-public class DrawController implements DataReader {
+public class DrawController implements DataReader{
+
     private static DrawController interfaces = new DrawController();
     private static char[][] characters;
 
+    private static String currentLocationName;
+    private static HashMap<String, Location> locationMap;
+    private static Location currentMapLocation;
+    private static HashMap<Character, Tile> currentTileMap;
+    private static String textMapLocation;
+    private static int xTiles;
+    private static int yTiles;
+    
+    private static int tileSize;
+    
+    private static Player player = new Player();
+    private static int playerXLocation;
+    private static int playerYLocation;
+
     public static void setup() {
-        final int TILE_SIZE = 32;
-        final int xTiles = 28;
-        final int yTiles = 16;
-        
-        FloorTile floor = new FloorTile();
-        WallTile wall = new WallTile();
-        ConsoleTile console = new ConsoleTile();
-        NorthExitTile northExit = new NorthExitTile();
-        SouthExitTile southExit = new SouthExitTile();
-        WestExitTile westExit = new WestExitTile();
-        EastExitTile eastExit = new EastExitTile();
-        NothingTile nothing = new NothingTile();
-        
 
-        HashMap<Character, Tile> tileMap = new HashMap<>();
-        tileMap.put(floor.getSYMBOL(), floor);
-        tileMap.put(wall.getSYMBOL(), wall);
-        tileMap.put(console.getSYMBOL(), console);
-        tileMap.put(northExit.getSYMBOL(), northExit);
-        tileMap.put(southExit.getSYMBOL(), southExit);
-        tileMap.put(westExit.getSYMBOL(), westExit);
-        tileMap.put(eastExit.getSYMBOL(), eastExit);
-        tileMap.put(nothing.getSYMBOL(), nothing);
-
-        List<String> map = interfaces.requestData(AssetType.MAP, "hallway02Map.txt");
+        TileController tileController = new TileController();
+        LocationController locationController = new LocationController();
+        
+        currentLocationName = "Personal";
+        locationMap = locationController.getLocationMap();
+        currentMapLocation = locationMap.get(currentLocationName);
+        
+        currentTileMap = tileController.getTileMap();
+        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        
+        tileSize = currentMapLocation.getTILE_SIZE();
+        xTiles = currentMapLocation.getNUMBER_OF_TILES_X_AXIS();
+        yTiles = currentMapLocation.getNUMBER_OF_TILES_Y_AXIS();
+        
+        playerXLocation = player.getPlayerLocationXAxis() + 5;
+        playerYLocation = player.getPlayerLocationYAxis() + 5;
+    }
+    
+    public static void drawLocation(){
+        
+        List<String> map = interfaces.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                tileMap.get(characters[x][y]).drawTile((x * TILE_SIZE), (y * TILE_SIZE));
+                currentTileMap.get(characters[x][y]).drawTile((x * tileSize), (y * tileSize));
             }
         }
+    }
+    
+    public static void drawPlayer(){
         
-        Player player = new Player();
-        final int startLocationXAxis = 5;
-        final int startLocationYAxis = 5;
-        player.drawPlayer(startLocationYAxis*TILE_SIZE, startLocationXAxis*TILE_SIZE);
-       }
-        
+        player.drawPlayer(playerXLocation * tileSize, playerYLocation * tileSize);
+    }
+    
+    public static void goNorthLocation(){
+        String newDirection = currentMapLocation.getNorthExitString();
+       if(newDirection != null){
+        currentMapLocation = locationMap.get(newDirection);
+        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        DrawController.drawLocation();
+        }
+    }
+    
+    public static void goWestLocation(){
+        String newDirection = currentMapLocation.getWestExitString();
+        if(newDirection != null){
+        currentMapLocation = locationMap.get(newDirection);
+        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        DrawController.drawLocation();
+        }
+    }
+    
+    public static void goSouthLocation(){
+        String newDirection = currentMapLocation.getSouthExitString();
+        if(newDirection != null){
+        currentMapLocation = locationMap.get(newDirection);
+        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        DrawController.drawLocation();
+        }
+        DrawController.drawLocation();
+    }
+    
+    public static void goEastLocation(){
+        String newDirection = currentMapLocation.getEastExitString();
+        if(newDirection != null){
+        currentMapLocation = locationMap.get(newDirection);
+        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        DrawController.drawLocation();
+        }
+        DrawController.drawLocation();
+    }
+    
+    
+    
+    public static void movePlayerUP(){
+        playerYLocation -= 1;
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
+    }
+    
+    public static void movePlayerLeft(){
+        playerXLocation -= 1;
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
+    }
+    
+    public static void movePlayerDown(){
+        playerYLocation += 1;
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
+    }
+    
+    public static void movePlayerRight(){
+        playerXLocation += 1;
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
+    }
+
     /**
      * Converts a string array to a two dimensional char array. First index
      * being the line number, and the second index being that lines char index.
@@ -58,7 +136,7 @@ public class DrawController implements DataReader {
      * @return the char[][] array with all the characters.
      */
     public static char[][] convertToCharArray(List<String> list, int xTiles, int yTiles) {
-        
+
         char[][] charArray = new char[xTiles][yTiles];
         for (int i = 0; i < xTiles; i++) {
             for (int j = 0; j < yTiles; j++) {
@@ -67,4 +145,5 @@ public class DrawController implements DataReader {
         }
         return charArray;
     }
+
 }

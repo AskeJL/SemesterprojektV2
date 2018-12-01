@@ -8,13 +8,10 @@ package presentation.game;
 import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
-import java.awt.Event;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -25,7 +22,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import presentation.game.draw.DrawController;
 import presentation.ViewManager;
 
@@ -76,18 +72,17 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @FXML
     private TextArea infoText;
-    
+
     @FXML
     private Label waveLabel;
     @FXML
     private Label timeLabel;
-    
+
     private static String lastOutput = "";
 
     private ArrayList<String> consoleText = new ArrayList<>();
     private static GraphicsContext gc;
     private static GameViewController interfaces = new GameViewController();
-    
 
     /**
      * Initializes the controller class.
@@ -110,12 +105,15 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         interfaces.infoText = infoText;
 
         gc = canvasMap.getGraphicsContext2D();
+
         DrawController.setup();
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
     }
 
     public static void update() {
         interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
-        if(interfaces.readLife()== 0){
+        if (interfaces.readLife() == 0) {
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -125,7 +123,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             }
         }
         interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
-        if(interfaces.readOxygen()== 0){
+        if (interfaces.readOxygen() == 0) {
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -153,25 +151,42 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      * @param event
      */
     @FXML
-    private void enterPressedHandler(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            if (inputText.getText().equals("")) {
-                return;
+    private void keyPressedHandler(KeyEvent event) {
+        if(event.getCode() == KeyCode.UP) {
+                //DrawController.goNorthLocation();
+                DrawController.movePlayerUP();
             }
+        if(event.getCode() == KeyCode.LEFT){
+                //DrawController.goWestLocation();
+                DrawController.movePlayerLeft();
+            }
+        if(event.getCode() == KeyCode.DOWN){
+                //DrawController.goSouthLocation();
+                DrawController.movePlayerDown();
+            }
+        if(event.getCode() == KeyCode.RIGHT){
+                //DrawController.goEastLocation();
+                DrawController.movePlayerRight();
+            }
+        if(event.getCode() == KeyCode.ENTER){
+                if (inputText.getText().equals("")) {
+                    return;
+                }
 
-            consoleText.add(inputText.getText());
-            outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(10000);
+                consoleText.add(inputText.getText());
+                outputText.setText(textToString(consoleText));
+                outputText.setScrollTop(10000);
 
-            String commandOutput = interfaces.requestRunCommand(inputText.getText());
-            infoText.setText(commandOutput);
-            infoText.setScrollTop(10000);
-            infoText.positionCaret(commandOutput.length());
-            lastOutput = commandOutput;
+                String commandOutput = interfaces.requestRunCommand(inputText.getText());
+                infoText.setText(commandOutput);
+                infoText.setScrollTop(10000);
+                infoText.positionCaret(commandOutput.length());
+                lastOutput = commandOutput;
 
-            inputText.setText("");
-        }
+                inputText.setText("");
+            }
     }
+    
 
     /**
      * Method that takes text as input and returns it as String.
