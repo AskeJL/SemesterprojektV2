@@ -21,7 +21,7 @@ public class Location {
     private String textMapFileLocation;
 
     /**
-     * 
+     * Location constructor
      * @param locationText
      * @param nExit
      * @param wExit

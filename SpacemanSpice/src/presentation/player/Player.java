@@ -5,6 +5,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import presentation.game.GameViewController;
 
+/**
+ * Player class with following attributes:
+ * Size: width, height
+ * Color: inner color, outer color
+ * Location, x axis, y axis
+ * 
+ */
 public class Player {
     
     private final int TILE_WIDTH = 32;
@@ -21,6 +28,11 @@ public class Player {
         
     }
     
+    /**
+     * Method that draws the player on the canvas, based on its location on the x/y axis.
+     * @param xAxis
+     * @param yAxis 
+     */
     public void drawPlayer(int xAxis, int yAxis){
         this.setPlayerLocationXAxis(xAxis);
         this.setPlayerLocationYAxis(yAxis);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation.game;
 
 import domain.interactions.InteractionsRequest;
@@ -26,9 +21,8 @@ import presentation.game.draw.DrawController;
 import presentation.ViewManager;
 
 /**
- * FXML Controller class
- *
- * @author Nikos
+ * FXML Controller class of the game view
+ * 
  */
 public class GameViewController implements Initializable, ResourcesReader, SystemsReader, InteractionsRequest {
 
@@ -111,6 +105,14 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         DrawController.drawPlayer();
     }
 
+    /**
+     * Function that updates the following elements on the gameView:
+     * progress bar: life
+     * progress bar: oxygen
+     * label: wave number
+     * label: wave time
+     * text: information text
+     */
     public static void update() {
         interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
         if (interfaces.readLife() == 0) {
@@ -146,47 +148,47 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     }
 
     /**
-     * When enter is pressed, handle inputText and outputText.
+     * When key is pressed, handle the following:
+     * Player movement 
+     * Player interaction
+     * inputText and outputText.
      *
-     * @param event
+     * @param event, where event is the user input to be handled.
      */
     @FXML
     private void keyPressedHandler(KeyEvent event) {
-        if(event.getCode() == KeyCode.UP) {
-                //DrawController.goNorthLocation();
-                DrawController.movePlayerUP();
+        if (event.getCode() == KeyCode.SPACE) {
+            DrawController.interact();
+        }
+        if (event.getCode() == KeyCode.UP) {
+            DrawController.movePlayerUP();
+        }
+        if (event.getCode() == KeyCode.LEFT) {
+            DrawController.movePlayerLeft();
+        }
+        if (event.getCode() == KeyCode.DOWN) {
+            DrawController.movePlayerDown();
+        }
+        if (event.getCode() == KeyCode.RIGHT) {
+            DrawController.movePlayerRight();
+        }
+        if (event.getCode() == KeyCode.ENTER) {
+            if (inputText.getText().equals("")) {
+                return;
             }
-        if(event.getCode() == KeyCode.LEFT){
-                //DrawController.goWestLocation();
-                DrawController.movePlayerLeft();
-            }
-        if(event.getCode() == KeyCode.DOWN){
-                //DrawController.goSouthLocation();
-                DrawController.movePlayerDown();
-            }
-        if(event.getCode() == KeyCode.RIGHT){
-                //DrawController.goEastLocation();
-                DrawController.movePlayerRight();
-            }
-        if(event.getCode() == KeyCode.ENTER){
-                if (inputText.getText().equals("")) {
-                    return;
-                }
+            consoleText.add(inputText.getText());
+            outputText.setText(textToString(consoleText));
+            outputText.setScrollTop(10000);
 
-                consoleText.add(inputText.getText());
-                outputText.setText(textToString(consoleText));
-                outputText.setScrollTop(10000);
+            String commandOutput = interfaces.requestRunCommand(inputText.getText());
+            infoText.setText(commandOutput);
+            infoText.setScrollTop(10000);
+            infoText.positionCaret(commandOutput.length());
+            lastOutput = commandOutput;
 
-                String commandOutput = interfaces.requestRunCommand(inputText.getText());
-                infoText.setText(commandOutput);
-                infoText.setScrollTop(10000);
-                infoText.positionCaret(commandOutput.length());
-                lastOutput = commandOutput;
-
-                inputText.setText("");
-            }
+            inputText.setText("");
+        }
     }
-    
 
     /**
      * Method that takes text as input and returns it as String.

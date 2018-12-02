@@ -1,12 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation.tiles;
 
 import java.util.HashMap;
 
+/**
+ * Location controller class, 
+ * sets up various locations and categorizes them in a Map.
+ * 
+ */
 public class LocationController{
     
     private Location personal;
