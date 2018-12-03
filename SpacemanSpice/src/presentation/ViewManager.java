@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentation.game.GameViewController;
+import presentation.game.draw.DrawController;
 import presentation.menu.MenuViewController;
 
 /**
@@ -52,6 +53,7 @@ public class ViewManager {
         currentScene.getStylesheets().add("presentation/game/GameViewStyleSheet.css");
         currentStage.setScene(currentScene);
         currentStage.show();
+        currentScene.getRoot().requestFocus();
     }
 
     static void setStage(Stage stage) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation.game;
 
 import domain.game.Game;
@@ -10,13 +5,10 @@ import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesController;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
-import java.awt.Event;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -27,14 +19,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import presentation.game.draw.DrawController;
 import presentation.ViewManager;
 
 /**
- * FXML Controller class
- *
- * @author Nikos
+ * FXML Controller class of the game view
+ * 
  */
 public class GameViewController implements Initializable, ResourcesReader, SystemsReader, InteractionsRequest {
 
@@ -78,18 +68,17 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @FXML
     private TextArea infoText;
-    
+
     @FXML
     private Label waveLabel;
     @FXML
     private Label timeLabel;
-    
+
     private static String lastOutput = "";
 
     private ArrayList<String> consoleText = new ArrayList<>();
     private static GraphicsContext gc;
     private static GameViewController interfaces = new GameViewController();
-    
 
     /**
      * Initializes the controller class.
@@ -113,12 +102,23 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         interfaces.infoText = infoText;
 
         gc = canvasMap.getGraphicsContext2D();
+
         DrawController.setup();
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
     }
 
+    /**
+     * Function that updates the following elements on the gameView:
+     * progress bar: life
+     * progress bar: oxygen
+     * label: wave number
+     * label: wave time
+     * text: information text
+     */
     public static void update() {
         interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
-        if(interfaces.readLife()== 0){
+        if (interfaces.readLife() == 0) {
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -128,7 +128,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             }
         }
         interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
-        if(interfaces.readOxygen()== 0){
+        if (interfaces.readOxygen() == 0) {
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -151,17 +151,34 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     }
 
     /**
-     * When enter is pressed, handle inputText and outputText.
+     * When key is pressed, handle the following:
+     * Player movement 
+     * Player interaction
+     * inputText and outputText.
      *
-     * @param event
+     * @param event, where event is the user input to be handled.
      */
     @FXML
-    private void enterPressedHandler(KeyEvent event) {
+    private void keyPressedHandler(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            DrawController.interact();
+        }
+        if (event.getCode() == KeyCode.UP) {
+            DrawController.movePlayerUP();
+        }
+        if (event.getCode() == KeyCode.LEFT) {
+            DrawController.movePlayerLeft();
+        }
+        if (event.getCode() == KeyCode.DOWN) {
+            DrawController.movePlayerDown();
+        }
+        if (event.getCode() == KeyCode.RIGHT) {
+            DrawController.movePlayerRight();
+        }
         if (event.getCode() == KeyCode.ENTER) {
             if (inputText.getText().equals("")) {
                 return;
             }
-
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
             outputText.setScrollTop(10000);
