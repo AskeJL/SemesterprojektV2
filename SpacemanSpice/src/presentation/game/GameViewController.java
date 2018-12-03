@@ -105,7 +105,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         DrawController.drawLocation();
         DrawController.drawPlayer();
         
-         presentation.sound.Soundplayer.playLocationSound();
+        new presentation.sound.Soundplayer().playLocationSound();
     }
 
     /**
