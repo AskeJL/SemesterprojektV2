@@ -168,7 +168,7 @@ public class Wave {
         mediumFragments = 0;
     }
     
-    static void setNumberOfWaves(int i) {
+    static void setNumberOfWaves(int i){
         numberOfWaves = i;
     }
     /**
