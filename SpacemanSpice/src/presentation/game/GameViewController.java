@@ -100,12 +100,12 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         interfaces.infoText = infoText;
 
         gc = canvasMap.getGraphicsContext2D();
-        
-        presentation.sound.Soundplayer.playSound();
 
         DrawController.setup();
         DrawController.drawLocation();
         DrawController.drawPlayer();
+        
+         presentation.sound.Soundplayer.playLocationSound();
     }
 
     /**

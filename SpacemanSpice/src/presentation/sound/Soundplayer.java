@@ -19,7 +19,15 @@ public class Soundplayer {
     
     
     
-    public static void playSound(){
+    public static void playLocationSound(){
+        String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/retro_beeps_collect_item_01.wav";
+
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+    }
+    
+    public static void playInteractionSound(){
         String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/retro_beeps_collect_item_01.wav";
 
         Media sound = new Media(new File(musicFile).toURI().toString());
