@@ -33,6 +33,7 @@ public class DrawController implements DataReader {
     private static int playerYLocation;
 
     private static InteractableType interactableType;
+    private static Direction direction;
 
     /**
      * Instantiates the components needed to be drawn on the canvas
@@ -75,15 +76,15 @@ public class DrawController implements DataReader {
      * Draws a location on the screen, based on a text file, depending on the
      * current tile the player is interacting with
      *
-     * @param type
+     * @param directionTo
      */
-    public static void drawLocation(InteractableType type) {
+    public static void drawLocation(Direction directionTo) {
 
         List<String> map = interfaces.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                if (currentTileMap.get(characters[x][y]).getInteractableType() == type && currentTileMap.get(characters[x][y]).getTileType() == TileType.DOOR) {
+                if (currentTileMap.get(characters[x][y]).getDirection() == directionTo && currentTileMap.get(characters[x][y]).getTileType() == TileType.DOOR) {
                     playerXLocation = x;
                     playerYLocation = y;
                 }
@@ -108,27 +109,31 @@ public class DrawController implements DataReader {
         interactableType = (InteractableType) currentTileMap.get(characters[playerXLocation][playerYLocation]).getInteractableType();
         switch (interactableType) {
             case NORTH:
-                currentMapLocation = locationMap.get(currentMapLocation.getNorthExitString());
+                direction = currentMapLocation.getNorthExit().getDirectionTo();
+                currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getToLocationName());
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
-                DrawController.drawLocation(InteractableType.SOUTH);
+                DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
                 break;
             case WEST:
-                currentMapLocation = locationMap.get(currentMapLocation.getWestExitString());
+                direction = currentMapLocation.getWestExit().getDirectionTo();
+                currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getToLocationName());
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
-                DrawController.drawLocation(InteractableType.EAST);
+                DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
                 break;
             case SOUTH:
-                currentMapLocation = locationMap.get(currentMapLocation.getSouthExitString());
+                direction = currentMapLocation.getSouthExit().getDirectionTo();
+                currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getToLocationName());
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
-                DrawController.drawLocation(InteractableType.NORTH);
+                DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
                 break;
             case EAST:
-                currentMapLocation = locationMap.get(currentMapLocation.getEastExitString());
+                direction = currentMapLocation.getEastExit().getDirectionTo();
+                currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getToLocationName());
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
-                DrawController.drawLocation(InteractableType.WEST);
+                DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
                 break;
             case CONSOLE:

@@ -13,10 +13,10 @@ public class Location {
 
     private String locationDescription;
 
-    private String northExitString;
-    private String westExitString;
-    private String southExitString;
-    private String eastExitString;
+    private DirectionCollection northExit;
+    private DirectionCollection westExit;
+    private DirectionCollection southExit;
+    private DirectionCollection eastExit;
     
     private String textMapFileLocation;
 
@@ -29,16 +29,16 @@ public class Location {
      * @param eExit
      * @param fileLocation 
      */
-    public Location(String locationText, String nExit, String wExit, String sExit, String eExit, String fileLocation){
+    public Location(String locationText, DirectionCollection nExit, DirectionCollection wExit, DirectionCollection sExit, DirectionCollection eExit, String fileLocation){
                 
         this.locationDescription = locationText;
         
         this.textMapFileLocation = fileLocation;
         
-        this.northExitString = nExit;
-        this.westExitString = wExit;
-        this.eastExitString = eExit;
-        this.southExitString =sExit;
+        this.northExit = nExit;
+        this.westExit = wExit;
+        this.eastExit = eExit;
+        this.southExit =sExit;
        
     } 
 
@@ -73,36 +73,29 @@ public class Location {
     /**
      * @return the northExitString
      */
-    public String getNorthExitString() {
-        return northExitString;
+    public DirectionCollection getNorthExit() {
+        return northExit;
     }
 
     /**
      * @return the westExitString
      */
-    public String getWestExitString() {
-        return westExitString;
+    public DirectionCollection getWestExit() {
+        return westExit;
     }
 
     /**
      * @return the southExitString
      */
-    public String getSouthExitString() {
-        return southExitString;
-    }
-
-    /**
-     * @param southExitString the southExitString to set
-     */
-    public void setSouthExitString(String southExitString) {
-        this.southExitString = southExitString;
+    public DirectionCollection getSouthExit() {
+        return southExit;
     }
 
     /**
      * @return the eastExitString
      */
-    public String getEastExitString() {
-        return eastExitString;
+    public DirectionCollection getEastExit() {
+        return eastExit;
     }
     
 

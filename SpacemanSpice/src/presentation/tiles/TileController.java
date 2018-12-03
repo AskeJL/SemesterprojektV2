@@ -31,23 +31,23 @@ public class TileController {
      * Tile controller constructor
      */
     public TileController(){
-        this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.', false, InteractableType.NOTHING);
-        this.wall = new Tile(TileType.WALL, Color.BROWN, '+', true ,InteractableType.NOTHING);
-        this.console = new Tile(TileType.CONSOLE, Color.RED, '-', true, InteractableType.CONSOLE);
+        this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.', false, InteractableType.NOTHING, null);
+        this.wall = new Tile(TileType.WALL, Color.BROWN, '+', true ,InteractableType.NOTHING, null);
+        this.console = new Tile(TileType.CONSOLE, Color.RED, '-', true, InteractableType.CONSOLE, null);
         
-        this.northExit = new Tile(TileType.NORTH_EXIT, Color.DARKCYAN, 'N', false, InteractableType.NORTH);
-        this.northDoor = new Tile(TileType.DOOR, Color.DARKCYAN, 'n', false, InteractableType.NORTH);
+        this.northExit = new Tile(TileType.NORTH_EXIT, Color.DARKCYAN, 'N', false, InteractableType.NORTH, Direction.NORTH);
+        this.northDoor = new Tile(TileType.DOOR, Color.DARKCYAN, 'n', false, InteractableType.NORTH, Direction.NORTH);
         
-        this.westExit = new Tile(TileType.WEST_EXIT, Color.GREEN, 'W', false, InteractableType.WEST);
-        this.westDoor = new Tile(TileType.DOOR, Color.GREEN, 'w', false, InteractableType.WEST);
+        this.westExit = new Tile(TileType.WEST_EXIT, Color.GREEN, 'W', false, InteractableType.WEST, Direction.WEST);
+        this.westDoor = new Tile(TileType.DOOR, Color.GREEN, 'w', false, InteractableType.WEST, Direction.WEST);
         
-        this.southExit = new Tile(TileType.SOUTH_EXIT, Color.GREY, 'S', false, InteractableType.SOUTH);
-        this.southDoor = new Tile(TileType.DOOR, Color.GREY, 's', false, InteractableType.SOUTH);
+        this.southExit = new Tile(TileType.SOUTH_EXIT, Color.GREY, 'S', false, InteractableType.SOUTH, Direction.SOUTH);
+        this.southDoor = new Tile(TileType.DOOR, Color.GREY, 's', false, InteractableType.SOUTH, Direction.SOUTH);
         
-        this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E',false, InteractableType.EAST);
-        this.eastDoor = new Tile(TileType.DOOR, Color.YELLOW, 'e',false, InteractableType.EAST);
+        this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E',false, InteractableType.EAST, Direction.EAST);
+        this.eastDoor = new Tile(TileType.DOOR, Color.YELLOW, 'e',false, InteractableType.EAST, Direction.EAST);
         
-        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, ' ',true, InteractableType.NOTHING);
+        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, ' ',true, InteractableType.NOTHING, null);
         
         tileMap.put(floor.getSYMBOL(), floor);
         tileMap.put(wall.getSYMBOL(), wall);

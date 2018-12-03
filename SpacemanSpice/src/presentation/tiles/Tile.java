@@ -20,6 +20,7 @@ public class Tile {
     private final char SYMBOL;
     private final Boolean solid; 
     private final Enum interactableType;
+    private final Direction direction;
    
     
     /**
@@ -29,14 +30,16 @@ public class Tile {
      * @param symbol 
      * @param isSolid 
      * @param canInteractType 
+     * @param newDirection 
      */
-    public Tile(TileType type, Color color, char symbol, Boolean isSolid, Enum canInteractType){
+    public Tile(TileType type, Color color, char symbol, Boolean isSolid, Enum canInteractType, Direction newDirection){
         
         this.tileType = type;
         this.tileColor = color;
         this.SYMBOL = symbol;
         this.solid = isSolid;
         this.interactableType = canInteractType;
+        this.direction = newDirection;
         
     }
     
@@ -153,6 +156,13 @@ public class Tile {
      */
     public Enum getInteractableType() {
         return interactableType;
+    }
+
+    /**
+     * @return the direction
+     */
+    public Direction getDirection() {
+        return direction;
     }
 
     
