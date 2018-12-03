@@ -3,6 +3,7 @@ package presentation.game;
 import domain.interactions.InteractionsRequest;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -99,6 +100,8 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         interfaces.infoText = infoText;
 
         gc = canvasMap.getGraphicsContext2D();
+        
+        presentation.sound.Soundplayer.playSound();
 
         DrawController.setup();
         DrawController.drawLocation();
@@ -145,6 +148,10 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             interfaces.infoText.setScrollTop(10000);
             interfaces.infoText.positionCaret(output.length());
         }
+
+        DrawController.setup();
+        DrawController.drawLocation();
+        DrawController.drawPlayer();
     }
 
     /**
