@@ -47,7 +47,7 @@ public class TileController {
         this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E',false, InteractableType.EAST, Direction.EAST);
         this.eastDoor = new Tile(TileType.DOOR, Color.YELLOW, 'e',false, InteractableType.EAST, Direction.EAST);
         
-        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, ' ',true, InteractableType.NOTHING, null);
+        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, '0',true, InteractableType.NOTHING, null);
         
         tileMap.put(floor.getSYMBOL(), floor);
         tileMap.put(wall.getSYMBOL(), wall);
