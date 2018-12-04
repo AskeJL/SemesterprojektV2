@@ -14,10 +14,13 @@ public class TileController {
     private HashMap<Character, Tile> tileMap = new HashMap<>();
     
     private Tile floor;
-    private Tile northWall;
-    private Tile westWall;
-    private Tile southWall;
-    private Tile eastWall;
+    private Tile horizontalWall;
+    private Tile verticalWall;
+    
+    private Tile northWestCorner;
+    private Tile southWestCorner;
+    private Tile southEastCorner;
+    private Tile northEastCorner;
     
     private Tile console;
     
@@ -38,10 +41,14 @@ public class TileController {
     public TileController(){
         this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.',new Image(getClass().getResourceAsStream("floorTile.png")), false, InteractableType.NOTHING, null);
         
-        this.northWall = new Tile(TileType.WALL, Color.BROWN, '-', new Image(getClass().getResourceAsStream("northWall.png")), true ,InteractableType.NOTHING, null);
-        this.westWall = new Tile(TileType.WALL, Color.BROWN, '\\', new Image(getClass().getResourceAsStream("westWall.png")), true ,InteractableType.NOTHING, null);
-        this.southWall = new Tile(TileType.WALL, Color.BROWN, '_', new Image(getClass().getResourceAsStream("southWall.png")), true ,InteractableType.NOTHING, null);
-        this.eastWall = new Tile(TileType.WALL, Color.BROWN, '/', new Image(getClass().getResourceAsStream("eastWall.png")), true ,InteractableType.NOTHING, null);
+        this.horizontalWall = new Tile(TileType.WALL, Color.BROWN, '-', new Image(getClass().getResourceAsStream("horizontalWall.png")), true ,InteractableType.NOTHING, null);
+        this.verticalWall = new Tile(TileType.WALL, Color.BROWN, '/', new Image(getClass().getResourceAsStream("verticalWall.png")), true ,InteractableType.NOTHING, null);
+        
+        this.northWestCorner = new Tile(TileType.WALL, Color.BROWN, '[', new Image(getClass().getResourceAsStream("northWestCorner.png")), true ,InteractableType.NOTHING, null);
+        this.southWestCorner = new Tile(TileType.WALL, Color.BROWN, '(', new Image(getClass().getResourceAsStream("southWestCorner.png")), true ,InteractableType.NOTHING, null);
+        this.southEastCorner = new Tile(TileType.WALL, Color.BROWN, ')', new Image(getClass().getResourceAsStream("southEastCorner.png")), true ,InteractableType.NOTHING, null);
+        this.northEastCorner = new Tile(TileType.WALL, Color.BROWN, ']', new Image(getClass().getResourceAsStream("northEastCorner.png")), true ,InteractableType.NOTHING, null);
+        
         
         
         
@@ -63,11 +70,14 @@ public class TileController {
         
         tileMap.put(floor.getSYMBOL(), floor);
         
-        tileMap.put(northWall.getSYMBOL(), northWall);
-        tileMap.put(westWall.getSYMBOL(), westWall);
-        tileMap.put(southWall.getSYMBOL(), southWall);
-        tileMap.put(eastWall.getSYMBOL(), eastWall);
+        tileMap.put(horizontalWall.getSYMBOL(), horizontalWall);
+        tileMap.put(verticalWall.getSYMBOL(), verticalWall);
         
+        tileMap.put(northWestCorner.getSYMBOL(), northWestCorner);
+        tileMap.put(southWestCorner.getSYMBOL(), southWestCorner);
+        tileMap.put(southEastCorner.getSYMBOL(), southEastCorner);
+        tileMap.put(northEastCorner.getSYMBOL(), northEastCorner);
+                
         tileMap.put(console.getSYMBOL(), console);
         tileMap.put(northExit.getSYMBOL(), northExit);
         tileMap.put(northDoor.getSYMBOL(), northDoor);
@@ -105,7 +115,7 @@ public class TileController {
      * @return the wall
      */
     public Tile getWall() {
-        return northWall;
+        return horizontalWall;
     }
 
     /**
