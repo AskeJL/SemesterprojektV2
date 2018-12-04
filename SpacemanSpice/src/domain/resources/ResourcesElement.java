@@ -1,22 +1,12 @@
-/*
- * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
- */
-
 package domain.resources;
 
-import domain.game.DomainOutput;
+import domain.GameElement;
 
-/**
- *
- * @author Samuel Bangslund
- */
-public abstract class ResourcesElement {
-    protected final ResourcesController resourcesController;
-    protected final DomainOutput output = new DomainOutput();
+public interface ResourcesElement extends GameElement {
     
-    protected ResourcesElement(ResourcesController resources) {
-        this.resourcesController = resources;
-    }
-    
-    protected abstract boolean runTest();
+    public void decreaseValue(int value);
+
+    public void increaseValue(int value);
+
+    public int getValue();
 }

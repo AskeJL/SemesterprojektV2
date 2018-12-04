@@ -1,9 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
-import domain.locations.GameObject;
-import domain.locations.LocationsController;
+import domain.locations.LocationsManager;
 
 /**
  * This command is responsible for interacting with {@link GameObject}'s in the
@@ -13,12 +11,13 @@ import domain.locations.LocationsController;
  * @see domain.locations.GameObjectType
  */
 public class Interact extends Command {
-    private final LocationsController locationsController;
     
-    public Interact(InteractionsController interactions){
-        super(interactions, "interact", "Interact with an object.", false);
+    private final LocationsManager locationsManager;
+    
+    public Interact(LocationsManager locations){
+        super("interact", "Interact with an object.", false);
         
-        locationsController = interactionsController.getLocationsController();
+        this.locationsManager = locations;
     }
 
     @Override
@@ -32,10 +31,10 @@ public class Interact extends Command {
      */
     @Override
     protected void run() {
-        if (!locationsController.getCurrentRoom().getGameObjects().isEmpty()) {
-            locationsController.getCurrentRoom().getGameObjects().get(0).interact(interactionsController);
+        if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
+            locationsManager.getCurrentRoom().getGameObjects().get(0).interact();
         } else {
-            output.println("There are nothing to interact with in this room");
+            System.out.println("There are nothing to interact with in this room");
         }
     }
 
@@ -46,11 +45,6 @@ public class Interact extends Command {
 
     @Override
     public void helpInfo() {
-        output.println("The interact command lets you interact with objects in the current room.");
-    }
-
-    @Override
-    protected boolean runTest() {
-        return locationsController == null;
+        System.out.println("The interact command lets you interact with objects in the current room.");
     }
 }

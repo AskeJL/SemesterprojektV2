@@ -2,20 +2,8 @@ package domain.interactions;
 
 import java.util.ArrayList;
 
-/**
- * The parent class to all commands.
- *
- * The Command class creates the foundation for all the Commands and have all
- * the necessary methods to validate the command as well as the parameter (if
- * any). A collection of all the commands are stored in {@link Commands}, which
- * also handles which command to run at what time.
- *
- * @see Commands
- * @see Parser
- * @see InteractionsController
- */
-public abstract class Command extends InteractionsElement {
-
+public abstract class Command {
+   
     /**
      * Name of the Command. (Part of the constructor)
      */
@@ -44,14 +32,12 @@ public abstract class Command extends InteractionsElement {
      */
     private ArrayList<String> availableParameters = new ArrayList<>();
     
-    protected Command(InteractionsController interactions, String name, String description, boolean hasParameter) {
-        super(interactions);
-        
+    protected Command(String name, String description, boolean hasParameter) {        
         this.name = name;
         this.description = description;
         this.hasParameter = hasParameter;
     }
-
+    
     /**
      * Validate that this command can be used if called.
      *
@@ -128,7 +114,7 @@ public abstract class Command extends InteractionsElement {
                 data += "    " + parameter + "\n";
             }
 
-            output.println("These are the parameters to the command " + this.name + ":\n" + data);
+            System.out.println("These are the parameters to the command " + this.name + ":\n" + data);
         }
     }
 
@@ -143,13 +129,15 @@ public abstract class Command extends InteractionsElement {
                 data += "    " + parameter + "\n";
             }
             
-            output.println("These are the available parameters to the command " + this.name + ":\n" + data);
+            System.out.println("These are the available parameters to the command " + this.name + ":\n" + data);
         }
     }
 
     @Override
-    public abstract String toString();
-
+    public String toString() {
+        return "[GameMechanic]interactions.Command";
+    }
+    
     /**
      * The info to display when used as a parameter to the
      * '{@link domain.interactions.commands.Help help}' command.

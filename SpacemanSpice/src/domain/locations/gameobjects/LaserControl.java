@@ -1,12 +1,11 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 
 /**
  * Used to destroy small fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -22,16 +21,16 @@ public class LaserControl extends GameObject {
      * Destroy a small fragment. This will set the
      * {@link domain.systems.SystemsController#setSmallFragmentDestroyed(boolean)}
      * boolean.
-     * <br><br>
+     * <p>
      * Only runs if there are any small fragments to destroy.
      *
      * @see domain.systems.Wave
      * @see domain.systems.SystemsController
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("Interacting with laser control");
-        domain.systems.SystemsController.setSmallFragmentDestroyed(true);
+    public void interact() {
+        System.out.println("Interacting with laser control");
+        //dependencyinjection.systems.SystemsController.setSmallFragmentDestroyed(true);
 
     }
 

@@ -1,23 +1,11 @@
 package domain.systems;
 
-import domain.game.DomainOutput;
-import domain.resources.ResourcesController;
+import domain.resources.ResourcesManager;
+import domain.resources.Time;
 import java.util.Random;
 
-/**
- * This creates the waves for the game and destroys it as the player interacts
- * with various controls.
- * <p>
- * Mainly spawn in the number of fragments and then continues to keep track of
- * said numbers.
- *
- * @see SystemsController
- * @see domain.locations.functional.Laser
- * @see domain.locations.functional.Net
- * @see domain.locations.functional.Control
- */
-public class Wave {
-
+public class Wave implements SystemsElement {
+    
     /**
      * The number of waves the player has gone through (Including the one
      * currently within).
@@ -27,15 +15,15 @@ public class Wave {
     /**
      * How many small fragments there are in the wave.
      */
-    private static int smallFragments;
+    private int smallFragments;
     /**
      * How many medium fragments there are in the wave.
      */
-    private static int mediumFragments;
+    private int mediumFragments;
     /**
      * How many large fragments there are in the wave.
      */
-    private static int largeFragments;
+    private int largeFragments;
 
     /**
      * The max amount of randomly destroyed small fragments.
@@ -50,14 +38,12 @@ public class Wave {
      */
     private final static int LARGE_DESCRUCTION_INDEX = 1;
 
-    private final DomainOutput output = new DomainOutput();
-    private final SystemsController systemsController;
-    private final ResourcesController resourcesController;
-
-    Wave(SystemsController systems) {
-        this.systemsController = systems;
-
-        this.resourcesController = systemsController.getResourcesController();
+    private final ResourcesManager resourcesManager;
+    private final SystemsManager systemsManager;
+    
+    public Wave(ResourcesManager resources, SystemsManager systems) {
+        this.resourcesManager = resources;
+        this.systemsManager = systems;
     }
 
     /**
@@ -66,8 +52,9 @@ public class Wave {
      *
      * @see domain.resources.ResourcesController#setWaveTime(long)
      */
-    void createWave() {
-        resourcesController.setWaveTime(resourcesController.getCurrentTime() + 120);
+    public void createWave() {
+        Time time = resourcesManager.getTime();
+        time.setWaveTime(time.getCurrentTime() + 120);
         Random random = new Random();
         smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
@@ -82,7 +69,7 @@ public class Wave {
         } else {
             largeFragments = 0;
         }
-        resourcesController.setRandomTime();
+        time.setRandomTime();
     }
 
     /**
@@ -101,17 +88,17 @@ public class Wave {
      */
     void updateWave(int fragmentIdentifier) {
         // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
-        if (fragmentIdentifier == systemsController.getSmallFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getSmallFragmentIdentifier()) {
             int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                output.println("You destroyed " + destructionIndex + " small fragments!");
+                System.out.println("You destroyed " + destructionIndex + " small fragments!");
             } else if (destructionIndex <= 0) {
-                output.println("You missed!");
+                System.out.println("You missed!");
             } else {
-                output.println("You destroyed " + destructionIndex + " small fragment!");
+                System.out.println("You destroyed " + destructionIndex + " small fragment!");
             }
 
             if (smallFragments < 0) {
@@ -119,17 +106,17 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == systemsController.getMediumFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getMediumFragmentIdentifier()) {
             int newIndex = mediumFragments > MEDIUM_DESCTRUCTION_INDEX ? MEDIUM_DESCTRUCTION_INDEX : mediumFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                output.println("You caught " + destructionIndex + " medium fragments!");
+                System.out.println("You caught " + destructionIndex + " medium fragments!");
             } else if (destructionIndex <= 0) {
-                output.println("You missed!");
+                System.out.println("You missed!");
             } else {
-                output.println("You caught " + destructionIndex + " medium fragment!");
+                System.out.println("You caught " + destructionIndex + " medium fragment!");
             }
 
             if (mediumFragments < 0) {
@@ -137,7 +124,7 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == systemsController.getLargeFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getLargeFragmentIdentifier()) {
             largeFragments = 0;
             if (largeFragments < 0) {
                 largeFragments = 0;

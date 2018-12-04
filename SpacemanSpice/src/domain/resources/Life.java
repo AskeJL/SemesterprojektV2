@@ -1,13 +1,8 @@
 package domain.resources;
 
-/**
- * This is used by other systems to compute the current life of the ship
- * in the game.
- * 
- * @see domain.systems.Wave
- * @see domain.systems.SystemsController
- */
-public class Life extends ResourcesElement {
+import domain.GameUpdateable;
+
+public class Life implements ResourcesElement, GameUpdateable {
 
     /**
      * The damage the ship receives when hit by a small fragment.
@@ -48,18 +43,21 @@ public class Life extends ResourcesElement {
      * increase upon
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
-    private static int life = 50;
-
-    Life(ResourcesController resources) {
-        super(resources);
+    private int life = 100;
+    
+    public Life() {
+        
     }
-
-    /**
-     * Will update {@link #life} based on the {@link Life#repair repair} boolean.
-     */
-    void update() {
-        if (life < 100 && repair == true) {
-            life += REPAIR_AMOUNT;
+    
+    @Override
+    public void init() {
+        
+    }
+    
+    @Override
+    public void update() {
+        if (life < 100 && repair) {
+            increaseValue(REPAIR_AMOUNT);
         }
         if (life >= 100) {
             life = 100;
@@ -78,40 +76,47 @@ public class Life extends ResourcesElement {
      * @see Life#MEDIUM_FRAGMENT_DAMAGE
      * @see Life#LARGE_FRAGMENT_DAMAGE
      */
-    void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+    public void decreaseValue(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
         if (hitSmallFragments >= 0) {
-            life -= (SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
+            decreaseValue(SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
         }
         if (hitMediumFragments >= 0) {
-            life -= (MEDIUM_FRAGMENT_DAMAGE * hitMediumFragments);
+            decreaseValue(MEDIUM_FRAGMENT_DAMAGE * hitMediumFragments);
         }
         if (hitLargeFragments >= 0) {
-            life -= (LARGE_FRAGMENT_DAMAGE * hitLargeFragments);
+            decreaseValue(LARGE_FRAGMENT_DAMAGE * hitLargeFragments);
         }
         if (life <= 0) {
             //Game over.
         }
     }
 
-    /**
-     * Set the {@link Life#repair repair} to true. Preparing the reparation for
-     * the next update.
-     */
-    void setRepairTrue() {
-        repair = true;
+    @Override
+    public void decreaseValue(int value) {
+        this.life -= value;
     }
 
+    @Override
+    public void increaseValue(int value) {
+        life += value;
+    }
+
+    /**
+     * Set the {@link Life#repair repair}. Preparing the reparation for
+     * the next update.
+     * @param bool
+     */
+    public void setRepair(boolean bool) {
+        this.repair = bool;
+    }
+    
     /**
      * Get the {@link Life#life life} of the ship.
      *
      * @return
      */
-    int getLife() {
-        return life;
-    }
-
     @Override
-    protected boolean runTest() {
-        return true;
+    public int getValue() {
+        return this.life;
     }
 }

@@ -1,12 +1,11 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 
 /**
  * Used to catch medium fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -22,16 +21,16 @@ public class NetControl extends GameObject {
      * Catch a medium fragment. This will set the
      * {@link domain.systems.SystemsController#setMediumFragmentDestroyed(boolean)}
      * boolean.
-     * <br><br>
+     * <p>
      * Only runs if there are any medium fragments to destroy.
      *
      * @see domain.systems.Wave
      * @see domain.systems.SystemsController
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("Interacting with net control.");
-        domain.systems.SystemsController.setMediumFragmentDestroyed(true);
+    public void interact() {
+        System.out.println("Interacting with net control.");
+        //domain.systems.SystemsController.setMediumFragmentDestroyed(true);
     }
 
     @Override

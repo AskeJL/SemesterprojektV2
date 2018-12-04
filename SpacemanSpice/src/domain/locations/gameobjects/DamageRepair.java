@@ -1,10 +1,8 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.locations.LocationsController;
-import domain.resources.ResourcesController;
+import domain.resources.ResourcesManager;
 
 /**
  * Used to repair the hull of the ship.
@@ -15,13 +13,9 @@ import domain.resources.ResourcesController;
  * @see domain.locations.functional.Outside
  */
 public class DamageRepair extends GameObject {
-
-    private final ResourcesController resourcesController;
     
     public DamageRepair() {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL);
-        
-        this.resourcesController = locationsController.getResourcesController();
     }
 
     /**
@@ -32,10 +26,8 @@ public class DamageRepair extends GameObject {
      * @see domain.resources.Life
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("You begin reparing the ship");
-        
-        resourcesController.setRepairTrue();
+    public void interact() {
+        System.out.println("You begin reparing the ship");
     }
 
     @Override

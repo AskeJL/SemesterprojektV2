@@ -3,8 +3,7 @@ package domain.interactions.commands;
 import data.AssetType;
 import data.Data;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
-import domain.locations.LocationsController;
+import domain.locations.LocationsManager;
 
 /**
  * This command is responsible for inspecting a room when prompted. Upon
@@ -18,12 +17,12 @@ import domain.locations.LocationsController;
 public class Inspect extends Command {
 
     private final Data dataAccess = new Data();
-    private final LocationsController locationsController;
+    private final LocationsManager locationsManager;
     
-    public Inspect(InteractionsController interactions) {
-        super(interactions, "inspect", "Inspect the room you are in.", false);
+    public Inspect(LocationsManager locations) {
+        super("inspect", "Inspect the room you are in.", false);
         
-        locationsController = interactionsController.getLocationsController();
+        this.locationsManager = locations;
     }
 
     @Override
@@ -39,10 +38,10 @@ public class Inspect extends Command {
     @Override
     protected void run() {
         String data = "";
-        for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, locationsController.getCurrentRoom().getName() + ".txt")) {
+        for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, locationsManager.getCurrentRoom().getName() + ".txt")) {
             data += string;
         }
-        output.println(data);
+        System.out.println(data);
     }
 
     @Override
@@ -52,12 +51,7 @@ public class Inspect extends Command {
 
     @Override
     public void helpInfo() {
-        output.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
-    }
-
-    @Override
-    protected boolean runTest() {
-        return locationsController == null;
+        System.out.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
     }
 
 }

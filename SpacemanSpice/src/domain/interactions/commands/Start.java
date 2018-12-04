@@ -1,8 +1,7 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
-import domain.systems.SystemsController;
+import domain.systems.SystemsManager;
 
 /**
  * This command is responsible for starting the {@link domain.systems.Wave}.
@@ -14,8 +13,12 @@ import domain.systems.SystemsController;
  */
 public class Start extends Command {
 
-    public Start(InteractionsController interactions) {
-        super(interactions, "start", "Starts the waves and score", false);
+    private final SystemsManager systemsManager;
+    
+    public Start(SystemsManager systems) {
+        super("start", "Starts the waves and score", false);
+        
+        this.systemsManager = systems;
     }
 
     @Override
@@ -31,21 +34,16 @@ public class Start extends Command {
      */
     @Override
     public void run() {
-        // Start the game mechanics.
+        systemsManager.setPlayerReady(true);
     }
 
     @Override
     public String toString() {
-        return "domain.interactions.commands.Start: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "[GameObject]interactions.commands.Start: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        output.println("The start command will start the waves and score system");
-    }
-
-    @Override
-    protected boolean runTest() {
-        return true;
+        System.out.println("The start command will start the waves and score system");
     }
 }

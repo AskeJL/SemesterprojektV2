@@ -1,15 +1,7 @@
 package domain.interactions;
 
-import domain.game.DomainOutput;
+import domain.GameElement;
 
-public abstract class InteractionsElement {
-
-    protected InteractionsController interactionsController;
-    protected final DomainOutput output = new DomainOutput();
+public interface InteractionsElement extends GameElement {
     
-    protected InteractionsElement(InteractionsController interact) {
-        this.interactionsController = interact;
-    }
-    
-    protected abstract boolean runTest();
 }

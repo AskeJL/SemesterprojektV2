@@ -1,16 +1,9 @@
 package domain.resources;
 
+import domain.GameUpdateable;
 import java.util.Date;
 
-/**
- * This is used by other systems to keep track of how much time passes. Because
- * of how the system works (prompts for user input on one thread), this class
- * proves to be vital for managing a system.
- *
- * @see domain.systems.Wave
- * @see domain.systems.SystemsController
- */
-public class Time extends ResourcesElement {
+public class Time implements ResourcesElement, GameUpdateable {
 
     /**
      * The time when the {@link domain.game.Game} initialized.
@@ -26,17 +19,31 @@ public class Time extends ResourcesElement {
     private static long waveTime;
     private static long randTime;
 
-    Time(ResourcesController resources) {
-        super(resources);
+    public Time() {
         
-        initTime = new Date().getTime() / 1000;
     }
 
+    @Override
+    public void init() {
+        initTime = new Date().getTime() / 1000;
+    }
+    
     /**
      * Update the class. This will update the {@link #currentTime currentTime}.
      */
-    void update() {
+    @Override
+    public void update() {
         
+    }
+
+    @Override
+    public void decreaseValue(int value) {
+
+    }
+
+    @Override
+    public void increaseValue(int value) {
+
     }
 
     /**
@@ -44,8 +51,12 @@ public class Time extends ResourcesElement {
      *
      * @param time The new time.
      */
-    void setWaveTime(long time) {
+    public void setWaveTime(long time) {
         waveTime = time;
+    }
+
+    public void setRandomTime() {
+        randTime = ((long) (Math.random() * 20 + 5));
     }
 
     /**
@@ -62,7 +73,7 @@ public class Time extends ResourcesElement {
      *
      * @return
      */
-    long getCurrentTime() {
+    public long getCurrentTime() {
         return new Date().getTime() / 1000 - initTime;
     }
 
@@ -71,7 +82,7 @@ public class Time extends ResourcesElement {
      *
      * @return
      */
-    long getWaveTime() {
+    public long getWaveTime() {
         return waveTime;
     }
 
@@ -83,17 +94,13 @@ public class Time extends ResourcesElement {
     long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
     }
-    
-    void setRandTime(){
-        randTime = ((long )(Math.random() * 20 + 5)); 
-    }
-    
-    long getRandTime(){
+
+    public long getRandomTime() {
         return randTime;
     }
 
     @Override
-    protected boolean runTest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getValue() {
+        return (int) (new Date().getTime() / 1000 - initTime);
     }
 }

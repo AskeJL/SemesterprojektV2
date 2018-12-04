@@ -1,7 +1,6 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 
 /**
  * This command is responsible for quitting the game when prompted. Calls the
@@ -12,8 +11,8 @@ import domain.interactions.InteractionsController;
  */
 public class Quit extends Command {
 
-    public Quit(InteractionsController interactions) {
-        super(interactions, "quit", "Quit the game.", false);        
+    public Quit() {
+        super("quit", "Quit the game.", false);        
     }
 
     @Override
@@ -28,7 +27,7 @@ public class Quit extends Command {
      */
     @Override
     public void run() {
-        output.println("You are now exiting the game - thank you for playing!"
+        System.out.println("You are now exiting the game - thank you for playing!"
                 + "\nGoodbye...");
         System.exit(0);
     }
@@ -40,11 +39,6 @@ public class Quit extends Command {
 
     @Override
     public void helpInfo() {
-        output.println("The quit function lets you quit the game");
-    }
-
-    @Override
-    protected boolean runTest() {
-        return true;
+        System.out.println("The quit function lets you quit the game");
     }
 }

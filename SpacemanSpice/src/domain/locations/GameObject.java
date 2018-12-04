@@ -1,7 +1,5 @@
 package domain.locations;
 
-import domain.interactions.InteractionsController;
-
 /**
  * An object within the game that is interact-able. Either by directly using it,
  * or picking it up for later use. An example could be a chair or an air tank.
@@ -10,7 +8,7 @@ import domain.interactions.InteractionsController;
  * @see GameObjectType
  * @see domain.interactions.commands.Interact
  */
-public abstract class GameObject extends LocationsElement {
+public abstract class GameObject {
 
     /**
      * The name of the GameObject.
@@ -42,12 +40,8 @@ public abstract class GameObject extends LocationsElement {
 
     /**
      * Interact with the object. (Needs implementation from child)
-     * @param controller
      */
-    public abstract void interact(InteractionsController controller);
-
-    @Override
-    public abstract String toString();
+    public abstract void interact();
 
     /**
      * Set the {@link GameObject#name} of this GameObject.

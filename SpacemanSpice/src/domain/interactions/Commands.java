@@ -1,23 +1,22 @@
 package domain.interactions;
 
-import domain.interactions.commands.*;
+import domain.interactions.commands.Inspect;
+import domain.interactions.commands.Go;
+import domain.interactions.commands.Interact;
+import domain.interactions.commands.Quit;
+import domain.interactions.commands.Clear;
+import domain.interactions.commands.Continue;
+import domain.interactions.commands.Help;
+import domain.interactions.commands.Show;
+import domain.interactions.commands.Start;
+import domain.locations.LocationsManager;
+import domain.resources.ResourcesManager;
+import domain.systems.SystemsManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The main collection of {@link Command}'s as well as the main logic for
- * managing all the commands.
- *
- * It is from here, the commands are
- * {@link Commands#validateCommand(String, String) validate and checked for parameters}
- * etc.
- *
- * @see Command
- * @see InteractionsController
- * @see Parser
- */
-public class Commands extends InteractionsElement {
-
+public class Commands implements InteractionsElement {
+        
     /**
      * A list of all the {@link Command}'s. These are initialized in the
      * {@link Commands#init() init()} method.
@@ -27,24 +26,22 @@ public class Commands extends InteractionsElement {
      * This is where the last called {@link Command} is stored. (Is sat to the
      * {@link domain.interactions.commands.Clear Clear} command as default)
      */
-    private static Command lastCommand;
+    private static Command lastCommand = new Clear();
     /**
      * This is where the last called parameter is stored.
      */
     private static String lastParameter = "";
 
-    public Commands(InteractionsController interact) {
-        super(interact);
-
-        lastCommand = new Clear(interactionsController);
-        
-        commandWords.add(new Go(interactionsController));
-        commandWords.add(new Help(interactionsController));
-        commandWords.add(new Interact(interactionsController));
-        commandWords.add(new Clear(interactionsController));
-        commandWords.add(new Start(interactionsController));
-        commandWords.add(new Continue(interactionsController));
-        commandWords.add(new Inspect(interactionsController));
+    public Commands(LocationsManager locations, InteractionsManager interactions, ResourcesManager resources, SystemsManager systems) {
+        commandWords.add(new Show(resources));
+        commandWords.add(new Start(systems));
+        commandWords.add(new Clear());
+        commandWords.add(new Go(locations));
+        commandWords.add(new Quit());
+        commandWords.add(new Inspect(locations));
+        commandWords.add(new Help(interactions, locations));
+        commandWords.add(new Interact(locations));
+        commandWords.add(new Continue());
     }
 
     /**
@@ -63,7 +60,7 @@ public class Commands extends InteractionsElement {
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
-                output.println("I don't know that command. \nThese are the commands available:");
+                System.out.println("I don't know that command. \nThese are the commands available:");
                 lastCommand = commandWords.get(0);
                 showCommands();
                 return null;
@@ -79,7 +76,7 @@ public class Commands extends InteractionsElement {
                         lastParameter = parameter;
                         lastCommand = command;
                     } else {
-                        output.println("Wrong parameter.");
+                        System.out.println("Wrong parameter.");
                         command.showAvailableParameters();
                         return null;
                     }
@@ -88,7 +85,7 @@ public class Commands extends InteractionsElement {
             } else {
                 if (command.hasParameter()) {
                     if (!command.getName().equalsIgnoreCase("help")) {
-                        output.println("Missing parameter.");
+                        System.out.println("Missing parameter.");
                     }
                     command.showAvailableParameters();
                     return null;
@@ -108,10 +105,22 @@ public class Commands extends InteractionsElement {
         for (Command command : commandWords) {
             data += "   " + command.getName() + "\n";
         }
-        output.println(data);
+        System.out.println(data);
     }
 
-    void setLastCommand(Command command) {
+    @Override
+    public String toString() {
+        String string = "";
+        string += "[GameMechanic]interactions.Commands";
+        
+        for(Command command : commandWords) {
+            string += "\n    " + command.toString();
+        }
+        
+        return string;
+    }
+    
+    public void setLastCommand(Command command) {
         lastCommand = command;
     }
 
@@ -164,27 +173,7 @@ public class Commands extends InteractionsElement {
      *
      * @return
      */
-    String getLastParameter() {
+    public String getLastParameter() {
         return lastParameter;
-    }
-
-    @Override
-    protected boolean runTest() {
-        boolean passed = true;
-        for (Command command : commandWords) {
-            if (command != null) {
-                System.out.format("  %2s %-10s: ", "Testing", command.getName());
-                if (command.runTest()) {
-                    System.out.println("[Passed] " + command);
-                } else {
-                    System.out.println("[Failed] " + command);
-                    passed = false;
-                }
-            } else {
-                System.out.println("[Failed][null] " + command);
-                passed = false;
-            }
-        }
-        return passed;
     }
 }

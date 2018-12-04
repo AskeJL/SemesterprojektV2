@@ -1,45 +1,42 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 import domain.locations.Exit;
-import domain.locations.LocationsController;
+import domain.locations.LocationsManager;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This command is responsible for moving through rooms and locations.
- *
- * @author sbang
  */
 public class Go extends Command {
-    private final LocationsController locationsController;
-    
     /**
      * The current exits based on the
      * {@link domain.locations.LocationsController#getCurrentRoom() current room}.
      */
     private final List<Exit> CURRENT_EXITS = new ArrayList<>();
 
-    public Go(InteractionsController interactions) {
-        super(interactions, "go", "Walk the player in a direction. [North, South, West, East]", true);
+    private final LocationsManager locationsManager;
+    
+    public Go(LocationsManager locations) {
+        super("go", "Walk the player in a direction. [North, South, West, East]", true);
 
         super.addParameter("north");
         super.addParameter("west");
         super.addParameter("east");
         super.addParameter("south");
         
-        locationsController = interactionsController.getLocationsController();
+        this.locationsManager = locations;
     }
 
     @Override
     public void checkAvailableParameters() {
         CURRENT_EXITS.clear();
-        ArrayList<Exit> roomExits = locationsController.getCurrentRoom().getExits();
+        ArrayList<Exit> roomExits = locationsManager.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for (Exit exit : locationsController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(locationsController.getCurrentRoom().getName())) {
+        for (Exit exit : locationsManager.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(locationsManager.getCurrentRoom().getName())) {
                 parameters.add(exit.getDirection().name().toLowerCase());
                 CURRENT_EXITS.add(exit);
             }
@@ -68,13 +65,13 @@ public class Go extends Command {
         }
 
         if (exitTo != null && exitTo.isEXIT_TO_LOCATION()) {
-            locationsController.setCurrentLocation(exitTo.getToLocation());
-            locationsController.setCurrentRoom(exitTo.getToRoom());
+            locationsManager.setCurrentLocation(exitTo.getToLocation());
+            locationsManager.setCurrentRoom(exitTo.getToRoom());
         } else if (exitTo != null) {
-            locationsController.setCurrentRoom(exitTo.getFromRoom());
+            locationsManager.setCurrentRoom(exitTo.getFromRoom());
         }
 
-        output.println("Current room: " + locationsController.getCurrentRoom().getName());
+        System.out.println("Current room: " + locationsManager.getCurrentRoom().getName());
     }
 
     @Override
@@ -84,18 +81,6 @@ public class Go extends Command {
 
     @Override
     public void helpInfo() {
-        output.println("The go command is used to move through rooms.\ngo <direction>");
-    }
-
-    @Override
-    protected boolean runTest() {
-        boolean passed = true;
-        if(interactionsController == null) {
-            passed = false;
-        }
-        if(locationsController == null) {
-            passed = false;
-        }
-        return passed;
+        System.out.println("The go command is used to move through rooms.\ngo <direction>");
     }
 }

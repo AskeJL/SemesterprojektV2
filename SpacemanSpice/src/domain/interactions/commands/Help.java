@@ -1,10 +1,9 @@
 package domain.interactions.commands;
 
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
+import domain.interactions.InteractionsManager;
 import domain.locations.Exit;
-import domain.locations.LocationsController;
-import domain.systems.SystemsController;
+import domain.locations.LocationsManager;
 
 /**
  * This command is responsible for helping the player with information. The
@@ -14,12 +13,12 @@ import domain.systems.SystemsController;
  * with: 'help go'. This will call the helpInfo from the Go command.
  */
 public class Help extends Command {
-
-    private final LocationsController locationsController;
     
-    public Help(InteractionsController interactions) {
-        super(interactions, "help", "Display the help list.", true);
-
+    private final InteractionsManager interactionsManager;
+    private final LocationsManager locationsManager;
+    
+    public Help(InteractionsManager interactions, LocationsManager locations) {
+        super("help", "Display the help list.", true);
         super.addParameter("go");
         super.addParameter("interact");
         super.addParameter("help");
@@ -27,7 +26,8 @@ public class Help extends Command {
         super.addParameter("clear");
         super.addParameter("start");
         
-        locationsController = interactionsController.getLocationsController();
+        this.interactionsManager = interactions;
+        this.locationsManager = locations;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Help extends Command {
     public void run() {
         for (String parameter : super.getAvailableParameters()) {
             if (parameter.equalsIgnoreCase(super.getCurrentParameter())) {
-                interactionsController.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
+                interactionsManager.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
                 return;
             }
         }
@@ -62,7 +62,7 @@ public class Help extends Command {
 
     @Override
     public void helpInfo() {
-        output.println("The help function can tell you which commands you can use in the given room");
+        System.out.println("The help function can tell you which commands you can use in the given room");
     }
 
     /**
@@ -73,34 +73,29 @@ public class Help extends Command {
      */
     @Override
     public void showAvailableParameters() {
-        output.println("Current room:");
-        output.println(String.format("%10s %s", "", locationsController.getCurrentLocation().getName() + "/" + locationsController.getCurrentRoom().getName()));
+        System.out.println("Current room:");
+        System.out.println(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName() + "/" + locationsManager.getCurrentRoom().getName()));
 
-        output.println("You can go:");
-        for (Exit exit : locationsController.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(locationsController.getCurrentRoom().getName())) {
-                output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
+        System.out.println("You can go:");
+        for (Exit exit : locationsManager.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(locationsManager.getCurrentRoom().getName())) {
+                System.out.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
             }
         }
-        for (Exit exit : locationsController.getCurrentRoom().getExits()) {
-            output.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
+        for (Exit exit : locationsManager.getCurrentRoom().getExits()) {
+            System.out.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
         }
 
-        if (!locationsController.getCurrentRoom().getGameObjects().isEmpty()) {
-            output.println("You can interact with:");
-            output.println(String.format("%10s %s", "", locationsController.getCurrentRoom().getGameObjects().get(0).getName()));
+        if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
+            System.out.println("You can interact with:");
+            System.out.println(String.format("%10s %s", "", locationsManager.getCurrentRoom().getGameObjects().get(0).getName()));
         }
 
-        output.println("Available commands: ");
-        if (!SystemsController.getPlayerReady()) {
-            output.println(super.getAvailableParameters().toString());
-        } else {
-            output.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
-        }
-    }
-
-    @Override
-    protected boolean runTest() {
-        return locationsController == null;
+        System.out.println("Available commands: ");
+        //if (!systemsManager.getPlayerReady()) {
+            System.out.println(super.getAvailableParameters().toString());
+        //} else {
+            //System.out.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
+        //}
     }
 }

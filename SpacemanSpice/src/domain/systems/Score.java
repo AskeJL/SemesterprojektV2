@@ -1,16 +1,6 @@
 package domain.systems;
 
-/**
- * This keeps track of the score that the player achieves throughout the game.
- * The score depends on how many (and of which) fragments are destroyed.
- *
- * @see domain.locations.functional.Laser
- * @see domain.locations.functional.Net
- * @see domain.locations.functional.Control
- * @see SystemsController
- * @see Wave
- */
-public class Score {
+public class Score implements SystemsElement {
 
     /**
      * The current score of this play-through.
@@ -30,7 +20,10 @@ public class Score {
      */
     private final static int LARGE_FRAGMENT_POINTS = 15;
 
-    private Score() {
+    private final SystemsManager systemsManager;
+
+    public Score(SystemsManager systems) {
+        this.systemsManager = systems;
     }
 
     /**
@@ -43,14 +36,12 @@ public class Score {
      * @param fragmentIdentifier A value between 1-3. (Depending on the
      * identifier)
      */
-    static void updateScore(int fragmentIdentifier) {
-        if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
+    void update(int fragmentIdentifier) {
+        if (fragmentIdentifier == systemsManager.getSmallFragmentIdentifier()) {
             score += SMALL_FRAGMENT_POINTS;
-        }
-        if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
+        } else if (fragmentIdentifier == systemsManager.getMediumFragmentIdentifier()) {
             score += MEDIUM_FRAGMENT_POINTS;
-        }
-        if (fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()) {
+        } else if (fragmentIdentifier == systemsManager.getLargeFragmentIdentifier()) {
             score += LARGE_FRAGMENT_POINTS;
         }
     }
@@ -65,7 +56,7 @@ public class Score {
      *
      * @return
      */
-    static int getScore() {
+    public int getScore() {
         return score;
     }
 }

@@ -1,9 +1,7 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.resources.ResourcesController;
 
 /**
  * Used to fill up the players oxygen.
@@ -14,13 +12,9 @@ import domain.resources.ResourcesController;
  * @see domain.locations.functional.Oxygen
  */
 public class OxygenControl extends GameObject {
-
-    private final ResourcesController resourcesController;
     
     public OxygenControl() {
-        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);
-        
-        this.resourcesController = locationsController.getResourcesController();
+        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);  
     }
 
     /**
@@ -33,10 +27,10 @@ public class OxygenControl extends GameObject {
      * @see domain.resources.ResourcesController
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("You interact with the Oxygen refilling control");
-        int difference = 100 - resourcesController.getOxygenValue();
-        resourcesController.increaseOxygen(difference);
+    public void interact() {
+        System.out.println("You interact with the Oxygen refilling control");
+        //int difference = 100 - resourcesController.getOxygenValue();
+        //resourcesController.increaseOxygen(difference);
     }
 
     @Override

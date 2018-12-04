@@ -1,13 +1,11 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
 
 /**
  * Used to dodge large fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -30,12 +28,12 @@ public class SteeringControl extends GameObject {
      * @see domain.systems.SystemsController
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("Interacting with the steering controls.");
-        if (SystemsController.getLargeFragments() != 0) {
-            domain.systems.SystemsController.setLargeFragmentDestroyed(true);
-            output.println("You have moved the ship out of danger");
-        }
+    public void interact() {
+        System.out.println("Interacting with the steering controls.");
+//        if (SystemsController.getLargeFragments() != 0) {
+//            domain.systems.SystemsController.setLargeFragmentDestroyed(true);
+//            output.println("You have moved the ship out of danger");
+//        }
     }
 
     @Override

@@ -1,18 +1,12 @@
+/*
+ * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
+ */
+
 package domain.interactions;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * The parser reads input Strings and redirects it for
- * {@link Commands#validateCommand(String, String) command validation}. It then
- * receives a validated command (if not validated will be null).
- *
- * @see InteractionsController
- * @see Command
- * @see Commands
- */
-public class Parser extends InteractionsElement {
+public class Parser implements InteractionsElement {
 
     /**
      * The main scanner used for reading Strings in the class.
@@ -21,11 +15,10 @@ public class Parser extends InteractionsElement {
 
     private final Commands commands;
 
-    Parser(InteractionsController interact) {
-        super(interact);
-        this.commands = super.interactionsController.getCommands();
+    public Parser(Commands commands) {
+        this.commands = commands;
     }
-
+    
     /**
      * Read the two first inputs from the user. Then return the words
      * separately.
@@ -52,7 +45,17 @@ public class Parser extends InteractionsElement {
         String[] words = {word1, word2};
         return words;
     }
-
+    
+    /**
+     * Print a list of all the available commands. Uses the
+     * {@link Commands#getCommandwords()}
+     */
+    void showCommands() {
+        for (Command command : commands.getCommandwords()) {
+            System.out.println(command);
+        }
+    }
+    
     /**
      * Read the user input and determine what command to process. When found,
      * will return the appropriate command. Uses the {@link Parser#readInput()}
@@ -93,64 +96,9 @@ public class Parser extends InteractionsElement {
 
         return commands.validateCommand(word1, word2);
     }
-
-    /**
-     * Print a list of all the available commands. Uses the
-     * {@link Commands#getCommandwords()}
-     */
-    void showCommands() {
-        for (Command command : commands.getCommandwords()) {
-            System.out.println(command);
-        }
-    }
-
+    
     @Override
-    protected boolean runTest() {
-        ArrayList<String> commandsToTest = new ArrayList<>();
-        commandsToTest.add("go west");
-        commandsToTest.add("help go");
-        commandsToTest.add("clear");
-        commandsToTest.add("inspect");
-        commandsToTest.add("interact");
-        commandsToTest.add("start");
-        commandsToTest.add("continue");
-
-        boolean passed = true;
-
-        System.out.println("Running test for interactions.Parser...");
-
-        if (commands == null) {
-            passed = false;
-        }
-
-        for (String commandStr : commandsToTest) {
-            Command command = getCommand(commandStr);
-            String[] words = convertInput(commandStr);
-            System.out.format("  %2s %-10s | %-6s: ", "Testing", words[0], words[1]);
-
-            if (command != null) {
-                if (words[1] == null) {
-                    if (!(words[0].equals(command.getName()))) {
-                        System.out.println("[Failed]");
-                        passed = false;
-                    } else {
-                        System.out.println("[Passed]");
-                    }
-                } else {
-                    if(!(words[0].equals(command.getName()) && words[1].equals(command.getCurrentParameter()))) {
-                        System.out.println("[Failed]");
-                        passed = false;
-                    }else {
-                        System.out.println("[Passed]");
-                    }
-                }
-            } else {
-                System.out.println("[Failed]");
-                passed = false;
-            }
-
-        }
-
-        return passed;
+    public String toString() {
+        return "[GameMechanic]interactions.Parser";
     }
 }

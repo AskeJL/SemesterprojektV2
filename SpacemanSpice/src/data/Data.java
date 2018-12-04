@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import data.read.DataReader;
@@ -11,10 +6,6 @@ import data.write.DataWriter;
 import data.write.WriteController;
 import java.util.List;
 
-/**
- *
- * @author sbang
- */
 public class Data implements DataReader, DataWriter {
 
     private final ReadController reader = new ReadController();

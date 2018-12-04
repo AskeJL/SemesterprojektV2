@@ -1,13 +1,11 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
 
 /**
  * Used to scan the vicinity of the ship for fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -27,11 +25,13 @@ public class ScanningControl extends GameObject {
      * @see domain.systems.SystemsController
      */
     @Override
-    public void interact(InteractionsController controller) {
-        output.println("You interact with the scanningstation\nThere are:\n"
-                + "    " + SystemsController.getSmallFragments() + " small fragments.\n"
-                + "    " + SystemsController.getMediumFragments() + " medium fragments.\n"
-                + "    " + SystemsController.getLargeFragments() + " large fragments.\n");
+    public void interact() {
+        System.out.println("You interact with the scanning station.");
+        
+//        System.out.println("You interact with the scanningstation\nThere are:\n"
+//                + "    " + SystemsController.getSmallFragments() + " small fragments.\n"
+//                + "    " + SystemsController.getMediumFragments() + " medium fragments.\n"
+//                + "    " + SystemsController.getLargeFragments() + " large fragments.\n");
     }
 
     @Override
