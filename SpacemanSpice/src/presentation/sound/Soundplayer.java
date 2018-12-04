@@ -14,6 +14,8 @@ import javafx.scene.media.AudioClip;
  */
 public class Soundplayer {
 
+    private boolean game = true;
+            
     String gameMusicFile = "assets/sounds/Visager_-_05_-_Battle.MP3";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 
@@ -24,25 +26,29 @@ public class Soundplayer {
     AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
 
     public void playGameMusic() {
+        if(game == true){
         if (gameMusic.isPlaying() == false) {
             gameMusic.setVolume(0.02);
             gameMusic.play();
         }
     }
+    }
 
     public void playLocationSound() {
         
+        if(game == true){
         if (presentation.game.draw.DrawController.getCurrentLocationName() == "Outside") {
             if (backSound.isPlaying() == false) {
                 backSound.play();
             }
 
         } else {
-            if (backSound2.isPlaying() == false) {
+            if (backSound2.isPlaying() == false ) {
                 backSound2.setVolume(0.1);
                 backSound2.play();
             }
         }
+    }
     }
 
     public void playDoorSound() {
@@ -61,5 +67,6 @@ public class Soundplayer {
         gameMusic.stop();
         backSound.stop();
         backSound2.stop();
+        this.game = false;
     }
 }
