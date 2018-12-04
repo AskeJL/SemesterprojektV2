@@ -14,29 +14,44 @@ import javafx.scene.media.AudioClip;
  */
 public class Soundplayer {
 
+    String gameMusicFile = "assets/sounds/Visager_-_05_-_Battle.MP3";
+    AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
+
+    String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
+    AudioClip backSound = new AudioClip(new File(backSoundOutsideFile).toURI().toString());
+    
+    String backSound2File = "assets/sounds/background_room_interior_hum_loop_03.wav";
+    AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
+
+    public void playGameMusic() {
+        if (gameMusic.isPlaying() == false) {
+            gameMusic.play();
+        }
+    }
+
     public void playLocationSound() {
 
         if (presentation.game.draw.DrawController.getCurrentLocationName() == "Outside") {
-            String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/retro_beeps_collect_item_01.wav";
-            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-            sound.play();
+            if (backSound.isPlaying() == false) {
+                backSound.play();
+            }
 
         } else {
-            String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/background_room_interior_hum_loop_03.wav";
-            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-            sound.setVolume(0.5);
-            sound.play();
+            if (backSound2.isPlaying() == false) {
+                backSound2.setVolume(1);
+                backSound2.play();
+            }
         }
     }
 
     public void playDoorSound() {
-        String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
+        String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
         AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
         sound.play();
     }
 
     public void playInteractionSound() {
-        String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/beep_04.wav";
+        String musicFile = "assets/sounds/beep_04.wav";
         AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
         sound.play();
     }

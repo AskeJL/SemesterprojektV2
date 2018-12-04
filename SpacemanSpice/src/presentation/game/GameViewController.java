@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import presentation.game.draw.DrawController;
 import presentation.ViewManager;
+import presentation.sound.Soundplayer;
 
 /**
  * FXML Controller class of the game view
@@ -78,6 +79,8 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     private ArrayList<String> consoleText = new ArrayList<>();
     private static GraphicsContext gc;
     private static GameViewController interfaces = new GameViewController();
+    
+     private static Soundplayer sound = new presentation.sound.Soundplayer();
 
     /**
      * Initializes the controller class.
@@ -104,6 +107,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         DrawController.setup();
         DrawController.drawLocation();
         DrawController.drawPlayer();
+        
     }
 
     /**
@@ -146,7 +150,8 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             interfaces.infoText.setScrollTop(10000);
             interfaces.infoText.positionCaret(output.length());
         }
-        new presentation.sound.Soundplayer().playLocationSound();
+        sound.playGameMusic();
+        sound.playLocationSound();
     }
 
     /**
