@@ -77,6 +77,14 @@ public class ResourcesController extends Controller {
     public static void setWaveTime(long newWaveTime) {
         Time.setWaveTime(newWaveTime);
     }
+    
+    public static void setOxygen(int oxygen){
+        Oxygen.setOxygen(oxygen);
+    }
+    
+    public static void setLife(int life){
+        Life.setLife(life);
+    }
 
     /**
      * Get the {@link Time#currentTime} from {@link Time}.

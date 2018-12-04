@@ -15,7 +15,7 @@ public class Oxygen {
     /**
      * Amount of oxygen the player currently has.
      */
-    private static int oxygen = 75;
+    private static int oxygen = 10;
     /**
      * How fast the oxygen will decline.
      */
@@ -64,5 +64,9 @@ public class Oxygen {
     static int getOxygen() {
         Oxygen.update();
         return oxygen;
+    }
+    
+    static void setOxygen(int Oxygen){
+        oxygen = Oxygen;
     }
 }

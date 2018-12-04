@@ -5,6 +5,8 @@
  */
 package presentation.menu.highscore;
 
+import data.AssetType;
+import data.read.DataReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,16 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import presentation.ViewManager;
+import javafx.collections.*;
 
 /**
  * FXML Controller class
  *
  * @author askel
  */
-public class HighscoreViewController implements Initializable {
+public class HighscoreViewController implements Initializable, DataReader {
 
     @FXML
-    private ListView<?> highscoreLIst;
+    private ListView<String> highscoreLIst;
     @FXML
     private Button backButton;
 
@@ -34,7 +37,9 @@ public class HighscoreViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ObservableList<String> scores = highscoreLIst.getItems();
+        for (int i = 0; i<this.requestData(AssetType.SCORE, "highscore.txt").size(); i++)
+        scores.add(this.requestData(AssetType.SCORE, "highscore.txt").get(i));
     }    
 
     @FXML

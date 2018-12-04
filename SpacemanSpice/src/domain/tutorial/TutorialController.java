@@ -41,6 +41,8 @@ public class TutorialController extends Controller {
      * {@link TutorialData#getTextString(java.lang.String)} to get the files.
      */
     public static void init() {
+        counter = 0;
+        tutorial = true;
         introduction = TutorialData.getTextString("Introduction.txt");
         aIintro1 = TutorialData.getTextString("AI_Intro1.txt");
         aIintro2 = TutorialData.getTextString("AI_Intro2.txt");

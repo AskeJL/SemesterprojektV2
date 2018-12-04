@@ -1,6 +1,8 @@
 package presentation.game;
 
+import domain.game.Game;
 import domain.interactions.InteractionsRequest;
+import domain.resources.ResourcesController;
 import domain.resources.ResourcesReader;
 import domain.systems.SystemsReader;
 import java.io.File;
@@ -90,6 +92,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         interfaces.progressBarLife = progressBarLife;
         progressBarLife.getStyleClass().add("progress-bar-life");
         interfaces.progressBarOxygen = progressBarOxygen;
