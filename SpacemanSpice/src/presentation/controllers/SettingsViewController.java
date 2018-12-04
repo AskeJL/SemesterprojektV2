@@ -38,7 +38,6 @@ public class SettingsViewController extends ViewController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML

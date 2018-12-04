@@ -3,7 +3,10 @@ package presentation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -15,11 +18,11 @@ import presentation.controllers.ViewController;
  */
 public class GUIManager extends ViewManager {
 
-    private final static String PATH_MENU = "fxml/menuView.fxml";
-    private final static String PATH_SETTINGS = "fxml/settingsView.fxml";
-    private final static String PATH_HIGH_SCORE = "fxml/highscoreView.fxml";
-    private final static String PATH_GAME_VIEW = "fxml/gameView.fxml";
-    private final static String PATH_GAME_OVER = "fxml/GameOverView.fxml";
+    private final static String PATH_MENU = "fxml/view_Menu.fxml";
+    private final static String PATH_SETTINGS = "fxml/view_Settings.fxml";
+    private final static String PATH_HIGH_SCORE = "fxml/view_HighScore.fxml";
+    private final static String PATH_GAME_VIEW = "fxml/view_Game.fxml";
+    private final static String PATH_GAME_OVER = "fxml/view_GameOver.fxml";
 
     private final static String[] FXML_PATHS = {
         PATH_MENU,
@@ -49,26 +52,23 @@ public class GUIManager extends ViewManager {
 
     @Override
     public void update() {
-        for (ViewController controller : VIEW_CONTROLLERS) {
-            if (currentController.equals(controller)) {
-                controller.update();
-            }
-        }
+        currentController.update();
     }
 
     private void loadControllers() {
         for (String path : FXML_PATHS) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                Pane p = loader.load(getClass().getResource(path).openStream());
-                ViewController controller = loader.getController();
+                Parent p = loader.load(getClass().getResource(path).openStream());
+                ViewController controller = (ViewController) loader.getController();
 
                 if (controller != null) {
                     controller.setPath(path);
+                    controller.setParent(p);
                     VIEW_CONTROLLERS.add(controller);
                 }
             } catch (IOException ex) {
-                System.out.println("Failed to load controller for FXML: " + path + " : " + ex);
+                System.out.println(ex);
             }
         }
 
@@ -78,17 +78,11 @@ public class GUIManager extends ViewManager {
     }
 
     public void loadView(String FXMLFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Pane p = loader.load(getClass().getResource(FXMLFile).openStream());
-            ViewController controller = loader.getController();
-            
-            currentStage.setScene(new Scene(FXMLLoader.load(getClass().getResource(FXMLFile))));
-            controller.setPath(FXMLFile);
-            currentController = controller;
-
-        } catch (IOException ex) {
-            System.out.println("Failed to find the given FXML file: " + FXMLFile + " " + ex);
+        for (ViewController controller : VIEW_CONTROLLERS) {
+            if (controller.getPath().equals(FXMLFile)) {
+                currentStage.setScene(new Scene(controller.getParent()));
+                currentController = controller;
+            }
         }
         currentStage.show();
     }

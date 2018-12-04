@@ -1,6 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package presentation.controllers;
 
-import presentation.GUIManager;
 import domain.DomainReader;
 import domain.DomainRequester;
 import java.net.URL;
@@ -16,54 +20,35 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import static presentation.controllers.ViewController.guiManager;
 
+/**
+ * FXML Controller class
+ *
+ * @author sbang
+ */
 public class GameViewController extends ViewController implements Initializable {
 
-    /**
-     * Progress bar visualizing life variable.
-     */
     @FXML
     private ProgressBar progressBarLife;
-
-    /**
-     * Progress bar visualizing oxygen variable.
-     */
-    @FXML
-    private ProgressBar progressBarOxygen;
-
-    @FXML
-    private Label waveNumberValue;
-
-    @FXML
-    private Label waveTimeLabel;
-    /**
-     * Canvas, where the games maps will be drawn.
-     */
-    @FXML
-    private Canvas canvasMap;
-
-    /**
-     * Text the user inputs, will be shown here.
-     */
-    @FXML
-    private TextArea outputText;
-
-    /**
-     * Text interface, where user can send inputs via text.
-     */
-    @FXML
-    private TextField inputText;
-
-    /**
-     * Text area, where relevant information will be shown.
-     */
-    @FXML
-    private TextArea infoText;
-
     @FXML
     private Label waveLabel;
     @FXML
+    private Label waveNumberValue;
+    @FXML
     private Label timeLabel;
+    @FXML
+    private Label waveTimeLabel;
+    @FXML
+    private ProgressBar progressBarOxygen;
+    @FXML
+    private Canvas canvasMap;
+    @FXML
+    private TextArea outputText;
+    @FXML
+    private TextField inputText;
+    @FXML
+    private TextArea infoText;
 
     private static String lastOutput = "";
 
@@ -72,20 +57,14 @@ public class GameViewController extends ViewController implements Initializable 
 
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-    private final GUIManager guiManager = new GUIManager();
-
+    
     /**
      * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        gc = canvasMap.getGraphicsContext2D();
-//        DrawController.setup();
-    }
-
+    }   
+    
     @Override
     public void update() {
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
@@ -107,20 +86,14 @@ public class GameViewController extends ViewController implements Initializable 
             infoText.setScrollTop(10000);
             infoText.positionCaret(output.length());
         }
-    }
+    }  
 
-    /**
-     * When enter is pressed, handle inputText and outputText.
-     *
-     * @param event
-     */
     @FXML
     private void enterPressedHandler(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             if (inputText.getText().equals("")) {
                 return;
             }
-
             consoleText.add(inputText.getText());
             outputText.setText(textToString(consoleText));
             outputText.setScrollTop(10000);
@@ -129,7 +102,7 @@ public class GameViewController extends ViewController implements Initializable 
             inputText.setText("");
         }
     }
-
+    
     /**
      * Method that takes text as input and returns it as String.
      *
@@ -149,3 +122,4 @@ public class GameViewController extends ViewController implements Initializable 
         return gc;
     }
 }
+
