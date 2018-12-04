@@ -124,6 +124,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
     public static void update() {
         interfaces.progressBarLife.setProgress((double) interfaces.readLife() / 100);
         if (interfaces.readLife() == 0) {
+            sound.stopSounds();
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -134,6 +135,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         }
         interfaces.progressBarOxygen.setProgress((double) interfaces.readOxygen() / 100);
         if (interfaces.readOxygen() == 0) {
+            sound.stopSounds();
             ViewManager gameOver = new ViewManager();
             try {
                 gameOver.loadView(gameOver.getGameOverPath());
@@ -153,6 +155,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             interfaces.infoText.setScrollTop(10000);
             interfaces.infoText.positionCaret(output.length());
         }
+        
         sound.playGameMusic();
         sound.playLocationSound();
     }

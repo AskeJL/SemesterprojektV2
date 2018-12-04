@@ -25,12 +25,13 @@ public class Soundplayer {
 
     public void playGameMusic() {
         if (gameMusic.isPlaying() == false) {
+            gameMusic.setVolume(0.02);
             gameMusic.play();
         }
     }
 
     public void playLocationSound() {
-
+        
         if (presentation.game.draw.DrawController.getCurrentLocationName() == "Outside") {
             if (backSound.isPlaying() == false) {
                 backSound.play();
@@ -38,7 +39,7 @@ public class Soundplayer {
 
         } else {
             if (backSound2.isPlaying() == false) {
-                backSound2.setVolume(1);
+                backSound2.setVolume(0.1);
                 backSound2.play();
             }
         }
@@ -54,5 +55,11 @@ public class Soundplayer {
         String musicFile = "assets/sounds/beep_04.wav";
         AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
         sound.play();
+    }
+    
+    public void stopSounds(){
+        gameMusic.stop();
+        backSound.stop();
+        backSound2.stop();
     }
 }
