@@ -45,9 +45,9 @@ public class SystemsController extends Controller implements DataReader {
      * Whether or not a large fragment should be destroyed in the next update.
      */
     private static boolean largeFragmentDestroyed = false;
-    
+
     private static int intro = 1;
-    
+
     private static List<String> finalIntro;
     private static List<String> newWaveIncoming;
     private static List<String> waveHit;
@@ -59,8 +59,8 @@ public class SystemsController extends Controller implements DataReader {
     public static void init() {
         Score.setScore(0);
         finalIntro = SystemsData.getTextString("Finalintro.txt");
-        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
-        waveHit = SystemsData.getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
+        newWaveIncoming = SystemsData.getAIString("newWaveIncoming" + (int) (Math.random() * 3 + 1) + ".txt");
+        waveHit = SystemsData.getAIString("waveHit" + (int) (Math.random() * 3 + 1) + ".txt");
     }
 
     /**
@@ -72,17 +72,17 @@ public class SystemsController extends Controller implements DataReader {
      */
     public static void update() {
         if (playerReady) {
-            
+
             switch (intro) {
                 case 1:
                     SystemsData.printText(finalIntro);
                     intro++;
-                case 2: 
-                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")){
+                case 2:
+                    if (InteractionsController.getLastCommandName().equalsIgnoreCase("continue")) {
                         intro++;
                     }
             }
-            
+
             if (ResourcesController.getCurrentTime() >= ResourcesController.getWaveTime() && intro == 3) {
                 if (Wave.getSmallFragments() > 0 || Wave.getMediumFragments() > 0 || Wave.getLargeFragments() > 0) {
                     ResourcesController.decreaseLife(Wave.getSmallFragments(), Wave.getMediumFragments(), Wave.getLargeFragments());
@@ -91,8 +91,8 @@ public class SystemsController extends Controller implements DataReader {
                     Wave.setMediumFragments(0);
                     Wave.setLargeFragments(0);
                 }
-                
-                if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()){
+
+                if (ResourcesController.getCurrentTime() >= ResourcesController.getRandTime() + ResourcesController.getWaveTime()) {
                     Wave.incrementNumberOfWaves();
                     Wave.createWave();
                     SystemsData.printText(newWaveIncoming);
@@ -206,15 +206,16 @@ public class SystemsController extends Controller implements DataReader {
     public static int getLargeFragments() {
         return Wave.getLargeFragments();
     }
-    
+
     /**
      * Get {@link Wave#numberOfWaves}.
-     * 
-     * @return 
+     *
+     * @return
      */
-    public static int getNumberOfWaves(){
+    public static int getNumberOfWaves() {
         return Wave.getNumberofWaves();
     }
+
     /**
      * Get {@link Score#score}.
      *
