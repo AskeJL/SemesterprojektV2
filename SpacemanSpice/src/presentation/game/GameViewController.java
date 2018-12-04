@@ -146,10 +146,6 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
             interfaces.infoText.setScrollTop(10000);
             interfaces.infoText.positionCaret(output.length());
         }
-
-        DrawController.setup();
-        DrawController.drawLocation();
-        DrawController.drawPlayer();
         new presentation.sound.Soundplayer().playLocationSound();
     }
 

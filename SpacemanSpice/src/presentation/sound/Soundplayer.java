@@ -5,44 +5,39 @@
  */
 package presentation.sound;
 
-import domain.locations.LocationsReader;
 import java.io.File;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.AudioClip;
 
 /**
  *
  * @author askel
  */
-public class Soundplayer{
+public class Soundplayer {
 
     public void playLocationSound() {
 
-        if ( presentation.game.draw.DrawController.getCurrentLocationName() == "Outside") {
+        if (presentation.game.draw.DrawController.getCurrentLocationName() == "Outside") {
             String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/retro_beeps_collect_item_01.wav";
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.play();
 
         } else {
             String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/background_room_interior_hum_loop_03.wav";
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.setVolume(0.5);
+            sound.play();
         }
     }
 
     public void playDoorSound() {
         String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+        sound.play();
     }
 
     public void playInteractionSound() {
         String musicFile = "C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/assets/sounds/beep_04.wav";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+        sound.play();
     }
 }
