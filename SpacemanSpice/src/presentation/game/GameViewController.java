@@ -104,8 +104,6 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         DrawController.setup();
         DrawController.drawLocation();
         DrawController.drawPlayer();
-        
-        new presentation.sound.Soundplayer().playLocationSound();
     }
 
     /**
@@ -152,6 +150,7 @@ public class GameViewController implements Initializable, ResourcesReader, Syste
         DrawController.setup();
         DrawController.drawLocation();
         DrawController.drawPlayer();
+        new presentation.sound.Soundplayer().playLocationSound();
     }
 
     /**

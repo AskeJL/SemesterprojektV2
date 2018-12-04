@@ -114,6 +114,7 @@ public class DrawController implements DataReader {
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
                 DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
+                new presentation.sound.Soundplayer().playDoorSound();
                 break;
             case WEST:
                 direction = currentMapLocation.getWestExit().getDirectionTo();
@@ -121,6 +122,7 @@ public class DrawController implements DataReader {
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
                 DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
+                new presentation.sound.Soundplayer().playDoorSound();
                 break;
             case SOUTH:
                 direction = currentMapLocation.getSouthExit().getDirectionTo();
@@ -128,6 +130,7 @@ public class DrawController implements DataReader {
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
                 DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
+                new presentation.sound.Soundplayer().playDoorSound();
                 break;
             case EAST:
                 direction = currentMapLocation.getEastExit().getDirectionTo();
@@ -135,8 +138,11 @@ public class DrawController implements DataReader {
                 textMapLocation = currentMapLocation.getTextMapFileLocation();
                 DrawController.drawLocation(direction);
                 DrawController.drawPlayer();
+                new presentation.sound.Soundplayer().playDoorSound();
                 break;
             case CONSOLE:
+                new presentation.sound.Soundplayer().playInteractionSound();
+                break;
         }
     }
 
@@ -201,6 +207,10 @@ public class DrawController implements DataReader {
             }
         }
         return charArray;
+    }
+    
+    public static String getCurrentLocationName(){
+        return currentLocationName;
     }
 
 }
