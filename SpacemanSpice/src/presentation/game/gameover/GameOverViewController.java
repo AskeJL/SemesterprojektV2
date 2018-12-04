@@ -40,9 +40,14 @@ public class GameOverViewController implements Initializable, InteractionsReques
     @FXML
     private TextField scoreField;
     @FXML
+    private TextField usernameField;
+    @FXML
     private Button menuButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private Button submit;
+
 
     /**
      * Initializes the controller class.
@@ -52,6 +57,18 @@ public class GameOverViewController implements Initializable, InteractionsReques
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.scoreField.setText("Your score was " + this.readScore());
+        
+        ResourcesController.setOxygen(100);
+        ResourcesController.setLife(100);
+        SystemsController.setNumberOfWaves(0);
+        SystemsController.setPlayerReady(false);
+        SystemsController.init();
+        LocationsController.init();
+        TutorialController.init();
+    }    
+    
+    @FXML
+    public void updateHighscore(){
         List <String> score = new ArrayList<>();
         List <Integer> scoreSort = new ArrayList<>();
         List <String> scoreSorted = new ArrayList<>();
@@ -66,16 +83,9 @@ public class GameOverViewController implements Initializable, InteractionsReques
         for(int i = 0; i<scoreSort.size(); i++){
             scoreSorted.add(Integer.toString(scoreSort.get(i)));
         }
-        this.writeData(AssetType.SCORE, "highscore.txt",scoreSorted);
-        ResourcesController.setOxygen(100);
-        ResourcesController.setLife(100);
-        SystemsController.setNumberOfWaves(0);
-        SystemsController.setPlayerReady(false);
-        SystemsController.init();
-        LocationsController.init();
-        TutorialController.init();
-    }    
-
+        this.writeData(AssetType.SCORE , "highscore.txt",scoreSorted);
+    }
+    
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
         ViewManager menu = new ViewManager();
