@@ -16,7 +16,7 @@ class ReadController {
     private static final String TEXT_PATH = "assets/text/";
     private static final String DESCRIPTION_PATH = "assets/descriptions/";
     private static final String AI_PATH = "assets/text/AI behaviour/";
-
+    
     /**
      * Gets data based on its {@link data.AssetType} and name.
      *

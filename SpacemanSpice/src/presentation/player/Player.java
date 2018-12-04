@@ -2,6 +2,7 @@
 package presentation.player;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import presentation.game.GameViewController;
 
@@ -19,6 +20,8 @@ public class Player {
     
     private final Color innerColor = Color.ALICEBLUE;
     private final Color outerColor = Color.TRANSPARENT;
+    
+    private final Image playerImage = new Image(getClass().getResourceAsStream("spacemanSpice.png"));
     
     private int playerLocationXAxis;
     private int playerLocationYAxis;
@@ -42,6 +45,7 @@ public class Player {
         gc.fillRect(getPlayerLocationXAxis(), getPlayerLocationYAxis(), getTILE_WIDTH(), getTILE_HEIGHT());
         gc.setFill(getInnerColor());
         gc.fillRect(getPlayerLocationXAxis() + 8, getPlayerLocationYAxis() + 8, getTILE_WIDTH() - 12, getTILE_HEIGHT() - 12);
+        gc.drawImage(playerImage, xAxis, yAxis);
     }
 
     /**

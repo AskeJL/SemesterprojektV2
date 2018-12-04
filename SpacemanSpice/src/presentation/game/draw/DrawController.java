@@ -4,6 +4,9 @@ import data.AssetType;
 import data.read.DataReader;
 import java.util.HashMap;
 import java.util.List;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import presentation.game.GameViewController;
 import presentation.player.*;
 import presentation.tiles.*;
 
@@ -34,12 +37,14 @@ public class DrawController implements DataReader {
 
     private static InteractableType interactableType;
     private static Direction direction;
+    
+    
 
     /**
      * Instantiates the components needed to be drawn on the canvas
      */
     public static void setup() {
-
+        
         TileController tileController = new TileController();
         LocationController locationController = new LocationController();
 
@@ -56,18 +61,26 @@ public class DrawController implements DataReader {
 
         playerXLocation = player.getPlayerLocationXAxis() + 5;
         playerYLocation = player.getPlayerLocationYAxis() + 5;
+        
     }
 
+    public static void clearCanvas(){
+        GraphicsContext gc = GameViewController.getGraphicsContext();
+        int canvasWidth = 900;
+        int canvasHeight = 540;
+        gc.clearRect(0, 0,canvasWidth , canvasHeight);
+    }
     /**
      * Draws a location on the screen, based on a text file
      */
     public static void drawLocation() {
-
+        DrawController.clearCanvas();
         List<String> map = interfaces.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                currentTileMap.get(characters[x][y]).drawTile((x * tileSize), (y * tileSize));
+                Image img = currentTileMap.get(characters[x][y]).getTileImage();
+                currentTileMap.get(characters[x][y]).drawTile(img,(x * tileSize), (y * tileSize));
             }
         }
     }
@@ -79,7 +92,7 @@ public class DrawController implements DataReader {
      * @param directionTo
      */
     public static void drawLocation(Direction directionTo) {
-
+        DrawController.clearCanvas();
         List<String> map = interfaces.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
@@ -88,7 +101,8 @@ public class DrawController implements DataReader {
                     playerXLocation = x;
                     playerYLocation = y;
                 }
-                currentTileMap.get(characters[x][y]).drawTile((x * tileSize), (y * tileSize));
+                Image img = currentTileMap.get(characters[x][y]).getTileImage();
+                currentTileMap.get(characters[x][y]).drawTile(img,(x * tileSize), (y * tileSize));
             }
         }
     }
