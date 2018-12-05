@@ -275,4 +275,8 @@ public class SystemsManager extends Controller implements GameUpdateable {
     public void setNumberOfWaves(int nrWave) {
         this.wave.setNumberOfWaves(nrWave);
     }
+
+    public int readScore() {
+        return this.score.getScore();
+    }
 }
