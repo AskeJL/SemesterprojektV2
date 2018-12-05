@@ -22,7 +22,7 @@ public class Soundplayer {
     String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
     AudioClip backSound = new AudioClip(new File(backSoundOutsideFile).toURI().toString());
     
-    String backSound2File = "assets/sounds/background_room_interior_hum_loop_03.wav";
+    String backSound2File = "assets/sounds/Background_spacesounds.wav";
     AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
 
     public void playGameMusic() {
