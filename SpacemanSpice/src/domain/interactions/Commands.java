@@ -12,6 +12,7 @@ import domain.interactions.commands.Start;
 import domain.locations.LocationsManager;
 import domain.resources.ResourcesManager;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +33,14 @@ public class Commands implements InteractionsElement {
      */
     private static String lastParameter = "";
 
-    public Commands(LocationsManager locations, InteractionsManager interactions, ResourcesManager resources, SystemsManager systems) {
+    public Commands(LocationsManager locations, InteractionsManager interactions, ResourcesManager resources, SystemsManager systems, TutorialManager tutorial) {
         commandWords.add(new Show(resources));
-        commandWords.add(new Start(systems));
+        commandWords.add(new Start(systems, tutorial));
         commandWords.add(new Clear());
         commandWords.add(new Go(locations));
         commandWords.add(new Quit());
         commandWords.add(new Inspect(locations));
-        commandWords.add(new Help(interactions, locations));
+        commandWords.add(new Help(interactions));
         commandWords.add(new Interact(locations));
         commandWords.add(new Continue());
     }

@@ -4,6 +4,7 @@ import data.AssetType;
 import data.Data;
 import domain.Controller;
 import domain.DomainReader;
+import domain.GameElement;
 import domain.GameUpdateable;
 import domain.interactions.Commands;
 import domain.interactions.InteractionsManager;
@@ -42,7 +43,7 @@ public class TutorialManager extends Controller implements GameUpdateable {
         
     }
     
-    public TutorialManager(List<TutorialElement> elements) {
+    public TutorialManager(List<GameElement> elements) {
         super(elements);
     }
     

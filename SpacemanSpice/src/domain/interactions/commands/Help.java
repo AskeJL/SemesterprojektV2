@@ -1,9 +1,11 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 import domain.interactions.InteractionsManager;
 import domain.locations.Exit;
 import domain.locations.LocationsManager;
+import domain.systems.SystemsManager;
 
 /**
  * This command is responsible for helping the player with information. The
@@ -13,11 +15,11 @@ import domain.locations.LocationsManager;
  * with: 'help go'. This will call the helpInfo from the Go command.
  */
 public class Help extends Command {
-    
+
     private final InteractionsManager interactionsManager;
-    private final LocationsManager locationsManager;
-    
-    public Help(InteractionsManager interactions, LocationsManager locations) {
+    private final DomainReader reader = new DomainReader();
+
+    public Help(InteractionsManager interactions) {
         super("help", "Display the help list.", true);
         super.addParameter("go");
         super.addParameter("interact");
@@ -25,9 +27,8 @@ public class Help extends Command {
         super.addParameter("quit");
         super.addParameter("clear");
         super.addParameter("start");
-        
+
         this.interactionsManager = interactions;
-        this.locationsManager = locations;
     }
 
     /**
@@ -62,7 +63,7 @@ public class Help extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The help function can tell you which commands you can use in the given room");
+        reader.storeln("The help function can tell you which commands you can use in the given room");
     }
 
     /**
@@ -73,29 +74,32 @@ public class Help extends Command {
      */
     @Override
     public void showAvailableParameters() {
-        System.out.println("Current room:");
-        System.out.println(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName() + "/" + locationsManager.getCurrentRoom().getName()));
+        LocationsManager locationsManager = (LocationsManager) interactionsManager.getController(LocationsManager.class);
+        SystemsManager systemsManager = (SystemsManager) interactionsManager.getController(SystemsManager.class);
 
-        System.out.println("You can go:");
+        reader.storeln("Current room:");
+        reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName() + "/" + locationsManager.getCurrentRoom().getName()));
+
+        reader.storeln("You can go:");
         for (Exit exit : locationsManager.getCurrentLocation().getExits()) {
             if (exit.getFromRoom().getName().equals(locationsManager.getCurrentRoom().getName())) {
-                System.out.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
+                reader.storeln(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
             }
         }
         for (Exit exit : locationsManager.getCurrentRoom().getExits()) {
-            System.out.println(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
+            reader.storeln(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
         }
 
         if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
-            System.out.println("You can interact with:");
-            System.out.println(String.format("%10s %s", "", locationsManager.getCurrentRoom().getGameObjects().get(0).getName()));
+            reader.storeln("You can interact with:");
+            reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentRoom().getGameObjects().get(0).getName()));
         }
 
-        System.out.println("Available commands: ");
-        //if (!systemsManager.getPlayerReady()) {
-            System.out.println(super.getAvailableParameters().toString());
-        //} else {
-            //System.out.println(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
-        //}
+        reader.storeln("Available commands: ");
+        if (!systemsManager.getPlayerReady()) {
+            reader.storeln(super.getAvailableParameters().toString());
+        } else {
+            reader.storeln(super.getAvailableParameters().subList(0, super.getAvailableParameters().size() - 1).toString());
+        }
     }
 }

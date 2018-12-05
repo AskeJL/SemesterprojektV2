@@ -1,7 +1,9 @@
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
 
 /**
  * Used to catch medium fragments.
@@ -13,8 +15,13 @@ import domain.locations.GameObjectType;
  */
 public class NetControl extends GameObject {
 
-    public NetControl() {
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public NetControl(SystemsManager systems) {
         super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL);
+        
+        this.systemsManager = systems;
     }
 
     /**
@@ -29,8 +36,8 @@ public class NetControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("Interacting with net control.");
-        //domain.systems.SystemsController.setMediumFragmentDestroyed(true);
+        reader.storeln("Interacting with net control.");
+        systemsManager.setMediumFragmentDestroyed(true);
     }
 
     @Override

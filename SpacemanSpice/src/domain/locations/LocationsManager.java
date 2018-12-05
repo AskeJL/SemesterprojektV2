@@ -3,13 +3,14 @@ package domain.locations;
 import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
 import domain.Controller;
+import domain.GameElement;
 import java.util.List;
 import domain.GameUpdateable;
 import java.util.ArrayList;
 
 public class LocationsManager extends Controller implements GameUpdateable {
 
-    private List<Location> locations = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
     private Room currentRoom;
     private Location currentLocation;
     
@@ -17,12 +18,14 @@ public class LocationsManager extends Controller implements GameUpdateable {
         
     }
     
-    public LocationsManager(List<LocationsElement> elements) {
+    public LocationsManager(List<GameElement> elements) {
         super(elements);
     }
     
     @Override
     public void init() {
+        Location.init(this);
+        
         createLocations();
         currentLocation = locations.get(5);
         currentRoom = currentLocation.getRooms().get(2);

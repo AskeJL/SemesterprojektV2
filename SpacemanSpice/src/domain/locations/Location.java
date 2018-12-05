@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public abstract class Location {
 
+    protected static LocationsManager locationsManager;
+    
     /**
      * Name of the Location.
      */
@@ -37,6 +39,10 @@ public abstract class Location {
         this.description = description;
     }
 
+    public static void init(LocationsManager locations) {
+        Location.locationsManager = locations;
+    }
+    
     /**
      * Add an {@link Exit} to the location.
      *

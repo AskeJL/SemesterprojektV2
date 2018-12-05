@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 
 /**
@@ -10,6 +11,8 @@ import domain.interactions.Command;
  */
 public class Clear extends Command {
 
+    private final DomainReader reader = new DomainReader();
+    
     public Clear() {
         super("clear", "Clears the terminal", false);
     }
@@ -26,7 +29,7 @@ public class Clear extends Command {
     @Override
     protected void run() {
         for (int i = 0; i < 20; i++) {
-            System.out.println("");
+            reader.storeln("");
         }
     }
 
@@ -37,6 +40,6 @@ public class Clear extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("Clears the terminal.");
+        reader.storeln("Clears the terminal.");
     }
 }

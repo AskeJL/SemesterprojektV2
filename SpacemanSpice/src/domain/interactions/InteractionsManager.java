@@ -1,6 +1,7 @@
 package domain.interactions;
 
 import domain.Controller;
+import domain.GameElement;
 import java.util.List;
 import domain.GameUpdateable;
 
@@ -13,7 +14,7 @@ public class InteractionsManager extends Controller implements GameUpdateable {
 
     }
 
-    public InteractionsManager(List<InteractionsElement> elements) {
+    public InteractionsManager(List<GameElement> elements) {
         super(elements);
     }
 

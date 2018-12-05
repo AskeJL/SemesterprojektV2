@@ -1,6 +1,7 @@
 package domain.resources;
 
 import domain.Controller;
+import domain.GameElement;
 import domain.GameUpdateable;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ResourcesManager extends Controller implements GameUpdateable {
         
     }
     
-    public ResourcesManager(List<ResourcesElement> elements) {
+    public ResourcesManager(List<GameElement> elements) {
         super(elements);
     }
     

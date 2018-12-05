@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 import domain.locations.Exit;
 import domain.locations.LocationsManager;
@@ -17,6 +18,7 @@ public class Go extends Command {
     private final List<Exit> CURRENT_EXITS = new ArrayList<>();
 
     private final LocationsManager locationsManager;
+    private DomainReader reader = new DomainReader();
     
     public Go(LocationsManager locations) {
         super("go", "Walk the player in a direction. [North, South, West, East]", true);
@@ -71,7 +73,7 @@ public class Go extends Command {
             locationsManager.setCurrentRoom(exitTo.getFromRoom());
         }
 
-        System.out.println("Current room: " + locationsManager.getCurrentRoom().getName());
+        reader.storeln("Current room: " + locationsManager.getCurrentRoom().getName());
     }
 
     @Override
@@ -81,6 +83,6 @@ public class Go extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The go command is used to move through rooms.\ngo <direction>");
+        reader.storeln("The go command is used to move through rooms.\ngo <direction>");
     }
 }

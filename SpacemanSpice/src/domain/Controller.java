@@ -3,21 +3,33 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Controller<T> implements Manager {
+public class Controller implements Manager {
 
-    protected List<T> elements = new ArrayList<>();
+    private ControlGroup controlGroup;
+    
+    protected List<GameElement> elements = new ArrayList<>();
 
     public Controller() {
         
     }
     
-    public Controller(List<T> elements) {
+    public Controller(List<GameElement> elements) {
         this.elements = elements;
     }
 
     @Override
+    public void init(ControlGroup controlGroup) {
+        this.controlGroup = controlGroup;
+        for (GameElement e : elements) {
+            if (e instanceof GameUpdateable) {
+                ((GameUpdateable) e).init();
+            }
+        }
+    }
+    
+    @Override
     public void init() {
-        for (T e : elements) {
+        for (GameElement e : elements) {
             if (e instanceof GameUpdateable) {
                 ((GameUpdateable) e).init();
             }
@@ -26,19 +38,23 @@ public class Controller<T> implements Manager {
 
     @Override
     public void update() {
-        for (T e : elements) {
+        for (GameElement e : elements) {
             if (e instanceof GameUpdateable) {
                 ((GameUpdateable) e).update();
             }
         }
     }
-
-    protected void setElements(List<T> elements) {
+    
+    public Controller getController(Class className) {
+        return controlGroup.fetchController(className);
+    }
+    
+    protected void setElements(List<GameElement> elements) {
         this.elements = elements;
     }
     
-    protected T getGameElement(Class element) {
-        for (T g : elements) {
+    protected GameElement getGameElement(Class element) {
+        for (GameElement g : elements) {
             if (g.getClass().getCanonicalName().equals(element.getCanonicalName())) {
                 return g;
             }

@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 
 /**
@@ -10,6 +11,8 @@ import domain.interactions.Command;
  * @see domain.tutorial.TutorialController
  */
 public class Continue extends Command {
+
+    private final DomainReader reader = new DomainReader();
 
     public Continue() {
         super("continue", "Continues the dialogue", false);
@@ -26,7 +29,7 @@ public class Continue extends Command {
      */
     @Override
     protected void run() {
-        
+
     }
 
     @Override
@@ -36,6 +39,6 @@ public class Continue extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("This command lets you continue a dialogue.");
+        reader.storeln("This command lets you continue a dialogue.");
     }
 }

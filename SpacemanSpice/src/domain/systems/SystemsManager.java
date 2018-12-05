@@ -3,6 +3,8 @@ package domain.systems;
 import data.AssetType;
 import data.Data;
 import domain.Controller;
+import domain.DomainReader;
+import domain.GameElement;
 import domain.GameUpdateable;
 import domain.interactions.InteractionsManager;
 import domain.resources.Life;
@@ -11,6 +13,9 @@ import domain.resources.Time;
 import java.util.List;
 
 public class SystemsManager extends Controller implements GameUpdateable {
+    
+    private final DomainReader reader = new DomainReader();
+    
     /**
      * The identifier for a small fragment. (1)
      */
@@ -59,7 +64,7 @@ public class SystemsManager extends Controller implements GameUpdateable {
 
     }
 
-    public SystemsManager(List<SystemsElement> elements) {
+    public SystemsManager(List<GameElement> elements) {
         super(elements);
     }
     
@@ -183,7 +188,7 @@ public class SystemsManager extends Controller implements GameUpdateable {
     
     private void println(List<String> text) {
         for(String line : text) {
-            System.out.println(line);
+            reader.storeln(line);
         }
     }
     

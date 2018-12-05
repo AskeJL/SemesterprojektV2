@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 import domain.resources.ResourcesManager;
 
@@ -14,6 +15,7 @@ import domain.resources.ResourcesManager;
 public class Show extends Command {
     
     private final ResourcesManager resourcesManager;
+    private final DomainReader reader = new DomainReader();
     
     public Show(ResourcesManager resources) {
         super("show", "Shows a resource to the player.", true);
@@ -49,20 +51,20 @@ public class Show extends Command {
     protected void run() {
         switch (super.getCurrentParameter()) {
             case "oxygen":
-                System.out.println("Oxygen: " + resourcesManager.getOxygen().getValue());
+                reader.storeln("Oxygen: " + resourcesManager.getOxygen().getValue());
                 break;
             case "time":
-                System.out.println("Time: " + resourcesManager.getTime().getWaveTime());
+                reader.storeln("Time: " + resourcesManager.getTime().getWaveTime());
                 break;
             case "life":
-                System.out.println("Life: " + resourcesManager.getLife().getValue());
+                reader.storeln("Life: " + resourcesManager.getLife().getValue());
                 break;
             case "map":
                 String data = "";
-                System.out.println(data);
+                reader.storeln(data);
                 break;
             case "score":
-                System.out.println("Score: ");
+                reader.storeln("Score: ");
                 break;
         }
     }
@@ -74,7 +76,7 @@ public class Show extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("This command displays a resource to the player, depending on its parameter."
+        reader.storeln("This command displays a resource to the player, depending on its parameter."
                 + "\nshow <arg>");
     }
 }

@@ -1,10 +1,13 @@
 package domain.systems;
 
+import domain.DomainReader;
 import domain.resources.ResourcesManager;
 import domain.resources.Time;
 import java.util.Random;
 
 public class Wave implements SystemsElement {
+    
+    private final DomainReader reader = new DomainReader();
     
     /**
      * The number of waves the player has gone through (Including the one
@@ -94,11 +97,11 @@ public class Wave implements SystemsElement {
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                System.out.println("You destroyed " + destructionIndex + " small fragments!");
+                reader.storeln("You destroyed " + destructionIndex + " small fragments!");
             } else if (destructionIndex <= 0) {
-                System.out.println("You missed!");
+                reader.storeln("You missed!");
             } else {
-                System.out.println("You destroyed " + destructionIndex + " small fragment!");
+                reader.storeln("You destroyed " + destructionIndex + " small fragment!");
             }
 
             if (smallFragments < 0) {
@@ -112,11 +115,11 @@ public class Wave implements SystemsElement {
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                System.out.println("You caught " + destructionIndex + " medium fragments!");
+                reader.storeln("You caught " + destructionIndex + " medium fragments!");
             } else if (destructionIndex <= 0) {
-                System.out.println("You missed!");
+                reader.storeln("You missed!");
             } else {
-                System.out.println("You caught " + destructionIndex + " medium fragment!");
+                reader.storeln("You caught " + destructionIndex + " medium fragment!");
             }
 
             if (mediumFragments < 0) {

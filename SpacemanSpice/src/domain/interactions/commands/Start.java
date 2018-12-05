@@ -1,7 +1,9 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * This command is responsible for starting the {@link domain.systems.Wave}.
@@ -14,11 +16,13 @@ import domain.systems.SystemsManager;
 public class Start extends Command {
 
     private final SystemsManager systemsManager;
+    private final TutorialManager tutorialManager;
     
-    public Start(SystemsManager systems) {
+    public Start(SystemsManager systems, TutorialManager tutorial) {
         super("start", "Starts the waves and score", false);
         
         this.systemsManager = systems;
+        this.tutorialManager = tutorial;
     }
 
     @Override
@@ -35,6 +39,7 @@ public class Start extends Command {
     @Override
     public void run() {
         systemsManager.setPlayerReady(true);
+        tutorialManager.setTutorial(false);
     }
 
     @Override
@@ -44,6 +49,6 @@ public class Start extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The start command will start the waves and score system");
+        new DomainReader().storeln("The start command will start the waves and score system");
     }
 }

@@ -5,6 +5,7 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.SteeringControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, that controls the movement of the spaceship.
@@ -28,7 +29,7 @@ public final class Control extends Location {
 
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
-        steeringRoom.addGameObject(new SteeringControl());
+        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
         super.addRoom(steeringRoom);
 
         /*Navigation----------------------------------------------------------*/

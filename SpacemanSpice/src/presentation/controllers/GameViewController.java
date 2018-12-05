@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation.controllers;
 
 import domain.DomainReader;
@@ -76,7 +71,7 @@ public class GameViewController extends ViewController implements Initializable 
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
         }
-        waveTimeLabel.setText(Long.toString(reader.readWaveTime()));
+        waveTimeLabel.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
 
         String output = reader.readOutput();

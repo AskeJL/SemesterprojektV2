@@ -57,11 +57,25 @@ public class Game extends Application {
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
 
+        // Add to controller list
+        List<Controller> controllers = new ArrayList<>();
+        controllers.add(tutorialManager);
+        controllers.add(interactionsManager);
+        controllers.add(locationsManager);
+        controllers.add(resourcesManager);
+        controllers.add(systemsManager);
+
+        controlGroup = new ControlGroup(controllers);
+
+        for (Controller c : controlGroup.getControllers()) {
+            c.init(controlGroup);
+        }
+        
         Time time = new Time();
         Life life = new Life();
         Oxygen oxygen = new Oxygen(resourcesManager, locationsManager);
 
-        Commands commands = new Commands(locationsManager, interactionsManager, resourcesManager, systemsManager);
+        Commands commands = new Commands(locationsManager, interactionsManager, resourcesManager, systemsManager, tutorialManager);
         Parser parser = new Parser(commands);
 
         Score score = new Score(systemsManager);
@@ -94,16 +108,7 @@ public class Game extends Application {
         tutorialElements.add(locationsManager);
         tutorialManager.setElements(tutorialElements);
 
-        // Add to controller list
-        List<Controller> controllers = new ArrayList<>();
-        controllers.add(tutorialManager);
-        controllers.add(interactionsManager);
-        controllers.add(locationsManager);
-        controllers.add(resourcesManager);
-        controllers.add(systemsManager);
-
-        controlGroup = new ControlGroup(controllers);
-
+        
         for (Controller c : controlGroup.getControllers()) {
             c.init();
         }

@@ -1,5 +1,6 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
 
 /**
@@ -11,6 +12,8 @@ import domain.interactions.Command;
  */
 public class Quit extends Command {
 
+    private final DomainReader reader = new DomainReader();
+    
     public Quit() {
         super("quit", "Quit the game.", false);        
     }
@@ -27,7 +30,7 @@ public class Quit extends Command {
      */
     @Override
     public void run() {
-        System.out.println("You are now exiting the game - thank you for playing!"
+        reader.storeln("You are now exiting the game - thank you for playing!"
                 + "\nGoodbye...");
         System.exit(0);
     }
@@ -39,6 +42,6 @@ public class Quit extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("The quit function lets you quit the game");
+        reader.storeln("The quit function lets you quit the game");
     }
 }

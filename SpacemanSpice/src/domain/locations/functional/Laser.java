@@ -5,6 +5,7 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.LaserControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, that uses a laser to destroy small fragments
@@ -34,7 +35,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        controlsRoom.addGameObject(new LaserControl());
+        controlsRoom.addGameObject(new LaserControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
         
         super.addRoom(controlsRoom);
 

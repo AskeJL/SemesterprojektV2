@@ -5,6 +5,7 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.NetControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, that utilizes nets to clear medium fragments.
@@ -30,7 +31,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-        NetRoom.addGameObject(new NetControl());
+        NetRoom.addGameObject(new NetControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/

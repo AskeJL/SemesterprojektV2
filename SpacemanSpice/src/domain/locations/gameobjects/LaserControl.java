@@ -1,7 +1,9 @@
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
 
 /**
  * Used to destroy small fragments.
@@ -13,8 +15,13 @@ import domain.locations.GameObjectType;
  */
 public class LaserControl extends GameObject {
 
-    public LaserControl() {
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public LaserControl(SystemsManager systems) {
         super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL);
+        
+        this.systemsManager = systems;
     }
 
     /**
@@ -29,9 +36,8 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("Interacting with laser control");
-        //dependencyinjection.systems.SystemsController.setSmallFragmentDestroyed(true);
-
+        reader.storeln("Interacting with laser control");
+        systemsManager.setSmallFragmentDestroyed(true);
     }
 
     @Override

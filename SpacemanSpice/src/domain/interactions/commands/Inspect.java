@@ -2,6 +2,7 @@ package domain.interactions.commands;
 
 import data.AssetType;
 import data.Data;
+import domain.DomainReader;
 import domain.interactions.Command;
 import domain.locations.LocationsManager;
 
@@ -17,6 +18,7 @@ import domain.locations.LocationsManager;
 public class Inspect extends Command {
 
     private final Data dataAccess = new Data();
+    private final DomainReader reader = new DomainReader();
     private final LocationsManager locationsManager;
     
     public Inspect(LocationsManager locations) {
@@ -41,7 +43,7 @@ public class Inspect extends Command {
         for (String string : this.dataAccess.requestData(AssetType.DESCRIPTION, locationsManager.getCurrentRoom().getName() + ".txt")) {
             data += string;
         }
-        System.out.println(data);
+        reader.storeln(data);
     }
 
     @Override
@@ -51,7 +53,7 @@ public class Inspect extends Command {
 
     @Override
     public void helpInfo() {
-        System.out.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
+        reader.storeln("Inspect the room. This will give you an idea of the surroundings you are currently in.");
     }
 
 }

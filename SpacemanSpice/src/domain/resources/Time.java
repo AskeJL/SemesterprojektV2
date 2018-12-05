@@ -91,7 +91,7 @@ public class Time implements ResourcesElement, GameUpdateable {
      *
      * @return
      */
-    long getRemainingTime() {
+    public long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
     }
 

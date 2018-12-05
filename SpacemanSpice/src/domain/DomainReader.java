@@ -82,11 +82,11 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
     }
 
     @Override
-    public int readWaveTime() {
+    public int readRemainingTime() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
 
         if (resources != null) {
-            return (int) resources.getTime().getWaveTime();
+            return (int) resources.getTime().getRemainingTime();
         }
 
         return -1;

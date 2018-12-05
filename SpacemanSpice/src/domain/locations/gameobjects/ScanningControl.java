@@ -1,7 +1,9 @@
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
 
 /**
  * Used to scan the vicinity of the ship for fragments.
@@ -13,8 +15,13 @@ import domain.locations.GameObjectType;
  */
 public class ScanningControl extends GameObject {
 
-    public ScanningControl() {
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public ScanningControl(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL);
+        
+        this.systemsManager = systems;
     }
 
     /**
@@ -26,12 +33,11 @@ public class ScanningControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("You interact with the scanning station.");
-        
-//        System.out.println("You interact with the scanningstation\nThere are:\n"
-//                + "    " + SystemsController.getSmallFragments() + " small fragments.\n"
-//                + "    " + SystemsController.getMediumFragments() + " medium fragments.\n"
-//                + "    " + SystemsController.getLargeFragments() + " large fragments.\n");
+        reader.storeln("You interact with the scanning station.");
+        reader.storeln("You interact with the scanningstation\nThere are:\n"
+                + "    " + systemsManager.getSmallFragments() + " small fragments.\n"
+                + "    " + systemsManager.getMediumFragments() + " medium fragments.\n"
+                + "    " + systemsManager.getLargeFragments() + " large fragments.\n");
     }
 
     @Override

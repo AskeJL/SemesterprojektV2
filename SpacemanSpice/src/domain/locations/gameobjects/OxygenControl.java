@@ -1,7 +1,10 @@
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.resources.Oxygen;
+import domain.resources.ResourcesManager;
 
 /**
  * Used to fill up the players oxygen.
@@ -13,8 +16,13 @@ import domain.locations.GameObjectType;
  */
 public class OxygenControl extends GameObject {
     
-    public OxygenControl() {
+    private final ResourcesManager resourcesManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public OxygenControl(ResourcesManager resources) {
         super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);  
+        
+        this.resourcesManager = resources;
     }
 
     /**
@@ -28,9 +36,9 @@ public class OxygenControl extends GameObject {
      */
     @Override
     public void interact() {
-        System.out.println("You interact with the Oxygen refilling control");
-        //int difference = 100 - resourcesController.getOxygenValue();
-        //resourcesController.increaseOxygen(difference);
+        reader.storeln("You interact with the Oxygen refilling control");
+        Oxygen oxygen = resourcesManager.getOxygen();
+        oxygen.increaseValue(100 - oxygen.getValue());
     }
 
     @Override
