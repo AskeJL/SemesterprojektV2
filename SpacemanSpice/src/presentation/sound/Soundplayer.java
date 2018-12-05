@@ -16,7 +16,7 @@ public class Soundplayer {
 
     private boolean game = true;
             
-    String gameMusicFile = "assets/sounds/Visager_-_05_-_Battle.MP3";
+    String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 
     String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
@@ -28,7 +28,7 @@ public class Soundplayer {
     public void playGameMusic() {
         if(game == true){
         if (gameMusic.isPlaying() == false) {
-            gameMusic.setVolume(0.02);
+            gameMusic.setVolume(0.2);
             gameMusic.play();
         }
     }
