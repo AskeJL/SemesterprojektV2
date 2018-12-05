@@ -43,7 +43,7 @@ public class Life implements ResourcesElement, GameUpdateable {
      * increase upon
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
-    private int life = 100;
+    private int life = 50;
 
     public Life() {
 

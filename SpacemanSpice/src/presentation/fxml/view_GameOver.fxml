@@ -23,6 +23,6 @@
             <Font name="Lucida Console" size="11.0" />
          </font>
       </Button>
-      <TextField fx:id="scoreField" layoutX="196.0" layoutY="102.0" onAction="#initialize" prefHeight="59.0" prefWidth="206.0" />
+      <TextField fx:id="scoreField" layoutX="196.0" layoutY="102.0" prefHeight="59.0" prefWidth="206.0" />
    </children>
 </AnchorPane>
