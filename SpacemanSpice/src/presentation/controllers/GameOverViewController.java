@@ -31,6 +31,7 @@ public class GameOverViewController extends ViewController implements Initializa
     
     
     DomainReader score1 = new DomainReader();
+    DomainRequester domain = new DomainRequester();
 
     @FXML
     private Label gameOverField;
@@ -48,19 +49,19 @@ public class GameOverViewController extends ViewController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       DomainRequester domain = new DomainRequester();
        domain.requestReset();
        scoreField.setText("Score: " + score1.readScore() );
-        
     }    
 
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
-        
+         guiManager.loadView(guiManager.getMenuPath());
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
+        
+        
     }
 
     @Override
