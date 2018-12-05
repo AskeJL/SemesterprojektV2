@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,17 +59,25 @@ public class GameViewController extends ViewController implements Initializable 
 
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
+    @FXML
+    private ToggleButton toggleChat;
+
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         gc = canvasMap.getGraphicsContext2D();
 
         drawController.setup();
         drawController.drawLocation();
         drawController.drawPlayer();
+
+        
+
     }
 
     @Override
@@ -98,8 +108,7 @@ public class GameViewController extends ViewController implements Initializable 
 
     @FXML
     private void enterPressedHandler(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER) {
-            
+        if (event.getCode() == KeyCode.ENTER) {
             if (inputText.getText().equals("")) {
                 return;
             }
@@ -112,27 +121,35 @@ public class GameViewController extends ViewController implements Initializable 
         }
     }
 
-    
-
     @FXML
     private void keyPressedHandler(KeyEvent event) {
-        System.out.println("Test");
         switch (event.getCode()) {
             case SPACE:
                 drawController.interact();
                 break;
             case UP:
+                event.consume();
                 drawController.movePlayerUP();
                 break;
             case DOWN:
+                event.consume();
                 drawController.movePlayerDown();
                 break;
             case LEFT:
+                event.consume();
                 drawController.movePlayerLeft();
                 break;
             case RIGHT:
+                event.consume();
                 drawController.movePlayerRight();
                 break;
+            case ENTER:
+                inputText.requestFocus();
+                break;
+            case ESCAPE:
+                canvasMap.requestFocus(); 
+                break;
+
         }
     }
 
@@ -153,5 +170,10 @@ public class GameViewController extends ViewController implements Initializable 
 
     public GraphicsContext getGraphicsContext() {
         return gc;
+    }
+
+    @FXML
+    private void toggleChat(ActionEvent event) {
+
     }
 }
