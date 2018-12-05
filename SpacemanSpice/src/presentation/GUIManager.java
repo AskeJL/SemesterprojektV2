@@ -79,6 +79,7 @@ public class GUIManager extends ViewManager {
             if (controller.getPath().equals(FXMLFile)) {
                 currentStage.setScene(controller.getScene());
                 currentController = controller;
+                currentController.getScene().getRoot().requestFocus();
             }
         }
         currentStage.show();
