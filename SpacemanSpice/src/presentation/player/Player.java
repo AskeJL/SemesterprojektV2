@@ -4,7 +4,7 @@ package presentation.player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import presentation.controllers.GameViewController;
+import presentation.controllers.ViewController_Game;
 
 /**
  * Player class with following attributes:
@@ -26,9 +26,9 @@ public class Player {
     private int playerLocationXAxis;
     private int playerLocationYAxis;
     
-    private final GameViewController gameViewController;
+    private final ViewController_Game gameViewController;
     
-    public Player(GameViewController controller){
+    public Player(ViewController_Game controller){
         this.gameViewController = controller;
     }
     

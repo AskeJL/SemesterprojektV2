@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import presentation.GUIManager;
 
-public class MenuViewController extends ViewController implements Initializable {
+public class ViewController_Menu extends ViewController implements Initializable {
 
     @FXML
     private Button highscoreButton;

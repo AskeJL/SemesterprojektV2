@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author askel
  */
-public class GameOverViewController extends ViewController implements Initializable {
+public class ViewController_GameOver extends ViewController implements Initializable {
 
     @FXML
     private Label gameOverField;

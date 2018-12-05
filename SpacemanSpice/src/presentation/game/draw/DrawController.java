@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import presentation.controllers.GameViewController;
+import presentation.controllers.ViewController_Game;
 import presentation.player.*;
 import presentation.sound.SoundPlayer;
 import presentation.tiles.*;
@@ -39,10 +39,10 @@ public class DrawController {
     private InteractableType interactableType;
     private Direction direction;
     
-    private final GameViewController gameViewController;
+    private final ViewController_Game gameViewController;
     private final Player player;
     
-    public DrawController(GameViewController controller) {
+    public DrawController(ViewController_Game controller) {
         this.gameViewController = controller;
         this.player = new Player(gameViewController);
     }

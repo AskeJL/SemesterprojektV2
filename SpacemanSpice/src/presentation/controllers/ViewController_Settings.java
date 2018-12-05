@@ -1,6 +1,5 @@
 package presentation.controllers;
 
-import presentation.GUIManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,7 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.ToggleButton;
 
-public class SettingsViewController extends ViewController implements Initializable {
+public class ViewController_Settings extends ViewController implements Initializable {
 
     @FXML
     private ToggleButton toggleSoundButton;

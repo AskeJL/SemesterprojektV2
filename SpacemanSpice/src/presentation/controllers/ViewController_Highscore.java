@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
-public class HighscoreViewController extends ViewController implements Initializable {
+public class ViewController_Highscore extends ViewController implements Initializable {
 
     @FXML
     private ListView<?> highscoreLIst;
