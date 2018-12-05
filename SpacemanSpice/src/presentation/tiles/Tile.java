@@ -4,7 +4,7 @@ package presentation.tiles;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import presentation.game.GameViewController;
+import presentation.controllers.GameViewController;
 
 /**
  * Class Tile, 
@@ -24,18 +24,21 @@ public class Tile {
     private final Direction direction;
     private final Image tileImage;
    
+    private final GraphicsContext gc;
     
     /**
      * Tile constructor
+     * @param gc
      * @param type
      * @param color
      * @param symbol 
+     * @param newImage 
      * @param isSolid 
      * @param canInteractType 
      * @param newDirection 
      */
-    public Tile(TileType type, Color color, char symbol, Image newImage, Boolean isSolid, Enum canInteractType, Direction newDirection){
-        
+    public Tile(GraphicsContext gc, TileType type, Color color, char symbol, Image newImage, Boolean isSolid, Enum canInteractType, Direction newDirection){
+        this.gc = gc;
         this.tileType = type;
         this.tileColor = color;
         this.SYMBOL = symbol;
@@ -57,7 +60,6 @@ public class Tile {
     public void drawTile(Image img, int xAxis, int yAxis) {
         this.tileLocationXAxis = xAxis;
         this.tileLocationYAxis = yAxis;
-        GraphicsContext gc = GameViewController.getGraphicsContext();
         //gc.setFill(Color.TRANSPARENT);
         //gc.fillRect(tileLocationXAxis, tileLocationYAxis, TILE_WIDTH, TILE_HEIGHT);
         //gc.setFill(getTileColor());

@@ -4,7 +4,7 @@ package presentation.player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import presentation.game.GameViewController;
+import presentation.controllers.GameViewController;
 
 /**
  * Player class with following attributes:
@@ -26,9 +26,10 @@ public class Player {
     private int playerLocationXAxis;
     private int playerLocationYAxis;
     
+    private final GameViewController gameViewController;
     
-    public Player(){
-        
+    public Player(GameViewController controller){
+        this.gameViewController = controller;
     }
     
     /**
@@ -40,7 +41,7 @@ public class Player {
         this.setPlayerLocationXAxis(xAxis);
         this.setPlayerLocationYAxis(yAxis);
         
-        GraphicsContext gc = GameViewController.getGraphicsContext();
+        GraphicsContext gc = gameViewController.getGraphicsContext();
         gc.setFill(getOuterColor());
         gc.fillRect(getPlayerLocationXAxis(), getPlayerLocationYAxis(), getTILE_WIDTH(), getTILE_HEIGHT());
         gc.setFill(getInnerColor());

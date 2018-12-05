@@ -1,6 +1,7 @@
 package presentation.tiles;
 
 import java.util.HashMap;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -35,38 +36,43 @@ public class TileController {
          
     private Tile nothing;
     
+    private final GraphicsContext gc;
+    
     /**
      * Tile controller constructor
+     * @param gc
      */
-    public TileController(){
-        this.floor = new Tile(TileType.FLOOR, Color.AQUA, '.',new Image(getClass().getResourceAsStream("floorTile.png")), false, InteractableType.NOTHING, null);
+    public TileController(GraphicsContext gc){
+        this.gc = gc;
         
-        this.horizontalWall = new Tile(TileType.WALL, Color.BROWN, '-', new Image(getClass().getResourceAsStream("horizontalWall.png")), true ,InteractableType.NOTHING, null);
-        this.verticalWall = new Tile(TileType.WALL, Color.BROWN, '/', new Image(getClass().getResourceAsStream("verticalWall.png")), true ,InteractableType.NOTHING, null);
+        this.floor = new Tile(gc, TileType.FLOOR, Color.AQUA, '.',new Image(getClass().getResourceAsStream("floorTile.png")), false, InteractableType.NOTHING, null);
         
-        this.northWestCorner = new Tile(TileType.WALL, Color.BROWN, '[', new Image(getClass().getResourceAsStream("northWestCorner.png")), true ,InteractableType.NOTHING, null);
-        this.southWestCorner = new Tile(TileType.WALL, Color.BROWN, '(', new Image(getClass().getResourceAsStream("southWestCorner.png")), true ,InteractableType.NOTHING, null);
-        this.southEastCorner = new Tile(TileType.WALL, Color.BROWN, ')', new Image(getClass().getResourceAsStream("southEastCorner.png")), true ,InteractableType.NOTHING, null);
-        this.northEastCorner = new Tile(TileType.WALL, Color.BROWN, ']', new Image(getClass().getResourceAsStream("northEastCorner.png")), true ,InteractableType.NOTHING, null);
+        this.horizontalWall = new Tile(gc,TileType.WALL, Color.BROWN, '-', new Image(getClass().getResourceAsStream("horizontalWall.png")), true ,InteractableType.NOTHING, null);
+        this.verticalWall = new Tile(gc,TileType.WALL, Color.BROWN, '/', new Image(getClass().getResourceAsStream("verticalWall.png")), true ,InteractableType.NOTHING, null);
+        
+        this.northWestCorner = new Tile(gc,TileType.WALL, Color.BROWN, '[', new Image(getClass().getResourceAsStream("northWestCorner.png")), true ,InteractableType.NOTHING, null);
+        this.southWestCorner = new Tile(gc,TileType.WALL, Color.BROWN, '(', new Image(getClass().getResourceAsStream("southWestCorner.png")), true ,InteractableType.NOTHING, null);
+        this.southEastCorner = new Tile(gc,TileType.WALL, Color.BROWN, ')', new Image(getClass().getResourceAsStream("southEastCorner.png")), true ,InteractableType.NOTHING, null);
+        this.northEastCorner = new Tile(gc,TileType.WALL, Color.BROWN, ']', new Image(getClass().getResourceAsStream("northEastCorner.png")), true ,InteractableType.NOTHING, null);
         
         
         
         
-        this.console = new Tile(TileType.CONSOLE, Color.RED, '+', null, true, InteractableType.CONSOLE, null);
+        this.console = new Tile(gc,TileType.CONSOLE, Color.RED, '+', null, true, InteractableType.CONSOLE, null);
         
-        this.northExit = new Tile(TileType.NORTH_EXIT, Color.DARKCYAN, 'N',new Image(getClass().getResourceAsStream("northExit.png")), false, InteractableType.NORTH, Direction.NORTH);
-        this.northDoor = new Tile(TileType.DOOR, Color.DARKCYAN, 'n', new Image(getClass().getResourceAsStream("northExit.png")), false, InteractableType.NORTH, Direction.NORTH);
+        this.northExit = new Tile(gc,TileType.NORTH_EXIT, Color.DARKCYAN, 'N',new Image(getClass().getResourceAsStream("northExit.png")), false, InteractableType.NORTH, Direction.NORTH);
+        this.northDoor = new Tile(gc,TileType.DOOR, Color.DARKCYAN, 'n', new Image(getClass().getResourceAsStream("northExit.png")), false, InteractableType.NORTH, Direction.NORTH);
         
-        this.westExit = new Tile(TileType.WEST_EXIT, Color.GREEN, 'W', new Image(getClass().getResourceAsStream("westExit.png")), false, InteractableType.WEST, Direction.WEST);
-        this.westDoor = new Tile(TileType.DOOR, Color.GREEN, 'w', new Image(getClass().getResourceAsStream("westExit.png")), false, InteractableType.WEST, Direction.WEST);
+        this.westExit = new Tile(gc,TileType.WEST_EXIT, Color.GREEN, 'W', new Image(getClass().getResourceAsStream("westExit.png")), false, InteractableType.WEST, Direction.WEST);
+        this.westDoor = new Tile(gc,TileType.DOOR, Color.GREEN, 'w', new Image(getClass().getResourceAsStream("westExit.png")), false, InteractableType.WEST, Direction.WEST);
         
-        this.southExit = new Tile(TileType.SOUTH_EXIT, Color.GREY, 'S',new Image(getClass().getResourceAsStream("southExit.png")), false, InteractableType.SOUTH, Direction.SOUTH);
-        this.southDoor = new Tile(TileType.DOOR, Color.GREY, 's', new Image(getClass().getResourceAsStream("southExit.png")), false, InteractableType.SOUTH, Direction.SOUTH);
+        this.southExit = new Tile(gc,TileType.SOUTH_EXIT, Color.GREY, 'S',new Image(getClass().getResourceAsStream("southExit.png")), false, InteractableType.SOUTH, Direction.SOUTH);
+        this.southDoor = new Tile(gc,TileType.DOOR, Color.GREY, 's', new Image(getClass().getResourceAsStream("southExit.png")), false, InteractableType.SOUTH, Direction.SOUTH);
         
-        this.eastExit = new Tile(TileType.EAST_EXIT, Color.YELLOW, 'E', new Image(getClass().getResourceAsStream("eastExit.png")), false, InteractableType.EAST, Direction.EAST);
-        this.eastDoor = new Tile(TileType.DOOR, Color.YELLOW, 'e', new Image(getClass().getResourceAsStream("eastExit.png")), false, InteractableType.EAST, Direction.EAST);
+        this.eastExit = new Tile(gc,TileType.EAST_EXIT, Color.YELLOW, 'E', new Image(getClass().getResourceAsStream("eastExit.png")), false, InteractableType.EAST, Direction.EAST);
+        this.eastDoor = new Tile(gc,TileType.DOOR, Color.YELLOW, 'e', new Image(getClass().getResourceAsStream("eastExit.png")), false, InteractableType.EAST, Direction.EAST);
         
-        this.nothing = new Tile(TileType.NOTHING, Color.BLACK, '0', null, true, InteractableType.NOTHING, null);
+        this.nothing = new Tile(gc,TileType.NOTHING, Color.BLACK, '0', null, true, InteractableType.NOTHING, null);
         
         tileMap.put(floor.getSYMBOL(), floor);
         

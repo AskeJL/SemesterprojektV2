@@ -44,16 +44,16 @@ public class Life implements ResourcesElement, GameUpdateable {
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
     private int life = 100;
-    
+
     public Life() {
-        
+
     }
-    
+
     @Override
     public void init() {
-        
+
     }
-    
+
     @Override
     public void update() {
         if (life < 100 && repair) {
@@ -102,16 +102,17 @@ public class Life implements ResourcesElement, GameUpdateable {
     }
 
     /**
-     * Set the {@link Life#repair repair}. Preparing the reparation for
-     * the next update.
+     * Set the {@link Life#repair repair}. Preparing the reparation for the next
+     * update.
+     *
      * @param bool
      */
     public void setRepair(boolean bool) {
         this.repair = bool;
     }
-    
-     static void setLife(int Life) {
-        life = Life;
+
+    public void setLife(int life) {
+        this.life = life;
     }
 
     /**

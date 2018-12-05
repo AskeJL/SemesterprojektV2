@@ -15,7 +15,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import static presentation.controllers.ViewController.guiManager;
+import presentation.game.draw.DrawController;
+import presentation.sound.SoundPlayer;
 
 /**
  * FXML Controller class
@@ -48,6 +51,8 @@ public class GameViewController extends ViewController implements Initializable 
     private static String lastOutput = "";
 
     private final ArrayList<String> consoleText = new ArrayList<>();
+    private DrawController drawController = new DrawController(this);
+    private final SoundPlayer sound = new SoundPlayer(drawController);
     private GraphicsContext gc;
 
     private final DomainReader reader = new DomainReader();
@@ -58,7 +63,11 @@ public class GameViewController extends ViewController implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        gc = canvasMap.getGraphicsContext2D();
+
+        drawController.setup();
+        drawController.drawLocation();
+        drawController.drawPlayer();
     }
 
     @Override
@@ -82,11 +91,15 @@ public class GameViewController extends ViewController implements Initializable 
             infoText.setScrollTop(10000);
             infoText.positionCaret(output.length());
         }
+
+        sound.playGameMusic();
+        sound.playLocationSound();
     }
 
     @FXML
     private void enterPressedHandler(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
+        if(event.getCode() == KeyCode.ENTER) {
+            
             if (inputText.getText().equals("")) {
                 return;
             }
@@ -96,6 +109,30 @@ public class GameViewController extends ViewController implements Initializable 
 
             requester.requestRunCommand(inputText.getText());
             inputText.setText("");
+        }
+    }
+
+    
+
+    @FXML
+    private void keyPressedHandler(KeyEvent event) {
+        System.out.println("Test");
+        switch (event.getCode()) {
+            case SPACE:
+                drawController.interact();
+                break;
+            case UP:
+                drawController.movePlayerUP();
+                break;
+            case DOWN:
+                drawController.movePlayerDown();
+                break;
+            case LEFT:
+                drawController.movePlayerLeft();
+                break;
+            case RIGHT:
+                drawController.movePlayerRight();
+                break;
         }
     }
 
