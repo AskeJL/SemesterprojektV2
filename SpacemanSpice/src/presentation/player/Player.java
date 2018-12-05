@@ -18,7 +18,7 @@ public class Player {
     private final int TILE_WIDTH = 32;
     private final int TILE_HEIGHT = 32;
     
-    private final Color innerColor = Color.ALICEBLUE;
+    private final Color innerColor = Color.TRANSPARENT;
     private final Color outerColor = Color.TRANSPARENT;
     
     private final Image playerImage = new Image(getClass().getResourceAsStream("spacemanSpice.png"));
