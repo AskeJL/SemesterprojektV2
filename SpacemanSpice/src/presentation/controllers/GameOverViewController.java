@@ -5,6 +5,7 @@
  */
 package presentation.controllers;
 
+import domain.DomainRequester;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,6 +39,8 @@ public class GameOverViewController extends ViewController implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       DomainRequester domain = new DomainRequester();
+       domain.requestReset();
         
     }    
 
