@@ -16,6 +16,7 @@ public class ReadController {
     private static final String TEXT_PATH = "assets/text/";
     private static final String DESCRIPTION_PATH = "assets/descriptions/";
     private static final String AI_PATH = "assets/text/AI behaviour/";
+    private static final String SCORE_PATH = "assets/score/";
 
     /**
      * Gets data based on its {@link data.AssetType} and name.
@@ -40,6 +41,8 @@ public class ReadController {
                 return new Read(DESCRIPTION_PATH, filename).readTextFile();
             case AIWAVE:
                 return new Read(AI_PATH, filename).readTextFile();
+            case SCORE:
+                return new Read(SCORE_PATH, filename).readTextFile();
             default:
                 return new ArrayList<>();
         }

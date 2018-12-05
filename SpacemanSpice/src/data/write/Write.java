@@ -45,7 +45,7 @@ class Write {
             writer = new PrintWriter(this.FILE);
 
             for (String string : data) {
-                writer.print(string);
+                writer.println(string);
             }
             writer.close();
         } catch (FileNotFoundException ex) {

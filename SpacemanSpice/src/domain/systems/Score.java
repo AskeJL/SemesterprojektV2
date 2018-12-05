@@ -59,4 +59,8 @@ public class Score implements SystemsElement {
     public int getScore() {
         return score;
     }
+    
+    static void setScore(int Score){
+        score = Score;
+    }
 }

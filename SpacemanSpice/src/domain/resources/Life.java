@@ -110,6 +110,10 @@ public class Life implements ResourcesElement, GameUpdateable {
         this.repair = bool;
     }
     
+     static void setLife(int Life) {
+        life = Life;
+    }
+
     /**
      * Get the {@link Life#life life} of the ship.
      *

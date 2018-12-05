@@ -164,7 +164,10 @@ public class Wave implements SystemsElement {
     void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
-
+    
+    void setNumberOfWaves(int i){
+        numberOfWaves = i;
+    }
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *

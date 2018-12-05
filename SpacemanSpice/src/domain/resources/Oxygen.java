@@ -75,4 +75,8 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
     public int getValue() {
         return this.oxygen;
     }
+    
+    static void setOxygen(int Oxygen){
+        oxygen = Oxygen;
+    }
 }
