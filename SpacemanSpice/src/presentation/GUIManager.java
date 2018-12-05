@@ -3,12 +3,9 @@ package presentation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import presentation.controllers.ViewController;
 
@@ -59,12 +56,12 @@ public class GUIManager extends ViewManager {
         for (String path : FXML_PATHS) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                Parent p = loader.load(getClass().getResource(path).openStream());
+                Scene scene = new Scene(loader.load(getClass().getResource(path).openStream()));
                 ViewController controller = (ViewController) loader.getController();
 
                 if (controller != null) {
                     controller.setPath(path);
-                    controller.setParent(p);
+                    controller.setScene(scene);
                     VIEW_CONTROLLERS.add(controller);
                 }
             } catch (IOException ex) {
@@ -80,7 +77,7 @@ public class GUIManager extends ViewManager {
     public void loadView(String FXMLFile) {
         for (ViewController controller : VIEW_CONTROLLERS) {
             if (controller.getPath().equals(FXMLFile)) {
-                currentStage.setScene(new Scene(controller.getParent()));
+                currentStage.setScene(controller.getScene());
                 currentController = controller;
             }
         }
@@ -112,7 +109,7 @@ public class GUIManager extends ViewManager {
         return PATH_MENU;
     }
 
-    public String gethighScorePath() {
+    public String getHighscorePath() {
         return PATH_HIGH_SCORE;
     }
 

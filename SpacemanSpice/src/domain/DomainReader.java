@@ -12,14 +12,14 @@ import domain.systems.SystemsReader;
 public class DomainReader implements InteractionsReader, LocationsReader, ResourcesReader, SystemsReader {
 
     private static ControlGroup group;
-    private static String output;
+    private static String output = "";
 
     void init(ControlGroup group) {
         DomainReader.group = group;
     }
     
     public void storeln(String text) {
-        DomainReader.output += text;
+        DomainReader.output += text + "\n";
     }
     
     public String readOutput() {

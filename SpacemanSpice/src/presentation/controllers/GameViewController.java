@@ -57,14 +57,15 @@ public class GameViewController extends ViewController implements Initializable 
 
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }   
-    
+        
+    }
+
     @Override
     public void update() {
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
@@ -79,14 +80,14 @@ public class GameViewController extends ViewController implements Initializable 
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
 
         String output = reader.readOutput();
-        
+
         if (output != null && !lastOutput.equals(output)) {
             infoText.setText(output);
             lastOutput = output;
             infoText.setScrollTop(10000);
             infoText.positionCaret(output.length());
         }
-    }  
+    }
 
     @FXML
     private void enterPressedHandler(KeyEvent event) {
@@ -102,7 +103,7 @@ public class GameViewController extends ViewController implements Initializable 
             inputText.setText("");
         }
     }
-    
+
     /**
      * Method that takes text as input and returns it as String.
      *
@@ -122,4 +123,3 @@ public class GameViewController extends ViewController implements Initializable 
         return gc;
     }
 }
-

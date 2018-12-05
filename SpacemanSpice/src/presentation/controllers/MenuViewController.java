@@ -61,7 +61,7 @@ public class MenuViewController extends ViewController implements Initializable 
 
     @FXML
     private void onHighScore(ActionEvent event) throws IOException {
-        guiManager.loadView(guiManager.getSettingsViewPath());
+        guiManager.loadView(guiManager.getHighscorePath());
     }
 
     @FXML

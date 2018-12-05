@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/gameViewStyleSheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="presentation.controllers.HighscoreViewController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@presentation/fxml/css/gameViewStyleSheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="presentation.controllers.HighscoreViewController">
    <children>
       <Button fx:id="backButton" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackHandler" prefHeight="50.0" prefWidth="250.0" text="Back">
          <font>
