@@ -71,13 +71,16 @@ public class ViewController_Game extends ViewController implements Initializable
 
     @Override
     public void update() {
+        sound.startSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
+            sound.stopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
+            sound.stopSounds();
         }
         waveTimeLabel.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
@@ -115,21 +118,31 @@ public class ViewController_Game extends ViewController implements Initializable
 
     @FXML
     private void keyPressedHandler(KeyEvent event) {
-        switch (event.getCode()) {
+       switch (event.getCode()) {
             case SPACE:
                 drawController.interact();
                 break;
             case UP:
+                event.consume();
                 drawController.movePlayerUP();
                 break;
             case DOWN:
+                event.consume();
                 drawController.movePlayerDown();
                 break;
             case LEFT:
+                event.consume();
                 drawController.movePlayerLeft();
                 break;
             case RIGHT:
+                event.consume();
                 drawController.movePlayerRight();
+                break;
+            case ENTER:
+                inputText.requestFocus();
+                break;
+            case ESCAPE:
+                canvasMap.requestFocus(); 
                 break;
         }
     }

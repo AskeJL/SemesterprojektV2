@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import data.AssetType;
 import data.Data;
+import data.read.ReadController;
 import presentation.GUIManager;
 import java.io.IOException;
 import java.net.URL;
@@ -13,8 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
-public class ViewController_Highscore extends ViewController implements Initializable {
-
+public class HighscoreViewController extends ViewController implements Initializable {
+    
     Data data = new Data();
     @FXML
     private ListView<String> highscoreLIst;

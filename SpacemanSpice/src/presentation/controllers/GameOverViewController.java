@@ -21,17 +21,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.sound.SoundPlayer;
 
 /**
  * FXML Controller class
  *
  * @author askel
  */
-public class ViewController_GameOver extends ViewController implements Initializable {
+public class GameOverViewController extends ViewController implements Initializable {
 
     DomainReader score1 = new DomainReader();
     DomainRequester domain = new DomainRequester();
-    
+
     @FXML
     private Label gameOverField;
     @FXML
@@ -43,32 +44,31 @@ public class ViewController_GameOver extends ViewController implements Initializ
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        scoreField.setText("You'r score was: "+ score1.readScore());
-    }    
+        scoreField.setText("Score: " + score1.readScore());
+    }
 
     @FXML
-    private void menuButtonHandler(ActionEvent event) throws IOException {
+    private void menuButtonHandler(ActionEvent event) {
         domain.requestReset();
         guiManager.loadView(guiManager.getMenuPath());
-        this.updateHighscore();
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
-        System.exit(0);
     }
 
     @Override
     public void update() {
-        // Nothing to update
+        // nothing to update
     }
-    
-    private void updateHighscore(){
+
+    public void updateHighScore() {
         Data data = new Data();
         List<String> score = new ArrayList<>();
         List<Integer> scoreSort = new ArrayList<>();
@@ -86,4 +86,5 @@ public class ViewController_GameOver extends ViewController implements Initializ
         }
         data.writeData(AssetType.SCORE, "highscore.txt", scoreSorted);
     }
+
 }

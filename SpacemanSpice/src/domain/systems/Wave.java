@@ -6,9 +6,9 @@ import domain.resources.Time;
 import java.util.Random;
 
 public class Wave implements SystemsElement {
-    
+
     private final DomainReader reader = new DomainReader();
-    
+
     /**
      * The number of waves the player has gone through (Including the one
      * currently within).
@@ -41,9 +41,12 @@ public class Wave implements SystemsElement {
      */
     private final static int LARGE_DESCRUCTION_INDEX = 1;
 
+    private boolean easy = true;
+    private boolean hard = false;
+
     private final ResourcesManager resourcesManager;
     private final SystemsManager systemsManager;
-    
+
     public Wave(ResourcesManager resources, SystemsManager systems) {
         this.resourcesManager = resources;
         this.systemsManager = systems;
@@ -59,19 +62,32 @@ public class Wave implements SystemsElement {
         Time time = resourcesManager.getTime();
         time.setWaveTime(time.getCurrentTime() + 120);
         Random random = new Random();
-        smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
+        if (easy == true) {
+            smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
-        if (numberOfWaves % 2 == 0) {
+            if (numberOfWaves % 2 == 0) {
+                mediumFragments = numberOfWaves / 2;
+            } else {
+                mediumFragments = 0;
+            }
+
+            if (numberOfWaves % 3 == 0) {
+                largeFragments = numberOfWaves / 3;
+            } else {
+                largeFragments = 0;
+            }
+        } else if (hard == true) {
+            smallFragments = (random.nextInt(4) + 2) * numberOfWaves;
             mediumFragments = numberOfWaves / 2;
+            if (numberOfWaves % 2 == 0) {
+                largeFragments = numberOfWaves / 2;
+            } else {
+                largeFragments = 0;
+            }
         } else {
-            mediumFragments = 0;
+            easy = true;
         }
 
-        if (numberOfWaves % 3 == 0) {
-            largeFragments = numberOfWaves / 3;
-        } else {
-            largeFragments = 0;
-        }
         time.setRandomTime();
     }
 
@@ -164,10 +180,11 @@ public class Wave implements SystemsElement {
     void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
-    
-    void setNumberOfWaves(int i){
+
+    void setNumberOfWaves(int i) {
         numberOfWaves = i;
     }
+
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
@@ -198,5 +215,15 @@ public class Wave implements SystemsElement {
      */
     int getNumberofWaves() {
         return numberOfWaves;
+    }
+    
+    public void setDifficultyEasy(){
+        this.easy = true;
+        this.hard = false;
+    }
+    
+    public void setDifficultyHard(){
+        this.hard = true;
+        this.easy = false;
     }
 }

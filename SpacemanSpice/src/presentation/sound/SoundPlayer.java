@@ -67,7 +67,11 @@ public class SoundPlayer {
         AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
         sound.play();
     }
-
+    
+    public void startSounds(){
+        this.game = true;
+    }
+    
     public void stopSounds() {
         gameMusic.stop();
         backSound.stop();

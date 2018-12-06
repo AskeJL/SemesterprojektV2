@@ -271,4 +271,20 @@ public class SystemsManager extends Controller implements GameUpdateable {
     public boolean getPlayerReady() {
         return this.playerReady;
     }
+
+    public void setNumberOfWaves(int nrWave) {
+        this.wave.setNumberOfWaves(nrWave);
+    }
+
+    public int readScore() {
+        return this.score.getScore();
+    }
+    
+     public void setDifficultyEasy(){
+        wave.setDifficultyEasy();
+    }
+    
+    public void setDifficultyHard(){
+        wave.setDifficultyHard();
+    }
 }

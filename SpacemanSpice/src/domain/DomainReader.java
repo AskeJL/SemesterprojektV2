@@ -6,6 +6,7 @@ import domain.locations.LocationsManager;
 import domain.locations.LocationsReader;
 import domain.resources.ResourcesManager;
 import domain.resources.ResourcesReader;
+import domain.systems.Score;
 import domain.systems.SystemsManager;
 import domain.systems.SystemsReader;
 
@@ -156,5 +157,11 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         }
 
         return -1;
+    }
+
+    public int readScore() {
+        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        return systems.readScore();
+        
     }
 }
