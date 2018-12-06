@@ -66,6 +66,7 @@ public class ViewController_Menu extends ViewController implements Initializable
 
     @FXML
     private void onQuitHandler(ActionEvent event) {
+        System.exit(0);
     }
 
     @Override
