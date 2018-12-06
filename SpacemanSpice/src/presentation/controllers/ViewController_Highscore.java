@@ -3,7 +3,9 @@ package presentation.controllers;
 import presentation.GUIManager;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +15,7 @@ import javafx.scene.control.ListView;
 public class ViewController_Highscore extends ViewController implements Initializable {
 
     @FXML
-    private ListView<?> highscoreLIst;
+    private ListView<String> highscoreLIst;
     @FXML
     private Button backButton;
 
@@ -24,7 +26,8 @@ public class ViewController_Highscore extends ViewController implements Initiali
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ObservableList<String> highscoreLIst = new ArrayList<>();
+        
     }    
 
     @FXML
