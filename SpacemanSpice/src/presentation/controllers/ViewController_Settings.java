@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import domain.DomainRequester;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.scene.control.ToggleButton;
 
 public class ViewController_Settings extends ViewController implements Initializable {
 
+    DomainRequester domain = new DomainRequester();
     @FXML
     private ToggleButton toggleSoundButton;
     @FXML
@@ -61,10 +63,12 @@ public class ViewController_Settings extends ViewController implements Initializ
 
     @FXML
     private void difficultyEasyHandler(ActionEvent event) {
+        domain.setDifficultyEasy();
     }
 
     @FXML
     private void difficultyHardHandler(ActionEvent event) {
+        domain.setDifficultyHard();
     }
 
     @FXML

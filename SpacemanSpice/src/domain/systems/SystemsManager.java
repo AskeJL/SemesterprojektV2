@@ -279,4 +279,12 @@ public class SystemsManager extends Controller implements GameUpdateable {
     public int readScore() {
         return this.score.getScore();
     }
+    
+     public void setDifficultyEasy(){
+        wave.setDifficultyEasy();
+    }
+    
+    public void setDifficultyHard(){
+        wave.setDifficultyHard();
+    }
 }

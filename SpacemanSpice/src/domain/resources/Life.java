@@ -9,21 +9,21 @@ public class Life implements ResourcesElement, GameUpdateable {
      *
      * @see domain.systems.Wave
      */
-    private static final int SMALL_FRAGMENT_DAMAGE = 5;
+    private static int SMALL_FRAGMENT_DAMAGE = 5;
 
     /**
      * The damage the ship receives when hit by a medium fragment.
      *
      * @see domain.systems.Wave
      */
-    private static final int MEDIUM_FRAGMENT_DAMAGE = 10;
+    private static int MEDIUM_FRAGMENT_DAMAGE = 10;
 
     /**
      * The damage the ship receives when hit by a large fragment.
      *
      * @see domain.systems.Wave
      */
-    private static final int LARGE_FRAGMENT_DAMAGE = 15;
+    private static int LARGE_FRAGMENT_DAMAGE = 15;
 
     /**
      * The amount the ship will be repaired upon
@@ -113,6 +113,17 @@ public class Life implements ResourcesElement, GameUpdateable {
 
     public void setLife(int life) {
         this.life = life;
+    }
+    public void setDifficultyEasy(){
+        SMALL_FRAGMENT_DAMAGE = 5;
+        MEDIUM_FRAGMENT_DAMAGE = 10;
+        LARGE_FRAGMENT_DAMAGE = 15;
+    }
+    
+    public void setDifficultyHard(){
+        SMALL_FRAGMENT_DAMAGE = 10;
+        MEDIUM_FRAGMENT_DAMAGE = 15;
+        LARGE_FRAGMENT_DAMAGE = 20;
     }
 
     /**

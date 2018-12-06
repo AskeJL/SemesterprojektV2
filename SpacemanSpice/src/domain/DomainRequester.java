@@ -23,8 +23,8 @@ public class DomainRequester implements InteractionsRequest {
             interactions.runCommand(input);
         }
     }
-    
-    public void requestReset(){
+
+    public void requestReset() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
@@ -36,5 +36,19 @@ public class DomainRequester implements InteractionsRequest {
         systems.init();
         locations.init();
         tutorial.init();
+    }
+
+    public void setDifficultyEasy() {
+        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        resources.setDifficultyEasy();
+        systems.setDifficultyEasy();
+    }
+
+    public void setDifficultyHard() {
+        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        resources.setDifficultyHard();
+        systems.setDifficultyHard();
     }
 }
