@@ -60,6 +60,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
+        System.exit(0);
     }
 
     @Override

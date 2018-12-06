@@ -1,9 +1,10 @@
 package presentation.controllers;
 
+import data.AssetType;
+import data.Data;
 import presentation.GUIManager;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.ListView;
 
 public class ViewController_Highscore extends ViewController implements Initializable {
 
+    Data data = new Data();
     @FXML
     private ListView<String> highscoreLIst;
     @FXML
@@ -26,8 +28,10 @@ public class ViewController_Highscore extends ViewController implements Initiali
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> highscoreLIst = new ArrayList<>();
-        
+        ObservableList<String> scores = highscoreLIst.getItems();
+        for (int i = 0; i<data.requestData(AssetType.SCORE, "highscore.txt").size(); i++){
+        scores.add(data.requestData(AssetType.SCORE, "highscore.txt").get(i));
+        }
     }    
 
     @FXML
