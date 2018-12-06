@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.sound.SoundPlayer;
 
 /**
  * FXML Controller class
@@ -28,9 +29,9 @@ import javafx.scene.control.TextField;
  * @author askel
  */
 public class GameOverViewController extends ViewController implements Initializable {
-    
-    
+
     DomainReader score1 = new DomainReader();
+    DomainRequester domain = new DomainRequester();
 
     @FXML
     private Label gameOverField;
@@ -43,20 +44,19 @@ public class GameOverViewController extends ViewController implements Initializa
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       DomainRequester domain = new DomainRequester();
-       domain.requestReset();
-       scoreField.setText("Score: " + score1.readScore() );
-        
-    }    
+        scoreField.setText("Score: " + score1.readScore());
+    }
 
     @FXML
-    private void menuButtonHandler(ActionEvent event) throws IOException {
-        
+    private void menuButtonHandler(ActionEvent event) {
+        domain.requestReset();
+        guiManager.loadView(guiManager.getMenuPath());
     }
 
     @FXML
@@ -65,24 +65,26 @@ public class GameOverViewController extends ViewController implements Initializa
 
     @Override
     public void update() {
+        // nothing to update
+    }
+
+    public void updateHighScore() {
         Data data = new Data();
-        List <String> score = new ArrayList<>();
-        List <Integer> scoreSort = new ArrayList<>();
-        List <String> scoreSorted = new ArrayList<>();
-        for (int i = 0; i<data.requestData(AssetType.SCORE, "highscore.txt").size() ; i++){
-        score.add(data.requestData(AssetType.SCORE, "highscore.txt").get(i));
+        List<String> score = new ArrayList<>();
+        List<Integer> scoreSort = new ArrayList<>();
+        List<String> scoreSorted = new ArrayList<>();
+        for (int i = 0; i < data.requestData(AssetType.SCORE, "highscore.txt").size(); i++) {
+            score.add(data.requestData(AssetType.SCORE, "highscore.txt").get(i));
         }
         score.add(Integer.toString(score1.readScore()));
-        for(int i = 0; i<score.size(); i++){
+        for (int i = 0; i < score.size(); i++) {
             scoreSort.add(Integer.parseInt(score.get(i)));
         }
         Collections.sort(scoreSort, Collections.reverseOrder());
-        for(int i = 0; i<scoreSort.size(); i++){
+        for (int i = 0; i < scoreSort.size(); i++) {
             scoreSorted.add(Integer.toString(scoreSort.get(i)));
         }
         data.writeData(AssetType.SCORE, "highscore.txt", scoreSorted);
     }
 
-    }
-
-
+}
