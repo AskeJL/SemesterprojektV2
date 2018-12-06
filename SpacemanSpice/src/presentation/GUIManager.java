@@ -14,11 +14,11 @@ import presentation.controllers.ViewController;
  */
 public class GUIManager extends ViewManager {
 
-    private final static String PATH_MENU = "fxml/view_Menu.fxml";
-    private final static String PATH_SETTINGS = "fxml/view_Settings.fxml";
+    private final static String PATH_MENU       = "fxml/view_Menu.fxml";
+    private final static String PATH_SETTINGS   = "fxml/view_Settings.fxml";
     private final static String PATH_HIGH_SCORE = "fxml/view_HighScore.fxml";
-    private final static String PATH_GAME_VIEW = "fxml/view_Game.fxml";
-    private final static String PATH_GAME_OVER = "fxml/view_GameOver.fxml";
+    private final static String PATH_GAME_VIEW  = "fxml/view_Game.fxml";
+    private final static String PATH_GAME_OVER  = "fxml/view_GameOver.fxml";
 
     private final static String[] FXML_PATHS = {
         PATH_MENU,
@@ -29,11 +29,9 @@ public class GUIManager extends ViewManager {
     };
 
     private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation//fxml/css/gameViewStyleSheet.css").toExternalForm();
-    
-    private final static List<ViewController> VIEW_CONTROLLERS = new ArrayList<>();
-
-    private static ViewController currentController;
-    private static Stage currentStage;
+    private Stage currentStage;
+    private ViewController currentController;
+    private final List<ViewController> viewControllers = new ArrayList<>();
 
     /**
      * Initialize the necessary scene.
@@ -42,7 +40,7 @@ public class GUIManager extends ViewManager {
      */
     public void init(Stage stage) {
         currentStage = stage;
-        currentStage.setTitle("Spaceman Spice");
+        currentStage.setTitle("Spaceman Spice - Kessler Syndrome");
 
         loadControllers();
         loadView(PATH_MENU);
@@ -64,20 +62,20 @@ public class GUIManager extends ViewManager {
                 if (controller != null) {
                     controller.setPath(path);
                     controller.setScene(scene);
-                    VIEW_CONTROLLERS.add(controller);
+                    viewControllers.add(controller);
                 }
             } catch (IOException ex) {
                 System.out.println(ex);
             }
         }
 
-        for (ViewController controller : VIEW_CONTROLLERS) {
+        for (ViewController controller : viewControllers) {
             controller.setManager(this);
         }
     }
 
     public void loadView(String FXMLFile) {
-        for (ViewController controller : VIEW_CONTROLLERS) {
+        for (ViewController controller : viewControllers) {
             if (controller.getPath().equals(FXMLFile)) {
                 currentStage.setScene(controller.getScene());
                 currentController = controller;
@@ -96,7 +94,7 @@ public class GUIManager extends ViewManager {
     }
 
     public ViewController getController(String fxml) {
-        for (ViewController controller : VIEW_CONTROLLERS) {
+        for (ViewController controller : viewControllers) {
             if (controller.getPath().equals(fxml)) {
                 return controller;
             }

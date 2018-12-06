@@ -29,7 +29,7 @@ public final class Control extends Location {
 
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
-        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
+        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.fetchController(SystemsManager.class)));
         super.addRoom(steeringRoom);
 
         /*Navigation----------------------------------------------------------*/

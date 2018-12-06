@@ -1,11 +1,11 @@
 package domain.resources;
 
-import domain.Controller;
+import domain.Manager;
 import domain.GameElement;
 import domain.GameUpdateable;
 import java.util.List;
 
-public class ResourcesManager extends Controller implements GameUpdateable {
+public class ResourcesManager extends Manager implements GameUpdateable {
     
     private Time time;
     private Life life;

@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import static presentation.controllers.ViewController.guiManager;
-import presentation.game.draw.DrawController;
+import presentation.draw.DrawController;
 import presentation.sound.SoundPlayer;
 
 /**

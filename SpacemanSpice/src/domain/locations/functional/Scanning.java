@@ -27,7 +27,7 @@ public final class Scanning extends Location {
 
         /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
-        scanningRoom.addGameObject(new ScanningControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
+        scanningRoom.addGameObject(new ScanningControl((SystemsManager) locationsManager.fetchController(SystemsManager.class)));
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/

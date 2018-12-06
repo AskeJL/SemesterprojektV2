@@ -9,9 +9,9 @@ import domain.tutorial.TutorialManager;
 
 public class DomainRequester implements InteractionsRequest {
 
-    private static ControlGroup group;
+    private static ManagerGroup group;
 
-    void init(ControlGroup group) {
+    void init(ManagerGroup group) {
         DomainRequester.group = group;
     }
 
@@ -38,14 +38,14 @@ public class DomainRequester implements InteractionsRequest {
         tutorial.init();
     }
 
-    public void setDifficultyEasy() {
+    public void requestDifficultyEasy() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         resources.setDifficultyEasy();
         systems.setDifficultyEasy();
     }
 
-    public void setDifficultyHard() {
+    public void requestDifficultyHard() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         resources.setDifficultyHard();

@@ -2,7 +2,7 @@ package domain.systems;
 
 import data.AssetType;
 import data.Data;
-import domain.Controller;
+import domain.Manager;
 import domain.DomainReader;
 import domain.GameElement;
 import domain.GameUpdateable;
@@ -12,7 +12,7 @@ import domain.resources.ResourcesManager;
 import domain.resources.Time;
 import java.util.List;
 
-public class SystemsManager extends Controller implements GameUpdateable {
+public class SystemsManager extends Manager implements GameUpdateable {
     
     private final DomainReader reader = new DomainReader();
     

@@ -1,6 +1,4 @@
-/*
- * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
- */
+
 package domain;
 
 import domain.locations.LocationsManager;
@@ -26,7 +24,7 @@ import presentation.ViewManager;
 
 public class Game extends Application {
 
-    private ControlGroup controlGroup;
+    private ManagerGroup managerGroup;
     private ViewManager viewManager;
 
     /**
@@ -49,28 +47,30 @@ public class Game extends Application {
             }
         }.start();
     }
-
+    
     void initClasses() {
+        // Create managers
         LocationsManager locationsManager = new LocationsManager();
         ResourcesManager resourcesManager = new ResourcesManager();
         InteractionsManager interactionsManager = new InteractionsManager();
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
 
-        // Add to controller list
-        List<Controller> controllers = new ArrayList<>();
-        controllers.add(tutorialManager);
-        controllers.add(interactionsManager);
-        controllers.add(locationsManager);
-        controllers.add(resourcesManager);
-        controllers.add(systemsManager);
+        // Add to manager list
+        List<Manager> managers = new ArrayList<>();
+        managers.add(tutorialManager);
+        managers.add(interactionsManager);
+        managers.add(locationsManager);
+        managers.add(resourcesManager);
+        managers.add(systemsManager);
 
-        controlGroup = new ControlGroup(controllers);
+        managerGroup = new ManagerGroup(managers);
 
-        for (Controller c : controlGroup.getControllers()) {
-            c.init(controlGroup);
-        }
+        for (Manager c : managerGroup.getControllers()) {
+            c.init(managerGroup);
+        } 
         
+        // Create the necessary classes for domain
         Time time = new Time();
         Life life = new Life();
         Oxygen oxygen = new Oxygen(resourcesManager, locationsManager);
@@ -109,14 +109,14 @@ public class Game extends Application {
         tutorialManager.setElements(tutorialElements);
 
         
-        for (Controller c : controlGroup.getControllers()) {
+        for (Manager c : managerGroup.getControllers()) {
             c.init();
         }
     }
 
     void initInterfaces() {
-        new DomainReader().init(controlGroup);
-        new DomainRequester().init(controlGroup);
+        new DomainReader().init(managerGroup);
+        new DomainRequester().init(managerGroup);
     }
 
     void initUI(ViewManager viewManager, Stage stage) {
@@ -125,12 +125,12 @@ public class Game extends Application {
         } else if (viewManager instanceof CLIManager) {
             System.out.println("CLI");
         }
-
+        managerGroup.add(viewManager);
         this.viewManager = viewManager;
     }
 
     void update() {
-        for (Controller c : controlGroup.getControllers()) {
+        for (Manager c : managerGroup.getControllers()) {
             c.update();
         }
 

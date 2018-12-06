@@ -7,7 +7,7 @@ package presentation.sound;
 
 import java.io.File;
 import javafx.scene.media.AudioClip;
-import presentation.game.draw.DrawController;
+import presentation.draw.DrawController;
 
 /**
  *

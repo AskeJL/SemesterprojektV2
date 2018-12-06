@@ -31,7 +31,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-        NetRoom.addGameObject(new NetControl((SystemsManager) locationsManager.getController(SystemsManager.class)));
+        NetRoom.addGameObject(new NetControl((SystemsManager) locationsManager.fetchController(SystemsManager.class)));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/

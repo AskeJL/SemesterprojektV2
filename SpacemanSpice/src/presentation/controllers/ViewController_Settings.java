@@ -63,12 +63,12 @@ public class ViewController_Settings extends ViewController implements Initializ
 
     @FXML
     private void difficultyEasyHandler(ActionEvent event) {
-        domain.setDifficultyEasy();
+        domain.requestDifficultyEasy();
     }
 
     @FXML
     private void difficultyHardHandler(ActionEvent event) {
-        domain.setDifficultyHard();
+        domain.requestDifficultyHard();
     }
 
     @FXML

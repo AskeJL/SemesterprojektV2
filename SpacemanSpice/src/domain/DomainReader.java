@@ -12,10 +12,10 @@ import domain.systems.SystemsReader;
 
 public class DomainReader implements InteractionsReader, LocationsReader, ResourcesReader, SystemsReader {
 
-    private static ControlGroup group;
+    private static ManagerGroup group;
     private static String output = "";
 
-    void init(ControlGroup group) {
+    void init(ManagerGroup group) {
         DomainReader.group = group;
     }
     

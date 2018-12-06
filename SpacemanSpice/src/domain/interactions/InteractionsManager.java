@@ -1,11 +1,11 @@
 package domain.interactions;
 
-import domain.Controller;
+import domain.Manager;
 import domain.GameElement;
 import java.util.List;
 import domain.GameUpdateable;
 
-public class InteractionsManager extends Controller implements GameUpdateable {
+public class InteractionsManager extends Manager implements GameUpdateable {
 
     private Parser parser;
     private Commands commands;

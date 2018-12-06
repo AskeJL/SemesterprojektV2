@@ -15,14 +15,6 @@ public abstract class ViewController {
         guiManager = gui;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof ViewController && this.path != null && ((ViewController) o).path != null) {
-            return this.path.equals(((ViewController) o).path);
-        }
-        return false;
-    }
-
     public void setPath(String path) {
         this.path = path;
     }

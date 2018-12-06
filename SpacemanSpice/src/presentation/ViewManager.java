@@ -1,6 +1,7 @@
 package presentation;
 
-public abstract class ViewManager {
+import domain.Manager;
 
-    public abstract void update();
+public abstract class ViewManager extends Manager {
+    
 }

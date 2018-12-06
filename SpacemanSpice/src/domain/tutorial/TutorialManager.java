@@ -2,7 +2,7 @@ package domain.tutorial;
 
 import data.AssetType;
 import data.Data;
-import domain.Controller;
+import domain.Manager;
 import domain.DomainReader;
 import domain.GameElement;
 import domain.GameUpdateable;
@@ -12,7 +12,7 @@ import domain.interactions.commands.Clear;
 import domain.locations.LocationsManager;
 import java.util.List;
 
-public class TutorialManager extends Controller implements GameUpdateable {
+public class TutorialManager extends Manager implements GameUpdateable {
     
     private List<String> introduction,
             aIintro1,

@@ -2,15 +2,15 @@ package domain;
 
 import java.util.List;
 
-public class ControlGroup {
-    private final List<Controller> controllers;
+public class ManagerGroup {
+    private final List<Manager> controllers;
     
-    public ControlGroup(List<Controller> controllers) {
+    public ManagerGroup(List<Manager> controllers) {
         this.controllers = controllers;
     }
     
-    public Controller fetchController(Class controller) {
-        for(Controller c : controllers) {
+    public Manager fetchController(Class controller) {
+        for(Manager c : controllers) {
             if(c.getClass().getCanonicalName().equals(controller.getCanonicalName())) {
                 return c;
             }
@@ -19,7 +19,11 @@ public class ControlGroup {
         return null;
     }
     
-    public List<Controller> getControllers() {
+    public void add(Manager controller) {
+        this.controllers.add(controller);
+    }
+    
+    public List<Manager> getControllers() {
         return this.controllers;
     }
 }

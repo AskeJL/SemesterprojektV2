@@ -2,13 +2,13 @@ package domain.locations;
 
 import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
-import domain.Controller;
+import domain.Manager;
 import domain.GameElement;
 import java.util.List;
 import domain.GameUpdateable;
 import java.util.ArrayList;
 
-public class LocationsManager extends Controller implements GameUpdateable {
+public class LocationsManager extends Manager implements GameUpdateable {
 
     private final List<Location> locations = new ArrayList<>();
     private Room currentRoom;
