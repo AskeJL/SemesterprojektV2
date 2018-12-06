@@ -28,6 +28,8 @@ public class GUIManager extends ViewManager {
         PATH_GAME_OVER
     };
 
+    private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation//fxml/css/gameViewStyleSheet.css").toExternalForm();
+    
     private final static List<ViewController> VIEW_CONTROLLERS = new ArrayList<>();
 
     private static ViewController currentController;
@@ -56,6 +58,7 @@ public class GUIManager extends ViewManager {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 Scene scene = new Scene(loader.load(getClass().getResource(path).openStream()));
+                scene.getStylesheets().add(STYLESHEET_PATH);
                 ViewController controller = (ViewController) loader.getController();
 
                 if (controller != null) {
