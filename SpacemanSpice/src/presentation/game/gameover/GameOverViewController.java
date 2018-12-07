@@ -14,12 +14,17 @@ import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.systems.SystemsReader;
 import domain.tutorial.TutorialController;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,6 +52,7 @@ public class GameOverViewController implements Initializable, InteractionsReques
     private Button quitButton;
     @FXML
     private Button submit;
+
 
 
     /**
@@ -85,6 +91,23 @@ public class GameOverViewController implements Initializable, InteractionsReques
         }
         this.writeData(AssetType.SCORE , "highscore.txt",scoreSorted);
     }
+       
+    @FXML
+    public void updateHighscore2(){
+        String combined = Integer.toString(this.readScore()) + " " + usernameField.getText();
+        
+        try {
+            FileWriter fileWriter = new FileWriter("assets\\score\\highscore2.txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter outputStream = new PrintWriter(bufferedWriter);     
+                outputStream.println(combined);
+                outputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(GameOverViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {

@@ -43,7 +43,7 @@
                   <TextField fx:id="scoreField" prefHeight="59.0" prefWidth="206.0" />
                   <TextField fx:id="usernameField" prefHeight="59.0" prefWidth="206.0" />
                   <Pane prefHeight="37.0" prefWidth="200.0" />
-                  <Button fx:id="submit" mnemonicParsing="false" onAction="#updateHighscore" prefHeight="30.0" prefWidth="80.0" text="Submit" />
+                  <Button fx:id="submit" mnemonicParsing="false" onAction="#updateHighscore2"  prefHeight="30.0" prefWidth="80.0" text="Submit" />
                </children>
             </VBox>
          </center>

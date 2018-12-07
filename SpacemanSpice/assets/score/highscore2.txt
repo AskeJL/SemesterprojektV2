@@ -1,0 +1,6 @@
+10 Gert
+20 Gert
+0 Gert
+300 Gert
+2000 Gert
+
