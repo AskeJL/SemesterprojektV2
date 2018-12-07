@@ -114,16 +114,22 @@ public class Life implements ResourcesElement, GameUpdateable {
     public void setLife(int life) {
         this.life = life;
     }
-    public void setDifficultyEasy(){
+
+    public void setDifficultyEasy() {
         SMALL_FRAGMENT_DAMAGE = 5;
         MEDIUM_FRAGMENT_DAMAGE = 10;
         LARGE_FRAGMENT_DAMAGE = 15;
     }
-    
-    public void setDifficultyHard(){
+
+    public void setDifficultyHard() {
         SMALL_FRAGMENT_DAMAGE = 10;
         MEDIUM_FRAGMENT_DAMAGE = 15;
         LARGE_FRAGMENT_DAMAGE = 20;
+    }
+
+    @Override
+    public void setValue(int value) {
+        this.life = value;
     }
 
     /**

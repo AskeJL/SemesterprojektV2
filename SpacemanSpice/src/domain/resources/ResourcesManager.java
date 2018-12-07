@@ -53,20 +53,4 @@ public class ResourcesManager extends Manager implements GameUpdateable {
     public Oxygen getOxygen() {
         return this.oxygen;
     }
-
-    public void setOxygen(int oxygen) {
-        this.oxygen.setOxygen(oxygen);
-    }
-
-    public void setLife(int life) {
-        this.life.setLife(life);
-    }
-    
-    public void setDifficultyEasy(){
-        life.setDifficultyEasy();
-    }
-    
-    public void setDifficultyHard(){
-        life.setDifficultyHard();
-    }
 }

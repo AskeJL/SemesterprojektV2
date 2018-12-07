@@ -59,6 +59,11 @@ public class Time implements ResourcesElement, GameUpdateable {
         randTime = ((long) (Math.random() * 20 + 5));
     }
 
+    @Override
+    public void setValue(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Get the {@link #initTime initTime}.
      *

@@ -29,26 +29,34 @@ public class DomainRequester implements InteractionsRequest {
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
         TutorialManager tutorial = (TutorialManager) group.fetchController(TutorialManager.class);
-        resources.setOxygen(100);
-        resources.setLife(100);
+        
+        resources.getOxygen().setValue(100);
+        resources.getLife().setValue(100);
+        
         systems.setNumberOfWaves(0);
         systems.setPlayerReady(false);
         systems.init();
+        
         locations.init();
+        
         tutorial.init();
     }
 
     public void requestDifficultyEasy() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
-        resources.setDifficultyEasy();
+        
+        resources.getLife().setDifficultyEasy();
+        
         systems.setDifficultyEasy();
     }
 
     public void requestDifficultyHard() {
         ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
-        resources.setDifficultyHard();
+        
+        resources.getLife().setDifficultyHard();
+        
         systems.setDifficultyHard();
     }
 }

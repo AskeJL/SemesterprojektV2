@@ -65,6 +65,11 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
     public void increaseValue(int value) {
         this.oxygen += value;
     }
+    
+    @Override
+    public void setValue(int oxygen){
+        this.oxygen = oxygen;
+    }
 
     /**
      * Get {@link #oxygen oxygen}.
@@ -74,9 +79,5 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
     @Override
     public int getValue() {
         return this.oxygen;
-    }
-    
-    public void setOxygen(int oxygen){
-        this.oxygen = oxygen;
     }
 }

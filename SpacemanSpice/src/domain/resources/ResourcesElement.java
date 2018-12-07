@@ -8,5 +8,7 @@ public interface ResourcesElement extends GameElement {
 
     public void increaseValue(int value);
 
+    public void setValue(int value);
+    
     public int getValue();
 }

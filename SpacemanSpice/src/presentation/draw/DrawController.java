@@ -100,6 +100,7 @@ public class DrawController {
      * @param directionTo
      */
     public void drawLocation(Direction directionTo) {
+        clearCanvas();
         List<String> map = data.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, xTiles, yTiles);
         for (int x = 0; x < characters.length; x++) {
