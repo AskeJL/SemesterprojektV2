@@ -14,15 +14,21 @@ import domain.resources.ResourcesController;
 import domain.systems.SystemsController;
 import domain.systems.SystemsReader;
 import domain.tutorial.TutorialController;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -92,8 +98,14 @@ public class GameOverViewController implements Initializable, InteractionsReques
         this.writeData(AssetType.SCORE , "highscore.txt",scoreSorted);
     }
        
+    
+
+    
     @FXML
-    public void updateHighscore2(){
+    public void updateHighscore2() throws IOException{
+        Map<String, Integer> scoreMap = new HashMap<>();
+        ArrayList<String> scoreList = new ArrayList<>();
+        ArrayList<Integer> scoreListNumbers = new ArrayList<>();
         String combined = Integer.toString(this.readScore()) + " " + usernameField.getText();
         
         try {
@@ -105,8 +117,53 @@ public class GameOverViewController implements Initializable, InteractionsReques
         } catch (IOException ex) {
             Logger.getLogger(GameOverViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            FileReader fileReader = new FileReader("assets\\score\\highscore2.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String string;
+            while ((string = bufferedReader.readLine()) != null){
+                scoreList.add(string);
+            } 
+            Collections.sort(scoreList, Collections.reverseOrder());     
+            bufferedReader.close();
+            
+            FileWriter fileWriter2 = new FileWriter("assets\\score\\highscore3.txt");
+            BufferedWriter bufferedWriter2 = new BufferedWriter(fileWriter2);
+            PrintWriter outputStream2 = new PrintWriter(bufferedWriter2);
+            for(String value : scoreList){
+                outputStream2.println(value);
+            }
+            outputStream2.close();    
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GameOverViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
+    
+    @FXML
+    public void sort() throws IOException{
+        try {
+            FileReader fileReader = new FileReader("assets\\score\\highscore2.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            Map<String, String> map = new TreeMap<String, String>();
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                map.put(line.split(" ")[0], line);
+            }
+            bufferedReader.close();
+            FileWriter fileWriter2 = new FileWriter("assets\\score\\highscore3.txt");
+            BufferedWriter bufferedWriter2 = new BufferedWriter(fileWriter2);
+            PrintWriter outputStream2 = new PrintWriter(bufferedWriter2);
+            for(String value : map.values()){
+                outputStream2.println(value);
+            }
+            outputStream2.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GameOverViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
     
     
     @FXML

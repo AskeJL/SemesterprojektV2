@@ -1,6 +1,7 @@
-10 Gert
-20 Gert
-0 Gert
+70 Lars
+1000 Dennis
+15 John
+10 Jim
 300 Gert
-2000 Gert
-
+700 Thomas
+500 Michael
