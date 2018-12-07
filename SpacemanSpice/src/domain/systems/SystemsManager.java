@@ -179,11 +179,11 @@ public class SystemsManager extends Manager implements GameUpdateable {
     }
 
     private List<String> getTextString(String filename) {
-        return data.requestData(AssetType.TEXT, filename);
+        return data.readData(AssetType.TEXT, filename);
     }
     
     private List<String> getAIString(String filename) {
-        return data.requestData(AssetType.AIWAVE, filename);
+        return data.readData(AssetType.AIWAVE, filename);
     }
     
     private void println(List<String> text) {
@@ -219,41 +219,10 @@ public class SystemsManager extends Manager implements GameUpdateable {
         return LARGE_FRAGMENT_IDENTIFIER;
     }
 
-    /**
-     * Get {@link Wave#smallFragments}.
-     *
-     * @return
-     */
-    public int getSmallFragments() {
-        return wave.getSmallFragments();
-    }
-
-    /**
-     * Get {@link Wave#mediumFragments}.
-     *
-     * @return
-     */
-    public int getMediumFragments() {
-        return wave.getMediumFragments();
-    }
-
-    /**
-     * Get {@link Wave#largeFragments}.
-     *
-     * @return
-     */
-    public int getLargeFragments() {
-        return wave.getLargeFragments();
+    public Wave getWave() {
+        return this.wave;
     }
     
-    /**
-     * Get {@link Wave#numberOfWaves}.
-     * 
-     * @return 
-     */
-    public int getNumberOfWaves(){
-        return wave.getNumberofWaves();
-    }
     /**
      * Get {@link Score#score}.
      *
@@ -270,21 +239,5 @@ public class SystemsManager extends Manager implements GameUpdateable {
      */
     public boolean getPlayerReady() {
         return this.playerReady;
-    }
-
-    public void setNumberOfWaves(int nrWave) {
-        this.wave.setNumberOfWaves(nrWave);
-    }
-
-    public int readScore() {
-        return this.score.getScore();
-    }
-    
-     public void setDifficultyEasy(){
-        wave.setDifficultyEasy();
-    }
-    
-    public void setDifficultyHard(){
-        wave.setDifficultyHard();
     }
 }

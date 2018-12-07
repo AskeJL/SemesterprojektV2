@@ -15,7 +15,7 @@ public class Data implements DataReader, DataWriter {
     }
     
     @Override
-    public List<String> requestData(AssetType type, String filename) {
+    public List<String> readData(AssetType type, String filename) {
         return reader.readData(type, filename);
     }
 

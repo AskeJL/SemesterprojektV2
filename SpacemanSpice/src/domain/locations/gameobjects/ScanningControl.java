@@ -35,9 +35,9 @@ public class ScanningControl extends GameObject {
     public void interact() {
         reader.storeln("You interact with the scanning station.");
         reader.storeln("You interact with the scanningstation\nThere are:\n"
-                + "    " + systemsManager.getSmallFragments() + " small fragments.\n"
-                + "    " + systemsManager.getMediumFragments() + " medium fragments.\n"
-                + "    " + systemsManager.getLargeFragments() + " large fragments.\n");
+                + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
+                + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
+                + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
     }
 
     @Override

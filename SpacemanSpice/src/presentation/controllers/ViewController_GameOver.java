@@ -81,8 +81,8 @@ public class ViewController_GameOver extends ViewController implements Initializ
         List<String> score = new ArrayList<>();
         List<Integer> scoreSort = new ArrayList<>();
         List<String> scoreSorted = new ArrayList<>();
-        for (int i = 0; i < data.requestData(AssetType.SCORE, "highscore.txt").size(); i++) {
-            score.add(data.requestData(AssetType.SCORE, "highscore.txt").get(i));
+        for (int i = 0; i < data.readData(AssetType.SCORE, "highscore.txt").size(); i++) {
+            score.add(data.readData(AssetType.SCORE, "highscore.txt").get(i));
         }
         score.add(Integer.toString(score1.readScore()));
         for (int i = 0; i < score.size(); i++) {

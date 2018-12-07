@@ -23,16 +23,17 @@ public class ViewController_Highscore extends ViewController implements Initiali
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> scores = highscoreLIst.getItems();
-        for (int i = 0; i<data.requestData(AssetType.SCORE, "highscore.txt").size(); i++){
-        scores.add(data.requestData(AssetType.SCORE, "highscore.txt").get(i));
+        for (int i = 0; i < data.readData(AssetType.SCORE, "highscore.txt").size(); i++) {
+            scores.add(data.readData(AssetType.SCORE, "highscore.txt").get(i));
         }
-    }    
+    }
 
     @FXML
     private void onBackHandler(ActionEvent event) throws IOException {
@@ -43,5 +44,5 @@ public class ViewController_Highscore extends ViewController implements Initiali
     public void update() {
         // Nothing to update.
     }
-    
+
 }

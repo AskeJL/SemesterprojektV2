@@ -120,7 +120,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
 
         if (systems != null) {
-            return systems.getSmallFragments();
+            return systems.getWave().getSmallFragments();
         }
 
         return -1;
@@ -131,7 +131,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
 
         if (systems != null) {
-            return systems.getMediumFragments();
+            return systems.getWave().getMediumFragments();
         }
 
         return -1;
@@ -142,7 +142,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
 
         if (systems != null) {
-            return systems.getLargeFragments();
+            return systems.getWave().getLargeFragments();
         }
 
         return -1;
@@ -153,7 +153,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
 
         if (systems != null) {
-            return systems.getNumberOfWaves();
+            return systems.getWave().getNumberOfWaves();
         }
 
         return -1;
@@ -161,7 +161,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     public int readScore() {
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
-        return systems.readScore();
+        return systems.getScore().getValue();
         
     }
 }

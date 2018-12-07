@@ -214,7 +214,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
      * @return
      */
     List<String> getTextToString(String filename) {
-        return data.requestData(AssetType.TEXT, filename);
+        return data.readData(AssetType.TEXT, filename);
     }
 
     /**

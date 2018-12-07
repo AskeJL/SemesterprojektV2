@@ -37,7 +37,7 @@ public class SteeringControl extends GameObject {
     @Override
     public void interact() {
         reader.storeln("Interacting with the steering controls.");
-        if (systemsManager.getLargeFragments() != 0) {
+        if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
             reader.storeln("You have moved the ship out of danger");
         }

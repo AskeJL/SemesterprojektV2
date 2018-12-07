@@ -1,5 +1,6 @@
 package domain.interactions;
 
+import domain.DomainReader;
 import domain.interactions.commands.Inspect;
 import domain.interactions.commands.Go;
 import domain.interactions.commands.Interact;
@@ -18,6 +19,8 @@ import java.util.List;
 
 public class Commands implements InteractionsElement {
         
+    private final DomainReader reader = new DomainReader();
+    
     /**
      * A list of all the {@link Command}'s. These are initialized in the
      * {@link Commands#init() init()} method.
@@ -61,7 +64,7 @@ public class Commands implements InteractionsElement {
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
-                System.out.println("I don't know that command. \nThese are the commands available:");
+                reader.storeln("I don't know that command. \nThese are the commands available:");
                 lastCommand = commandWords.get(0);
                 showCommands();
                 return null;
@@ -77,7 +80,7 @@ public class Commands implements InteractionsElement {
                         lastParameter = parameter;
                         lastCommand = command;
                     } else {
-                        System.out.println("Wrong parameter.");
+                        reader.storeln("Wrong parameter.");
                         command.showAvailableParameters();
                         return null;
                     }
@@ -86,7 +89,7 @@ public class Commands implements InteractionsElement {
             } else {
                 if (command.hasParameter()) {
                     if (!command.getName().equalsIgnoreCase("help")) {
-                        System.out.println("Missing parameter.");
+                        reader.storeln("Missing parameter.");
                     }
                     command.showAvailableParameters();
                     return null;
@@ -106,7 +109,7 @@ public class Commands implements InteractionsElement {
         for (Command command : commandWords) {
             data += "   " + command.getName() + "\n";
         }
-        System.out.println(data);
+        reader.storeln(data);
     }
 
     @Override

@@ -160,11 +160,11 @@ public class Wave implements SystemsElement {
     /**
      * Increase {@link #numberOfWaves numberOfWaves} by 1.
      */
-    void incrementNumberOfWaves() {
+    public void incrementNumberOfWaves() {
         numberOfWaves++;
     }
 
-    void setSmallFragments(int smallValue) {
+    public void setSmallFragments(int smallValue) {
         smallFragments = 0;
     }
 
@@ -173,15 +173,15 @@ public class Wave implements SystemsElement {
      *
      * @return
      */
-    int getSmallFragments() {
+    public int getSmallFragments() {
         return smallFragments;
     }
 
-    void setMediumFragments(int mediumValue) {
+    public void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
 
-    void setNumberOfWaves(int i) {
+    public void setNumberOfWaves(int i) {
         numberOfWaves = i;
     }
 
@@ -190,11 +190,11 @@ public class Wave implements SystemsElement {
      *
      * @return
      */
-    int getMediumFragments() {
+    public int getMediumFragments() {
         return mediumFragments;
     }
 
-    void setLargeFragments(int largeValue) {
+    public void setLargeFragments(int largeValue) {
         largeFragments = 0;
     }
 
@@ -203,7 +203,7 @@ public class Wave implements SystemsElement {
      *
      * @return
      */
-    int getLargeFragments() {
+    public int getLargeFragments() {
         return largeFragments;
     }
 
@@ -213,7 +213,7 @@ public class Wave implements SystemsElement {
      *
      * @return
      */
-    int getNumberofWaves() {
+    public int getNumberOfWaves() {
         return numberOfWaves;
     }
     

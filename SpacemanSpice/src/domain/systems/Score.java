@@ -56,11 +56,11 @@ public class Score implements SystemsElement {
      *
      * @return
      */
-    public int getScore() {
+    public int getValue() {
         return score;
     }
     
-    static void setScore(int Score){
-        score = Score;
+    static void setValue(int value){
+        score = value;
     }
 }

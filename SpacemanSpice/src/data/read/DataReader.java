@@ -8,8 +8,8 @@ import java.util.List;
  *
  * To reference its method, use an instance of the class that implements this.
  *
- * List = this.{@link DataReader#requestData(data.AssetType, java.lang.String)
- * requestData}({@link data.AssetType}, String) or List = new class().{@link DataReader#requestData(data.AssetType, java.lang.String)
+ * List = this.{@link DataReader#readData(data.AssetType, java.lang.String)
+ * requestData}({@link data.AssetType}, String) or List = new class().{@link DataReader#readData(data.AssetType, java.lang.String)
  * requestData}({@link data.AssetType}, String)
  *
  * @see data.write.DataWriter
@@ -29,5 +29,5 @@ public interface DataReader {
      * @see data.read.ReadController
      * @see data.read.Read
      */
-    List<String> requestData(AssetType type, String filename);
+    List<String> readData(AssetType type, String filename);
 }

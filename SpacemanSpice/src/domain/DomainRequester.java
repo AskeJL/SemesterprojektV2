@@ -33,12 +33,11 @@ public class DomainRequester implements InteractionsRequest {
         resources.getOxygen().setValue(100);
         resources.getLife().setValue(100);
         
-        systems.setNumberOfWaves(0);
+        systems.getWave().setNumberOfWaves(0);
         systems.setPlayerReady(false);
+        
         systems.init();
-        
         locations.init();
-        
         tutorial.init();
     }
 
@@ -47,8 +46,7 @@ public class DomainRequester implements InteractionsRequest {
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         
         resources.getLife().setDifficultyEasy();
-        
-        systems.setDifficultyEasy();
+        systems.getWave().setDifficultyEasy();
     }
 
     public void requestDifficultyHard() {
@@ -56,7 +54,6 @@ public class DomainRequester implements InteractionsRequest {
         SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
         
         resources.getLife().setDifficultyHard();
-        
-        systems.setDifficultyHard();
+        systems.getWave().setDifficultyHard();
     }
 }
