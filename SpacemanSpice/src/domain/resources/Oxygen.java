@@ -8,7 +8,7 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
     /**
      * Amount of oxygen the player currently has.
      */
-    private int oxygen = 100;
+    private int oxygen = 10;
 
     /**
      * Holds the last time the oxygen was computed. Used for calculation between

@@ -38,13 +38,15 @@ public class ViewController_GameOver extends ViewController implements Initializ
     DomainRequester domain = new DomainRequester();
     
     @FXML
-    private Label gameOverField;
-    @FXML
     private TextField scoreField;
     @FXML
     private Button menuButton;
     @FXML
     private Button quitButton;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private Button submit;
 
     /**
      * Initializes the controller class.
@@ -73,6 +75,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
         // Nothing to update
     }
     
+    @FXML
     private void updateHighscore(){
         Data data = new Data();
         List<String> score = new ArrayList<>();
@@ -91,7 +94,6 @@ public class ViewController_GameOver extends ViewController implements Initializ
         }
         data.writeData(AssetType.SCORE, "highscore.txt", scoreSorted);
     }
-    @FXML
     public void updateHighscore2(){
         String combined = Integer.toString(score1.readScore()) + " " + usernameField.getText();
         
