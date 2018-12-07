@@ -9,12 +9,17 @@ import data.AssetType;
 import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -86,4 +91,18 @@ public class ViewController_GameOver extends ViewController implements Initializ
         }
         data.writeData(AssetType.SCORE, "highscore.txt", scoreSorted);
     }
+    @FXML
+    public void updateHighscore2(){
+        String combined = Integer.toString(score1.readScore()) + " " + usernameField.getText();
+        
+        try {
+            FileWriter fileWriter = new FileWriter("assets\\score\\highscore2.txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter outputStream = new PrintWriter(bufferedWriter);     
+                outputStream.println(combined);
+                outputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ViewController_GameOver.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 }
