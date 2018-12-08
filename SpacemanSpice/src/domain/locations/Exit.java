@@ -54,7 +54,7 @@ public class Exit {
      * @param direction Directions of the exit. {@link ExitDirection}
      * @param exit The room this exit leads to.
      */
-    public Exit(ExitDirection direction, Room exit) {
+    public Exit(Room exit, ExitDirection direction) {
         this.direction = direction;
         this.fromRoom = exit;
         this.EXIT_TO_ROOM = true;
@@ -69,22 +69,25 @@ public class Exit {
      * @param fromRoom The room this exit is located in.
      * @param toRoom The room this exit leads to.
      */
-    public Exit(ExitDirection direction, Location toLocation, Room fromRoom, Room toRoom) {
+    public Exit(Room fromRoom, Room toRoom, ExitDirection direction) {
         this.direction = direction;
-        this.toLocation = toLocation;
         this.fromRoom = fromRoom;
         this.toRoom = toRoom;
         this.EXIT_TO_LOCATION = true;
         this.EXIT_TO_ROOM = false;
     }
-
+    
+    public Exit(Location toLocation, ExitDirection direction){
+        this.direction = direction;
+        this.toLocation = toLocation;
+        this.EXIT_TO_LOCATION = true;
+        this.EXIT_TO_ROOM = false;
+    }
     @Override
     public String toString() {
-        if (EXIT_TO_ROOM) {
-            return "locations.RoomExit : Exit[" + this.fromRoom.getName() + "] Direction[" + this.direction + "]";
-        } else {
-            return "locations.LocationExit : Exit[" + this.toLocation.getName() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
-        }
+        
+        return "Towards: " + this.direction.toString() + " lies the " + this.toRoom.getNAME() + "";
+        
     }
 
     /**

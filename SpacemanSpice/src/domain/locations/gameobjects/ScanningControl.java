@@ -1,8 +1,6 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
-import domain.locations.GameObject;
-import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 
 /**
@@ -19,8 +17,7 @@ public class ScanningControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public ScanningControl(SystemsManager systems) {
-        super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL);
-        
+        super("Scanning control");
         this.systemsManager = systems;
     }
 
@@ -38,10 +35,5 @@ public class ScanningControl extends GameObject {
                 + "    " + systemsManager.getSmallFragments() + " small fragments.\n"
                 + "    " + systemsManager.getMediumFragments() + " medium fragments.\n"
                 + "    " + systemsManager.getLargeFragments() + " large fragments.\n");
-    }
-
-    @Override
-    public String toString() {
-        return super.getName() + super.getDescription();
     }
 }

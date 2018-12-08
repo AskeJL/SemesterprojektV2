@@ -1,8 +1,6 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
-import domain.locations.GameObject;
-import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 
 /**
@@ -19,8 +17,7 @@ public class NetControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public NetControl(SystemsManager systems) {
-        super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL);
-        
+        super("Net control");
         this.systemsManager = systems;
     }
 
@@ -39,10 +36,4 @@ public class NetControl extends GameObject {
         reader.storeln("Interacting with net control.");
         systemsManager.setMediumFragmentDestroyed(true);
     }
-
-    @Override
-    public String toString() {
-        return "GameObject.NetControl:[" + super.getName() + "] [" + super.getDescription() + "]";
-    }
-
 }

@@ -54,7 +54,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
 
         if (locations != null) {
-            return locations.getCurrentRoom().getName();
+            return locations.getCurrentRoom().getNAME();
         }
 
         return "";
@@ -65,7 +65,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
         LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
 
         if (locations != null) {
-            return locations.getCurrentLocation().getName();
+            return locations.getCurrentLocation().getNAME();
         }
 
         return "";

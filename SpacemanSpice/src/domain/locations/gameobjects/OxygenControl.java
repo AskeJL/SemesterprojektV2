@@ -1,8 +1,6 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
-import domain.locations.GameObject;
-import domain.locations.GameObjectType;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
 
@@ -20,8 +18,7 @@ public class OxygenControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public OxygenControl(ResourcesManager resources) {
-        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);  
-        
+        super("Oxygen control");
         this.resourcesManager = resources;
     }
 
@@ -40,10 +37,4 @@ public class OxygenControl extends GameObject {
         Oxygen oxygen = resourcesManager.getOxygen();
         oxygen.increaseValue(100 - oxygen.getValue());
     }
-
-    @Override
-    public String toString() {
-        return super.getName() + super.getDescription();
-    }
-
 }
