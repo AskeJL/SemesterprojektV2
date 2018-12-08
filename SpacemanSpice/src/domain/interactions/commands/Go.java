@@ -37,8 +37,8 @@ public class Go extends Command {
         ArrayList<Exit> roomExits = locationsManager.getCurrentRoom().getExits();
         ArrayList<String> parameters = new ArrayList<>();
 
-        for (Exit exit : locationsManager.getCurrentRoom().getExits()) {
-            if (exit.getFromRoom().getNAME().equals(locationsManager.getCurrentRoom().getNAME())) {
+        for (Exit exit : locationsManager.getCurrentLocation().getExits()) {
+            if (exit.getFromRoom().getName().equals(locationsManager.getCurrentRoom().getName())) {
                 parameters.add(exit.getDirection().name().toLowerCase());
                 CURRENT_EXITS.add(exit);
             }
@@ -67,12 +67,13 @@ public class Go extends Command {
         }
 
         if (exitTo != null && exitTo.isEXIT_TO_LOCATION()) {
+            locationsManager.setCurrentLocation(exitTo.getToLocation());
             locationsManager.setCurrentRoom(exitTo.getToRoom());
         } else if (exitTo != null) {
             locationsManager.setCurrentRoom(exitTo.getFromRoom());
         }
 
-        reader.storeln("Current room: " + locationsManager.getCurrentRoom().getNAME());
+        reader.storeln("Current room: " + locationsManager.getCurrentRoom().getName());
     }
 
     @Override

@@ -44,7 +44,7 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
     public void update() {
         if (life.getValue() <= 50) {
             oxygen -= (time.getCurrentTime() - lastTime);
-        } else if (locationsManager.getCurrentRoom().getNAME().equalsIgnoreCase("outsideRoom") || locationsManager.getCurrentLocation().getNAME().equalsIgnoreCase("outside")) {
+        } else if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
             oxygen -= (time.getCurrentTime() - lastTime);
         }
 

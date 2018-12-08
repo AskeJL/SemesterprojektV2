@@ -1,10 +1,6 @@
 package domain.locations;
 
-import domain.locations.gameobjects.GameObject;
-import domain.locations.gameobjects.GameObjectType;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 
 /**
  * A room within a location.
@@ -17,128 +13,159 @@ public class Room {
     /**
      * The name of the room.
      */
-    private final String NAME;
+    private String name;
 
     /**
      * The description of the room.
      */
-    private final String DESCRIPTION;
+    private String description;
 
-    private final Room NORTH_EXIT;
-    private final Room WEST_EXIT;
-    private final Room SOUTH_EXIT;
-    private final Room EAST_EXIT;
+    /**
+     * All the {@link Exit}s within the room.
+     */
+    private ArrayList<Exit> exits = new ArrayList<>();
 
-    
-    private final ArrayList<Exit> currentExits = new ArrayList<>();
+    /**
+     * All the {@link GameObject}s within the room.
+     */
+    private ArrayList<GameObject> gameObjects = new ArrayList<>();
 
-    private final GameObjectType GAME_OBJECT_TYPE;
-    private final GameObject gameObject;
-    
-    private final String TEXT_MAP_FILE_PATH;
-    
-    
+    /**
+     * Whether or not this room has {@link Oxygen}.
+     */
+    private boolean hasOxygen;
 
-    public Room(String name, String description, Room nExit, Room wExit, Room sExit, Room eExit, GameObjectType type, GameObject gameObject, String fileLocation) {
-
-        this.NAME = name;
-        this.DESCRIPTION = description;
-        this.NORTH_EXIT = nExit;
-        this.WEST_EXIT = wExit;
-        this.SOUTH_EXIT = sExit;
-        this.EAST_EXIT = eExit;
-        this.GAME_OBJECT_TYPE = type;
-        this.gameObject = gameObject;
-        this.TEXT_MAP_FILE_PATH = fileLocation;
-        
-        init();
-    }
-
-    private void init() {
-        if(NORTH_EXIT != null){
-        this.currentExits.add(new Exit(this, this.NORTH_EXIT, ExitDirection.NORTH));
-        }
-        if(WEST_EXIT != null){
-        this.currentExits.add(new Exit(this, this.WEST_EXIT, ExitDirection.WEST));
-        }
-        if(SOUTH_EXIT != null){
-        this.currentExits.add(new Exit(this, this.SOUTH_EXIT, ExitDirection.SOUTH));
-        }
-        if(EAST_EXIT != null){
-        this.currentExits.add(new Exit(this, this.EAST_EXIT, ExitDirection.EAST));
-        }
-        
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     /**
-     * @return the currentExits
+     * Add an {@link Exit} to the room.
+     *
+     * @param exit to add.
+     */
+    public void addExit(Exit exit) {
+        this.exits.add(exit);
+    }
+
+    /**
+     * Add a {@link GameObject} to the room.
+     *
+     * @param gameObject GameObject to add.
+     */
+    public void addGameObject(GameObject gameObject) {
+        this.gameObjects.add(gameObject);
+    }
+
+    @Override
+    public String toString() {
+        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
+    }
+
+    /**
+     * Get the {@link #name name} of this room.
+     *
+     * @return
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Get the {@link #description description} of this room.
+     *
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get the {@link #exits exits} of this room.
+     *
+     * @return
      */
     public ArrayList<Exit> getExits() {
-        return currentExits;
-    }
-
-   
-
-    /**
-     * @return the NAME
-     */
-    public String getNAME() {
-        return NAME;
+        return exits;
     }
 
     /**
-     * @return the DESCRIPTION
+     * Get one of the {@link #exits} in this room based on the direction.
+     * (north, south, west, east)
+     *
+     * @param direction Direction of the {@link Exit}.
+     * @return
      */
-    public String getDESCRIPTION() {
-        return DESCRIPTION;
+    public Exit getExit(String direction) {
+        for (Exit exit : exits) {
+            if (exit.getDirection().name().toLowerCase().equals(direction.toLowerCase())) {
+                return exit;
+            }
+        }
+        return null;
     }
 
     /**
-     * @return the NORTH_EXIT
+     * Get the {@link #gameObjects gameObjects} of this room.
+     *
+     * @return
      */
-    public Room getNORTH_EXIT() {
-        return NORTH_EXIT;
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
     }
 
     /**
-     * @return the WEST_EXIT
+     * Check to see if this room {@link #hasOxygen hasOxygen}.
+     *
+     * @return
      */
-    public Room getWEST_EXIT() {
-        return WEST_EXIT;
+    public boolean isHasOxygen() {
+        return hasOxygen;
     }
 
     /**
-     * @return the SOUTH_EXIT
+     * Set the {@link #name name} of this room.
+     *
+     * @param name to set.
      */
-    public Room getSOUTH_EXIT() {
-        return SOUTH_EXIT;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * @return the EAST_EXIT
+     * Set the {@link #description description} of this room.
+     *
+     * @param description Description to set.
      */
-    public Room getEAST_EXIT() {
-        return EAST_EXIT;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
-     * @return the GAME_OBJECT_TYPE
+     * Set the {@link #exits exits} to this room.
+     *
+     * @param exits Exits to set.
      */
-    public GameObjectType getGAME_OBJECT_TYPE() {
-        return GAME_OBJECT_TYPE;
+    public void setExits(ArrayList<Exit> exits) {
+        this.exits = exits;
     }
 
     /**
-     * @return the TEXT_MAP_FILE_PATH
+     * Set the {@link #gameObjects gameObjects} for this room.
+     *
+     * @param gameObjects GameObjects to set.
      */
-    public String getTEXT_MAP_FILE_PATH() {
-        return TEXT_MAP_FILE_PATH;
+    public void setGameObjects(ArrayList<GameObject> gameObjects) {
+        this.gameObjects = gameObjects;
     }
 
     /**
-     * @return the gameObject
+     * Set whether or not this room {@link #hasOxygen hasOxygen} in it.
+     *
+     * @param hasOxygen
      */
-    public GameObject getGameObject() {
-        return gameObject;
+    public void setHasOxygen(boolean hasOxygen) {
+        this.hasOxygen = hasOxygen;
     }
 }

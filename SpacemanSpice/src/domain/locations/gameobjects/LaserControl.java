@@ -1,6 +1,8 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.locations.GameObject;
+import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 
 /**
@@ -17,7 +19,8 @@ public class LaserControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public LaserControl(SystemsManager systems) {
-        super("Laser control");
+        super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL);
+        
         this.systemsManager = systems;
     }
 
@@ -35,5 +38,10 @@ public class LaserControl extends GameObject {
     public void interact() {
         reader.storeln("Interacting with laser control");
         systemsManager.setSmallFragmentDestroyed(true);
+    }
+
+    @Override
+    public String toString() {
+        return "GameObject.LaserControl:[" + super.getName() + "] [" + super.getDescription() + "]";
     }
 }

@@ -3,14 +3,13 @@ package domain.interactions.commands;
 import domain.DomainReader;
 import domain.interactions.Command;
 import domain.locations.LocationsManager;
-import domain.locations.gameobjects.GameObjectType;
 
 /**
  * This command is responsible for interacting with {@link GameObject}'s in the
  * current room.
  *
- * @see domain.locations.gameobjects.GameObject
- * @see domain.locations.gameobjects.GameObjectType
+ * @see domain.locations.GameObject
+ * @see domain.locations.GameObjectType
  */
 public class Interact extends Command {
     
@@ -34,8 +33,8 @@ public class Interact extends Command {
      */
     @Override
     protected void run() {
-        if (locationsManager.getCurrentRoom().getGAME_OBJECT_TYPE() == GameObjectType.CONTROL) {
-            locationsManager.getCurrentRoom().getGameObject().interact();
+        if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
+            locationsManager.getCurrentRoom().getGameObjects().get(0).interact();
         } else {
             reader.storeln("There are nothing to interact with in this room");
         }
