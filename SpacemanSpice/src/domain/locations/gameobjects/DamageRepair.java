@@ -33,9 +33,9 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact() {
-        reader.storeln("You begin reparing the ship");
+        reader.storeln("You begin repairing the ship");
         Life life = resourcesManager.getLife();
-        life.increaseValue(100);
+        life.setRepair(true);
     }
 
     @Override

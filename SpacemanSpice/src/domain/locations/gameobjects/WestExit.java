@@ -5,6 +5,7 @@
  */
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 
@@ -14,6 +15,7 @@ import domain.locations.GameObjectType;
  */
 public class WestExit extends GameObject{
 
+    private final DomainReader reader = new DomainReader();
     /**
      *
      */
@@ -22,7 +24,7 @@ public class WestExit extends GameObject{
     }
     @Override
     public void interact() {
-        //Go north from here.
+        reader.storeln("Interacting with west door.");
     }
     
 }

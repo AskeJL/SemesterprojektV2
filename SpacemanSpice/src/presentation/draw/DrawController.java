@@ -41,7 +41,7 @@ public class DrawController {
     private int playerYLocation;
 
     private final ViewController_Game gameViewController;
-    private final Player player;
+    private Player player;
 
     private GraphicsContext gc;
 
@@ -53,7 +53,6 @@ public class DrawController {
 
     public DrawController(ViewController_Game controller) {
         this.gameViewController = controller;
-        this.player = requester.getPlayer();
     }
 
     /**
@@ -63,6 +62,7 @@ public class DrawController {
 
         gc = gameViewController.getGraphicsContext();
 
+        
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
 
@@ -70,6 +70,7 @@ public class DrawController {
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
 
+        player = requester.getPlayer();
         playerXLocation = player.getxPosition() + 5;
         playerYLocation = player.getyPosition() + 5;
 
@@ -134,6 +135,7 @@ public class DrawController {
     public void interact() {
         SoundPlayer sound = new SoundPlayer(this);
         actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
+        currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
         switch (actionType) {
             case NORTH:
                 exitDirection = GameObjectType.NORTH;

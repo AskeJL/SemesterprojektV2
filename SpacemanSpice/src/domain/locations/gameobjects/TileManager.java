@@ -9,6 +9,7 @@ import domain.GameUpdateable;
 import domain.Manager;
 import domain.locations.GameObjectType;
 import domain.resources.ResourcesManager;
+import domain.systems.SystemsManager;
 import java.io.File;
 import java.util.HashMap;
 import javafx.scene.image.Image;
@@ -33,9 +34,24 @@ public class TileManager extends Manager implements GameUpdateable{
     private final String VERTICAL_WALL_FILE_PATH = "assets/pictures/verticalWall.png";
     private final Image VERTICAL_WALL_IMAGE = new Image(new File(VERTICAL_WALL_FILE_PATH).toURI().toString());
     
-    private Tile console;
-    private final String CONSOLE_FILE_PATH = "assets/pictures/console.png";
-    private final Image CONSOLE_IMAGE = new Image(new File(CONSOLE_FILE_PATH).toURI().toString());
+    private Tile laserConsole;
+    private final String LASER_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image LASER_CONSOLE_IMAGE = new Image(new File(LASER_CONSOLE_FILE_PATH).toURI().toString());
+    private Tile netConsole;
+    private final String NET_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image NET_CONSOLE_IMAGE = new Image(new File(NET_CONSOLE_FILE_PATH).toURI().toString());
+    private Tile oxygenConsole;
+    private final String OXYGEN_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image OXYGEN_CONSOLE_IMAGE = new Image(new File(OXYGEN_CONSOLE_FILE_PATH).toURI().toString());
+    private Tile scanningConsole;
+    private final String SCANNING_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image SCANNING_CONSOLE_IMAGE = new Image(new File(SCANNING_CONSOLE_FILE_PATH).toURI().toString());
+    private Tile controlConsole;
+    private final String CONTROL_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image CONTROL_CONSOLE_IMAGE = new Image(new File(CONTROL_CONSOLE_FILE_PATH).toURI().toString());
+    private Tile outsideConsole;
+    private final String OUTSIDE_CONSOLE_FILE_PATH = "assets/pictures/console.png";
+    private final Image OUTISDE_CONSOLE_IMAGE = new Image(new File(OUTSIDE_CONSOLE_FILE_PATH).toURI().toString());
     
     private Tile northWestCorner;
     private final String NORTHWEST_CORNER_FILE_PATH = "assets/pictures/northWestCorner.png";
@@ -86,7 +102,13 @@ public class TileManager extends Manager implements GameUpdateable{
         this.floor = new Tile('.', false, GameObjectType.DECORATION, null, this.FLOOR_IMAGE);
         this.horizontalWall = new Tile('-', true, GameObjectType.DECORATION, null, this.HORIZONTAL_WALL_IMAGE);
         this.verticalWall = new Tile('/', true, GameObjectType.DECORATION, null, this.VERTICAL_WALL_IMAGE);
-        this.console = new Tile('+', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.fetchController(ResourcesManager.class))), this.CONSOLE_IMAGE);
+        
+        this.laserConsole = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.LASER_CONSOLE_IMAGE);
+        this.netConsole = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.NET_CONSOLE_IMAGE);
+        this.oxygenConsole = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.fetchController(ResourcesManager.class))), this.OXYGEN_CONSOLE_IMAGE);
+        this.scanningConsole = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.SCANNING_CONSOLE_IMAGE);
+        this.outsideConsole = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.fetchController(ResourcesManager.class))), this.OUTISDE_CONSOLE_IMAGE);
+        this.controlConsole = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.CONTROL_CONSOLE_IMAGE);
         
         this.northWestCorner = new Tile('[', true, GameObjectType.DECORATION, null, this.NORTHWEST_CORNER_IMAGE);
         this.southWestCorner = new Tile('(', true, GameObjectType.DECORATION, null, this.SOUTHWEST_CORNER_IMAGE);
@@ -105,7 +127,13 @@ public class TileManager extends Manager implements GameUpdateable{
         getTileMap().put(this.floor.getSYMBOL(), this.floor);
         getTileMap().put(this.horizontalWall.getSYMBOL(), this.horizontalWall);
         getTileMap().put(this.verticalWall.getSYMBOL(), this.verticalWall);
-        getTileMap().put(this.console.getSYMBOL(), this.console);
+        
+        getTileMap().put(this.laserConsole.getSYMBOL(), this.laserConsole);
+        getTileMap().put(this.netConsole.getSYMBOL(), this.netConsole);
+        getTileMap().put(this.oxygenConsole.getSYMBOL(), this.oxygenConsole);
+        getTileMap().put(this.scanningConsole.getSYMBOL(), this.scanningConsole);
+        getTileMap().put(this.outsideConsole.getSYMBOL(), this.outsideConsole);
+        getTileMap().put(this.controlConsole.getSYMBOL(), this.controlConsole);
         
         getTileMap().put(this.northWestCorner.getSYMBOL(), this.northWestCorner);
         getTileMap().put(this.southWestCorner.getSYMBOL(), this.southWestCorner);
