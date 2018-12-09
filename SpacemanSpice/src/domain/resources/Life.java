@@ -56,7 +56,7 @@ public class Life implements ResourcesElement, GameUpdateable {
 
     @Override
     public void update() {
-        if (life < 100 && repair) {
+        if (life < 100 && repair == true) {
             increaseValue(REPAIR_AMOUNT);
         }
         if (life >= 100) {
