@@ -13,16 +13,27 @@ import domain.systems.SystemsManager;
 public final class Scanning extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Scanning() {
         super("Scanning", "In this location spacedebris can be scanned.");
 
-        createLocation();
+        createLocationCLI();
+    }
+    
+    public Scanning(Boolean gui){
+                   super(
+                   "Scanning", 
+                   "In this location spacedebris can be scanned.",
+                   null,
+                   new Exit(ExitDirection.EAST, "Control"),
+                   new Exit(ExitDirection.NORTH, "Personal"),
+                   null, 
+                   "scanningMap.txt");
     }
 
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the scanning location are created----------------------*/
 
         /*Scanning room-------------------------------------------------------*/

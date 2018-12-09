@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * <br><br>
  * Within the Location is the {@link Location#rooms rooms} and
  * {@link Location#exits exits} stored which are filled upon creation
- * ({@link #createLocation()}).
+ * ({@link #createLocationCLI()}).
  */
 public abstract class Location {
 
@@ -34,11 +34,31 @@ public abstract class Location {
      */
     private ArrayList<Room> rooms = new ArrayList<>();
 
+    private Exit northExit;
+    private Exit westExit;
+    private Exit southExit;
+    private Exit eastExit;
+    
+    private String textMapLocation;
+    
+    
     protected Location(String name, String description) {
         this.NAME = name;
         this.description = description;
     }
-
+    
+    protected Location(String name, String description, Exit northExit, Exit westExit, Exit southExit, Exit eastExit, String fileLocation){
+        
+        this.NAME = name;
+        this.description = description;
+        this.northExit = northExit;
+        this.westExit = westExit;
+        this.southExit = southExit;
+        this.eastExit = eastExit;
+        this.textMapLocation = fileLocation;
+        
+    }
+    
     public static void init(LocationsManager locations) {
         Location.locationsManager = locations;
     }
@@ -65,7 +85,7 @@ public abstract class Location {
      * Create this explicit location. The {@link Location#rooms} are defined and
      * filled in here, as well as the {@link Location#exits}
      */
-    protected abstract void createLocation();
+    protected abstract void createLocationCLI();
 
     @Override
     public abstract String toString();
@@ -131,5 +151,47 @@ public abstract class Location {
      */
     public ArrayList<Room> getRooms() {
         return this.rooms;
+    }
+
+    /**
+     * @return the northExit
+     */
+    public Exit getNorthExit() {
+        return northExit;
+    }
+
+    /**
+     * @param northExit the northExit to set
+     */
+    public void setNorthExit(Exit northExit) {
+        this.northExit = northExit;
+    }
+
+    /**
+     * @return the westExit
+     */
+    public Exit getWestExit() {
+        return westExit;
+    }
+
+    /**
+     * @return the southExit
+     */
+    public Exit getSouthExit() {
+        return southExit;
+    }
+
+    /**
+     * @return the eastExit
+     */
+    public Exit getEastExit() {
+        return eastExit;
+    }
+
+    /**
+     * @return the textMapLocation
+     */
+    public String getTextMapLocation() {
+        return textMapLocation;
     }
 }

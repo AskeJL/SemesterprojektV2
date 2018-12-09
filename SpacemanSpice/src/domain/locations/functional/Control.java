@@ -5,26 +5,36 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.SteeringControl;
+import domain.locations.nonfunctional.*;
 import domain.systems.SystemsManager;
 
 /**
  * Functional location, that controls the movement of the spaceship.
  */
-
 public final class Control extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
-    
     public Control() {
         super("Control", "In this location the ship is controlled.");
 
-        createLocation();
+        createLocationCLI();
+    }
+
+    public Control(Boolean gui){
+                   super(
+                   "Control", 
+                   "In this location the ship is controlled.",
+                   null,
+                   new Exit(ExitDirection.NORTH, "Hallway02"),
+                   new Exit(ExitDirection.NORTH, "Mainhall01"),
+                   new Exit(ExitDirection.WEST, "Scanning"), 
+                   "controlMap.txt");
     }
 
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the control location are created-----------------------*/
 
         /*Steering------------------------------------------------------------*/

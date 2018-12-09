@@ -42,6 +42,8 @@ public class Exit {
      */
     private Location toLocation;
 
+    private String targetLocation;
+    
     /**
      * The directions of the exit. (WEST, NORTH, EAST, SOUTH)
      * ({@link ExitDirection})
@@ -59,6 +61,13 @@ public class Exit {
         this.fromRoom = exit;
         this.EXIT_TO_ROOM = true;
         this.EXIT_TO_LOCATION = false;
+    }
+    
+    public Exit(ExitDirection direction, String targetLocation){
+        this.direction = direction;
+        this.targetLocation = targetLocation;
+        this.EXIT_TO_ROOM = false;
+        this.EXIT_TO_LOCATION = true;
     }
 
     /**
@@ -141,6 +150,13 @@ public class Exit {
      */
     public boolean isEXIT_TO_ROOM() {
         return this.EXIT_TO_ROOM;
+    }
+
+    /**
+     * @return the targetLocation
+     */
+    public String getTargetLocation() {
+        return targetLocation;
     }
 
 }

@@ -13,16 +13,27 @@ import domain.resources.ResourcesManager;
 public final class Outside extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
 
-        createLocation();
+        createLocationCLI();
     }
 
+    public Outside(Boolean gui){
+                   super(
+                   "Outside", 
+                   "This location contains the airlock and from here it is possible to go outside.",
+                   new Exit(ExitDirection.SOUTH, "Hallway02"),
+                   null,
+                   null,
+                   new Exit(ExitDirection.WEST, "Mainhall02"), 
+                   "outsideMap.txt");
+    }
+    
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the outside location are created-----------------------*/
 
         /*outside-------------------------------------------------------------*/

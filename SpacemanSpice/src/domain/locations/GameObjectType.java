@@ -7,5 +7,5 @@ public enum GameObjectType {
     /**
      * This type of {@link GameObject} is used to control the game itself.
      */
-    CONTROL;
+    CONTROL, DECORATION, EXIT, NORTH, WEST, SOUTH, EAST, NOTHING;
 }

@@ -13,16 +13,27 @@ import domain.systems.SystemsManager;
 public final class Laser extends Location {
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Laser() {
         super("Laser", "The laser is operated from here.");
 
-        createLocation();
+        createLocationCLI();
     }
 
+    public Laser(Boolean gui){
+                   super(
+                   "Laser", 
+                   "The laser is operated from here.",
+                   null,
+                   new Exit(ExitDirection.EAST, "Mainhall02"),
+                   null,
+                   new Exit(ExitDirection.WEST, "Hallway02"), 
+                   "laserMap.txt");
+    }
+    
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the laser location are created-------------------------*/
 
         /*Corridor------------------------------------------------------------*/
@@ -45,6 +56,8 @@ public final class Laser extends Location {
         technicRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
         controlsRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
+    
+    
 
     @Override
     public String toString() {

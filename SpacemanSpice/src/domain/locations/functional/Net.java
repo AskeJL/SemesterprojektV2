@@ -13,16 +13,27 @@ import domain.systems.SystemsManager;
 public final class Net extends Location {
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Net() {
         super("Net", "In this location the net is controlled and repaired");
         
-        createLocation();
+        createLocationCLI();
+    }
+    
+    public Net(Boolean gui){
+                   super(
+                   "Net", 
+                   "In this location the net is controlled and repaired.",
+                   new Exit(ExitDirection.SOUTH, "Mainhall02"),
+                   null,
+                   null,
+                   new Exit(ExitDirection.SOUTH, "Hallway01"), 
+                   "netMap.txt");
     }
     
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the net location are created---------------------------*/
         
         /*Corridor------------------------------------------------------------*/

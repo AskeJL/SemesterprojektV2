@@ -5,6 +5,7 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.OxygenControl;
+import domain.locations.nonfunctional.*;
 import domain.resources.ResourcesManager;
 
 /**
@@ -13,16 +14,27 @@ import domain.resources.ResourcesManager;
 public final class Oxygen extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Oxygen() {
         super("Oxygen", "Oxygen is refueled from here");
 
-        createLocation();
+        createLocationCLI();
     }
 
+    public Oxygen(Boolean gui){
+                   super(
+                   "Oxygen", 
+                   "Oxygen is refueled from here.",
+                   null,
+                   new Exit(ExitDirection.EAST, "Hallway02"),
+                   null,
+                   new Exit(ExitDirection.WEST, "Mainhall01"), 
+                   "oxygenMap.txt");
+    }
+    
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the oxygen location are created------------------------*/
 
         /*Main corridor-------------------------------------------------------*/
