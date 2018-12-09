@@ -25,10 +25,10 @@ public final class Net extends Location {
                    super(
                    "Net", 
                    "In this location the net is controlled and repaired.",
-                   new Exit(ExitDirection.SOUTH, "Mainhall02"),
+                   new Exit('s', "Mainhall02"),
                    null,
                    null,
-                   new Exit(ExitDirection.SOUTH, "Hallway01"), 
+                   new Exit('s', "Hallway01"), 
                    "netMap.txt");
     }
     

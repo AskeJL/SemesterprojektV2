@@ -120,7 +120,7 @@ public class TileManager extends Manager implements GameUpdateable{
         this.southExit = new Tile('s', false, GameObjectType.SOUTH, new SouthExit(), this.SOUTH_EXIT_IMAGE);
         this.eastExit = new Tile('e', false, GameObjectType.EAST, new EastExit(), this.EAST_EXIT_IMAGE);
         
-        this.nothing = new Tile('0', true, GameObjectType.NOTHING, null, this.NOTHING_IMAGE);
+        this.nothing = new Tile('0', true, GameObjectType.DECORATION, null, this.NOTHING_IMAGE);
     }
     private void createTileMap(){
         

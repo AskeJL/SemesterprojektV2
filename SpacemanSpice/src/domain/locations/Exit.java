@@ -49,6 +49,8 @@ public class Exit {
      * ({@link ExitDirection})
      */
     private ExitDirection direction;
+    
+    private char tileExit;
 
     /**
      * Exit to another {@link Room}.
@@ -63,8 +65,8 @@ public class Exit {
         this.EXIT_TO_LOCATION = false;
     }
     
-    public Exit(ExitDirection direction, String targetLocation){
-        this.direction = direction;
+    public Exit(char tileExit, String targetLocation){
+        this.tileExit = tileExit;
         this.targetLocation = targetLocation;
         this.EXIT_TO_ROOM = false;
         this.EXIT_TO_LOCATION = true;
@@ -157,6 +159,13 @@ public class Exit {
      */
     public String getTargetLocation() {
         return targetLocation;
+    }
+
+    /**
+     * @return the tileExit
+     */
+    public char getTileExit() {
+        return tileExit;
     }
 
 }

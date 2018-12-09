@@ -23,9 +23,9 @@ public final class Hallway01 extends Location {
                    super(
                    "Hallway01", 
                    "Hallway connecting Personal, Laser and Net.",
-                   new Exit(ExitDirection.SOUTH, "Personal"),
-                   new Exit(ExitDirection.EAST, "Laser"),
-                   new Exit(ExitDirection.EAST, "Net"),
+                   new Exit('s', "Personal"),
+                   new Exit('e', "Laser"),
+                   new Exit('e', "Net"),
                    null, 
                    "hallway01Map.txt");
     }

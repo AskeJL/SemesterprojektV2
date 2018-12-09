@@ -26,9 +26,9 @@ public final class Laser extends Location {
                    "Laser", 
                    "The laser is operated from here.",
                    null,
-                   new Exit(ExitDirection.EAST, "Mainhall02"),
+                   new Exit('e', "Mainhall02"),
                    null,
-                   new Exit(ExitDirection.WEST, "Hallway02"), 
+                   new Exit('w', "Hallway01"), 
                    "laserMap.txt");
     }
     

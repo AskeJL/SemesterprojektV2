@@ -26,8 +26,8 @@ public final class Scanning extends Location {
                    "Scanning", 
                    "In this location spacedebris can be scanned.",
                    null,
-                   new Exit(ExitDirection.EAST, "Control"),
-                   new Exit(ExitDirection.NORTH, "Personal"),
+                   new Exit('e', "Control"),
+                   new Exit('n', "Personal"),
                    null, 
                    "scanningMap.txt");
     }

@@ -25,10 +25,10 @@ public final class Outside extends Location {
                    super(
                    "Outside", 
                    "This location contains the airlock and from here it is possible to go outside.",
-                   new Exit(ExitDirection.SOUTH, "Hallway02"),
+                   new Exit('s', "Hallway02"),
                    null,
                    null,
-                   new Exit(ExitDirection.WEST, "Mainhall02"), 
+                   new Exit('s', "Mainhall02"), 
                    "outsideMap.txt");
     }
     

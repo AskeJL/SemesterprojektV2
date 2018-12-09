@@ -6,6 +6,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.locations.ExitDirection;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 
@@ -20,7 +21,7 @@ public class WestExit extends GameObject{
      *
      */
     public WestExit(){
-        super("West exit", "You can go west from here.", GameObjectType.WEST);
+        super("West exit", "You can go west from here.", GameObjectType.WEST, ExitDirection.WEST);
     }
     @Override
     public void interact() {

@@ -19,7 +19,7 @@ public class SteeringControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public SteeringControl(SystemsManager systems) {
-        super("Steering Control", "The ship is flown from here.", GameObjectType.CONTROL);
+        super("Steering Control", "The ship is flown from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
     }

@@ -20,7 +20,7 @@ public class DamageRepair extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public DamageRepair(ResourcesManager resources) {
-        super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL);
+        super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
 

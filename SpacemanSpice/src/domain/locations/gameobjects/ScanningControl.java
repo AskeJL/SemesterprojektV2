@@ -19,7 +19,7 @@ public class ScanningControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public ScanningControl(SystemsManager systems) {
-        super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL);
+        super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
     }

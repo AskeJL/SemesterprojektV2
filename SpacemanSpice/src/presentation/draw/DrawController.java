@@ -49,7 +49,7 @@ public class DrawController {
     private final DomainRequester requester = new DomainRequester();
 
     private GameObjectType actionType;
-    private GameObjectType exitDirection;
+    private char exitDirection;
 
     public DrawController(ViewController_Game controller) {
         this.gameViewController = controller;
@@ -62,7 +62,6 @@ public class DrawController {
 
         gc = gameViewController.getGraphicsContext();
 
-        
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
 
@@ -102,15 +101,17 @@ public class DrawController {
      * Draws a location on the screen, based on a text file, depending on the
      * current tile the player is interacting with
      *
-     * @param directionTo
+     * @param exitTile
      */
-    public void drawLocation(char exit) {
+    public void drawLocation(Tile exitTile) {
         clearCanvas();
         List<String> map = data.requestData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                if (currentTileMap.get(characters[x][y]).getSYMBOL() == exit) {
+                if (currentTileMap.get(characters[x][y]) == exitTile) {
+
+                    reader.storeln("recognize");
                     playerXLocation = x;
                     playerYLocation = y;
                 }
@@ -134,42 +135,46 @@ public class DrawController {
      */
     public void interact() {
         SoundPlayer sound = new SoundPlayer(this);
-        actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
-        currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
-        switch (actionType) {
-            case NORTH:
-                exitDirection = GameObjectType.NORTH;
-                char exit = 'n';
-                currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
-                textMapLocation = currentMapLocation.getTextMapLocation();
-                drawLocation(exit);
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case WEST:
-                currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
-                textMapLocation = currentMapLocation.getTextMapLocation();
-                drawLocation();
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case SOUTH:
-                currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
-                textMapLocation = currentMapLocation.getTextMapLocation();
-                drawLocation();
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case EAST:
-                currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
-                textMapLocation = currentMapLocation.getTextMapLocation();
-                drawLocation();
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case CONTROL:
-                sound.playInteractionSound();
-                break;
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
+            actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
+            currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
+            switch (actionType) {
+                case NORTH:
+                    exitDirection = currentMapLocation.getNorthExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case WEST:
+                    exitDirection = currentMapLocation.getWestExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case SOUTH:
+                    exitDirection = currentMapLocation.getSouthExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case EAST:
+                    exitDirection = currentMapLocation.getEastExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case CONTROL:
+                    sound.playInteractionSound();
+                    break;
+            }
         }
     }
 
