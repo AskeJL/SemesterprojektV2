@@ -35,7 +35,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-        refuelRoom.addGameObject(new OxygenControl((ResourcesManager) locationsManager.fetchController(ResourcesManager.class)));
+//        refuelRoom.addGameObject(new OxygenControl((ResourcesManager) locationsManager.getManager(ResourcesManager.class)));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

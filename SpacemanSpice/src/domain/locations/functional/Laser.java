@@ -35,7 +35,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        controlsRoom.addGameObject(new LaserControl((SystemsManager) locationsManager.fetchController(SystemsManager.class)));
+        //controlsRoom.addGameObject(new LaserControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
         
         super.addRoom(controlsRoom);
 

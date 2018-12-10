@@ -1,6 +1,9 @@
 package domain.systems;
 
-public class Score implements SystemsElement {
+import domain.GameElement;
+import domain.GameElementGroup;
+
+public class Score extends GameElement {
 
     /**
      * The current score of this play-through.
@@ -20,10 +23,13 @@ public class Score implements SystemsElement {
      */
     private final static int LARGE_FRAGMENT_POINTS = 15;
 
-    private final SystemsManager systemsManager;
+    private SystemsManager systemsManager;
 
-    public Score(SystemsManager systems) {
-        this.systemsManager = systems;
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.systemsManager = (SystemsManager) group.getManager();
     }
 
     /**
@@ -59,8 +65,8 @@ public class Score implements SystemsElement {
     public int getValue() {
         return score;
     }
-    
-    static void setValue(int value){
+
+    static void setValue(int value) {
         score = value;
     }
 }

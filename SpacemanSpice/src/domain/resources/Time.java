@@ -1,9 +1,10 @@
 package domain.resources;
 
+import domain.GameElement;
 import domain.GameUpdateable;
 import java.util.Date;
 
-public class Time implements ResourcesElement, GameUpdateable {
+public class Time extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * The time when the {@link domain.game.Game} initialized.

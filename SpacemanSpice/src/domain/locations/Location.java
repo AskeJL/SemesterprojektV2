@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * This is used to group together a series of {@link Room}s, and is only created
  * once in the {@link LocationsController#createLocations()}.
- * <br><br>
+ * <p>
  * Within the Location is the {@link Location#rooms rooms} and
  * {@link Location#exits exits} stored which are filled upon creation
  * ({@link #createLocation()}).

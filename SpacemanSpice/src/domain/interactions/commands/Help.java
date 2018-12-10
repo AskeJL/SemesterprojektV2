@@ -74,8 +74,8 @@ public class Help extends Command {
      */
     @Override
     public void showAvailableParameters() {
-        LocationsManager locationsManager = (LocationsManager) interactionsManager.fetchController(LocationsManager.class);
-        SystemsManager systemsManager = (SystemsManager) interactionsManager.fetchController(SystemsManager.class);
+        LocationsManager locationsManager = (LocationsManager) interactionsManager.getManager(LocationsManager.class);
+        SystemsManager systemsManager = (SystemsManager) interactionsManager.getManager(SystemsManager.class);
 
         reader.storeln("Current room:");
         reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName() + "/" + locationsManager.getCurrentRoom().getName()));

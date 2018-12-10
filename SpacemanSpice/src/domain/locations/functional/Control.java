@@ -22,14 +22,14 @@ public final class Control extends Location {
 
         createLocation();
     }
-
+    
     @Override
     protected void createLocation() {
         /*The rooms in the control location are created-----------------------*/
 
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
-        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.fetchController(SystemsManager.class)));
+//        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
         super.addRoom(steeringRoom);
 
         /*Navigation----------------------------------------------------------*/
@@ -53,5 +53,4 @@ public final class Control extends Location {
     public String toString() {
         return "locations.functional.Control : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
-
 }

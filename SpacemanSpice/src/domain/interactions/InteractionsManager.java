@@ -1,8 +1,7 @@
 package domain.interactions;
 
+import domain.GameElementGroup;
 import domain.Manager;
-import domain.GameElement;
-import java.util.List;
 import domain.GameUpdateable;
 
 public class InteractionsManager extends Manager implements GameUpdateable {
@@ -14,31 +13,16 @@ public class InteractionsManager extends Manager implements GameUpdateable {
 
     }
 
-    public InteractionsManager(List<GameElement> elements) {
-        super(elements);
-    }
-
     @Override
     public void init() {
-        parser = (Parser) getGameElement(Parser.class);
-        commands = (Commands) getGameElement(Commands.class);
-
-        super.init();
+        GameElementGroup group = this.getGameElementGroup();
+        parser = (Parser) group.getGameElement(Parser.class);
+        commands = (Commands) group.getGameElement(Commands.class);
     }
 
     @Override
     public void update() {
         super.update();
-
-//        Command command = parser.getCommand();
-//        if(command != null) {
-//            command.run();
-//        }
-    }
-
-    @Override
-    public String toString() {
-        return "[Manager]interactions.InteractionsManager";
     }
 
     public void runCommand(String input) {
@@ -48,6 +32,13 @@ public class InteractionsManager extends Manager implements GameUpdateable {
         }
     }
 
+    @Override
+    public String toString() {
+        String info = "domain.interactions.InteractionsManager";
+        info += super.toString();
+        return info;
+    }
+    
     public Command getCommand(String input) {
         return parser.getCommand(input);
     }

@@ -1,9 +1,11 @@
 package domain.resources;
 
+import domain.GameElement;
+import domain.GameElementGroup;
 import domain.GameUpdateable;
 import domain.locations.LocationsManager;
 
-public class Oxygen implements ResourcesElement, GameUpdateable {
+public class Oxygen extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * Amount of oxygen the player currently has.
@@ -16,19 +18,23 @@ public class Oxygen implements ResourcesElement, GameUpdateable {
      */
     private long lastTime;
 
-    private final LocationsManager locationsManager;
-    private final ResourcesManager resourcesManager;
+    private LocationsManager locationsManager;
+    private ResourcesManager resourcesManager;
     
     private Time time;
     private Life life;
 
-    public Oxygen(ResourcesManager resources, LocationsManager locations) {
-        this.resourcesManager = resources;
-        this.locationsManager = locations;
+    public Oxygen() {
+        
     }
 
     @Override
     public void init() {
+        GameElementGroup group = this.getGameElementGroup();
+
+        this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        this.locationsManager = (LocationsManager)group.getManagerGroup().getManager(LocationsManager.class);
+        
         time = resourcesManager.getTime();
         life = resourcesManager.getLife();
     }

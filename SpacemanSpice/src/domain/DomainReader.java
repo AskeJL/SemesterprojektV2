@@ -29,7 +29,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
     
     @Override
     public String readLastCommandName() {
-        InteractionsManager interactions = (InteractionsManager) group.fetchController(InteractionsManager.class);
+        InteractionsManager interactions = (InteractionsManager) group.getManager(InteractionsManager.class);
 
         if (interactions != null) {
             return interactions.getLastCommandName();
@@ -40,7 +40,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public String readLastParameter() {
-        InteractionsManager interactions = (InteractionsManager) group.fetchController(InteractionsManager.class);
+        InteractionsManager interactions = (InteractionsManager) group.getManager(InteractionsManager.class);
 
         if (interactions != null) {
             return interactions.getLastParameter();
@@ -51,7 +51,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public String readCurrentRoomName() {
-        LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
 
         if (locations != null) {
             return locations.getCurrentRoom().getName();
@@ -62,7 +62,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public String readCurrentLocationName() {
-        LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
 
         if (locations != null) {
             return locations.getCurrentLocation().getName();
@@ -73,7 +73,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readCurrentTime() {
-        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
 
         if (resources != null) {
             return (int) resources.getTime().getCurrentTime();
@@ -84,7 +84,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readRemainingTime() {
-        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
 
         if (resources != null) {
             return (int) resources.getTime().getRemainingTime();
@@ -95,7 +95,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readLifeValue() {
-        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
 
         if (resources != null) {
             return resources.getLife().getValue();
@@ -106,7 +106,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readOxygenValue() {
-        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
+        ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
 
         if (resources != null) {
             return resources.getOxygen().getValue();
@@ -117,7 +117,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readSmallFragments() {
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
 
         if (systems != null) {
             return systems.getWave().getSmallFragments();
@@ -128,7 +128,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readMediumFragments() {
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
 
         if (systems != null) {
             return systems.getWave().getMediumFragments();
@@ -139,7 +139,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readLargeFragments() {
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
 
         if (systems != null) {
             return systems.getWave().getLargeFragments();
@@ -150,7 +150,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
 
     @Override
     public int readNumberOfWaves() {
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
 
         if (systems != null) {
             return systems.getWave().getNumberOfWaves();
@@ -160,7 +160,7 @@ public class DomainReader implements InteractionsReader, LocationsReader, Resour
     }
 
     public int readScore() {
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
         return systems.getScore().getValue();
         
     }

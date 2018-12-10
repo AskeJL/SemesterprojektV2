@@ -1,62 +1,55 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Manager {
 
-    private ManagerGroup controlGroup;
-    
-    protected List<GameElement> elements = new ArrayList<>();
+    protected ManagerGroup managerGroup;
+    protected GameElementGroup gameElementGroup;
 
-    public Manager() {
-        
-    }
+    protected Manager() {}
     
-    public Manager(List<GameElement> elements) {
-        this.elements = elements;
+    public Manager(GameElementGroup group) {
+        this.gameElementGroup = group;
     }
 
-    public void init(ManagerGroup controlGroup) {
-        this.controlGroup = controlGroup;
-        for (GameElement e : elements) {
-            if (e instanceof GameUpdateable) {
-                ((GameUpdateable) e).init();
-            }
-        }
-    }
-    
     public void init() {
-        for (GameElement e : elements) {
-            if (e instanceof GameUpdateable) {
-                ((GameUpdateable) e).init();
-            }
+        for (GameElement e : gameElementGroup.getElements()) {
+            e.init();
         }
     }
 
     public void update() {
-        for (GameElement e : elements) {
+        for (GameElement e : gameElementGroup.getElements()) {
             if (e instanceof GameUpdateable) {
                 ((GameUpdateable) e).update();
             }
         }
     }
     
-    protected void setElements(List<GameElement> elements) {
-        this.elements = elements;
+    public void setManagerGroup(ManagerGroup group) {
+        this.managerGroup = group;
     }
     
-    public Manager fetchController(Class className) {
-        return controlGroup.fetchController(className);
+    public void setGameElementGroup(GameElementGroup group) {
+        group.setManager(this);
+        this.gameElementGroup = group;
     }
     
-    protected GameElement getGameElement(Class element) {
-        for (GameElement g : elements) {
-            if (g.getClass().getCanonicalName().equals(element.getCanonicalName())) {
-                return g;
-            }
-        }
-        System.out.println("Couldn't find " + element + " in " + this.getClass() + ". Returning null.");
-        return null;
+    public ManagerGroup getManagerGroup() {
+        return this.managerGroup;
+    }
+    
+    public GameElementGroup getGameElementGroup() {
+        return this.gameElementGroup;
+    }
+    
+    public Manager getManager(Class className) {
+        return this.managerGroup.getManager(className);
+    }
+    
+    @Override
+    public String toString() {
+        String info = "[domain.Manager]\n";
+        info += "GameElementGroup: " + gameElementGroup + "\n";
+        return info;
     }
 }

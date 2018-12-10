@@ -1,8 +1,6 @@
 package domain.resources;
 
-import domain.GameElement;
-
-public interface ResourcesElement extends GameElement {
+public interface ResourcesElement {
     
     public void decreaseValue(int value);
 

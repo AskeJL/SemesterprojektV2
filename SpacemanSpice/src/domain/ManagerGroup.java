@@ -3,27 +3,36 @@ package domain;
 import java.util.List;
 
 public class ManagerGroup {
-    private final List<Manager> controllers;
+    private final List<Manager> managers;
     
-    public ManagerGroup(List<Manager> controllers) {
-        this.controllers = controllers;
+    public ManagerGroup(List<Manager> manager) {
+        this.managers = manager;
     }
     
-    public Manager fetchController(Class controller) {
-        for(Manager c : controllers) {
-            if(c.getClass().getCanonicalName().equals(controller.getCanonicalName())) {
-                return c;
+    public void add(Manager manager) {
+        this.managers.add(manager);
+    }
+    
+    public Manager getManager(Class manager) {
+        for(Manager m : managers) {
+            if(m.getClass().getCanonicalName().equals(manager.getCanonicalName())) {
+                return m;
             }
         }
-        System.out.println("Couldn't find " + controller + " in " + this.getClass().getCanonicalName());
+        System.out.println("Couldn't find " + manager + " in " + this.getClass().getCanonicalName());
         return null;
     }
     
-    public void add(Manager controller) {
-        this.controllers.add(controller);
+    public List<Manager> getManagers() {
+        return this.managers;
     }
     
-    public List<Manager> getControllers() {
-        return this.controllers;
+    @Override
+    public String toString() {
+        String info = "domain.ManagerGroup\n";
+        for(Manager manager : this.managers) {
+            info += "  " + manager + "\n";
+        }
+        return info;
     }
 }

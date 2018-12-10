@@ -1,6 +1,8 @@
 package domain.interactions;
 
 import domain.DomainReader;
+import domain.GameElement;
+import domain.GameElementGroup;
 import domain.interactions.commands.Inspect;
 import domain.interactions.commands.Go;
 import domain.interactions.commands.Interact;
@@ -17,10 +19,10 @@ import domain.tutorial.TutorialManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commands implements InteractionsElement {
-        
+public class Commands extends GameElement {
+
     private final DomainReader reader = new DomainReader();
-    
+
     /**
      * A list of all the {@link Command}'s. These are initialized in the
      * {@link Commands#init() init()} method.
@@ -36,7 +38,20 @@ public class Commands implements InteractionsElement {
      */
     private static String lastParameter = "";
 
-    public Commands(LocationsManager locations, InteractionsManager interactions, ResourcesManager resources, SystemsManager systems, TutorialManager tutorial) {
+    public Commands() {
+
+    }
+
+    @Override
+    public void init() {
+        GameElementGroup group = this.getGameElementGroup();
+
+        ResourcesManager resources = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        SystemsManager systems = (SystemsManager) group.getManagerGroup().getManager(SystemsManager.class);
+        TutorialManager tutorial = (TutorialManager) group.getManagerGroup().getManager(TutorialManager.class);
+        LocationsManager locations = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
+        InteractionsManager interactions = (InteractionsManager) group.getManagerGroup().getManager(InteractionsManager.class);
+
         commandWords.add(new Show(resources));
         commandWords.add(new Start(systems, tutorial));
         commandWords.add(new Clear());
@@ -114,16 +129,15 @@ public class Commands implements InteractionsElement {
 
     @Override
     public String toString() {
-        String string = "";
-        string += "[GameMechanic]interactions.Commands";
-        
-        for(Command command : commandWords) {
+        String string = "domain.interactions.Commands";
+
+        for (Command command : commandWords) {
             string += "\n    " + command.toString();
         }
-        
+
         return string;
     }
-    
+
     public void setLastCommand(Command command) {
         lastCommand = command;
     }

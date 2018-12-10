@@ -55,62 +55,52 @@ public class Game extends Application {
         InteractionsManager interactionsManager = new InteractionsManager();
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
-
+        
         // Add to manager list
         List<Manager> managers = new ArrayList<>();
         managers.add(tutorialManager);
         managers.add(interactionsManager);
+        managers.add(systemsManager);
         managers.add(locationsManager);
         managers.add(resourcesManager);
-        managers.add(systemsManager);
 
         managerGroup = new ManagerGroup(managers);
-
-        for (Manager c : managerGroup.getControllers()) {
-            c.init(managerGroup);
-        } 
         
-        // Create the necessary classes for domain
-        Time time = new Time();
-        Life life = new Life();
-        Oxygen oxygen = new Oxygen(resourcesManager, locationsManager);
-
-        Commands commands = new Commands(locationsManager, interactionsManager, resourcesManager, systemsManager, tutorialManager);
-        Parser parser = new Parser(commands);
-
-        Score score = new Score(systemsManager);
-        Wave wave = new Wave(resourcesManager, systemsManager);
-
         // Create Resources package
-        List<GameElement> resourcesElements = new ArrayList<>();
-        resourcesElements.add(time);
-        resourcesElements.add(life);
-        resourcesElements.add(oxygen);
-        resourcesManager.setElements(resourcesElements);
+        GameElementGroup resourcesGroup = new GameElementGroup();
+        resourcesGroup.setManagerGroup(managerGroup);
+        resourcesGroup.add(new Time());
+        resourcesGroup.add(new Life());
+        resourcesGroup.add(new Oxygen());
+        resourcesManager.setGameElementGroup(resourcesGroup);
 
         // Create Interactions package.
-        List<GameElement> interactionsElements = new ArrayList<>();
-        interactionsElements.add(commands);
-        interactionsElements.add(parser);
-        interactionsManager.setElements(interactionsElements);
-
-        // Create Systems package.
-        List<GameElement> systemsElements = new ArrayList<>();
-        systemsElements.add(score);
-        systemsElements.add(wave);
-        systemsElements.add(resourcesManager);
-        systemsElements.add(interactionsManager);
-        systemsManager.setElements(systemsElements);
-
-        // Create Tutorial package.
-        List<GameElement> tutorialElements = new ArrayList<>();
-        tutorialElements.add(interactionsManager);
-        tutorialElements.add(locationsManager);
-        tutorialManager.setElements(tutorialElements);
-
+        GameElementGroup interactionsGroup = new GameElementGroup();
+        interactionsGroup.setManagerGroup(managerGroup);
+        interactionsGroup.add(new Commands());
+        interactionsGroup.add(new Parser());
+        interactionsManager.setGameElementGroup(interactionsGroup);
         
-        for (Manager c : managerGroup.getControllers()) {
-            c.init();
+        // Create Systems package.
+        GameElementGroup systemsGroup = new GameElementGroup();
+        systemsGroup.setManagerGroup(managerGroup);
+        systemsGroup.add(new Score());
+        systemsGroup.add(new Wave());
+        systemsManager.setGameElementGroup(systemsGroup);
+        
+        // Create Locations package.
+        GameElementGroup locationsGroup = new GameElementGroup();
+        locationsGroup.setManagerGroup(managerGroup);
+        locationsManager.setGameElementGroup(locationsGroup);
+        
+        
+        // Create Tutorial package.
+        GameElementGroup tutorialGroup = new GameElementGroup();
+        tutorialGroup.setManagerGroup(managerGroup);
+        tutorialManager.setGameElementGroup(tutorialGroup);
+
+        for (Manager manager : managerGroup.getManagers()) {
+            manager.init();
         }
     }
 
@@ -130,7 +120,7 @@ public class Game extends Application {
     }
 
     void update() {
-        for (Manager c : managerGroup.getControllers()) {
+        for (Manager c : managerGroup.getManagers()) {
             c.update();
         }
 

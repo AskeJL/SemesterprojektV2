@@ -27,7 +27,7 @@ public final class Outside extends Location {
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
-        outside.addGameObject(new DamageRepair((ResourcesManager) locationsManager.fetchController(ResourcesManager.class)));
+//        outside.addGameObject(new DamageRepair((ResourcesManager) locationsManager.getManager(ResourcesManager.class)));
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/

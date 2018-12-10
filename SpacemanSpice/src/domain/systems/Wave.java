@@ -1,11 +1,13 @@
 package domain.systems;
 
 import domain.DomainReader;
+import domain.GameElement;
+import domain.GameElementGroup;
 import domain.resources.ResourcesManager;
 import domain.resources.Time;
 import java.util.Random;
 
-public class Wave implements SystemsElement {
+public class Wave extends GameElement {
 
     private final DomainReader reader = new DomainReader();
 
@@ -44,12 +46,15 @@ public class Wave implements SystemsElement {
     private boolean easy = true;
     private boolean hard = false;
 
-    private final ResourcesManager resourcesManager;
-    private final SystemsManager systemsManager;
-
-    public Wave(ResourcesManager resources, SystemsManager systems) {
-        this.resourcesManager = resources;
-        this.systemsManager = systems;
+    private ResourcesManager resourcesManager;
+    private SystemsManager systemsManager;
+    
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        this.systemsManager = (SystemsManager) group.getManager();
     }
 
     /**

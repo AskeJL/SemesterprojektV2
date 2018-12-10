@@ -1,37 +1,32 @@
 package domain.resources;
 
+import domain.GameElementGroup;
 import domain.Manager;
-import domain.GameElement;
 import domain.GameUpdateable;
-import java.util.List;
 
 public class ResourcesManager extends Manager implements GameUpdateable {
-    
+
     private Time time;
     private Life life;
     private Oxygen oxygen;
-    
+
     public ResourcesManager() {
-        
+
     }
-    
-    public ResourcesManager(List<GameElement> elements) {
-        super(elements);
-    }
-    
+
     @Override
     public void init() {
-        time = (Time)super.getGameElement(Time.class);
-        life = (Life)super.getGameElement(Life.class);
-        oxygen = (Oxygen)super.getGameElement(Oxygen.class);
-        
-        super.init();
+        GameElementGroup group = this.getGameElementGroup();
+
+        time = (Time) group.getGameElement(Time.class);
+        life = (Life) group.getGameElement(Life.class);
+        oxygen = (Oxygen) group.getGameElement(Oxygen.class);
     }
-    
+
     @Override
     public void update() {
         super.update();
-        
+
         time.update();
         life.update();
         oxygen.update();
@@ -39,17 +34,19 @@ public class ResourcesManager extends Manager implements GameUpdateable {
     
     @Override
     public String toString() {
-        return "[Manager]systems.SystemsManager";
+        String info = "domain.resources.ResourcesManager";
+        info += super.toString();
+        return info;
     }
-    
+
     public Time getTime() {
         return this.time;
     }
-    
+
     public Life getLife() {
         return this.life;
     }
-    
+
     public Oxygen getOxygen() {
         return this.oxygen;
     }

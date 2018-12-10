@@ -4,7 +4,7 @@ import data.AssetType;
 import data.Data;
 import domain.Manager;
 import domain.DomainReader;
-import domain.GameElement;
+import domain.GameElementGroup;
 import domain.GameUpdateable;
 import domain.interactions.InteractionsManager;
 import domain.resources.Life;
@@ -63,10 +63,6 @@ public class SystemsManager extends Manager implements GameUpdateable {
     public SystemsManager() {
 
     }
-
-    public SystemsManager(List<GameElement> elements) {
-        super(elements);
-    }
     
     /**
      * Initialize the {@link domain.game.Controller controller}. Will initialize
@@ -74,14 +70,18 @@ public class SystemsManager extends Manager implements GameUpdateable {
      */
     @Override
     public void init() {
-        this.wave = (Wave)super.getGameElement(Wave.class);
-        this.score = (Score)super.getGameElement(Score.class);
-        this.resourcesManager = (ResourcesManager)super.getGameElement(ResourcesManager.class);
-        this.interactionsManager = (InteractionsManager)super.getGameElement(InteractionsManager.class);
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.wave = (Wave) group.getGameElement(Wave.class);
+        this.score = (Score) group.getGameElement(Score.class);
+        this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        this.interactionsManager = (InteractionsManager) group.getManagerGroup().getManager(InteractionsManager.class);
         
         finalIntro = getTextString("Finalintro.txt");
         newWaveIncoming = getAIString("newWaveIncoming" + (int)(Math.random() * 3 + 1) + ".txt");
         waveHit = getAIString("waveHit" + (int)(Math.random() * 3 + 1) + ".txt");
+        
+        super.init();
     }
 
     /**
@@ -142,6 +142,13 @@ public class SystemsManager extends Manager implements GameUpdateable {
         }
     }
 
+    @Override
+    public String toString() {
+        String info = "domain.systems.SystemsManager";
+        info += super.toString();
+        return info;
+    }
+    
     /**
      * Set the {@link #smallFragmentDestroyed} boolean.
      *

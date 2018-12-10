@@ -4,7 +4,7 @@ import data.AssetType;
 import data.Data;
 import domain.Manager;
 import domain.DomainReader;
-import domain.GameElement;
+import domain.GameElementGroup;
 import domain.GameUpdateable;
 import domain.interactions.Commands;
 import domain.interactions.InteractionsManager;
@@ -13,7 +13,9 @@ import domain.locations.LocationsManager;
 import java.util.List;
 
 public class TutorialManager extends Manager implements GameUpdateable {
-    
+
+    private final Data data = new Data();
+
     private List<String> introduction,
             aIintro1,
             aIintro2,
@@ -38,26 +40,22 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
     private InteractionsManager interactionsManager;
     private LocationsManager locationsManager;
-    
+
     public TutorialManager() {
-        
+
     }
-    
-    public TutorialManager(List<GameElement> elements) {
-        super(elements);
-    }
-    
+
     /**
      * Pre-load all the introduction files. Uses the
      * {@link TutorialData#getTextString(java.lang.String)} to get the files.
      */
     @Override
     public void init() {
-        interactionsManager = (InteractionsManager)super.getGameElement(InteractionsManager.class);
-        locationsManager = (LocationsManager)super.getGameElement(LocationsManager.class);
-        
-        super.init();
-        
+        GameElementGroup group = this.gameElementGroup;
+
+        interactionsManager = (InteractionsManager) group.getManagerGroup().getManager(InteractionsManager.class);
+        locationsManager = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
+
         introduction = getTextToString("Introduction.txt");
         aIintro1 = getTextToString("AI_Intro1.txt");
         aIintro2 = getTextToString("AI_Intro2.txt");
@@ -87,7 +85,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
     public void update() {
         if (tutorial) {
             Commands commands = interactionsManager.getCommands();
-            
+
             switch (counter) {
                 case 0:
                     println(introduction);
@@ -204,19 +202,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
         }
     }
 
-    private final Data data = new Data();
-    
-    /**
-     * Request data from the data-layer using
-     * {@link TutorialData#requestData(data.AssetType, java.lang.String)}.
-     *
-     * @param filename The name of the file.
-     * @return
-     */
-    List<String> getTextToString(String filename) {
-        return data.readData(AssetType.TEXT, filename);
-    }
-
     /**
      * Print a List of Strings to the console.
      *
@@ -228,7 +213,25 @@ public class TutorialManager extends Manager implements GameUpdateable {
             reader.storeln(string);
         }
     }
-    
+
+    @Override
+    public String toString() {
+        String info = "domain.tutorial.TutorialManager";
+        info += super.toString();
+        return info;
+    }
+
+    /**
+     * Request data from the data-layer using
+     * {@link TutorialData#requestData(data.AssetType, java.lang.String)}.
+     *
+     * @param filename The name of the file.
+     * @return
+     */
+    List<String> getTextToString(String filename) {
+        return data.readData(AssetType.TEXT, filename);
+    }
+
     public boolean getTutorial() {
         return this.tutorial;
     }

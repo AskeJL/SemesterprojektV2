@@ -4,19 +4,24 @@
 
 package domain.interactions;
 
+import domain.GameElement;
+import domain.GameElementGroup;
 import java.util.Scanner;
 
-public class Parser implements InteractionsElement {
+public class Parser extends GameElement {
 
     /**
      * The main scanner used for reading Strings in the class.
      */
     private static final Scanner READER = new Scanner(System.in);
 
-    private final Commands commands;
-
-    public Parser(Commands commands) {
-        this.commands = commands;
+    private Commands commands;
+    
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.commands = (Commands)group.getGameElement(Commands.class);
     }
     
     /**
@@ -99,6 +104,6 @@ public class Parser implements InteractionsElement {
     
     @Override
     public String toString() {
-        return "[GameMechanic]interactions.Parser";
+        return "domain.interactions.Parser";
     }
 }

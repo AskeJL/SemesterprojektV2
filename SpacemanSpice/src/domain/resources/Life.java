@@ -1,8 +1,9 @@
 package domain.resources;
 
+import domain.GameElement;
 import domain.GameUpdateable;
 
-public class Life implements ResourcesElement, GameUpdateable {
+public class Life extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * The damage the ship receives when hit by a small fragment.

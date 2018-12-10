@@ -3,7 +3,6 @@ package domain.locations;
 import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
 import domain.Manager;
-import domain.GameElement;
 import java.util.List;
 import domain.GameUpdateable;
 import java.util.ArrayList;
@@ -14,14 +13,6 @@ public class LocationsManager extends Manager implements GameUpdateable {
     private Room currentRoom;
     private Location currentLocation;
     
-    public LocationsManager() {
-        
-    }
-    
-    public LocationsManager(List<GameElement> elements) {
-        super(elements);
-    }
-    
     @Override
     public void init() {
         Location.init(this);
@@ -29,8 +20,6 @@ public class LocationsManager extends Manager implements GameUpdateable {
         createLocations();
         currentLocation = locations.get(5);
         currentRoom = currentLocation.getRooms().get(2);
-        
-        super.init();
     }
     
     @Override
@@ -143,12 +132,14 @@ public class LocationsManager extends Manager implements GameUpdateable {
         mainhall02.addExit(new Exit(ExitDirection.EAST, laser, mainhall02.getRooms().get(0), laser.getRooms().get(0)));
         mainhall02.addExit(new Exit(ExitDirection.SOUTH, net, mainhall02.getRooms().get(0), net.getRooms().get(0)));
     }
-    
+
     @Override
     public String toString() {
-        return "[Manager]locations.LocationsManager";
+        String info = "domain.locations.LocationsManager";
+        info += super.toString();
+        return info;
     }
-
+    
     /**
      * Get all the {@link Location}s created in {@link #createLocations()}.
      *
