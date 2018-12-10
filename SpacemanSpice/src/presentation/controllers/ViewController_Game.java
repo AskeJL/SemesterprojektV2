@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import static presentation.controllers.ViewController.guiManager;
 import presentation.draw.DrawController;
-import presentation.sound.SoundPlayer;
+import domain.sound.SoundPlayer;
 
 /**
  * FXML Controller class

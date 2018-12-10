@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import presentation.controllers.ViewController_Game;
 import presentation.player.*;
-import presentation.sound.SoundPlayer;
+import domain.sound.SoundPlayer;
 import presentation.tiles.*;
 
 /**

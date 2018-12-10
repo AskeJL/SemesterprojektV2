@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presentation.sound;
+package domain.sound;
 
 import java.io.File;
 import javafx.scene.media.AudioClip;
