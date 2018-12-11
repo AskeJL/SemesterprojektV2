@@ -45,8 +45,6 @@ and open the template in the editor.
     -fx-font-family: 'ArcadeClassic';
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 48;
-    -fx-translate-x: 15;
 }
 
 /* Split menu button styling*/
@@ -157,7 +155,6 @@ and open the template in the editor.
     -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
-    -fx-background-color: rgba(53,89,119,0.2);
 
 }
 
@@ -180,7 +177,6 @@ and open the template in the editor.
     -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
-    -fx-background-color: rgba(53,89,119,0.2);
     -fx-border-color: #cccccc;
     -fx-border-width: 2px;
 }

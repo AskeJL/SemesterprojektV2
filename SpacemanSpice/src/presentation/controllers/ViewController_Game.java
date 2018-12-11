@@ -41,8 +41,6 @@ public class ViewController_Game extends ViewController implements Initializable
     @FXML
     private Canvas canvasMap;
     @FXML
-    private TextArea outputText;
-    @FXML
     private TextField inputText;
     @FXML
     private TextArea infoText;
@@ -105,17 +103,11 @@ public class ViewController_Game extends ViewController implements Initializable
             if (inputText.getText().equals("")) {
                 return;
             }
-            consoleText.add(inputText.getText());
-            outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(10000);
-
             requester.requestRunCommand(inputText.getText());
             inputText.setText("");
         }
     }
-
     
-
     @FXML
     private void keyPressedHandler(KeyEvent event) {
        switch (event.getCode()) {
@@ -142,7 +134,7 @@ public class ViewController_Game extends ViewController implements Initializable
                 inputText.requestFocus();
                 break;
             case ESCAPE:
-                canvasMap.requestFocus(); 
+                canvasMap.requestFocus();
                 break;
         }
     }
