@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import domain.DomainRequester;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +32,7 @@ public class ViewController_Menu extends ViewController implements Initializable
 
     private GUIManager gui;
 
+    private final DomainRequester requester = new DomainRequester();
     /**
      * Initializes the controller class.
      *
@@ -51,6 +53,7 @@ public class ViewController_Menu extends ViewController implements Initializable
 
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
+        requester.requestReset();
         guiManager.loadView(guiManager.getGameViewPath());
     }
 

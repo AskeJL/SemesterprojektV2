@@ -79,7 +79,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
         guiManager.loadView(guiManager.getMenuPath());
-        requester.requestReset();
+        
     }
 
     @FXML

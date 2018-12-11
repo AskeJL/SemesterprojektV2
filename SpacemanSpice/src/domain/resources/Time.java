@@ -62,7 +62,7 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
 
     @Override
     public void setValue(int value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**

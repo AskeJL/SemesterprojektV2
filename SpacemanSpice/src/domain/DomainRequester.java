@@ -39,6 +39,7 @@ public class DomainRequester implements InteractionsRequest {
         
         resources.getOxygen().setValue(100);
         resources.getLife().setValue(100);
+        resources.getTime().init();
         
         systems.getWave().setNumberOfWaves(0);
         systems.setPlayerReady(false);
