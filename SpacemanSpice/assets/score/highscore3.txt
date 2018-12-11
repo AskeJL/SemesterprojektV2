@@ -1,7 +1,0 @@
-700 Thomas
-70 Lars
-500 Michael
-300 Gert
-15 John
-1000 Dennis
-10 Jim
