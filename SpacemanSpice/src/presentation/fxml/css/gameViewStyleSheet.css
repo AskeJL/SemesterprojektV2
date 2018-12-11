@@ -8,41 +8,38 @@ and open the template in the editor.
     Author     : Lupo
 */
 @font-face{
-    font-family: 'ArcadeClassic';
-    src: url('ArcadeClassic.TTF');
+    font-family: 'future';
+    src: url('kenvector_future.TTF');
 }
 .root {
     -fx-background-color: black;
 }
-.progress-bar .track{
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-opacity: 0.4;
-}
 
-.progress-bar-life {
+
+#progress-bar-life {
     -fx-background-color: white;
     -fx-text-box-border: forestgreen;
     -fx-control-inner-background: palegreen;
     -fx-accent: red;
 }
 
-.progress-bar-oxygen{
+#progress-bar-oxygen {
     -fx-background-color: white;
     -fx-text-box-border: forestgreen;
     -fx-control-inner-background: palegreen;
     -fx-accent: blue;
 }
+
 .button{
     -fx-background-color: rgba(204,204,204,0.1);
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 36;
 }
 .button:hover{
     -fx-background-color: rgba(246,246,246,0.2);
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-text-fill: black;
     -fx-font-weight: bold;
 }
@@ -55,28 +52,28 @@ and open the template in the editor.
 
 }
 .split-menu-button .label{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 24;
 }
 .split-menu-button .arrow-button{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 36;
 }
 .split-menu-button .arrow-button:hover{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-font-size: 40;
 }
 .split-menu-button .button{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -90,7 +87,7 @@ and open the template in the editor.
     -fx-background-color: transparent;
 }
 .menu-item:focused .label{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: transparent;
     -fx-text-fill: black;
     -fx-font-weight: bold;
@@ -102,14 +99,14 @@ and open the template in the editor.
 
 /*Style Toggle button for sound toggling*/
 .toggle-button{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(204,204,204,0.1);
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 36;
 }
 .toggle-button:selected{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
     -fx-font-weight: bold;
@@ -123,7 +120,7 @@ and open the template in the editor.
 
 /* Style label for main menu title*/
 .label-title{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: transparent;
     -fx-effect:dropshadow(one-pass-box, gray, 10, 1, 3, 3);
     -fx-alignment: center;
@@ -141,7 +138,7 @@ and open the template in the editor.
 }
 
 .label-authors{
-    -fx-font-family: 'ArcadeClassic';
+    -fx-font-family: 'future';
     -fx-background-color: transparent;
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: white;

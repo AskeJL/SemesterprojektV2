@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import presentation.GUIManager;
 
 public class ViewController_Menu extends ViewController implements Initializable {
 
@@ -29,8 +28,6 @@ public class ViewController_Menu extends ViewController implements Initializable
     @FXML
     private Label nameLabel2;
 
-    private GUIManager gui;
-
     /**
      * Initializes the controller class.
      *
@@ -45,8 +42,9 @@ public class ViewController_Menu extends ViewController implements Initializable
         nameLabel2.getStyleClass().add("label-authors");
     }
 
-    public static void init() throws IOException {
-
+    @Override
+    public void update() {
+        // Nothing to update.
     }
 
     @FXML
@@ -67,10 +65,5 @@ public class ViewController_Menu extends ViewController implements Initializable
     @FXML
     private void onQuitHandler(ActionEvent event) {
         System.exit(0);
-    }
-
-    @Override
-    public void update() {
-        // Nothing to update.
     }
 }
