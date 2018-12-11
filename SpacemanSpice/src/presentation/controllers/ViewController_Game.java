@@ -71,16 +71,16 @@ public class ViewController_Game extends ViewController implements Initializable
 
     @Override
     public void update() {
-        sound.startSounds();
+        requester.startSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            sound.stopSounds();
+            requester.stopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            sound.stopSounds();
+            requester.stopSounds();
         }
         waveTimeLabel.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
@@ -94,8 +94,8 @@ public class ViewController_Game extends ViewController implements Initializable
             infoText.positionCaret(output.length());
         }
 
-        sound.playGameMusic();
-        sound.playLocationSound();
+        requester.playGameMusic();
+        requester.playLocationSound();
     }
 
     @FXML

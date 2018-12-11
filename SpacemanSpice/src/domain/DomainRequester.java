@@ -8,6 +8,7 @@ import domain.locations.gameobjects.Player;
 import domain.locations.gameobjects.Tile;
 import domain.locations.gameobjects.TileManager;
 import domain.resources.ResourcesManager;
+import domain.sound.SoundManager;
 import domain.systems.SystemsManager;
 import domain.tutorial.TutorialManager;
 import java.util.HashMap;
@@ -66,6 +67,41 @@ public class DomainRequester implements InteractionsRequest {
         
         resources.getLife().setDifficultyHard();
         systems.getWave().setDifficultyHard();
+    }
+    
+    public void playGameMusic() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playGameMusic();
+    }
+
+    public void playLocationSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playLocationSound();
+    }
+
+    public void playDoorSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playDoorSound();
+    }
+
+    public void playInteractionSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playInteractionSound();
+    }
+
+    public void startSounds() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.startSounds();
+    }
+
+    public void stopSounds() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.stopSounds();
+    }
+
+    public void mute() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.mute();
     }
     
     public HashMap<Character, Tile> getTileMap(){
