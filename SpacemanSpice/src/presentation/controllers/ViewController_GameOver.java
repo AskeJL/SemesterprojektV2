@@ -73,6 +73,22 @@ public class ViewController_GameOver extends ViewController implements Initializ
     }    
     @Override
     public void update() {
+        
+    }
+   
+    @FXML
+    private void menuButtonHandler(ActionEvent event) throws IOException {
+        guiManager.loadView(guiManager.getMenuPath());
+        requester.requestReset();
+    }
+
+    @FXML
+    private void quitButtonHandler(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void updateHighScore(ActionEvent event) {
         Data data = new Data();
         DomainReader domainReader = new DomainReader();
         
@@ -114,21 +130,4 @@ public class ViewController_GameOver extends ViewController implements Initializ
         }
         data.writeData(AssetType.SCORE, "highscore.txt", sortedList);
     }
-   
-    @FXML
-    private void menuButtonHandler(ActionEvent event) throws IOException {
-        guiManager.loadView(guiManager.getMenuPath());
-        requester.requestReset();
-    }
-
-    @FXML
-    private void quitButtonHandler(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void updateHighscore2(ActionEvent event) {
-    }
-
-    
 }
