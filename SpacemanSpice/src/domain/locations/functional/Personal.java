@@ -15,7 +15,10 @@ public final class Personal extends Location {
      */
     public Personal() {
         super("Personal", "This location contains toilets and beerooms");
+    }
 
+    @Override
+    public void init() {
         createLocation();
     }
 

@@ -1,5 +1,6 @@
 package domain.locations;
 
+import domain.GameElementGroup;
 import domain.locations.functional.*;
 import domain.locations.nonfunctional.*;
 import domain.Manager;
@@ -20,6 +21,8 @@ public class LocationsManager extends Manager implements GameUpdateable {
         createLocations();
         currentLocation = locations.get(5);
         currentRoom = currentLocation.getRooms().get(2);
+        
+        super.init();
     }
     
     @Override
@@ -61,6 +64,13 @@ public class LocationsManager extends Manager implements GameUpdateable {
         locations.add(mainhall01);// 9
         locations.add(mainhall02);// 10
 
+        GameElementGroup locationGroup = new GameElementGroup();
+        locationGroup.setManagerGroup(this.getManagerGroup());
+        for(Location location : locations) {
+            locationGroup.add(location);
+            location.init();
+        }
+        
         // Connecting locations (Should be moved to another method: connectLocations)
         // Laser connects to mainhall02 from corridor due WEST
         // Laser connects to hallway01 from corridor due EAST

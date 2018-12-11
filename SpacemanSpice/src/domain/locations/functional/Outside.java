@@ -12,22 +12,29 @@ import domain.resources.ResourcesManager;
  */
 public final class Outside extends Location {
 
+    private ResourcesManager resourcesManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
+    }
+    
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
 
         createLocation();
     }
-
+    
     @Override
     protected void createLocation() {
         /*The rooms in the outside location are created-----------------------*/
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
-//        outside.addGameObject(new DamageRepair((ResourcesManager) locationsManager.getManager(ResourcesManager.class)));
+        outside.addGameObject(new DamageRepair(resourcesManager));
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/
@@ -43,5 +50,4 @@ public final class Outside extends Location {
     public String toString() {
         return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + this.getExits() + "]";
     }
-
 }

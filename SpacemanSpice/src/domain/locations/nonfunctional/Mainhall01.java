@@ -16,6 +16,11 @@ public final class Mainhall01 extends Location {
         
         createLocation();
     }
+
+    @Override
+    public void init() {
+
+    }
     
     @Override
     protected void createLocation(){

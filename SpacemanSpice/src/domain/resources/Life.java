@@ -44,7 +44,7 @@ public class Life extends GameElement implements ResourcesElement, GameUpdateabl
      * increase upon
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
-    private int life = 50;
+    private int life = 100;
 
     public Life() {
 

@@ -12,11 +12,18 @@ import domain.systems.SystemsManager;
  */
 public final class Net extends Location {
     
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Net() {
         super("Net", "In this location the net is controlled and repaired");
+    }
+    
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
         
         createLocation();
     }
@@ -31,7 +38,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-//        NetRoom.addGameObject(new NetControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
+        NetRoom.addGameObject(new NetControl(systemsManager));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/

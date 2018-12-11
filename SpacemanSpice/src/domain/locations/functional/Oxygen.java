@@ -12,11 +12,18 @@ import domain.resources.ResourcesManager;
  */
 public final class Oxygen extends Location {
 
+    private ResourcesManager resourcesManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Oxygen() {
         super("Oxygen", "Oxygen is refueled from here");
+    }
+
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
 
         createLocation();
     }
@@ -35,7 +42,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-//        refuelRoom.addGameObject(new OxygenControl((ResourcesManager) locationsManager.getManager(ResourcesManager.class)));
+        refuelRoom.addGameObject(new OxygenControl(resourcesManager));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

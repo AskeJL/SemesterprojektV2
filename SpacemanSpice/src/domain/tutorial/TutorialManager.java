@@ -74,6 +74,8 @@ public class TutorialManager extends Manager implements GameUpdateable {
         aIintro15 = getTextToString("AI_Intro15.txt");
         aIintro16 = getTextToString("AI_Intro16.txt");
         aIintro17 = getTextToString("AI_Intro17.txt");
+        
+        super.init();
     }
 
     /**

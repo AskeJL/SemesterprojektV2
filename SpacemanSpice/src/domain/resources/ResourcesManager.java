@@ -21,6 +21,8 @@ public class ResourcesManager extends Manager implements GameUpdateable {
         time = (Time) group.getGameElement(Time.class);
         life = (Life) group.getGameElement(Life.class);
         oxygen = (Oxygen) group.getGameElement(Oxygen.class);
+        
+        super.init();
     }
 
     @Override

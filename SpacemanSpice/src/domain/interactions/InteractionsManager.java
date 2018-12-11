@@ -18,6 +18,8 @@ public class InteractionsManager extends Manager implements GameUpdateable {
         GameElementGroup group = this.getGameElementGroup();
         parser = (Parser) group.getGameElement(Parser.class);
         commands = (Commands) group.getGameElement(Commands.class);
+        
+        super.init();
     }
 
     @Override

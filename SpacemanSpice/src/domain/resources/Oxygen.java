@@ -10,7 +10,7 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
     /**
      * Amount of oxygen the player currently has.
      */
-    private int oxygen = 10;
+    private int oxygen = 100;
 
     /**
      * Holds the last time the oxygen was computed. Used for calculation between

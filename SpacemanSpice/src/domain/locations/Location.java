@@ -1,5 +1,6 @@
 package domain.locations;
 
+import domain.GameElement;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * {@link Location#exits exits} stored which are filled upon creation
  * ({@link #createLocation()}).
  */
-public abstract class Location {
+public abstract class Location extends GameElement {
 
     protected static LocationsManager locationsManager;
     

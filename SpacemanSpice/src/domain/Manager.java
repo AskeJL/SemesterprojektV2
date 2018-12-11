@@ -31,6 +31,7 @@ public abstract class Manager {
     
     public void setGameElementGroup(GameElementGroup group) {
         group.setManager(this);
+        this.setManagerGroup(group.getManagerGroup());
         this.gameElementGroup = group;
     }
     

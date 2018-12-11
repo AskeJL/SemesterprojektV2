@@ -12,22 +12,29 @@ import domain.systems.SystemsManager;
  */
 public final class Scanning extends Location {
 
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Scanning() {
         super("Scanning", "In this location spacedebris can be scanned.");
+    }
 
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
+        
         createLocation();
     }
 
     @Override
     protected void createLocation() {
         /*The rooms in the scanning location are created----------------------*/
-
+       
         /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
-//        scanningRoom.addGameObject(new ScanningControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
+        scanningRoom.addGameObject(new ScanningControl(this.systemsManager));
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/

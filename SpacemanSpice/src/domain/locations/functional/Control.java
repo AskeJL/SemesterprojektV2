@@ -3,6 +3,7 @@ package domain.locations.functional;
 import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
+import domain.locations.LocationsManager;
 import domain.locations.Room;
 import domain.locations.gameobjects.SteeringControl;
 import domain.systems.SystemsManager;
@@ -13,12 +14,19 @@ import domain.systems.SystemsManager;
 
 public final class Control extends Location {
 
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     
     public Control() {
         super("Control", "In this location the ship is controlled.");
+    }
+    
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
         createLocation();
     }
@@ -29,7 +37,7 @@ public final class Control extends Location {
 
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
-//        steeringRoom.addGameObject(new SteeringControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
+        steeringRoom.addGameObject(new SteeringControl(systemsManager));
         super.addRoom(steeringRoom);
 
         /*Navigation----------------------------------------------------------*/

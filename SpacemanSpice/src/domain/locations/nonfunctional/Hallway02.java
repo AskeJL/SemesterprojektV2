@@ -18,6 +18,11 @@ public final class Hallway02 extends Location {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     protected void createLocation() {
         /*The room in the hallway02 location are created----------------------*/
         

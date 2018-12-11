@@ -1,5 +1,6 @@
 package domain.locations.functional;
 
+import domain.GameElementGroup;
 import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
@@ -12,15 +13,22 @@ import domain.systems.SystemsManager;
  */
 public final class Laser extends Location {
     
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Laser() {
         super("Laser", "The laser is operated from here.");
+    }
+    
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
         createLocation();
     }
-
+    
     @Override
     protected void createLocation() {
         /*The rooms in the laser location are created-------------------------*/
@@ -35,7 +43,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        //controlsRoom.addGameObject(new LaserControl((SystemsManager) locationsManager.getManager(SystemsManager.class)));
+        controlsRoom.addGameObject(new LaserControl(systemsManager));
         
         super.addRoom(controlsRoom);
 

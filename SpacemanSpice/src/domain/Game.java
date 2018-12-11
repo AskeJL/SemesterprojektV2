@@ -58,11 +58,11 @@ public class Game extends Application {
         
         // Add to manager list
         List<Manager> managers = new ArrayList<>();
-        managers.add(tutorialManager);
         managers.add(interactionsManager);
-        managers.add(systemsManager);
         managers.add(locationsManager);
         managers.add(resourcesManager);
+        managers.add(systemsManager);
+        managers.add(tutorialManager);
 
         managerGroup = new ManagerGroup(managers);
         
@@ -92,7 +92,6 @@ public class Game extends Application {
         GameElementGroup locationsGroup = new GameElementGroup();
         locationsGroup.setManagerGroup(managerGroup);
         locationsManager.setGameElementGroup(locationsGroup);
-        
         
         // Create Tutorial package.
         GameElementGroup tutorialGroup = new GameElementGroup();
