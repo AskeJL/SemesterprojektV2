@@ -41,7 +41,7 @@ public class GUIManager extends ViewManager {
     public void init(Stage stage) {
         currentStage = stage;
         currentStage.setTitle("Spaceman Spice - Kessler Syndrome");
-
+        
         loadControllers();
         loadView(PATH_MENU);
     }
