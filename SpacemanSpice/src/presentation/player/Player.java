@@ -1,47 +1,79 @@
-
 package presentation.player;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import presentation.game.GameViewController;
+import presentation.controllers.ViewController_Game;
 
 /**
- * Player class with following attributes:
- * Size: width, height
- * Color: inner color, outer color
- * Location, x axis, y axis
- * 
+ * Player class with following attributes: Size: width, height Color: inner
+ * color, outer color Location, x axis, y axis
+ *
  */
 public class Player {
-    
+
     private final int TILE_WIDTH = 32;
     private final int TILE_HEIGHT = 32;
-    
-    private final Color innerColor = Color.ALICEBLUE;
+
+    private final Color innerColor = Color.TRANSPARENT;
     private final Color outerColor = Color.TRANSPARENT;
-    
-    private int playerLocationXAxis;
-    private int playerLocationYAxis;
-    
-    
-    public Player(){
-        
+
+    private final Image playerImage = new Image(getClass().getResourceAsStream("spacemanSpice.png"));
+
+    private int xPos;
+    private int yPos;
+
+    private final ViewController_Game gameViewController;
+
+    public Player(ViewController_Game controller) {
+        this.gameViewController = controller;
     }
-    
+
     /**
-     * Method that draws the player on the canvas, based on its location on the x/y axis.
-     * @param xAxis
-     * @param yAxis 
+     * Method that draws the player on the canvas, based on its location on the
+     * x/y axis.
+     *
+     * @param x
+     * @param y
      */
-    public void drawPlayer(int xAxis, int yAxis){
-        this.setPlayerLocationXAxis(xAxis);
-        this.setPlayerLocationYAxis(yAxis);
-        
-        GraphicsContext gc = GameViewController.getGraphicsContext();
+    public void drawPlayer(int x, int y) {
+        this.setXPos(x);
+        this.setYPos(y);
+
+        GraphicsContext gc = gameViewController.getGraphicsContext();
         gc.setFill(getOuterColor());
-        gc.fillRect(getPlayerLocationXAxis(), getPlayerLocationYAxis(), getTILE_WIDTH(), getTILE_HEIGHT());
+        gc.fillRect(getXPos(), getYPos(), getTILE_WIDTH(), getTILE_HEIGHT());
         gc.setFill(getInnerColor());
-        gc.fillRect(getPlayerLocationXAxis() + 8, getPlayerLocationYAxis() + 8, getTILE_WIDTH() - 12, getTILE_HEIGHT() - 12);
+        gc.fillRect(getXPos() + 8, getYPos() + 8, getTILE_WIDTH() - 12, getTILE_HEIGHT() - 12);
+        gc.drawImage(playerImage, x, y);
+    }
+
+    /**
+     * @param xPos the playerLocationXAxis to set
+     */
+    public void setXPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    /**
+     * @param yPos the playerLocationYAxis to set
+     */
+    public void setYPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    /**
+     * @return the playerLocationXAxis
+     */
+    public int getXPos() {
+        return xPos;
+    }
+
+    /**
+     * @return the playerLocationYAxis
+     */
+    public int getYPos() {
+        return yPos;
     }
 
     /**
@@ -71,33 +103,4 @@ public class Player {
     public Color getOuterColor() {
         return outerColor;
     }
-
-    /**
-     * @return the playerLocationXAxis
-     */
-    public int getPlayerLocationXAxis() {
-        return playerLocationXAxis;
-    }
-
-    /**
-     * @param playerLocationXAxis the playerLocationXAxis to set
-     */
-    public void setPlayerLocationXAxis(int playerLocationXAxis) {
-        this.playerLocationXAxis = playerLocationXAxis;
-    }
-
-    /**
-     * @return the playerLocationYAxis
-     */
-    public int getPlayerLocationYAxis() {
-        return playerLocationYAxis;
-    }
-
-    /**
-     * @param playerLocationYAxis the playerLocationYAxis to set
-     */
-    public void setPlayerLocationYAxis(int playerLocationYAxis) {
-        this.playerLocationYAxis = playerLocationYAxis;
-    }
-    
 }

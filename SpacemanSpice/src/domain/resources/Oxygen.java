@@ -1,35 +1,44 @@
 package domain.resources;
 
-import domain.locations.LocationsController;
+import domain.GameElement;
+import domain.GameElementGroup;
+import domain.GameUpdateable;
+import domain.locations.LocationsManager;
 
-/**
- * This is used by other systems to compute the current amount of oxygen the
- * player has. The oxygen will vary depending on where the player is, and the
- * amount of damage the ship has taken ({@link Life}).
- *
- * @see domain.systems.Wave
- * @see domain.systems.SystemsController
- */
-public class Oxygen {
+public class Oxygen extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * Amount of oxygen the player currently has.
      */
-    private static int oxygen = 75;
-    /**
-     * How fast the oxygen will decline.
-     */
-    private static final long TIME_BEFORE_LOSING_OXYGEN = 2;
+    private int oxygen = 100;
 
     /**
      * Holds the last time the oxygen was computed. Used for calculation between
      * updates.
      */
-    private static long lastTime;
+    private long lastTime;
 
-    private Oxygen() {
+    private LocationsManager locationsManager;
+    private ResourcesManager resourcesManager;
+    
+    private Time time;
+    private Life life;
+
+    public Oxygen() {
+        
     }
 
+    @Override
+    public void init() {
+        GameElementGroup group = this.getGameElementGroup();
+
+        this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        this.locationsManager = (LocationsManager)group.getManagerGroup().getManager(LocationsManager.class);
+        
+        time = resourcesManager.getTime();
+        life = resourcesManager.getLife();
+    }
+    
     /**
      * Will decrease oxygen if {@link Life#life} is below 50. Oxygen will also
      * decrease if the player is currently standing in a place without oxygen.
@@ -37,14 +46,20 @@ public class Oxygen {
      * @see domain.locations.functional.Outside
      * @see domain.locations.functional.Oxygen
      */
-    static void update() {
-        if (Life.getLife() <= 50) {
-            oxygen -= (Time.getCurrentTime() - lastTime);
-        } else if(LocationsController.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
-            oxygen -= (Time.getCurrentTime() - lastTime);
+    @Override
+    public void update() {
+        if (life.getValue() <= 50) {
+            oxygen -= (time.getCurrentTime() - lastTime);
+        } else if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
+            oxygen -= (time.getCurrentTime() - lastTime);
         }
 
-        lastTime = Time.getCurrentTime();
+        lastTime = time.getCurrentTime();
+    }
+
+    @Override
+    public void decreaseValue(int value) {
+        this.oxygen -= value;
     }
 
     /**
@@ -52,8 +67,14 @@ public class Oxygen {
      *
      * @param value How much to increase.
      */
-    static void increaseOxygen(int value) {
-        oxygen += value;
+    @Override
+    public void increaseValue(int value) {
+        this.oxygen += value;
+    }
+    
+    @Override
+    public void setValue(int oxygen){
+        this.oxygen = oxygen;
     }
 
     /**
@@ -61,8 +82,8 @@ public class Oxygen {
      *
      * @return
      */
-    static int getOxygen() {
-        Oxygen.update();
-        return oxygen;
+    @Override
+    public int getValue() {
+        return this.oxygen;
     }
 }

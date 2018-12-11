@@ -1,34 +1,30 @@
 package domain.resources;
 
-/**
- * This is used by other systems to compute the current life of the ship
- * in the game.
- * 
- * @see domain.systems.Wave
- * @see domain.systems.SystemsController
- */
-public class Life {
+import domain.GameElement;
+import domain.GameUpdateable;
+
+public class Life extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * The damage the ship receives when hit by a small fragment.
      *
      * @see domain.systems.Wave
      */
-    private static final int SMALL_FRAGMENT_DAMAGE = 5;
+    private static int SMALL_FRAGMENT_DAMAGE = 5;
 
     /**
      * The damage the ship receives when hit by a medium fragment.
      *
      * @see domain.systems.Wave
      */
-    private static final int MEDIUM_FRAGMENT_DAMAGE = 10;
+    private static int MEDIUM_FRAGMENT_DAMAGE = 10;
 
     /**
      * The damage the ship receives when hit by a large fragment.
      *
      * @see domain.systems.Wave
      */
-    private static final int LARGE_FRAGMENT_DAMAGE = 15;
+    private static int LARGE_FRAGMENT_DAMAGE = 15;
 
     /**
      * The amount the ship will be repaired upon
@@ -41,24 +37,28 @@ public class Life {
      * Whether or not to repair the ship in the next
      * {@link Life#update() update}.
      */
-    private static boolean repair = false;
+    private boolean repair = false;
 
     /**
      * Life of the ship. Will decrease upon collision with fragments. Will
      * increase upon
      * {@link domain.locations.gameobjects.DamageRepair reparation}.
      */
-    private static int life = 50;
+    private int life = 100;
 
-    private Life() {
+    public Life() {
+
     }
 
-    /**
-     * Will update {@link #life} based on the {@link Life#repair repair} boolean.
-     */
-    static void update() {
-        if (life < 100 && repair == true) {
-            life += REPAIR_AMOUNT;
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void update() {
+        if (life < 100 && repair) {
+            increaseValue(REPAIR_AMOUNT);
         }
         if (life >= 100) {
             life = 100;
@@ -77,27 +77,60 @@ public class Life {
      * @see Life#MEDIUM_FRAGMENT_DAMAGE
      * @see Life#LARGE_FRAGMENT_DAMAGE
      */
-    static void decreaseLife(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
+    public void decreaseValue(int hitSmallFragments, int hitMediumFragments, int hitLargeFragments) {
         if (hitSmallFragments >= 0) {
-            life -= (SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
+            decreaseValue(SMALL_FRAGMENT_DAMAGE * hitSmallFragments);
         }
         if (hitMediumFragments >= 0) {
-            life -= (MEDIUM_FRAGMENT_DAMAGE * hitMediumFragments);
+            decreaseValue(MEDIUM_FRAGMENT_DAMAGE * hitMediumFragments);
         }
         if (hitLargeFragments >= 0) {
-            life -= (LARGE_FRAGMENT_DAMAGE * hitLargeFragments);
+            decreaseValue(LARGE_FRAGMENT_DAMAGE * hitLargeFragments);
         }
         if (life <= 0) {
             //Game over.
         }
     }
 
+    @Override
+    public void decreaseValue(int value) {
+        this.life -= value;
+    }
+
+    @Override
+    public void increaseValue(int value) {
+        life += value;
+    }
+
     /**
-     * Set the {@link Life#repair repair} to true. Preparing the reparation for
-     * the next update.
+     * Set the {@link Life#repair repair}. Preparing the reparation for the next
+     * update.
+     *
+     * @param bool
      */
-    static void setRepairTrue() {
-        repair = true;
+    public void setRepair(boolean bool) {
+        this.repair = bool;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setDifficultyEasy() {
+        SMALL_FRAGMENT_DAMAGE = 5;
+        MEDIUM_FRAGMENT_DAMAGE = 10;
+        LARGE_FRAGMENT_DAMAGE = 15;
+    }
+
+    public void setDifficultyHard() {
+        SMALL_FRAGMENT_DAMAGE = 10;
+        MEDIUM_FRAGMENT_DAMAGE = 15;
+        LARGE_FRAGMENT_DAMAGE = 20;
+    }
+
+    @Override
+    public void setValue(int value) {
+        this.life = value;
     }
 
     /**
@@ -105,7 +138,8 @@ public class Life {
      *
      * @return
      */
-    static int getLife() {
-        return life;
+    @Override
+    public int getValue() {
+        return this.life;
     }
 }

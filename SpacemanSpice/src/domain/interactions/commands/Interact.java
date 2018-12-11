@@ -1,9 +1,8 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
-import domain.locations.GameObject;
-import domain.locations.LocationsController;
+import domain.locations.LocationsManager;
 
 /**
  * This command is responsible for interacting with {@link GameObject}'s in the
@@ -13,9 +12,14 @@ import domain.locations.LocationsController;
  * @see domain.locations.GameObjectType
  */
 public class Interact extends Command {
-
-    public Interact() {
+    
+    private final LocationsManager locationsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public Interact(LocationsManager locations){
         super("interact", "Interact with an object.", false);
+        
+        this.locationsManager = locations;
     }
 
     @Override
@@ -29,20 +33,20 @@ public class Interact extends Command {
      */
     @Override
     protected void run() {
-        if (LocationsController.getCurrentRoom().getGameObjects().isEmpty() == false) {
-            LocationsController.getCurrentRoom().getGameObjects().get(0).interact();
+        if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
+            locationsManager.getCurrentRoom().getGameObjects().get(0).interact();
         } else {
-            InteractionsController.println("There are nothing to interact with in this room");
+            reader.storeln("There are nothing to interact with in this room");
         }
     }
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("The interact command lets you interact with objects in the current room.");
+        reader.storeln("The interact command lets you interact with objects in the current room.");
     }
 }

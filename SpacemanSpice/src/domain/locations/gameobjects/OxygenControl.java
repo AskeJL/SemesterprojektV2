@@ -1,9 +1,10 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.resources.ResourcesController;
+import domain.resources.Oxygen;
+import domain.resources.ResourcesManager;
 
 /**
  * Used to fill up the players oxygen.
@@ -14,15 +15,20 @@ import domain.resources.ResourcesController;
  * @see domain.locations.functional.Oxygen
  */
 public class OxygenControl extends GameObject {
-
-    public OxygenControl() {
-        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);
+    
+    private final ResourcesManager resourcesManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public OxygenControl(ResourcesManager resources) {
+        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);  
+        
+        this.resourcesManager = resources;
     }
 
     /**
      * Refills the players {@link domain.resources.Oxygen}. This will call the
      * {@link ResourcesController#increaseOxygen(int)}
-     * <br><br>
+     * <p>
      * This will always fill the {@link domain.resources.Oxygen} completely.
      *
      * @see domain.resources.Oxygen
@@ -30,9 +36,9 @@ public class OxygenControl extends GameObject {
      */
     @Override
     public void interact() {
-        InteractionsController.println("You interact with the Oxygen refilling control");
-        int difference = 100 - ResourcesController.getOxygen();
-        ResourcesController.increaseOxygen(difference);
+        reader.storeln("You interact with the Oxygen refilling control");
+        Oxygen oxygen = resourcesManager.getOxygen();
+        oxygen.increaseValue(100 - oxygen.getValue());
     }
 
     @Override

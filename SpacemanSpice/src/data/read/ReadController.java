@@ -10,12 +10,13 @@ import java.util.List;
  * The controller is called from the {@link DataReader} interface, which is the
  * only bridge to the data.read layer.
  */
-class ReadController {
+public class ReadController {
 
     private static final String MAP_PATH = "assets/maps/";
     private static final String TEXT_PATH = "assets/text/";
     private static final String DESCRIPTION_PATH = "assets/descriptions/";
     private static final String AI_PATH = "assets/text/AI behaviour/";
+    private static final String SCORE_PATH = "assets/score/";
 
     /**
      * Gets data based on its {@link data.AssetType} and name.
@@ -30,7 +31,7 @@ class ReadController {
      *
      * @see data.AssetType
      */
-    static List<String> getData(AssetType type, String filename) {
+    public List<String> readData(AssetType type, String filename) {
         switch (type) {
             case MAP:
                 return new Read(MAP_PATH, filename).readTextFile();
@@ -40,6 +41,8 @@ class ReadController {
                 return new Read(DESCRIPTION_PATH, filename).readTextFile();
             case AIWAVE:
                 return new Read(AI_PATH, filename).readTextFile();
+            case SCORE:
+                return new Read(SCORE_PATH, filename).readTextFile();
             default:
                 return new ArrayList<>();
         }

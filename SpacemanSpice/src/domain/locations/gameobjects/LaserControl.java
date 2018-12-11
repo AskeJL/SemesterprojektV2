@@ -1,12 +1,13 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
 
 /**
  * Used to destroy small fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -14,15 +15,20 @@ import domain.locations.GameObjectType;
  */
 public class LaserControl extends GameObject {
 
-    public LaserControl() {
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public LaserControl(SystemsManager systems) {
         super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL);
+        
+        this.systemsManager = systems;
     }
 
     /**
      * Destroy a small fragment. This will set the
      * {@link domain.systems.SystemsController#setSmallFragmentDestroyed(boolean)}
      * boolean.
-     * <br><br>
+     * <p>
      * Only runs if there are any small fragments to destroy.
      *
      * @see domain.systems.Wave
@@ -30,9 +36,8 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        InteractionsController.println("Interacting with laser control");
-        domain.systems.SystemsController.setSmallFragmentDestroyed(true);
-
+        reader.storeln("Interacting with laser control");
+        systemsManager.setSmallFragmentDestroyed(true);
     }
 
     @Override

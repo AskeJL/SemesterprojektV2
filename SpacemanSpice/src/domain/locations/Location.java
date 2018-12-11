@@ -1,17 +1,20 @@
 package domain.locations;
 
+import domain.GameElement;
 import java.util.ArrayList;
 
 /**
  * This is used to group together a series of {@link Room}s, and is only created
  * once in the {@link LocationsController#createLocations()}.
- * <br><br>
+ * <p>
  * Within the Location is the {@link Location#rooms rooms} and
  * {@link Location#exits exits} stored which are filled upon creation
  * ({@link #createLocation()}).
  */
-public abstract class Location {
+public abstract class Location extends GameElement {
 
+    protected static LocationsManager locationsManager;
+    
     /**
      * Name of the Location.
      */
@@ -37,6 +40,10 @@ public abstract class Location {
         this.description = description;
     }
 
+    public static void init(LocationsManager locations) {
+        Location.locationsManager = locations;
+    }
+    
     /**
      * Add an {@link Exit} to the location.
      *
@@ -96,7 +103,7 @@ public abstract class Location {
      *
      * @return
      */
-    public String getNAME() {
+    public String getName() {
         return this.NAME;
     }
 

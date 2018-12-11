@@ -1,36 +1,33 @@
 package domain.interactions;
 
-import domain.interactions.commands.Help;
+import domain.DomainReader;
+import domain.GameElement;
+import domain.GameElementGroup;
+import domain.interactions.commands.Inspect;
+import domain.interactions.commands.Go;
 import domain.interactions.commands.Interact;
+import domain.interactions.commands.Quit;
 import domain.interactions.commands.Clear;
 import domain.interactions.commands.Continue;
+import domain.interactions.commands.Help;
 import domain.interactions.commands.Show;
-import domain.interactions.commands.Quit;
-import domain.interactions.commands.Go;
-import domain.interactions.commands.Inspect;
 import domain.interactions.commands.Start;
+import domain.locations.LocationsManager;
+import domain.resources.ResourcesManager;
+import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The main collection of {@link Command}'s as well as the main logic for
- * managing all the commands.
- *
- * It is from here, the commands are
- * {@link Commands#validateCommand(String, String) validate and checked for parameters}
- * etc.
- *
- * @see Command
- * @see InteractionsController
- * @see Parser
- */
-public class Commands {
+public class Commands extends GameElement {
+
+    private final DomainReader reader = new DomainReader();
 
     /**
      * A list of all the {@link Command}'s. These are initialized in the
      * {@link Commands#init() init()} method.
      */
-    private static final List<Command> COMMAND_WORDS = new ArrayList<>();
+    private final List<Command> commandWords = new ArrayList<>();
     /**
      * This is where the last called {@link Command} is stored. (Is sat to the
      * {@link domain.interactions.commands.Clear Clear} command as default)
@@ -41,24 +38,29 @@ public class Commands {
      */
     private static String lastParameter = "";
 
-    private Commands() {
+    public Commands() {
+
     }
 
-    /**
-     * Initializes the commands. This will add all the different commands to the
-     * {@link Commands#COMMAND_WORDS} list.
-     */
-    static void init() {
-        COMMAND_WORDS.clear();
+    @Override
+    public void init() {
+        GameElementGroup group = this.getGameElementGroup();
 
-        COMMAND_WORDS.add(new Go());
-        COMMAND_WORDS.add(new Help());
-        COMMAND_WORDS.add(new Interact());
-        COMMAND_WORDS.add(new Quit());
-        COMMAND_WORDS.add(new Clear());
-        COMMAND_WORDS.add(new Start());
-        COMMAND_WORDS.add(new Continue());
-        COMMAND_WORDS.add(new Inspect());
+        ResourcesManager resources = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        SystemsManager systems = (SystemsManager) group.getManagerGroup().getManager(SystemsManager.class);
+        TutorialManager tutorial = (TutorialManager) group.getManagerGroup().getManager(TutorialManager.class);
+        LocationsManager locations = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
+        InteractionsManager interactions = (InteractionsManager) group.getManagerGroup().getManager(InteractionsManager.class);
+
+        commandWords.add(new Show(resources));
+        commandWords.add(new Start(systems, tutorial));
+        commandWords.add(new Clear());
+        commandWords.add(new Go(locations));
+        commandWords.add(new Quit());
+        commandWords.add(new Inspect(locations));
+        commandWords.add(new Help(interactions));
+        commandWords.add(new Interact(locations));
+        commandWords.add(new Continue());
     }
 
     /**
@@ -70,15 +72,15 @@ public class Commands {
      * @param parameter The parameter for the {@link Command}.
      * @return Returns null if no command matched.
      */
-    static Command validateCommand(String commandWord, String parameter) {
+    Command validateCommand(String commandWord, String parameter) {
         // After the Continue() command was added some bugs arised. 
         // As a result of this, this method has become slighty messy and needs
         // refactoring.
         if (commandWord != null) {
             Command command = getCommand(commandWord);
             if (command == null) {
-                InteractionsController.println("I don't know that command. \nThese are the commands available:");
-                lastCommand = COMMAND_WORDS.get(0);
+                reader.storeln("I don't know that command. \nThese are the commands available:");
+                lastCommand = commandWords.get(0);
                 showCommands();
                 return null;
             }
@@ -93,7 +95,7 @@ public class Commands {
                         lastParameter = parameter;
                         lastCommand = command;
                     } else {
-                        InteractionsController.println("Wrong parameter.");
+                        reader.storeln("Wrong parameter.");
                         command.showAvailableParameters();
                         return null;
                     }
@@ -102,7 +104,7 @@ public class Commands {
             } else {
                 if (command.hasParameter()) {
                     if (!command.getName().equalsIgnoreCase("help")) {
-                        InteractionsController.println("Missing parameter.");
+                        reader.storeln("Missing parameter.");
                     }
                     command.showAvailableParameters();
                     return null;
@@ -115,28 +117,39 @@ public class Commands {
     }
 
     /**
-     * Displays the {@link Commands#COMMAND_WORDS COMMAND_WORDS} to the user.
+     * Displays the {@link Commands#commandWords COMMAND_WORDS} to the user.
      */
-    static void showCommands() {
+    void showCommands() {
         String data = "";
-        for (Command command : COMMAND_WORDS) {
+        for (Command command : commandWords) {
             data += "   " + command.getName() + "\n";
         }
-        InteractionsController.println(data);
+        reader.storeln(data);
     }
 
-    static void setLastCommand(Command command) {
+    @Override
+    public String toString() {
+        String string = "domain.interactions.Commands";
+
+        for (Command command : commandWords) {
+            string += "\n    " + command.toString();
+        }
+
+        return string;
+    }
+
+    public void setLastCommand(Command command) {
         lastCommand = command;
     }
-    
+
     /**
      * Gets the {@link Command} based in its index.
      *
      * @param index Index of the {@link Command}.
      * @return
      */
-    static Command getCommand(int index) {
-        return COMMAND_WORDS.get(index);
+    Command getCommand(int index) {
+        return commandWords.get(index);
     }
 
     /**
@@ -145,8 +158,8 @@ public class Commands {
      * @param name Name of the {@link Command}.
      * @return
      */
-    static Command getCommand(String name) {
-        for (Command command : COMMAND_WORDS) {
+    Command getCommand(String name) {
+        for (Command command : commandWords) {
             if (name.equals(command.getName())) {
                 return command;
             }
@@ -155,12 +168,12 @@ public class Commands {
     }
 
     /**
-     * Get all the {@link Commands#COMMAND_WORDS COMMAND_WORDS}.
+     * Get all the {@link Commands#commandWords COMMAND_WORDS}.
      *
      * @return A List of command words.
      */
-    static List<Command> getCommandwords() {
-        return COMMAND_WORDS;
+    List<Command> getCommandwords() {
+        return commandWords;
     }
 
     /**
@@ -169,7 +182,7 @@ public class Commands {
      *
      * @return
      */
-    static String getLastCommandName() {
+    String getLastCommandName() {
         return lastCommand.getName();
     }
 
@@ -178,7 +191,7 @@ public class Commands {
      *
      * @return
      */
-    static String getLastParameter() {
+    public String getLastParameter() {
         return lastParameter;
     }
 }

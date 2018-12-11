@@ -1,6 +1,5 @@
 package domain.locations;
 
-import domain.locations.functional.Oxygen;
 import java.util.ArrayList;
 
 /**

@@ -1,22 +1,15 @@
 package domain.systems;
 
-import domain.interactions.InteractionsController;
-import domain.resources.ResourcesController;
+import domain.DomainReader;
+import domain.GameElement;
+import domain.GameElementGroup;
+import domain.resources.ResourcesManager;
+import domain.resources.Time;
 import java.util.Random;
 
-/**
- * This creates the waves for the game and destroys it as the player interacts
- * with various controls.
- * <br><br>
- * Mainly spawn in the number of fragments and then continues to keep track of
- * said numbers.
- *
- * @see SystemsController
- * @see domain.locations.functional.Laser
- * @see domain.locations.functional.Net
- * @see domain.locations.functional.Control
- */
-public class Wave {
+public class Wave extends GameElement {
+
+    private final DomainReader reader = new DomainReader();
 
     /**
      * The number of waves the player has gone through (Including the one
@@ -27,15 +20,15 @@ public class Wave {
     /**
      * How many small fragments there are in the wave.
      */
-    private static int smallFragments;
+    private int smallFragments;
     /**
      * How many medium fragments there are in the wave.
      */
-    private static int mediumFragments;
+    private int mediumFragments;
     /**
      * How many large fragments there are in the wave.
      */
-    private static int largeFragments;
+    private int largeFragments;
 
     /**
      * The max amount of randomly destroyed small fragments.
@@ -50,7 +43,18 @@ public class Wave {
      */
     private final static int LARGE_DESCRUCTION_INDEX = 1;
 
-    private Wave() {
+    private boolean easy = true;
+    private boolean hard = false;
+
+    private ResourcesManager resourcesManager;
+    private SystemsManager systemsManager;
+    
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
+        this.systemsManager = (SystemsManager) group.getManager();
     }
 
     /**
@@ -59,23 +63,37 @@ public class Wave {
      *
      * @see domain.resources.ResourcesController#setWaveTime(long)
      */
-    static void createWave() {
-        ResourcesController.setWaveTime(ResourcesController.getCurrentTime()+120);
+    public void createWave() {
+        Time time = resourcesManager.getTime();
+        time.setWaveTime(time.getCurrentTime() + 120);
         Random random = new Random();
-        smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
+        if (easy == true) {
+            smallFragments = (random.nextInt(3) + 1) * numberOfWaves;
 
-        if (numberOfWaves % 2 == 0) {
+            if (numberOfWaves % 2 == 0) {
+                mediumFragments = numberOfWaves / 2;
+            } else {
+                mediumFragments = 0;
+            }
+
+            if (numberOfWaves % 3 == 0) {
+                largeFragments = numberOfWaves / 3;
+            } else {
+                largeFragments = 0;
+            }
+        } else if (hard == true) {
+            smallFragments = (random.nextInt(4) + 2) * numberOfWaves;
             mediumFragments = numberOfWaves / 2;
+            if (numberOfWaves % 2 == 0) {
+                largeFragments = numberOfWaves / 2;
+            } else {
+                largeFragments = 0;
+            }
         } else {
-            mediumFragments = 0;
+            easy = true;
         }
 
-        if (numberOfWaves % 3 == 0) {
-            largeFragments = numberOfWaves / 3;
-        } else {
-            largeFragments = 0;
-        }
-        ResourcesController.setRandTime();
+        time.setRandomTime();
     }
 
     /**
@@ -92,19 +110,19 @@ public class Wave {
      * @see SystemsController
      * @param fragmentIdentifier
      */
-    static void updateWave(int fragmentIdentifier) {
+    void updateWave(int fragmentIdentifier) {
         // Each if-statement can be refactored into a single method then called from a switch(fragmentIdentifier).
-        if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getSmallFragmentIdentifier()) {
             int newIndex = smallFragments > SMALL_DESTRUCTION_INDEX ? SMALL_DESTRUCTION_INDEX : smallFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             smallFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                InteractionsController.println("You destroyed " + destructionIndex + " small fragments!");
+                reader.storeln("You destroyed " + destructionIndex + " small fragments!");
             } else if (destructionIndex <= 0) {
-                InteractionsController.println("You missed!");
+                reader.storeln("You missed!");
             } else {
-                InteractionsController.println("You destroyed " + destructionIndex + " small fragment!");
+                reader.storeln("You destroyed " + destructionIndex + " small fragment!");
             }
 
             if (smallFragments < 0) {
@@ -112,17 +130,17 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getMediumFragmentIdentifier()) {
             int newIndex = mediumFragments > MEDIUM_DESCTRUCTION_INDEX ? MEDIUM_DESCTRUCTION_INDEX : mediumFragments;
             int destructionIndex = (int) (Math.random() * (newIndex + 1));
             mediumFragments -= destructionIndex;
 
             if (destructionIndex > 1) {
-                InteractionsController.println("You caught " + destructionIndex + " medium fragments!");
+                reader.storeln("You caught " + destructionIndex + " medium fragments!");
             } else if (destructionIndex <= 0) {
-                InteractionsController.println("You missed!");
+                reader.storeln("You missed!");
             } else {
-                InteractionsController.println("You caught " + destructionIndex + " medium fragment!");
+                reader.storeln("You caught " + destructionIndex + " medium fragment!");
             }
 
             if (mediumFragments < 0) {
@@ -130,7 +148,7 @@ public class Wave {
             }
         }
 
-        if (fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()) {
+        if (fragmentIdentifier == systemsManager.getLargeFragmentIdentifier()) {
             largeFragments = 0;
             if (largeFragments < 0) {
                 largeFragments = 0;
@@ -147,56 +165,70 @@ public class Wave {
     /**
      * Increase {@link #numberOfWaves numberOfWaves} by 1.
      */
-    static void incrementNumberOfWaves() {
+    public void incrementNumberOfWaves() {
         numberOfWaves++;
     }
-    
-    static void setSmallFragments(int smallValue){
+
+    public void setSmallFragments(int smallValue) {
         smallFragments = 0;
     }
-    
+
     /**
      * Get number of {@link #smallFragments smallFragments}.
      *
      * @return
      */
-    static int getSmallFragments() {
+    public int getSmallFragments() {
         return smallFragments;
     }
-    
-    static void setMediumFragments(int mediumValue){
+
+    public void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
-    
+
+    public void setNumberOfWaves(int i) {
+        numberOfWaves = i;
+    }
+
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
      * @return
      */
-    static int getMediumFragments() {
+    public int getMediumFragments() {
         return mediumFragments;
     }
-    
-    static void setLargeFragments(int largeValue){
+
+    public void setLargeFragments(int largeValue) {
         largeFragments = 0;
     }
-    
+
     /**
      * Get number of {@link #largeFragments largeFragments}.
      *
      * @return
      */
-    static int getLargeFragments() {
+    public int getLargeFragments() {
         return largeFragments;
     }
-    
+
     /**
      * Get number of waves {@link #numberOfWaves}.
-     * 
-     * 
-     * @return 
+     *
+     *
+     * @return
      */
-    static int getNumberofWaves(){
+    public int getNumberOfWaves() {
         return numberOfWaves;
+    }
+    
+    public void setDifficultyEasy(){
+        this.easy = true;
+        this.hard = false;
+    }
+    
+    public void setDifficultyHard(){
+        this.hard = true;
+        this.easy = false;
     }
 }

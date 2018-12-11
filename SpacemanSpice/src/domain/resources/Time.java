@@ -1,16 +1,10 @@
 package domain.resources;
 
+import domain.GameElement;
+import domain.GameUpdateable;
 import java.util.Date;
 
-/**
- * This is used by other systems to keep track of how much time passes. Because
- * of how the system works (prompts for user input on one thread), this class
- * proves to be vital for managing a system.
- *
- * @see domain.systems.Wave
- * @see domain.systems.SystemsController
- */
-public class Time {
+public class Time extends GameElement implements ResourcesElement, GameUpdateable {
 
     /**
      * The time when the {@link domain.game.Game} initialized.
@@ -26,21 +20,31 @@ public class Time {
     private static long waveTime;
     private static long randTime;
 
-    private Time() {
+    public Time() {
+        
     }
 
-    /**
-     * Initialize the class. This needs to be called before anything else. Will
-     * set the {@link #initTime initTime}.
-     */
-    static void init() {
+    @Override
+    public void init() {
         initTime = new Date().getTime() / 1000;
     }
-
+    
     /**
      * Update the class. This will update the {@link #currentTime currentTime}.
      */
-    static void update() {
+    @Override
+    public void update() {
+        
+    }
+
+    @Override
+    public void decreaseValue(int value) {
+
+    }
+
+    @Override
+    public void increaseValue(int value) {
+
     }
 
     /**
@@ -48,8 +52,17 @@ public class Time {
      *
      * @param time The new time.
      */
-    static void setWaveTime(long time) {
+    public void setWaveTime(long time) {
         waveTime = time;
+    }
+
+    public void setRandomTime() {
+        randTime = ((long) (Math.random() * 20 + 5));
+    }
+
+    @Override
+    public void setValue(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -57,7 +70,7 @@ public class Time {
      *
      * @return
      */
-    static long getInitTime() {
+    long getInitTime() {
         return Time.initTime;
     }
 
@@ -66,7 +79,7 @@ public class Time {
      *
      * @return
      */
-    static long getCurrentTime() {
+    public long getCurrentTime() {
         return new Date().getTime() / 1000 - initTime;
     }
 
@@ -75,7 +88,7 @@ public class Time {
      *
      * @return
      */
-    static long getWaveTime() {
+    public long getWaveTime() {
         return waveTime;
     }
 
@@ -84,15 +97,16 @@ public class Time {
      *
      * @return
      */
-    static long getRemainingTime() {
+    public long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
     }
-    
-    static void setRandTime(){
-        randTime = ((long )(Math.random() * 20 + 5)); 
-    }
-    
-    static long getRandTime(){
+
+    public long getRandomTime() {
         return randTime;
+    }
+
+    @Override
+    public int getValue() {
+        return (int) (new Date().getTime() / 1000 - initTime);
     }
 }

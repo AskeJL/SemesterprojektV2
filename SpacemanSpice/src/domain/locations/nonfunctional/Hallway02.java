@@ -18,6 +18,11 @@ public final class Hallway02 extends Location {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     protected void createLocation() {
         /*The room in the hallway02 location are created----------------------*/
         
@@ -28,6 +33,6 @@ public final class Hallway02 extends Location {
 
     @Override
     public String toString() {
-        return "locations.Room : Name[" + this.getNAME() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
+        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
     }
 }

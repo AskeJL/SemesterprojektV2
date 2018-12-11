@@ -15,7 +15,10 @@ public final class Personal extends Location {
      */
     public Personal() {
         super("Personal", "This location contains toilets and beerooms");
+    }
 
+    @Override
+    public void init() {
         createLocation();
     }
 
@@ -44,6 +47,6 @@ public final class Personal extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Personal : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Personal : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
 }

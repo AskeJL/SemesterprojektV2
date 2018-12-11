@@ -1,10 +1,10 @@
 package domain.interactions.commands;
 
 import data.AssetType;
-import data.read.DataReader;
+import data.Data;
+import domain.DomainReader;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
-import domain.locations.LocationsController;
+import domain.locations.LocationsManager;
 
 /**
  * This command is responsible for inspecting a room when prompted. Upon
@@ -15,10 +15,16 @@ import domain.locations.LocationsController;
  * Because of this reference, this class also implements the
  * {@link data.read.DataReader} interface.
  */
-public class Inspect extends Command implements DataReader {
+public class Inspect extends Command {
 
-    public Inspect() {
+    private final Data dataAccess = new Data();
+    private final DomainReader reader = new DomainReader();
+    private final LocationsManager locationsManager;
+    
+    public Inspect(LocationsManager locations) {
         super("inspect", "Inspect the room you are in.", false);
+        
+        this.locationsManager = locations;
     }
 
     @Override
@@ -34,20 +40,20 @@ public class Inspect extends Command implements DataReader {
     @Override
     protected void run() {
         String data = "";
-        for (String string : this.requestData(AssetType.DESCRIPTION, LocationsController.getCurrentRoom().getName() + ".txt")) {
+        for (String string : this.dataAccess.readData(AssetType.DESCRIPTION, locationsManager.getCurrentRoom().getName() + ".txt")) {
             data += string;
         }
-        InteractionsController.println(data);
+        reader.storeln(data);
     }
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Inspect: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Inspect: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("Inspect the room. This will give you an idea of the surroundings you are currently in.");
+        reader.storeln("Inspect the room. This will give you an idea of the surroundings you are currently in.");
     }
 
 }

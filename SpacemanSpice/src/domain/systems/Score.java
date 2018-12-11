@@ -1,16 +1,9 @@
 package domain.systems;
 
-/**
- * This keeps track of the score that the player achieves throughout the game.
- * The score depends on how many (and of which) fragments are destroyed.
- *
- * @see domain.locations.functional.Laser
- * @see domain.locations.functional.Net
- * @see domain.locations.functional.Control
- * @see SystemsController
- * @see Wave
- */
-public class Score {
+import domain.GameElement;
+import domain.GameElementGroup;
+
+public class Score extends GameElement {
 
     /**
      * The current score of this play-through.
@@ -30,7 +23,13 @@ public class Score {
      */
     private final static int LARGE_FRAGMENT_POINTS = 15;
 
-    private Score() {
+    private SystemsManager systemsManager;
+
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.systemsManager = (SystemsManager) group.getManager();
     }
 
     /**
@@ -43,14 +42,12 @@ public class Score {
      * @param fragmentIdentifier A value between 1-3. (Depending on the
      * identifier)
      */
-    static void updateScore(int fragmentIdentifier) {
-        if (fragmentIdentifier == SystemsController.getSmallFragmentIdentifier()) {
+    void update(int fragmentIdentifier) {
+        if (fragmentIdentifier == systemsManager.getSmallFragmentIdentifier()) {
             score += SMALL_FRAGMENT_POINTS;
-        }
-        if (fragmentIdentifier == SystemsController.getMediumFragmentIdentifier()) {
+        } else if (fragmentIdentifier == systemsManager.getMediumFragmentIdentifier()) {
             score += MEDIUM_FRAGMENT_POINTS;
-        }
-        if (fragmentIdentifier == SystemsController.getLargeFragmentIdentifier()) {
+        } else if (fragmentIdentifier == systemsManager.getLargeFragmentIdentifier()) {
             score += LARGE_FRAGMENT_POINTS;
         }
     }
@@ -65,7 +62,11 @@ public class Score {
      *
      * @return
      */
-    static int getScore() {
+    public int getValue() {
         return score;
+    }
+
+    static void setValue(int value) {
+        score = value;
     }
 }

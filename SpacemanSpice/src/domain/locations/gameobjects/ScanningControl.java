@@ -1,13 +1,13 @@
 package domain.locations.gameobjects;
 
-import domain.interactions.InteractionsController;
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
-import domain.systems.SystemsController;
+import domain.systems.SystemsManager;
 
 /**
  * Used to scan the vicinity of the ship for fragments.
- * <br><br>
+ * <p>
  * This {@link GameObject} is of the {@link GameObjectType#CONTROL} type.
  *
  * @see GameObject
@@ -15,8 +15,13 @@ import domain.systems.SystemsController;
  */
 public class ScanningControl extends GameObject {
 
-    public ScanningControl() {
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public ScanningControl(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL);
+        
+        this.systemsManager = systems;
     }
 
     /**
@@ -28,10 +33,11 @@ public class ScanningControl extends GameObject {
      */
     @Override
     public void interact() {
-        InteractionsController.println("You interact with the scanningstation\nThere are:\n"
-                + "    " + SystemsController.getSmallFragments() + " small fragments.\n"
-                + "    " + SystemsController.getMediumFragments() + " medium fragments.\n"
-                + "    " + SystemsController.getLargeFragments() + " large fragments.\n");
+        reader.storeln("You interact with the scanning station.");
+        reader.storeln("You interact with the scanningstation\nThere are:\n"
+                + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
+                + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
+                + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
     }
 
     @Override

@@ -49,7 +49,7 @@ public class LocationController {
 
         this.oxygen = new Location("Oxygen",
                 null,
-                new DirectionCollection("Hallway02", Direction.SOUTH),
+                new DirectionCollection("Hallway02", Direction.EAST),
                 null,
                 new DirectionCollection("Mainhall01", Direction.WEST),
                 "oxygenMap.txt");

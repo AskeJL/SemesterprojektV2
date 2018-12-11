@@ -5,17 +5,25 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.NetControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, that utilizes nets to clear medium fragments.
  */
 public final class Net extends Location {
     
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Net() {
         super("Net", "In this location the net is controlled and repaired");
+    }
+    
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
         
         createLocation();
     }
@@ -30,7 +38,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-        NetRoom.addGameObject(new NetControl());
+        NetRoom.addGameObject(new NetControl(systemsManager));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/
@@ -46,7 +54,7 @@ public final class Net extends Location {
 
     @Override
     public String toString() {
-        return "locations.Room : Name[" + this.getNAME() + "] Description[" + this.getDescription() + this.getExits()+ "]";
+        return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() + this.getExits()+ "]";
     }
     
 }

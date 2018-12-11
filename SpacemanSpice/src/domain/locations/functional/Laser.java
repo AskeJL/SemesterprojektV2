@@ -1,25 +1,34 @@
 package domain.locations.functional;
 
+import domain.GameElementGroup;
 import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.LaserControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, that uses a laser to destroy small fragments
  */
 public final class Laser extends Location {
     
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Laser() {
         super("Laser", "The laser is operated from here.");
+    }
+    
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
         createLocation();
     }
-
+    
     @Override
     protected void createLocation() {
         /*The rooms in the laser location are created-------------------------*/
@@ -34,7 +43,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        controlsRoom.addGameObject(new LaserControl());
+        controlsRoom.addGameObject(new LaserControl(systemsManager));
         
         super.addRoom(controlsRoom);
 
@@ -47,6 +56,6 @@ public final class Laser extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Laser : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Laser : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
 }

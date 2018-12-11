@@ -1,5 +1,9 @@
 package domain.locations;
 
+import domain.locations.ExitDirection;
+import domain.locations.Location;
+import domain.locations.Room;
+
 /**
  * An exit from on room/location to another. This is used to map out the
  * positions of the {@link Room}s and {@link Location}s.
@@ -79,7 +83,7 @@ public class Exit {
         if (EXIT_TO_ROOM) {
             return "locations.RoomExit : Exit[" + this.fromRoom.getName() + "] Direction[" + this.direction + "]";
         } else {
-            return "locations.LocationExit : Exit[" + this.toLocation.getNAME() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
+            return "locations.LocationExit : Exit[" + this.toLocation.getName() + "] Direction[" + this.direction + "] room[" + this.fromRoom.getName() + "]";
         }
     }
 

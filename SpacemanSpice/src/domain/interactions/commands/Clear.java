@@ -1,7 +1,7 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 
 /**
  * This command is responsible for clearing the screen when prompted.
@@ -11,6 +11,8 @@ import domain.interactions.InteractionsController;
  */
 public class Clear extends Command {
 
+    private final DomainReader reader = new DomainReader();
+    
     public Clear() {
         super("clear", "Clears the terminal", false);
     }
@@ -27,17 +29,17 @@ public class Clear extends Command {
     @Override
     protected void run() {
         for (int i = 0; i < 20; i++) {
-            InteractionsController.println("");
+            reader.storeln("");
         }
     }
 
     @Override
     public String toString() {
-        return "interactions.commands.Clear: " + super.getDescription();
+        return "[GameObject]interactions.commands.Clear: " + "name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("Clears the terminal.");
+        reader.storeln("Clears the terminal.");
     }
 }

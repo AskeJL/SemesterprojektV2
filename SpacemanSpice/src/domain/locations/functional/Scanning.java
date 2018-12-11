@@ -5,28 +5,36 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.ScanningControl;
+import domain.systems.SystemsManager;
 
 /**
  * Functional location, where fragments can be identified.
  */
 public final class Scanning extends Location {
 
+    private SystemsManager systemsManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Scanning() {
         super("Scanning", "In this location spacedebris can be scanned.");
+    }
 
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
+        
         createLocation();
     }
 
     @Override
     protected void createLocation() {
         /*The rooms in the scanning location are created----------------------*/
-
+       
         /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
-        scanningRoom.addGameObject(new ScanningControl());
+        scanningRoom.addGameObject(new ScanningControl(this.systemsManager));
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/
@@ -46,6 +54,6 @@ public final class Scanning extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Scanning : Name [" + this.getNAME() + "] Description [" + this.getDescription() + "]";
+        return "locations.functional.Scanning : Name [" + this.getName() + "] Description [" + this.getDescription() + "]";
     }
 }

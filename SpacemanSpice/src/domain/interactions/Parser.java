@@ -1,26 +1,29 @@
+/*
+ * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
+ */
+
 package domain.interactions;
 
+import domain.GameElement;
+import domain.GameElementGroup;
 import java.util.Scanner;
 
-/**
- * The parser reads input Strings and redirects it for
- * {@link Commands#validateCommand(String, String) command validation}. It then
- * receives a validated command (if not validated will be null).
- *
- * @see InteractionsController
- * @see Command
- * @see Commands
- */
-public class Parser {
+public class Parser extends GameElement {
 
     /**
      * The main scanner used for reading Strings in the class.
      */
     private static final Scanner READER = new Scanner(System.in);
 
-    private Parser() {
+    private Commands commands;
+    
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        
+        this.commands = (Commands)group.getGameElement(Commands.class);
     }
-
+    
     /**
      * Read the two first inputs from the user. Then return the words
      * separately.
@@ -47,7 +50,17 @@ public class Parser {
         String[] words = {word1, word2};
         return words;
     }
-
+    
+    /**
+     * Print a list of all the available commands. Uses the
+     * {@link Commands#getCommandwords()}
+     */
+    void showCommands() {
+        for (Command command : commands.getCommandwords()) {
+            System.out.println(command);
+        }
+    }
+    
     /**
      * Read the user input and determine what command to process. When found,
      * will return the appropriate command. Uses the {@link Parser#readInput()}
@@ -55,13 +68,13 @@ public class Parser {
      *
      * @return The command that matches the user input.
      */
-    static Command getCommand() {
+    Command getCommand() {
         String[] inputs = readInput();
 
         String word1 = inputs[0];
         String word2 = inputs[1];
 
-        return Commands.validateCommand(word1, word2);
+        return commands.validateCommand(word1, word2);
     }
 
     private static String[] convertInput(String input) {
@@ -80,22 +93,17 @@ public class Parser {
         return words;
     }
 
-    static Command getCommand(String input) {
+    Command getCommand(String input) {
         String[] inputs = convertInput(input);
 
         String word1 = inputs[0];
         String word2 = inputs[1];
 
-        return Commands.validateCommand(word1, word2);
+        return commands.validateCommand(word1, word2);
     }
-
-    /**
-     * Print a list of all the available commands. Uses the
-     * {@link Commands#getCommandwords()}
-     */
-    void showCommands() {
-        for (Command command : Commands.getCommandwords()) {
-            System.out.println(command);
-        }
+    
+    @Override
+    public String toString() {
+        return "domain.interactions.Parser";
     }
 }

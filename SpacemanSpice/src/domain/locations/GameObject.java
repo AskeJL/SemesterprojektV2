@@ -43,9 +43,6 @@ public abstract class GameObject {
      */
     public abstract void interact();
 
-    @Override
-    public abstract String toString();
-
     /**
      * Set the {@link GameObject#name} of this GameObject.
      *

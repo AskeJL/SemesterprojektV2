@@ -1,7 +1,7 @@
 package domain.interactions.commands;
 
+import domain.DomainReader;
 import domain.interactions.Command;
-import domain.interactions.InteractionsController;
 
 /**
  * This command is responsible for continuing a dialog when prompted.
@@ -11,6 +11,8 @@ import domain.interactions.InteractionsController;
  * @see domain.tutorial.TutorialController
  */
 public class Continue extends Command {
+
+    private final DomainReader reader = new DomainReader();
 
     public Continue() {
         super("continue", "Continues the dialogue", false);
@@ -27,17 +29,16 @@ public class Continue extends Command {
      */
     @Override
     protected void run() {
-        
+
     }
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Continue: name[" + super.getName() + "] description[" + super.getDescription() + "]";
+        return "domain.interactions.commands.Continue: name[" + super.getName() + "] description[" + super.getDescription() + "]";
     }
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("This command lets you continue a dialogue.");
+        reader.storeln("This command lets you continue a dialogue.");
     }
-
 }

@@ -5,17 +5,25 @@ import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 import domain.locations.gameobjects.OxygenControl;
+import domain.resources.ResourcesManager;
 
 /**
  * Functional location, that refuels oxygen.
  */
 public final class Oxygen extends Location {
 
+    private ResourcesManager resourcesManager;
+    
     /**
      * Constructor that runs the createLocation method.
      */
     public Oxygen() {
         super("Oxygen", "Oxygen is refueled from here");
+    }
+
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
 
         createLocation();
     }
@@ -34,7 +42,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-        refuelRoom.addGameObject(new OxygenControl());
+        refuelRoom.addGameObject(new OxygenControl(resourcesManager));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/
@@ -46,6 +54,6 @@ public final class Oxygen extends Location {
 
     @Override
     public String toString() {
-        return "locations.functional.Oxygen : Name[" + this.getNAME() + "] Description[" + this.getDescription() + "]";
+        return "locations.functional.Oxygen : Name[" + this.getName() + "] Description[" + this.getDescription() + "]";
     }
 }

@@ -1,12 +1,8 @@
 package domain.interactions.commands;
 
-import data.AssetType;
+import domain.DomainReader;
 import domain.interactions.Command;
-import data.read.DataReader;
-import domain.interactions.InteractionsController;
-import domain.locations.LocationsController;
-import domain.resources.ResourcesController;
-import domain.systems.SystemsController;
+import domain.resources.ResourcesManager;
 
 /**
  * This command is responsible for showing resources to the player. Upon
@@ -16,9 +12,12 @@ import domain.systems.SystemsController;
  * of this reference, this class also implements the
  * {@link data.write.DataWriter} interface.
  */
-public class Show extends Command implements DataReader {
-
-    public Show() {
+public class Show extends Command {
+    
+    private final ResourcesManager resourcesManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public Show(ResourcesManager resources) {
         super("show", "Shows a resource to the player.", true);
 
         super.addParameter("oxygen");
@@ -26,6 +25,8 @@ public class Show extends Command implements DataReader {
         super.addParameter("life");
         super.addParameter("map");
         super.addParameter("score");
+        
+        this.resourcesManager = resources;
     }
 
     /**
@@ -50,30 +51,32 @@ public class Show extends Command implements DataReader {
     protected void run() {
         switch (super.getCurrentParameter()) {
             case "oxygen":
-                InteractionsController.println("Oxygen: " + ResourcesController.getOxygen());
+                reader.storeln("Oxygen: " + resourcesManager.getOxygen().getValue());
+                break;
             case "time":
-                InteractionsController.println("Time: " + ResourcesController.getRemainingTime());
+                reader.storeln("Time: " + resourcesManager.getTime().getWaveTime());
+                break;
             case "life":
-                InteractionsController.println("Life: " + ResourcesController.getLife());
+                reader.storeln("Life: " + resourcesManager.getLife().getValue());
+                break;
             case "map":
                 String data = "";
-                for (String string : this.requestData(AssetType.MAP, LocationsController.getCurrentRoom().getName() + ".txt")) {
-                    data += string;
-                }
-                InteractionsController.println(data);
+                reader.storeln(data);
+                break;
             case "score":
-                InteractionsController.println(Integer.toString(SystemsController.getScore()));
+                reader.storeln("Score: ");
+                break;
         }
     }
 
     @Override
     public String toString() {
-        return "controller.interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
+        return "[GameObject]interactions.commands.Interact: name[" + super.getName() + "] description[" + super.getDescription() + "] para[" + super.getCurrentParameter() + "]";
     }
 
     @Override
     public void helpInfo() {
-        InteractionsController.println("This command displays a resource to the player, depending on its parameter."
+        reader.storeln("This command displays a resource to the player, depending on its parameter."
                 + "\nshow <arg>");
     }
 }

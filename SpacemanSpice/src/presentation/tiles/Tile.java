@@ -2,8 +2,9 @@ package presentation.tiles;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import presentation.game.GameViewController;
+import presentation.controllers.ViewController_Game;
 
 /**
  * Class Tile, 
@@ -21,22 +22,27 @@ public class Tile {
     private final Boolean solid; 
     private final Enum interactableType;
     private final Direction direction;
+    private final Image tileImage;
    
+    private final GraphicsContext gc;
     
     /**
      * Tile constructor
+     * @param gc
      * @param type
      * @param color
      * @param symbol 
+     * @param newImage 
      * @param isSolid 
      * @param canInteractType 
      * @param newDirection 
      */
-    public Tile(TileType type, Color color, char symbol, Boolean isSolid, Enum canInteractType, Direction newDirection){
-        
+    public Tile(GraphicsContext gc, TileType type, Color color, char symbol, Image newImage, Boolean isSolid, Enum canInteractType, Direction newDirection){
+        this.gc = gc;
         this.tileType = type;
         this.tileColor = color;
         this.SYMBOL = symbol;
+        this.tileImage = newImage;
         this.solid = isSolid;
         this.interactableType = canInteractType;
         this.direction = newDirection;
@@ -47,17 +53,18 @@ public class Tile {
     
     /**
      * Draws a tile on the corresponding x and y axis.
+     * @param img
      * @param xAxis
      * @param yAxis 
      */
-    public void drawTile(int xAxis, int yAxis) {
+    public void drawTile(Image img, int xAxis, int yAxis) {
         this.tileLocationXAxis = xAxis;
         this.tileLocationYAxis = yAxis;
-        GraphicsContext gc = GameViewController.getGraphicsContext();
-        gc.setFill(Color.TRANSPARENT);
-        gc.fillRect(tileLocationXAxis, tileLocationYAxis, TILE_WIDTH, TILE_HEIGHT);
-        gc.setFill(getTileColor());
-        gc.fillRect(tileLocationXAxis + 2, tileLocationYAxis + 2, TILE_WIDTH - 2, TILE_HEIGHT - 2);
+        //gc.setFill(Color.TRANSPARENT);
+        //gc.fillRect(tileLocationXAxis, tileLocationYAxis, TILE_WIDTH, TILE_HEIGHT);
+        //gc.setFill(getTileColor());
+        //gc.fillRect(tileLocationXAxis + 2, tileLocationYAxis + 2, TILE_WIDTH - 2, TILE_HEIGHT - 2);
+        gc.drawImage(img, xAxis, yAxis);
        
         
     }
@@ -163,6 +170,13 @@ public class Tile {
      */
     public Direction getDirection() {
         return direction;
+    }
+
+    /**
+     * @return the tileImage
+     */
+    public Image getTileImage() {
+        return tileImage;
     }
 
     
