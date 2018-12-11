@@ -31,15 +31,14 @@ public class LocationsManager extends Manager implements GameUpdateable {
     @Override
     public void init() {
         Location.init(this);
-        
-        if(guiOn == true){
+
+        if (guiOn == true) {
             createLocationGUI();
             currentLocation = getLocationMap().get("Personal");
-        }
-        else{
-        createLocations();
-        currentLocation = locations.get(5);
-        currentRoom = currentLocation.getRooms().get(2);
+        } else {
+            createLocations();
+            currentLocation = locations.get(5);
+            currentRoom = currentLocation.getRooms().get(2);
         }
         super.init();
     }
@@ -155,6 +154,9 @@ public class LocationsManager extends Manager implements GameUpdateable {
         mainhall02.addExit(new Exit(ExitDirection.SOUTH, net, mainhall02.getRooms().get(0), net.getRooms().get(0)));
     }
 
+    /**
+     * Creates locations for GUI view mode and puts them in a location hashMap
+     */
     private void createLocationGUI() {
         Location personal = new Personal(this.guiOn),
                 scanning = new Scanning(this.guiOn),
@@ -182,8 +184,11 @@ public class LocationsManager extends Manager implements GameUpdateable {
 
     }
 
+    /**
+     * Clears the location hashMap
+     */
     public void clearLocationMap() {
-
+        locationMap.clear();
     }
 
     @Override

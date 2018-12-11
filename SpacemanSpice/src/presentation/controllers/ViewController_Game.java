@@ -50,7 +50,7 @@ public class ViewController_Game extends ViewController implements Initializable
     private static String lastOutput = "";
 
     private final ArrayList<String> consoleText = new ArrayList<>();
-    private DrawController drawController = new DrawController(this);
+    private final DrawController drawController = new DrawController(this);
     private final SoundPlayer sound = new SoundPlayer(drawController);
     private GraphicsContext gc;
 
@@ -120,6 +120,7 @@ public class ViewController_Game extends ViewController implements Initializable
     private void keyPressedHandler(KeyEvent event) {
        switch (event.getCode()) {
             case SPACE:
+                event.consume();
                 drawController.interact();
                 break;
             case UP:
@@ -142,6 +143,7 @@ public class ViewController_Game extends ViewController implements Initializable
                 inputText.requestFocus();
                 break;
             case ESCAPE:
+                event.consume();
                 canvasMap.requestFocus(); 
                 break;
         }

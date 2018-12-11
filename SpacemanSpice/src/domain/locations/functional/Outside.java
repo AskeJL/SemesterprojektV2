@@ -28,7 +28,7 @@ public final class Outside extends Location {
                    new Exit('s', "Hallway02"),
                    null,
                    null,
-                   new Exit('s', "Mainhall02"), 
+                   new Exit('w', "Mainhall02"), 
                    "outsideMap.txt");
     }
     

@@ -22,31 +22,28 @@ import presentation.sound.SoundPlayer;
  */
 public class DrawController {
 
-    private final Data data = new Data();
-
-    private char[][] characters;
-
+    private final ViewController_Game gameViewController;
+    private GraphicsContext gc;
+    private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
+    
+    private HashMap<Character, Tile> currentTileMap;
+    private HashMap<String, Location> locationMap;
+    
+    private final String STARTING_LOCATION_NAME = "Personal";
     private String currentLocationName;
     private Location currentMapLocation;
-
-    private HashMap<String, Location> locationMap;
-    private HashMap<Character, Tile> currentTileMap;
     private String textMapLocation;
-
+    
+    private Player player;
+    private int playerXLocation;
+    private int playerYLocation;
+    
+    private final Data data = new Data();
+    private char[][] characters;
     private final int NUMBER_OF_TILES_X_AXIS = 28;
     private final int NUMBER_OF_TILES_Y_AXIS = 16;
     private final int tileSize = 32;
-
-    private int playerXLocation;
-    private int playerYLocation;
-
-    private final ViewController_Game gameViewController;
-    private Player player;
-
-    private GraphicsContext gc;
-
-    private final DomainReader reader = new DomainReader();
-    private final DomainRequester requester = new DomainRequester();
 
     private GameObjectType actionType;
     private char exitDirection;
@@ -65,7 +62,7 @@ public class DrawController {
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
 
-        currentLocationName = "Personal";
+        currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
 
