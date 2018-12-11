@@ -82,12 +82,12 @@ public class TileManager extends Manager implements GameUpdateable{
         this.floor = new Tile('.', false, GameObjectType.DECORATION, null, this.FLOOR_IMAGE);
         this.wall = new Tile('+', true, GameObjectType.DECORATION, null, this.HORIZONTAL_WALL_IMAGE);
         
-        this.laserConsole = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.LASER_CONSOLE_IMAGE);
-        this.netConsole = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.NET_CONSOLE_IMAGE);
-        this.oxygenConsole = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.fetchController(ResourcesManager.class))), this.OXYGEN_CONSOLE_IMAGE);
-        this.scanningConsole = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.SCANNING_CONSOLE_IMAGE);
-        this.outsideConsole = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.fetchController(ResourcesManager.class))), this.OUTISDE_CONSOLE_IMAGE);
-        this.controlConsole = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.fetchController(SystemsManager.class))), this.CONTROL_CONSOLE_IMAGE);
+        this.laserConsole = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.getManager(SystemsManager.class))), this.LASER_CONSOLE_IMAGE);
+        this.netConsole = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.getManager(SystemsManager.class))), this.NET_CONSOLE_IMAGE);
+        this.oxygenConsole = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.getManager(ResourcesManager.class))), this.OXYGEN_CONSOLE_IMAGE);
+        this.scanningConsole = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.getManager(SystemsManager.class))), this.SCANNING_CONSOLE_IMAGE);
+        this.outsideConsole = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.getManager(ResourcesManager.class))), this.OUTISDE_CONSOLE_IMAGE);
+        this.controlConsole = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROL_CONSOLE_IMAGE);
       
         this.northExit = new Tile('n', false, GameObjectType.NORTH, new NorthExit(), this.NORTH_EXIT_IMAGE);
         this.westExit = new Tile('w', false, GameObjectType.WEST, new WestExit(), this.WEST_EXIT_IMAGE);

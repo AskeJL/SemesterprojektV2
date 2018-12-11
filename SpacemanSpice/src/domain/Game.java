@@ -100,6 +100,11 @@ public class Game extends Application {
         GameElementGroup tutorialGroup = new GameElementGroup();
         tutorialGroup.setManagerGroup(managerGroup);
         tutorialManager.setGameElementGroup(tutorialGroup);
+        
+        // Create Tile package.
+        GameElementGroup tileGroup = new GameElementGroup();
+        tileGroup.setManagerGroup(managerGroup);
+        tileManager.setGameElementGroup(tileGroup);
 
         for (Manager manager : managerGroup.getManagers()) {
             manager.init();

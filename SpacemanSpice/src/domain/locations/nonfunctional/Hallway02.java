@@ -1,7 +1,6 @@
 package domain.locations.nonfunctional;
 
 import domain.locations.Exit;
-import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 
@@ -30,6 +29,11 @@ public final class Hallway02 extends Location {
                    "hallway02Map.txt");
     }
     
+     @Override
+    public void init() {
+       
+    }
+    
     @Override
     protected void createLocationCLI() {
         /*The room in the hallway02 location are created----------------------*/
@@ -43,4 +47,6 @@ public final class Hallway02 extends Location {
     public String toString() {
         return "locations.Room : Name[" + this.getName() + "] Description[" + this.getDescription() +" The exits are"+ this.getExits()+ "]";
     }
+
+   
 }

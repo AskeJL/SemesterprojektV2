@@ -84,7 +84,7 @@ public class DrawController {
      */
     public void drawLocation() {
         clearCanvas();
-        List<String> map = data.requestData(AssetType.MAP, textMapLocation);
+        List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
@@ -102,7 +102,7 @@ public class DrawController {
      */
     public void drawLocation(Tile exitTile) {
         clearCanvas();
-        List<String> map = data.requestData(AssetType.MAP, textMapLocation);
+        List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {

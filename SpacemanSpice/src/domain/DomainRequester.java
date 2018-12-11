@@ -31,11 +31,11 @@ public class DomainRequester implements InteractionsRequest {
     }
 
     public void requestReset() {
-        ResourcesManager resources = (ResourcesManager) group.fetchController(ResourcesManager.class);
-        SystemsManager systems = (SystemsManager) group.fetchController(SystemsManager.class);
-        LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
-        TutorialManager tutorial = (TutorialManager) group.fetchController(TutorialManager.class);
-        TileManager tiles = (TileManager) group.fetchController(TileManager.class);
+        ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
+        SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
+        TutorialManager tutorial = (TutorialManager) group.getManager(TutorialManager.class);
+        TileManager tiles = (TileManager) group.getManager(TileManager.class);
         
         resources.getOxygen().setValue(100);
         resources.getLife().setValue(100);
@@ -68,17 +68,17 @@ public class DomainRequester implements InteractionsRequest {
     }
     
     public HashMap<Character, Tile> getTileMap(){
-        TileManager tiles = (TileManager) group.fetchController(TileManager.class);
+        TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getTileMap();
     }
     
     public HashMap<String, Location> getLocationMap(){
-        LocationsManager locations = (LocationsManager) group.fetchController(LocationsManager.class);
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
         return locations.getLocationMap();
     }
     
     public Player getPlayer(){
-        TileManager tiles = (TileManager) group.fetchController(TileManager.class);
+        TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getPlayer();
     }
 }
