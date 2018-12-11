@@ -6,47 +6,58 @@
 package presentation.controllers;
 
 import data.AssetType;
-import data.Data;
+import data.read.DataReader;
+import data.write.DataWriter;
 import domain.DomainReader;
-import domain.DomainRequester;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import domain.interactions.InteractionsRequest;
+import data.*;
+import domain.locations.LocationsManager;
+import domain.resources.ResourcesManager;
+import domain.systems.SystemsManager;
+import domain.systems.SystemsReader;
+import domain.tutorial.TutorialManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javax.xml.crypto.Data;
+import presentation.ViewManager;
 
 /**
  * FXML Controller class
  *
  * @author askel
  */
-public class ViewController_GameOver extends ViewController implements Initializable {
+public class ViewController_GameOver implements Initializable, InteractionsRequest, SystemsReader, DataWriter, DataReader {
 
-    DomainReader score1 = new DomainReader();
-    DomainRequester domain = new DomainRequester();
-    
+    @FXML
+    private Label gameOverField;
     @FXML
     private TextField scoreField;
+    @FXML
+    private TextField usernameField;
     @FXML
     private Button menuButton;
     @FXML
     private Button quitButton;
     @FXML
-    private TextField usernameField;
-    @FXML
     private Button submit;
+
+
 
     /**
      * Initializes the controller class.
@@ -55,56 +66,111 @@ public class ViewController_GameOver extends ViewController implements Initializ
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        scoreField.setText("You'r score was: "+ score1.readScore());
+        this.scoreField.setText("Your score was " + this.readScore());
+        
+        ResourcesManager.setOxygen(100);
+        ResourcesController.setLife(100);
+        SystemsController.setNumberOfWaves(0);
+        SystemsController.setPlayerReady(false);
+        SystemsController.init();
+        LocationsController.init();
+        TutorialController.init();
     }    
-
+    
+    @FXML
+    public void updateHighscore(){
+        Data data = new Data();
+        DomainReader domainReader = new DomainReader();
+        
+        Map<String, Integer> scoreMap = new HashMap<>();
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        List<String> userNames = new ArrayList<>();
+        List<Integer> userScores = new ArrayList<>();
+        List<String> sortedList = new ArrayList<>();
+        List<Map.Entry<String, Integer>> listToSort = new LinkedList<>(scoreMap.entrySet());
+        
+        
+        String currentScoreAndName = Integer.toString(domainReader.readScore()) + " " + usernameField.getText();
+        List<String> readScores = data.readData(AssetType.SCORE, "highscore.txt");
+        readScores.add(currentScoreAndName);
+        
+        for (String line : readScores) {
+            Scanner scanner = new Scanner(line);
+            scanner.useDelimiter(" ");
+            userNames.add(scanner.next());
+            if (scanner.hasNextInt()) {
+                userScores.add(scanner.nextInt());
+            }
+        }
+        for (int i = 0; i < readScores.size(); i++) {
+            scoreMap.put(userNames.get(i), userScores.get(i));
+        }
+        Collections.sort(listToSort, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare (Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2){
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+        
+        for (Map.Entry<String, Integer> aa : listToSort) {
+            sortedMap.put(aa.getKey(), aa.getValue());
+        }
+        
+        for (String name : sortedMap.keySet()) {
+            sortedList.add(name + " " + sortedMap.get(name));
+        }
+        data.writeData(AssetType.SCORE, "highscore.txt", sortedList);
+    }
+    
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
-        domain.requestReset();
-        guiManager.loadView(guiManager.getMenuPath());
-        this.updateHighscore();
+        ViewManager menu = new ViewManager();
+        menu.loadView(menu.getMenuPath());
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
-        System.exit(0);
+        this.requestQuit();
+        ViewManager.getCurrentStage().close();
+    }
+
+    @FXML
+    private void initialize(ActionEvent event) {
+        this.scoreField.setText("Your score was " + this.readScore());
     }
 
     @Override
-    public void update() {
-        // Nothing to update
+    public void requestRunCommand(String input) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int readSmallFragments() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int readMediumFragments() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int readLargeFragments() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int readNumberOfWaves() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void writeData(AssetType type, String filename, List<String> data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> readData(AssetType type, String filename) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    @FXML
-    private void updateHighscore(){
-        Data data = new Data();
-        List<String> score = new ArrayList<>();
-        List<Integer> scoreSort = new ArrayList<>();
-        List<String> scoreSorted = new ArrayList<>();
-        for (int i = 0; i < data.readData(AssetType.SCORE, "highscore.txt").size(); i++) {
-            score.add(data.readData(AssetType.SCORE, "highscore.txt").get(i));
-        }
-        score.add(Integer.toString(score1.readScore()));
-        for (int i = 0; i < score.size(); i++) {
-            scoreSort.add(Integer.parseInt(score.get(i)));
-        }
-        Collections.sort(scoreSort, Collections.reverseOrder());
-        for (int i = 0; i < scoreSort.size(); i++) {
-            scoreSorted.add(Integer.toString(scoreSort.get(i)));
-        }
-        data.writeData(AssetType.SCORE, "highscore.txt", scoreSorted);
-    }
-    public void updateHighscore2(){
-        String combined = Integer.toString(score1.readScore()) + " " + usernameField.getText();
-        
-        try {
-            FileWriter fileWriter = new FileWriter("assets\\score\\highscore2.txt", true);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            PrintWriter outputStream = new PrintWriter(bufferedWriter);     
-                outputStream.println(combined);
-                outputStream.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ViewController_GameOver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-}
 }
