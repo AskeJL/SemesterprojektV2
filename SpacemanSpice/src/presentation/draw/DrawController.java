@@ -2,14 +2,17 @@ package presentation.draw;
 
 import data.AssetType;
 import data.Data;
+import domain.DomainReader;
+import domain.DomainRequester;
+import domain.locations.*;
+import domain.locations.gameobjects.Player;
+import domain.locations.gameobjects.Tile;
 import java.util.HashMap;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import presentation.controllers.ViewController_Game;
-import presentation.player.*;
 import domain.sound.SoundPlayer;
-import presentation.tiles.*;
 
 /**
  * Draw controller class, implements DataReader interface in order to draw data
@@ -19,76 +22,74 @@ import presentation.tiles.*;
  */
 public class DrawController {
 
-    private final Data data = new Data();
+    private final ViewController_Game gameViewController;
+    private GraphicsContext gc;
+    private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
-    private char[][] characters;
-
+    private HashMap<Character, Tile> currentTileMap;
+    private HashMap<String, Location> locationMap;
+    
+    private final String STARTING_LOCATION_NAME = "Personal";
     private String currentLocationName;
     private Location currentMapLocation;
-    
-    private HashMap<String, Location> locationMap;
-    private HashMap<Character, Tile> currentTileMap;
     private String textMapLocation;
     
-    private int xTiles;
-    private int yTiles;
-    private int tileSize;
-
+    private Player player;
     private int playerXLocation;
     private int playerYLocation;
+    
+    private final Data data = new Data();
+    private char[][] characters;
+    private final int NUMBER_OF_TILES_X_AXIS = 28;
+    private final int NUMBER_OF_TILES_Y_AXIS = 16;
+    private final int tileSize = 32;
 
-    private InteractableType interactableType;
-    private Direction direction;
-    
-    private final ViewController_Game gameViewController;
-    private final Player player;
-    
+    private GameObjectType actionType;
+    private char exitDirection;
+
     public DrawController(ViewController_Game controller) {
         this.gameViewController = controller;
-        this.player = new Player(gameViewController);
     }
 
     /**
      * Instantiates the components needed to be drawn on the canvas
      */
     public void setup() {
-        
-        TileController tileController = new TileController(gameViewController.getGraphicsContext());
-        LocationController locationController = new LocationController();
 
-        currentLocationName = "Personal";
-        locationMap = locationController.getLocationMap();
+        gc = gameViewController.getGraphicsContext();
+
+        currentTileMap = requester.getTileMap();
+        locationMap = requester.getLocationMap();
+
+        currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
+        textMapLocation = currentMapLocation.getTextMapLocation();
 
-        currentTileMap = tileController.getTileMap();
-        textMapLocation = currentMapLocation.getTextMapFileLocation();
+        player = requester.getPlayer();
+        playerXLocation = player.getxPosition() + 5;
+        playerYLocation = player.getyPosition() + 5;
 
-        tileSize = currentMapLocation.getTILE_SIZE();
-        xTiles = currentMapLocation.getNUMBER_OF_TILES_X_AXIS();
-        yTiles = currentMapLocation.getNUMBER_OF_TILES_Y_AXIS();
-
-        playerXLocation = player.getXPos() + 5;
-        playerYLocation = player.getYPos() + 5;
-        
     }
 
-    public void clearCanvas(){
-        GraphicsContext gc = gameViewController.getGraphicsContext();
+    public void clearCanvas() {
+        gc = gameViewController.getGraphicsContext();
         int canvasWidth = 900;
         int canvasHeight = 540;
-        gc.clearRect(0, 0,canvasWidth , canvasHeight);
+        gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
+
     /**
      * Draws a location on the screen, based on a text file
      */
     public void drawLocation() {
         clearCanvas();
-        List<String> map = data.readData(AssetType.MAP, textMapLocation);
-        characters = convertToCharArray(map, xTiles, yTiles);
+        List<String> map = data.requestData(AssetType.MAP, textMapLocation);
+        characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                Image img = currentTileMap.get(characters[x][y]).getTileImage();
-                currentTileMap.get(characters[x][y]).drawTile(img,(x * tileSize), (y * tileSize));
+                Image img = currentTileMap.get(characters[x][y]).getTILE_IMAGE();
+                gc.drawImage(img, x * tileSize, y * tileSize);
             }
         }
     }
@@ -97,75 +98,80 @@ public class DrawController {
      * Draws a location on the screen, based on a text file, depending on the
      * current tile the player is interacting with
      *
-     * @param directionTo
+     * @param exitTile
      */
-    public void drawLocation(Direction directionTo) {
+    public void drawLocation(Tile exitTile) {
         clearCanvas();
-        List<String> map = data.readData(AssetType.MAP, textMapLocation);
-        characters = convertToCharArray(map, xTiles, yTiles);
+        List<String> map = data.requestData(AssetType.MAP, textMapLocation);
+        characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
-                if (currentTileMap.get(characters[x][y]).getDirection() == directionTo && currentTileMap.get(characters[x][y]).getTileType() == TileType.DOOR) {
+                if (currentTileMap.get(characters[x][y]) == exitTile) {
+
+                    reader.storeln("recognize");
                     playerXLocation = x;
                     playerYLocation = y;
                 }
-                Image img = currentTileMap.get(characters[x][y]).getTileImage();
-                currentTileMap.get(characters[x][y]).drawTile(img,(x * tileSize), (y * tileSize));
+                Image img = currentTileMap.get(characters[x][y]).getTILE_IMAGE();
+                gc.drawImage(img, x * tileSize, y * tileSize);
             }
         }
     }
-    
+
     /**
      * Draws the player.
      */
     public void drawPlayer() {
 
-        player.drawPlayer(playerXLocation * tileSize, playerYLocation * tileSize);
+        gc.drawImage(player.getPlayerImage(), playerXLocation * tileSize, playerYLocation * tileSize);
     }
 
     /**
-     * Called from user input,
-     * to interact with the tiles that are interact-able.
+     * Called from user input, to interact with the tiles that are
+     * interact-able.
      */
     public void interact() {
         SoundPlayer sound = new SoundPlayer(this);
-        interactableType = (InteractableType) currentTileMap.get(characters[playerXLocation][playerYLocation]).getInteractableType();
-        switch (interactableType) {
-            case NORTH:
-                direction = currentMapLocation.getNorthExit().getDirectionTo();
-                currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getToLocationName());
-                textMapLocation = currentMapLocation.getTextMapFileLocation();
-                drawLocation(direction);
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case WEST:
-                direction = currentMapLocation.getWestExit().getDirectionTo();
-                currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getToLocationName());
-                textMapLocation = currentMapLocation.getTextMapFileLocation();
-                drawLocation(direction);
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case SOUTH:
-                direction = currentMapLocation.getSouthExit().getDirectionTo();
-                currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getToLocationName());
-                textMapLocation = currentMapLocation.getTextMapFileLocation();
-                drawLocation(direction);
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case EAST:
-                direction = currentMapLocation.getEastExit().getDirectionTo();
-                currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getToLocationName());
-                textMapLocation = currentMapLocation.getTextMapFileLocation();
-                drawLocation(direction);
-                drawPlayer();
-                sound.playDoorSound();
-                break;
-            case CONSOLE:
-                sound.playInteractionSound();
-                break;
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
+            actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
+            currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
+            switch (actionType) {
+                case NORTH:
+                    exitDirection = currentMapLocation.getNorthExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case WEST:
+                    exitDirection = currentMapLocation.getWestExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case SOUTH:
+                    exitDirection = currentMapLocation.getSouthExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case EAST:
+                    exitDirection = currentMapLocation.getEastExit().getTileExit();
+                    currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
+                    textMapLocation = currentMapLocation.getTextMapLocation();
+                    drawLocation(currentTileMap.get(exitDirection));
+                    drawPlayer();
+                    sound.playDoorSound();
+                    break;
+                case CONTROL:
+                    sound.playInteractionSound();
+                    break;
+            }
         }
     }
 
@@ -173,7 +179,7 @@ public class DrawController {
      * Move player 1 tile upwards (negative y axis)
      */
     public void movePlayerUP() {
-        if (currentTileMap.get(characters[playerXLocation][playerYLocation - 1]).getSolid() == false) {
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation - 1]).getSOLID() == false) {
             playerYLocation -= 1;
             drawLocation();
             drawPlayer();
@@ -185,7 +191,7 @@ public class DrawController {
      * Move player 1 tile to the left (negative x axis)
      */
     public void movePlayerLeft() {
-        if (currentTileMap.get(characters[playerXLocation - 1][playerYLocation]).getSolid() == false) {
+        if (currentTileMap.get(characters[playerXLocation - 1][playerYLocation]).getSOLID() == false) {
             playerXLocation -= 1;
             drawLocation();
             drawPlayer();
@@ -196,7 +202,7 @@ public class DrawController {
      * Move player 1 tile downwards (positive y axis)
      */
     public void movePlayerDown() {
-        if (currentTileMap.get(characters[playerXLocation][playerYLocation + 1]).getSolid() == false) {
+        if (currentTileMap.get(characters[playerXLocation][playerYLocation + 1]).getSOLID() == false) {
             playerYLocation += 1;
             drawLocation();
             drawPlayer();
@@ -207,7 +213,7 @@ public class DrawController {
      * Move player 1 tile to the right (positive x axis)
      */
     public void movePlayerRight() {
-        if (currentTileMap.get(characters[playerXLocation + 1][playerYLocation]).getSolid() == false) {
+        if (currentTileMap.get(characters[playerXLocation + 1][playerYLocation]).getSOLID() == false) {
             playerXLocation += 1;
             drawLocation();
             drawPlayer();
@@ -233,8 +239,8 @@ public class DrawController {
         }
         return charArray;
     }
-    
-    public String getCurrentLocationName(){
+
+    public String getCurrentLocationName() {
         return currentLocationName;
     }
 

@@ -24,6 +24,8 @@ public abstract class GameObject {
      * The type of GameObject.
      */
     private GameObjectType type;
+    
+    private final ExitDirection exitDirection;
 
     /**
      * An object within the game.
@@ -31,11 +33,13 @@ public abstract class GameObject {
      * @param name of the GameObject.
      * @param description of the GameObject.
      * @param type of the GameObject.
+     * @param exitDirection , which exit the player comes out of.
      */
-    protected GameObject(String name, String description, GameObjectType type) {
+    protected GameObject(String name, String description, GameObjectType type, ExitDirection exitDirection) {
         this.name = name;
         this.description = description;
         this.type = type;
+        this.exitDirection = exitDirection;
     }
 
     /**
@@ -95,5 +99,12 @@ public abstract class GameObject {
      */
     public GameObjectType getType() {
         return this.type;
+    }
+
+    /**
+     * @return the exitDirection
+     */
+    public ExitDirection getExitDirection() {
+        return exitDirection;
     }
 }

@@ -12,6 +12,8 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
      */
     private int oxygen = 100;
 
+    
+    private final String NO_OXYGEN_LOCATION = "outside";
     /**
      * Holds the last time the oxygen was computed. Used for calculation between
      * updates.
@@ -50,7 +52,12 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
     public void update() {
         if (life.getValue() <= 50) {
             oxygen -= (time.getCurrentTime() - lastTime);
-        } else if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("outside")) {
+        } 
+        else if (locationsManager.getCurrentRoom() != null && locationsManager.getCurrentRoom().getName().equalsIgnoreCase(this.NO_OXYGEN_LOCATION)){
+            oxygen -= (time.getCurrentTime() - lastTime);
+            
+        }
+        else if(locationsManager.getCurrentLocation() != null && locationsManager.getCurrentLocation().getName().equalsIgnoreCase(this.NO_OXYGEN_LOCATION)) {
             oxygen -= (time.getCurrentTime() - lastTime);
         }
 

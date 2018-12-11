@@ -15,7 +15,7 @@ public final class Net extends Location {
     private SystemsManager systemsManager;
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Net() {
         super("Net", "In this location the net is controlled and repaired");
@@ -25,11 +25,22 @@ public final class Net extends Location {
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
         
-        createLocation();
+        createLocationCLI();
+    }
+    
+    public Net(Boolean gui){
+                   super(
+                   "Net", 
+                   "In this location the net is controlled and repaired.",
+                   new Exit('s', "Mainhall02"),
+                   null,
+                   null,
+                   new Exit('s', "Hallway01"), 
+                   "netMap.txt");
     }
     
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the net location are created---------------------------*/
         
         /*Corridor------------------------------------------------------------*/

@@ -15,7 +15,7 @@ public final class Scanning extends Location {
     private SystemsManager systemsManager;
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Scanning() {
         super("Scanning", "In this location spacedebris can be scanned.");
@@ -25,11 +25,22 @@ public final class Scanning extends Location {
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
         
-        createLocation();
+        createLocationCLI();
+    }
+    
+    public Scanning(Boolean gui){
+                   super(
+                   "Scanning", 
+                   "In this location spacedebris can be scanned.",
+                   null,
+                   new Exit('e', "Control"),
+                   new Exit('n', "Personal"),
+                   null, 
+                   "scanningMap.txt");
     }
 
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the scanning location are created----------------------*/
        
         /*Scanning room-------------------------------------------------------*/

@@ -19,7 +19,7 @@ public class LaserControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public LaserControl(SystemsManager systems) {
-        super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL);
+        super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
     }

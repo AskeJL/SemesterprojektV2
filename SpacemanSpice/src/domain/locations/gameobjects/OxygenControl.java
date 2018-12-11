@@ -20,7 +20,7 @@ public class OxygenControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public OxygenControl(ResourcesManager resources) {
-        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL);  
+        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL, null);  
         
         this.resourcesManager = resources;
     }

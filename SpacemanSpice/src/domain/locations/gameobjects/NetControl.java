@@ -19,7 +19,7 @@ public class NetControl extends GameObject {
     private final DomainReader reader = new DomainReader();
     
     public NetControl(SystemsManager systems) {
-        super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL);
+        super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
     }

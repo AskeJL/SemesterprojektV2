@@ -15,7 +15,7 @@ public final class Outside extends Location {
     private ResourcesManager resourcesManager;
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
@@ -25,11 +25,22 @@ public final class Outside extends Location {
     public void init() {
         resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
 
-        createLocation();
+        createLocationCLI();
+    }
+
+    public Outside(Boolean gui){
+                   super(
+                   "Outside", 
+                   "This location contains the airlock and from here it is possible to go outside.",
+                   new Exit('s', "Hallway02"),
+                   null,
+                   null,
+                   new Exit('w', "Mainhall02"), 
+                   "outsideMap.txt");
     }
     
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the outside location are created-----------------------*/
 
         /*outside-------------------------------------------------------------*/

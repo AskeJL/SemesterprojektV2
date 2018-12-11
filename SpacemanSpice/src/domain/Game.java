@@ -5,6 +5,7 @@ import domain.locations.LocationsManager;
 import domain.interactions.Commands;
 import domain.interactions.Parser;
 import domain.interactions.InteractionsManager;
+import domain.locations.gameobjects.TileManager;
 import domain.resources.Life;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
@@ -55,13 +56,15 @@ public class Game extends Application {
         InteractionsManager interactionsManager = new InteractionsManager();
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
-        
+        TileManager tileManager = new TileManager();
+
         // Add to manager list
         List<Manager> managers = new ArrayList<>();
         managers.add(interactionsManager);
         managers.add(locationsManager);
         managers.add(resourcesManager);
         managers.add(systemsManager);
+        managers.add(tileManager);
         managers.add(tutorialManager);
 
         managerGroup = new ManagerGroup(managers);

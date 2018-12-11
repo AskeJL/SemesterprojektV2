@@ -1,5 +1,7 @@
 package domain.locations.nonfunctional;
 
+import domain.locations.Exit;
+import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 
@@ -9,21 +11,27 @@ import domain.locations.Room;
 public final class Hallway02 extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Hallway02() {
         super("Hallway 02", "The hallway connecting airlock, oxygen and navigation");
         
-        createLocation();
+        createLocationCLI();
     }
 
-    @Override
-    public void init() {
-
+    public Hallway02(Boolean gui){
+                   super(
+                   "Hallway02", 
+                   "The hallway connecting airlock, oxygen and navigation.",
+                   new Exit('w' ,"Control"),
+                   null,
+                   new Exit('n', "Outside"),
+                   new Exit('w', "Oxygen"), 
+                   "hallway02Map.txt");
     }
-
+    
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The room in the hallway02 location are created----------------------*/
         
         /*Hallway 02----------------------------------------------------------*/

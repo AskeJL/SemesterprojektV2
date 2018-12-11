@@ -4,6 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
+import domain.locations.nonfunctional.*;
 
 /**
  * Functional location, the personal room of spaceman Spice.
@@ -11,7 +12,7 @@ import domain.locations.Room;
 public final class Personal extends Location {
 
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Personal() {
         super("Personal", "This location contains toilets and beerooms");
@@ -19,11 +20,22 @@ public final class Personal extends Location {
 
     @Override
     public void init() {
-        createLocation();
+        createLocationCLI();
     }
 
+    public Personal(Boolean gui){
+                   super(
+                   "Personal", 
+                   "This location contains a toilet and a bedroom.",
+                   new Exit('s', "Scanning"),
+                   new Exit('e', "Mainhall01"),
+                   new Exit('n', "Hallway01"),
+                   null, 
+                   "personalMap.txt");
+    }
+    
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the personal location are created----------------------*/
 
         /*Corridor------------------------------------------------------------*/

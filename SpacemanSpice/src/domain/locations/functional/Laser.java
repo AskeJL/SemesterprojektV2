@@ -16,7 +16,7 @@ public final class Laser extends Location {
     private SystemsManager systemsManager;
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
     public Laser() {
         super("Laser", "The laser is operated from here.");
@@ -26,11 +26,22 @@ public final class Laser extends Location {
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
-        createLocation();
+        createLocationCLI();
+    }
+
+    public Laser(Boolean gui){
+                   super(
+                   "Laser", 
+                   "The laser is operated from here.",
+                   null,
+                   new Exit('e', "Mainhall02"),
+                   null,
+                   new Exit('w', "Hallway01"), 
+                   "laserMap.txt");
     }
     
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the laser location are created-------------------------*/
 
         /*Corridor------------------------------------------------------------*/
@@ -53,6 +64,8 @@ public final class Laser extends Location {
         technicRoom.addExit(new Exit(ExitDirection.SOUTH, corridorRoom));
         controlsRoom.addExit(new Exit(ExitDirection.NORTH, corridorRoom));
     }
+    
+    
 
     @Override
     public String toString() {

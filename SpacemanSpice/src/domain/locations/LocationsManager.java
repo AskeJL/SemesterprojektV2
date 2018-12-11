@@ -7,32 +7,39 @@ import domain.Manager;
 import java.util.List;
 import domain.GameUpdateable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LocationsManager extends Manager implements GameUpdateable {
 
     private final List<Location> locations = new ArrayList<>();
     private Room currentRoom;
     private Location currentLocation;
-    
+    private HashMap<String, Location> locationMap = new HashMap<>();
+    private boolean guiOn = true;
+    //Temporary value to switch between views
     @Override
     public void init() {
         Location.init(this);
-        
-        createLocations();
-        currentLocation = locations.get(5);
-        currentRoom = currentLocation.getRooms().get(2);
-        
+
+        if (guiOn == true) {
+            createLocationGUI();
+            currentLocation = getLocationMap().get("Personal");
+        } else {
+            createLocations();
+            currentLocation = locations.get(5);
+            currentRoom = currentLocation.getRooms().get(2);
+        }
         super.init();
     }
-    
+
     @Override
     public void update() {
         super.update();
     }
-    
+
     /**
      * Creates all the predetermined locations. This is created based on a map
-     * (Hard-coded). 
+     * (Hard-coded).
      * <p>
      * Exits are added after creation.
      */
@@ -98,7 +105,7 @@ public class LocationsManager extends Manager implements GameUpdateable {
         // Oxygen connects to mainhall01 from corridor due WEST
         oxygen.addExit(new Exit(ExitDirection.WEST, hallway02, oxygen.getRooms().get(0), hallway02.getRooms().get(0)));
         oxygen.addExit(new Exit(ExitDirection.EAST, mainhall01, oxygen.getRooms().get(0), mainhall01.getRooms().get(0)));
-        
+
         // Personal connects to mainhall01 from corridor due WEST
         // Personal connects to hallway01 from corridor due SOUTH
         // Personal connects to scanning from corridor due NORTH
@@ -132,7 +139,7 @@ public class LocationsManager extends Manager implements GameUpdateable {
         mainhall01.addExit(new Exit(ExitDirection.EAST, personal, mainhall01.getRooms().get(0), personal.getRooms().get(0)));
         mainhall01.addExit(new Exit(ExitDirection.NORTH, control, mainhall01.getRooms().get(0), control.getRooms().get(2)));
         mainhall01.addExit(new Exit(ExitDirection.SOUTH, mainhall02, mainhall01.getRooms().get(0), mainhall02.getRooms().get(0)));
-        
+
         // Mainhall02 connects to mainhall01 from mainhall due NORTH
         // Mainhall02 connects to outside from mainhall due WEST
         // Mainhall02 connects to laser from mainhall due EAST
@@ -141,6 +148,43 @@ public class LocationsManager extends Manager implements GameUpdateable {
         mainhall02.addExit(new Exit(ExitDirection.WEST, outside, mainhall02.getRooms().get(0), outside.getRooms().get(1)));
         mainhall02.addExit(new Exit(ExitDirection.EAST, laser, mainhall02.getRooms().get(0), laser.getRooms().get(0)));
         mainhall02.addExit(new Exit(ExitDirection.SOUTH, net, mainhall02.getRooms().get(0), net.getRooms().get(0)));
+    }
+
+    /**
+     * Creates locations for GUI view mode and puts them in a location hashMap
+     */
+    private void createLocationGUI() {
+        Location personal = new Personal(this.guiOn),
+                scanning = new Scanning(this.guiOn),
+                control = new Control(this.guiOn),
+                oxygen = new Oxygen(this.guiOn),
+                outside = new Outside(this.guiOn),
+                net = new Net(this.guiOn),
+                laser = new Laser(this.guiOn),
+                mainhall01 = new Mainhall01(this.guiOn),
+                mainhall02 = new Mainhall02(this.guiOn),
+                hallway01 = new Hallway01(this.guiOn),
+                hallway02 = new Hallway02(this.guiOn);
+
+        this.getLocationMap().put(personal.getName(), personal);
+        this.getLocationMap().put(scanning.getName(), scanning);
+        this.getLocationMap().put(control.getName(), control);
+        this.getLocationMap().put(oxygen.getName(), oxygen);
+        this.getLocationMap().put(outside.getName(), outside);
+        this.getLocationMap().put(net.getName(), net);
+        this.getLocationMap().put(laser.getName(), laser);
+        this.getLocationMap().put(mainhall01.getName(), mainhall01);
+        this.getLocationMap().put(mainhall02.getName(), mainhall02);
+        this.getLocationMap().put(hallway01.getName(), hallway01);
+        this.getLocationMap().put(hallway02.getName(), hallway02);
+
+    }
+
+    /**
+     * Clears the location hashMap
+     */
+    public void clearLocationMap() {
+        locationMap.clear();
     }
 
     @Override
@@ -176,7 +220,7 @@ public class LocationsManager extends Manager implements GameUpdateable {
     public void setCurrentLocation(Location location) {
         this.currentLocation = location;
     }
-    
+
     /**
      * Get the {@link #currentRoom currentRoom}.
      *
@@ -193,5 +237,12 @@ public class LocationsManager extends Manager implements GameUpdateable {
      */
     public Location getCurrentLocation() {
         return this.currentLocation;
+    }
+
+    /**
+     * @return the locationMap
+     */
+    public HashMap<String, Location> getLocationMap() {
+        return locationMap;
     }
 }

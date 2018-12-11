@@ -6,20 +6,19 @@ import domain.locations.Location;
 import domain.locations.LocationsManager;
 import domain.locations.Room;
 import domain.locations.gameobjects.SteeringControl;
+import domain.locations.nonfunctional.*;
 import domain.systems.SystemsManager;
 
 /**
  * Functional location, that controls the movement of the spaceship.
  */
-
 public final class Control extends Location {
 
     private SystemsManager systemsManager;
     
     /**
-     * Constructor that runs the createLocation method.
+     * Constructor that runs the createLocationCLI method.
      */
-    
     public Control() {
         super("Control", "In this location the ship is controlled.");
     }
@@ -28,11 +27,22 @@ public final class Control extends Location {
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
-        createLocation();
+        createLocationCLI();
+    }
+
+    public Control(Boolean gui){
+                   super(
+                   "Control", 
+                   "In this location the ship is controlled.",
+                   null,
+                   new Exit('n', "Hallway02"),
+                   new Exit('n', "Mainhall01"),
+                   new Exit('w', "Scanning"), 
+                   "controlMap.txt");
     }
     
     @Override
-    protected void createLocation() {
+    protected void createLocationCLI() {
         /*The rooms in the control location are created-----------------------*/
 
         /*Steering------------------------------------------------------------*/
