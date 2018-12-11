@@ -10,7 +10,7 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
     /**
      * Amount of oxygen the player currently has.
      */
-    private int oxygen = 100;
+    private int oxygen = 5;
 
     
     private final String NO_OXYGEN_LOCATION = "outside";

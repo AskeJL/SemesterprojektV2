@@ -11,6 +11,7 @@ import data.write.DataWriter;
 import domain.DomainReader;
 import domain.interactions.InteractionsRequest;
 import data.*;
+import domain.DomainRequester;
 import domain.locations.LocationsManager;
 import domain.resources.ResourcesManager;
 import domain.systems.SystemsManager;
@@ -34,15 +35,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javax.xml.crypto.Data;
-import presentation.ViewManager;
+import static presentation.controllers.ViewController.guiManager;
 
 /**
  * FXML Controller class
  *
  * @author askel
  */
-public class ViewController_GameOver implements Initializable, InteractionsRequest, SystemsReader, DataWriter, DataReader {
+public class ViewController_GameOver extends ViewController implements Initializable {
 
     @FXML
     private Label gameOverField;
@@ -57,7 +57,8 @@ public class ViewController_GameOver implements Initializable, InteractionsReque
     @FXML
     private Button submit;
 
-
+    private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
 
     /**
      * Initializes the controller class.
@@ -66,19 +67,12 @@ public class ViewController_GameOver implements Initializable, InteractionsReque
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.scoreField.setText("Your score was " + this.readScore());
         
-        ResourcesManager.setOxygen(100);
-        ResourcesController.setLife(100);
-        SystemsController.setNumberOfWaves(0);
-        SystemsController.setPlayerReady(false);
-        SystemsController.init();
-        LocationsController.init();
-        TutorialController.init();
+        scoreField.setText("Your score was " + reader.readScore());
+        
     }    
-    
-    @FXML
-    public void updateHighscore(){
+    @Override
+    public void update() {
         Data data = new Data();
         DomainReader domainReader = new DomainReader();
         
@@ -120,57 +114,21 @@ public class ViewController_GameOver implements Initializable, InteractionsReque
         }
         data.writeData(AssetType.SCORE, "highscore.txt", sortedList);
     }
-    
+   
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
-        ViewManager menu = new ViewManager();
-        menu.loadView(menu.getMenuPath());
+        guiManager.loadView(guiManager.getMenuPath());
+        requester.requestReset();
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
-        this.requestQuit();
-        ViewManager.getCurrentStage().close();
+        System.exit(0);
     }
 
     @FXML
-    private void initialize(ActionEvent event) {
-        this.scoreField.setText("Your score was " + this.readScore());
+    private void updateHighscore2(ActionEvent event) {
     }
 
-    @Override
-    public void requestRunCommand(String input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int readSmallFragments() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int readMediumFragments() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int readLargeFragments() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int readNumberOfWaves() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void writeData(AssetType type, String filename, List<String> data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<String> readData(AssetType type, String filename) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
