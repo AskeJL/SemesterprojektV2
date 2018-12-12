@@ -29,30 +29,28 @@ public class GUIManager extends ViewManager {
         PATH_GAME_OVER
     };
 
-    private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation//fxml/css/gameViewStyleSheet.css").toExternalForm();
+    private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation/fxml/css/gameViewStyleSheet.css").toExternalForm();
     private Stage currentStage;
     private ViewController currentController;
     private final List<ViewController> viewControllers = new ArrayList<>();
 
     /**
      * Initialize the necessary scene.
-     *
-     * @param stage
      */
-    public void init(Stage stage) {
-        currentStage = stage;
+    public void init() {
         currentStage.setTitle("Spaceman Spice - Kessler Syndrome");
-        currentStage.setResizable(false);
         
         new ViewController() {
             @Override
             public void update() {
-                // Dummy class
+                // Temp anonymous
             }
         }.setManager(this);
         
         loadControllers();
         loadView(PATH_MENU);
+        
+        super.init();
     }
 
     @Override
@@ -77,7 +75,6 @@ public class GUIManager extends ViewManager {
                 System.out.println(ex);
             }
         }
-
         for (ViewController controller : viewControllers) {
             controller.setManager(this);
         }
@@ -95,7 +92,7 @@ public class GUIManager extends ViewManager {
         currentStage.show();
     }
 
-    void setStage(Stage stage) {
+    public void setStage(Stage stage) {
         currentStage = stage;
     }
 
@@ -103,8 +100,12 @@ public class GUIManager extends ViewManager {
         currentController = controller;
     }
 
+    public List<ViewController> getControllers() {
+        return this.viewControllers;
+    }
+    
     public ViewController getController(String fxml) {
-        for (ViewController controller : viewControllers) {
+        for (ViewController controller : this.viewControllers) {
             if (controller.getPath().equals(fxml)) {
                 return controller;
             }

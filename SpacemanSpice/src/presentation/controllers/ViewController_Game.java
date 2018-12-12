@@ -15,9 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import static presentation.controllers.ViewController.guiManager;
 import presentation.draw.DrawController;
-import domain.sound.SoundPlayer;
 
 /**
  * FXML Controller class
@@ -50,12 +48,13 @@ public class ViewController_Game extends ViewController implements Initializable
     private static String lastOutput = "";
 
     private final ArrayList<String> consoleText = new ArrayList<>();
-    private final DrawController drawController = new DrawController(this);
-    private final SoundPlayer sound = new SoundPlayer(drawController);
+    private DrawController drawController = new DrawController();
     private GraphicsContext gc;
 
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
+
+    private boolean initialized = false;
 
     /**
      * Initializes the controller class.
@@ -64,23 +63,29 @@ public class ViewController_Game extends ViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         gc = canvasMap.getGraphicsContext2D();
 
-        drawController.setup();
-        drawController.drawLocation();
-        drawController.drawPlayer();
+        drawController = (DrawController) guiManager.getGameElementGroup().getGameElement(DrawController.class);
     }
 
     @Override
     public void update() {
-        sound.startSounds();
+        if (!initialized) {
+            drawController.setup();
+            drawController.drawLocation();
+            drawController.drawPlayer();
+            
+            initialized = true;
+        }
+
+        requester.startSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            sound.stopSounds();
+            requester.stopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            sound.stopSounds();
+            requester.stopSounds();
         }
         waveTimeLabel.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
@@ -94,14 +99,14 @@ public class ViewController_Game extends ViewController implements Initializable
             infoText.positionCaret(output.length());
         }
 
-        sound.playGameMusic();
-        sound.playLocationSound();
+        requester.playGameMusic();
+        requester.playLocationSound();
     }
 
     @FXML
     private void enterPressedHandler(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER) {
-            
+        if (event.getCode() == KeyCode.ENTER) {
+
             if (inputText.getText().equals("")) {
                 return;
             }
@@ -114,11 +119,9 @@ public class ViewController_Game extends ViewController implements Initializable
         }
     }
 
-    
-
     @FXML
     private void keyPressedHandler(KeyEvent event) {
-       switch (event.getCode()) {
+        switch (event.getCode()) {
             case SPACE:
                 event.consume();
                 drawController.interact();
@@ -144,7 +147,7 @@ public class ViewController_Game extends ViewController implements Initializable
                 break;
             case ESCAPE:
                 event.consume();
-                canvasMap.requestFocus(); 
+                canvasMap.requestFocus();
                 break;
         }
     }

@@ -5,18 +5,23 @@
  */
 package domain.sound;
 
+import domain.GameElement;
+import domain.GameElementGroup;
 import java.io.File;
 import javafx.scene.media.AudioClip;
+import presentation.GUIManager;
 import presentation.draw.DrawController;
 
 /**
  *
  * @author askel
  */
-public class SoundPlayer {
+public class SoundPlayer extends GameElement {
+
     private boolean game = true;
-    private final DrawController drawController;
-    
+    private boolean mute = false;
+    private DrawController drawController;
+
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 
@@ -26,12 +31,15 @@ public class SoundPlayer {
     String backSound2File = "assets/sounds/Background_spacesounds.wav";
     AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
 
-    public SoundPlayer(DrawController draw) {
-        this.drawController = draw;
+    @Override
+    public void init() {
+        GameElementGroup group = this.gameElementGroup;
+        GUIManager gui = (GUIManager) group.getManagerGroup().getManager(GUIManager.class);
+        drawController = (DrawController) gui.getGameElementGroup().getGameElement(DrawController.class);
     }
-    
+
     public void playGameMusic() {
-        if (game == true) {
+        if (game == true && mute == false) {
             if (gameMusic.isPlaying() == false) {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
@@ -40,8 +48,7 @@ public class SoundPlayer {
     }
 
     public void playLocationSound() {
-
-        if (game == true) {
+        if (game == true && mute == false) {
             if ("Outside".equals(drawController.getCurrentLocationName())) {
                 if (backSound.isPlaying() == false) {
                     backSound.play();
@@ -57,25 +64,33 @@ public class SoundPlayer {
     }
 
     public void playDoorSound() {
-        String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
-        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-        sound.play();
+        if (mute == false) {
+            String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.play();
+        }
     }
 
     public void playInteractionSound() {
-        String musicFile = "assets/sounds/beep_04.wav";
-        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-        sound.play();
+        if (mute == false) {
+            String musicFile = "assets/sounds/beep_04.wav";
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.play();
+        }
     }
-    
-    public void startSounds(){
+
+    public void startSounds() {
         this.game = true;
     }
-    
+
     public void stopSounds() {
         gameMusic.stop();
         backSound.stop();
         backSound2.stop();
         this.game = false;
+    }
+
+    public void mute() {
+        this.mute = !mute;
     }
 }
