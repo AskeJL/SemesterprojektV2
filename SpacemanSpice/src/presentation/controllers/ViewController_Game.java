@@ -13,15 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import presentation.draw.DrawController;
 
-/**
- * FXML Controller class
- *
- * @author sbang
- */
 public class ViewController_Game extends ViewController implements Initializable {
 
     @FXML
@@ -39,11 +37,11 @@ public class ViewController_Game extends ViewController implements Initializable
     @FXML
     private Canvas canvasMap;
     @FXML
-    private TextArea outputText;
-    @FXML
     private TextField inputText;
     @FXML
     private TextArea infoText;
+    @FXML
+    private AnchorPane foreground;
 
     private static String lastOutput = "";
 
@@ -56,13 +54,28 @@ public class ViewController_Game extends ViewController implements Initializable
 
     private boolean initialized = false;
 
+    private ImageView earth;
+    private ImageView earth_Debris_01;
+    private ImageView earth_Debris_02;
+
+    private ViewController_Menu menu;
+    @FXML
+    private ImageView background;
+    
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {      
         gc = canvasMap.getGraphicsContext2D();
+        
+        background.setImage(new Image("presentation/controllers/background.png", true));
 
+        prepareAnimation();
+
+        guiManager.getCurrentStage().setWidth(1280);
+        guiManager.getCurrentStage().setHeight(720);
+        
         drawController = (DrawController) guiManager.getGameElementGroup().getGameElement(DrawController.class);
     }
 
@@ -72,6 +85,8 @@ public class ViewController_Game extends ViewController implements Initializable
             drawController.setup();
             drawController.drawLocation();
             drawController.drawPlayer();
+            
+            menu = (ViewController_Menu) guiManager.getController(guiManager.getMenuPath());
             
             initialized = true;
         }
@@ -101,8 +116,41 @@ public class ViewController_Game extends ViewController implements Initializable
 
         requester.playGameMusic();
         requester.playLocationSound();
+        
+        earth.rotateProperty().set(menu.getEarthCount());
+        menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);
+
+        earth_Debris_01.rotateProperty().set(menu.getDebris01Count());
+        menu.setDebris01Count(menu.getDebris01Count() > 360 ? 0 : menu.getDebris01Count() + 0.02);
+
+        earth_Debris_02.rotateProperty().set(menu.getDebris02Count());
+        menu.setDebris02Count(menu.getDebris02Count() > 360 ? 0 : menu.getDebris02Count() + 0.01);
     }
 
+    public void prepareAnimation() {
+        ImageView earthBackground = new ImageView(new Image("presentation/controllers/earthBackground.png"));
+        earth = new ImageView(new Image("presentation/controllers/earth.png"));
+        earth_Debris_01 = new ImageView(new Image("presentation/controllers/Debris_01.png"));
+        earth_Debris_02 = new ImageView(new Image("presentation/controllers/Debris_02.png"));
+
+        prepareImage(earthBackground, -500, 280, 0.5, 0.5);
+        prepareImage(earth, -380, 420, 0.5, 0.5);
+        prepareImage(earth_Debris_01, -350, 420, 0.75, 0.75);
+        prepareImage(earth_Debris_02, -350, 420, 0.75, 0.75);
+
+        foreground.getChildren().add(earthBackground);
+        foreground.getChildren().add(earth);
+        foreground.getChildren().add(earth_Debris_01);
+        foreground.getChildren().add(earth_Debris_02);
+    }
+
+    public void prepareImage(ImageView image, double xPos, double yPos, double xScale, double yScale) {
+        image.setScaleX(xScale);
+        image.setScaleY(yScale);
+        image.setTranslateX(xPos);
+        image.setTranslateY(yPos);
+    }
+    
     @FXML
     private void enterPressedHandler(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -110,10 +158,6 @@ public class ViewController_Game extends ViewController implements Initializable
             if (inputText.getText().equals("")) {
                 return;
             }
-            consoleText.add(inputText.getText());
-            outputText.setText(textToString(consoleText));
-            outputText.setScrollTop(10000);
-
             requester.requestRunCommand(inputText.getText());
             inputText.setText("");
         }

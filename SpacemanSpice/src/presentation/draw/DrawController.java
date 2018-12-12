@@ -5,6 +5,7 @@ import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
 import domain.GameElement;
+import domain.GameUpdateable;
 import domain.Manager;
 import domain.locations.*;
 import domain.locations.gameobjects.Player;
@@ -52,6 +53,7 @@ public class DrawController extends GameElement {
 
     @Override
     public void init() {
+        
     }
     
     /**
@@ -243,5 +245,4 @@ public class DrawController extends GameElement {
     public String getCurrentLocationName() {
         return currentLocationName;
     }
-
 }

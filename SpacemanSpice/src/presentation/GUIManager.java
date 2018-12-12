@@ -56,6 +56,7 @@ public class GUIManager extends ViewManager {
     @Override
     public void update() {
         currentController.update();
+        super.update();
     }
 
     private void loadControllers() {

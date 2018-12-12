@@ -51,7 +51,6 @@ public class ViewController_Menu extends ViewController implements Initializable
     private Button about;
     @FXML
     private VBox authors;
-
     /**
      * Initializes the controller class.
      *
