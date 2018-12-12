@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentation.controllers.ViewController;
@@ -21,8 +22,8 @@ public class GUIManager extends ViewManager {
     private final static String PATH_GAME_OVER  = "fxml/view_GameOver.fxml";
 
     private final static String[] FXML_PATHS = {
-        PATH_MENU,
         PATH_SETTINGS,
+        PATH_MENU,
         PATH_HIGH_SCORE,
         PATH_GAME_VIEW,
         PATH_GAME_OVER
@@ -41,6 +42,14 @@ public class GUIManager extends ViewManager {
     public void init(Stage stage) {
         currentStage = stage;
         currentStage.setTitle("Spaceman Spice - Kessler Syndrome");
+        currentStage.setResizable(false);
+        
+        new ViewController() {
+            @Override
+            public void update() {
+                // Dummy class
+            }
+        }.setManager(this);
         
         loadControllers();
         loadView(PATH_MENU);
@@ -80,6 +89,7 @@ public class GUIManager extends ViewManager {
                 currentStage.setScene(controller.getScene());
                 currentController = controller;
                 currentController.getScene().getRoot().requestFocus();
+                currentController.getScene().getRoot().setCursor(Cursor.DEFAULT);
             }
         }
         currentStage.show();
