@@ -131,7 +131,6 @@ public class DrawController extends GameElement {
      * interact-able.
      */
     public void interact() {
-        SoundPlayer sound = new SoundPlayer();
         if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
             actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
             currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
@@ -169,7 +168,6 @@ public class DrawController extends GameElement {
                     requester.playDoorSound();
                     break;
                 case CONTROL:
-                    requester.playInteractionSound();
                     break;
             }
         }

@@ -29,11 +29,24 @@ public class SoundPlayer extends GameElement {
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 
-    String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
-    AudioClip backSound = new AudioClip(new File(backSoundOutsideFile).toURI().toString());
+    String backSoundFile = "assets/sounds/Background_spacesounds.wav";
+    AudioClip backSound = new AudioClip(new File(backSoundFile).toURI().toString());
+    
+    String sireenSoundFile = "assets/sounds/alarm_siren_warning_01.wav";
+    AudioClip sireenSound = new AudioClip(new File(sireenSoundFile).toURI().toString());
+    
+    String moveSpaceshipSoundFile = "assets/sounds/retro_spaceship_engine_03.wav";
+    AudioClip moveSpaceshipSound = new AudioClip(new File(moveSpaceshipSoundFile).toURI().toString());
+    
+    String consoleSoundFile = "assets/sounds/beep_04.wav";
+    AudioClip consoleSound = new AudioClip(new File(consoleSoundFile).toURI().toString());
+    
+    String airSoundFile = "assets/sounds/AirTank_Sound.wav";
+    AudioClip airSound = new AudioClip(new File(airSoundFile).toURI().toString());
+   
+    String repairSoundFile = "assets/sounds/RepairSound.wav";
+    AudioClip repairSound = new AudioClip(new File(repairSoundFile).toURI().toString());
 
-    String backSound2File = "assets/sounds/Background_spacesounds.wav";
-    AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
 
     @Override
     public void init() {
@@ -44,24 +57,24 @@ public class SoundPlayer extends GameElement {
 
     public void playGameMusic() {
 
-        if (game == true && mute == false && !location.getCurrentLocationName().equals(a)) {
+        if (game == true && mute == false && !location.getCurrentLocationName().equalsIgnoreCase(a)) {
             if (gameMusic.isPlaying() == false) {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
             }
-        }  if (location.getCurrentLocationName().equals(a)) {
+        }  if (location.getCurrentLocationName().equalsIgnoreCase(a)) {
             gameMusic.stop();
         }
     }
 
     public void playLocationSound() {
-        if (game == true && mute == false && !location.getCurrentLocationName().equals(a)) {
-            if (backSound2.isPlaying() == false) {
-                backSound2.setVolume(0.1);
-                backSound2.play();
+        if (game == true && mute == false && !location.getCurrentLocationName().equalsIgnoreCase(a)) {
+            if (backSound.isPlaying() == false) {
+                backSound.setVolume(0.1);
+                backSound.play();
             }
-        } else if (location.getCurrentLocationName().equals(a)) {
-            backSound2.stop();
+        } else if (location.getCurrentLocationName().equalsIgnoreCase(a)) {
+            backSound.stop();
         }
     }
 
@@ -73,11 +86,33 @@ public class SoundPlayer extends GameElement {
         }
     }
 
-    public void playInteractionSound() {
+    public void playConsoleSound() {
         if (mute == false) {
-            String musicFile = "assets/sounds/beep_04.wav";
-            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-            sound.play();
+            consoleSound.play();
+        }
+    }
+    
+    public void playSireenSound(){
+        if (mute == false){
+            sireenSound.play();
+        }
+    }
+    
+    public void playMoveSound(){
+        if (mute == false){
+            moveSpaceshipSound.play();
+        }
+    }
+    
+    public void playAirSound(){
+        if (mute == false){
+            airSound.play();
+        }
+    }
+    
+    public void playRepairSound(){
+        if (mute == false){
+            repairSound.play();
         }
     }
 
@@ -88,7 +123,6 @@ public class SoundPlayer extends GameElement {
     public void stopSounds() {
         gameMusic.stop();
         backSound.stop();
-        backSound2.stop();
         this.game = false;
     }
 
