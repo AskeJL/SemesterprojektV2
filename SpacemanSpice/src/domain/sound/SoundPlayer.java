@@ -9,6 +9,7 @@ import domain.GameElement;
 import domain.GameElementGroup;
 import java.io.File;
 import javafx.scene.media.AudioClip;
+import presentation.GUIManager;
 import presentation.draw.DrawController;
 
 /**
@@ -19,8 +20,7 @@ public class SoundPlayer extends GameElement {
 
     private boolean game = true;
     private boolean mute = false;
-    private final DrawController drawController;
-    private SoundManager soundManager;
+    private DrawController drawController;
 
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
@@ -31,15 +31,11 @@ public class SoundPlayer extends GameElement {
     String backSound2File = "assets/sounds/Background_spacesounds.wav";
     AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
 
-    public SoundPlayer(DrawController draw) {
-        this.drawController = draw;
-    }
-
     @Override
     public void init() {
-         GameElementGroup group = this.gameElementGroup;
-        
-        soundManager = (SoundManager) group.getManager();
+        GameElementGroup group = this.gameElementGroup;
+        GUIManager gui = (GUIManager) group.getManagerGroup().getManager(GUIManager.class);
+        drawController = (DrawController) gui.getGameElementGroup().getGameElement(DrawController.class);
     }
 
     public void playGameMusic() {
@@ -52,7 +48,6 @@ public class SoundPlayer extends GameElement {
     }
 
     public void playLocationSound() {
-
         if (game == true && mute == false) {
             if ("Outside".equals(drawController.getCurrentLocationName())) {
                 if (backSound.isPlaying() == false) {
