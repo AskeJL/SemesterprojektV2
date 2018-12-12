@@ -124,6 +124,7 @@ public abstract class Location extends GameElement {
      * @return
      */
     public String getName() {
+        System.out.println(this.NAME);
         return this.NAME;
     }
 

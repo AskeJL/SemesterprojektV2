@@ -139,6 +139,7 @@ public class DrawController extends GameElement {
                     exitDirection = currentMapLocation.getNorthExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
                     requester.playDoorSound();
@@ -148,6 +149,7 @@ public class DrawController extends GameElement {
                     currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
                     requester.playDoorSound();
                     break;
@@ -156,6 +158,7 @@ public class DrawController extends GameElement {
                     currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
                     requester.playDoorSound();
                     break;
@@ -164,6 +167,7 @@ public class DrawController extends GameElement {
                     currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
                     requester.playDoorSound();
                     break;
