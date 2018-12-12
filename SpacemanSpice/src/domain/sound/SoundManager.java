@@ -14,7 +14,7 @@ import domain.Manager;
  */
 public class SoundManager extends Manager {
 
-    private SoundPlayer sound;
+    private static SoundPlayer sound;
 
     public SoundManager() {
 
@@ -23,7 +23,7 @@ public class SoundManager extends Manager {
     @Override
     public void init() {
         GameElementGroup group = this.getGameElementGroup();
-        this.sound = (SoundPlayer) group.getGameElement(SoundPlayer.class);
+        sound = (SoundPlayer) group.getGameElement(SoundPlayer.class);
 
         super.init();
     }
@@ -61,5 +61,9 @@ public class SoundManager extends Manager {
         String info = "domain.sound.SoundManager";
         info += super.toString();
         return info;
+    }
+    
+    public SoundPlayer getSoundPlayer() {
+        return sound;
     }
 }

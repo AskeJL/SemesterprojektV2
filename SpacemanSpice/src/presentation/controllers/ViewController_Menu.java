@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import domain.DomainRequester;
+import domain.sound.SoundManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -109,32 +110,37 @@ public class ViewController_Menu extends ViewController implements Initializable
 
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
         requester.requestReset();
         guiManager.loadView(guiManager.getGameViewPath());
     }
 
     @FXML
     private void onSettingsHandler(ActionEvent event) throws IOException {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
         guiManager.loadView(guiManager.getSettingsViewPath());
     }
 
     @FXML
     private void onHighScore(ActionEvent event) throws IOException {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
         guiManager.loadView(guiManager.getHighscorePath());
     }
 
     @FXML
     private void onAbout(ActionEvent event) {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
     }
 
     @FXML
     private void onQuitHandler(ActionEvent event) {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
         System.exit(0);
     }
 
     @FXML
     private void hover(MouseEvent event) {
-        
+        new SoundManager().getSoundPlayer().playButtonHoverSound();
     }
 
     public void setEarthCount(double value) {

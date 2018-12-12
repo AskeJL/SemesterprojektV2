@@ -22,14 +22,17 @@ public class SoundPlayer extends GameElement {
     private boolean mute = false;
     private DrawController drawController;
 
-    String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
-    AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
+    private final String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
+    private AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 
-    String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
-    AudioClip backSound = new AudioClip(new File(backSoundOutsideFile).toURI().toString());
+    private final String backSoundOutsideFile = "assets/sounds/retro_beeps_collect_item_01.wav";
+    private AudioClip backSound = new AudioClip(new File(backSoundOutsideFile).toURI().toString());
 
-    String backSound2File = "assets/sounds/Background_spacesounds.wav";
-    AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
+    private final String backSound2File = "assets/sounds/Background_spacesounds.wav";
+    private AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
+    
+    private final String buttonHover = "assets/sounds/menu/button_hover.wav";
+    private final String buttonClick = "assets/sounds/menu/button_click.wav";
 
     @Override
     public void init() {
@@ -90,6 +93,18 @@ public class SoundPlayer extends GameElement {
         this.game = false;
     }
 
+    public void playButtonHoverSound() {
+        AudioClip audio = new AudioClip(new File(buttonHover).toURI().toString());
+        audio.setVolume(0.3);
+        audio.play();
+    }
+    
+    public void playButtonClickSound() {
+        AudioClip audio = new AudioClip(new File(buttonClick).toURI().toString());
+        audio.setVolume(0.3);
+        audio.play();
+    }
+    
     public void mute() {
         this.mute = !mute;
     }
