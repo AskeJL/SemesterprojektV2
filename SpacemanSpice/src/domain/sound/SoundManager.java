@@ -16,14 +16,14 @@ public class SoundManager extends Manager {
 
     private SoundPlayer sound;
 
-    SoundManager() {
+    public SoundManager() {
 
     }
 
     @Override
     public void init() {
         GameElementGroup group = this.getGameElementGroup();
-        sound = (SoundPlayer) group.getGameElement(SoundPlayer.class);
+        this.sound = (SoundPlayer) group.getGameElement(SoundPlayer.class);
 
         super.init();
     }
@@ -55,7 +55,7 @@ public class SoundManager extends Manager {
     public void mute() {
         sound.mute();
     }
-    
+
     @Override
     public String toString() {
         String info = "domain.sound.SoundManager";

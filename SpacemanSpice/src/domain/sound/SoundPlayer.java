@@ -7,7 +7,6 @@ package domain.sound;
 
 import domain.GameElement;
 import domain.GameElementGroup;
-import domain.Manager;
 import java.io.File;
 import javafx.scene.media.AudioClip;
 import presentation.draw.DrawController;
@@ -21,7 +20,7 @@ public class SoundPlayer extends GameElement {
     private boolean game = true;
     private boolean mute = false;
     private final DrawController drawController;
-    private SoundManager soundmanager;
+    private SoundManager soundManager;
 
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
@@ -31,16 +30,16 @@ public class SoundPlayer extends GameElement {
 
     String backSound2File = "assets/sounds/Background_spacesounds.wav";
     AudioClip backSound2 = new AudioClip(new File(backSound2File).toURI().toString());
-   
 
     public SoundPlayer(DrawController draw) {
         this.drawController = draw;
     }
-    
-        @Override
+
+    @Override
     public void init() {
-        GameElementGroup group = this.gameElementGroup;
-        this.soundmanager = (SoundManager) group.getManager();
+         GameElementGroup group = this.gameElementGroup;
+        
+        soundManager = (SoundManager) group.getManager();
     }
 
     public void playGameMusic() {
@@ -70,18 +69,18 @@ public class SoundPlayer extends GameElement {
     }
 
     public void playDoorSound() {
-        if(mute == false){
-        String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
-        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-        sound.play();
+        if (mute == false) {
+            String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.play();
         }
     }
 
     public void playInteractionSound() {
-        if(mute == false){
-        String musicFile = "assets/sounds/beep_04.wav";
-        AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-        sound.play();
+        if (mute == false) {
+            String musicFile = "assets/sounds/beep_04.wav";
+            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+            sound.play();
         }
     }
 

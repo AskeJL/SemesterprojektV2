@@ -10,6 +10,7 @@ import domain.resources.Life;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
 import domain.resources.Time;
+import domain.sound.SoundManager;
 import domain.systems.Score;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
@@ -57,6 +58,7 @@ public class Game extends Application {
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
         TileManager tileManager = new TileManager();
+        SoundManager soundManager = new SoundManager();
 
         // Add to manager list
         List<Manager> managers = new ArrayList<>();
@@ -66,6 +68,7 @@ public class Game extends Application {
         managers.add(systemsManager);
         managers.add(tileManager);
         managers.add(tutorialManager);
+        managers.add(soundManager);
 
         managerGroup = new ManagerGroup(managers);
         
@@ -105,6 +108,11 @@ public class Game extends Application {
         GameElementGroup tileGroup = new GameElementGroup();
         tileGroup.setManagerGroup(managerGroup);
         tileManager.setGameElementGroup(tileGroup);
+        
+        // create Sound package
+        GameElementGroup soundGroup = new GameElementGroup();
+        soundGroup.setManagerGroup(managerGroup);
+        soundManager.setGameElementGroup(soundGroup);
 
         for (Manager manager : managerGroup.getManagers()) {
             manager.init();
