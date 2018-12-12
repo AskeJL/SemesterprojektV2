@@ -33,9 +33,10 @@ public class DrawController extends GameElement {
     private HashMap<String, Location> locationMap;
     
     private final String STARTING_LOCATION_NAME = "Personal";
-    private String currentLocationName;
+    private String currentLocationName = "Personal";
     private Location currentMapLocation;
     private String textMapLocation;
+    private String textMap;
     
     private Player player;
     private int playerXLocation;
@@ -63,7 +64,6 @@ public class DrawController extends GameElement {
         
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
-
         currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
