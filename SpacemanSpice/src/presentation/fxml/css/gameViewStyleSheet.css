@@ -3,6 +3,7 @@
     src: url(CFSpaceship-Regular.ttf);
 }*/
 .text {
+    -fx-font-family: 'Consolas';
     -fx-text-fill: white;
     -fx-font-size: 20;
 }
@@ -12,24 +13,16 @@
     -fx-font-size: 10;
 }
 
-.progress-bar .track{
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-opacity: 0.4;
+.progress-bar .track {
+    -fx-background-color: grey;
 }
 
-#progress-bar-life {
-    -fx-background-color: white;
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-accent: red;
+#progressBarLife .bar {
+    -fx-background-color: linear-gradient(to left, #1b60d1 0%, #3970cc 80%, #507bc4 100%);
 }
 
-#progress-bar-oxygen {
-    -fx-background-color: white;
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-accent: blue;
+#progressBarOxygen .bar {
+    -fx-background-color: linear-gradient(to left, #b50000 0%, #bc2b2b 80%, #d64848 100%);
 }
 
 .button{
@@ -40,6 +33,14 @@
 .button:hover{
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
+}
+
+#waveLabel, #timeLabel {
+    -fx-text-fill: black;
+}
+
+#waveNumberValue, #waveTimeValue {
+    -fx-text-fill: #00ff00;
 }
 
 /* Split menu button styling*/

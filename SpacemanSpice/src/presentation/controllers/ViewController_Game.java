@@ -31,7 +31,7 @@ public class ViewController_Game extends ViewController implements Initializable
     @FXML
     private Label timeLabel;
     @FXML
-    private Label waveTimeLabel;
+    private Label waveTimeValue;
     @FXML
     private ProgressBar progressBarOxygen;
     @FXML
@@ -42,7 +42,9 @@ public class ViewController_Game extends ViewController implements Initializable
     private TextArea infoText;
     @FXML
     private AnchorPane foreground;
-
+    @FXML
+    private ImageView background;
+    
     private static String lastOutput = "";
 
     private final ArrayList<String> consoleText = new ArrayList<>();
@@ -59,8 +61,6 @@ public class ViewController_Game extends ViewController implements Initializable
     private ImageView earth_Debris_02;
 
     private ViewController_Menu menu;
-    @FXML
-    private ImageView background;
     
     /**
      * Initializes the controller class.
@@ -102,7 +102,7 @@ public class ViewController_Game extends ViewController implements Initializable
             guiManager.loadView(guiManager.getGameOverPath());
             requester.stopSounds();
         }
-        waveTimeLabel.setText(Long.toString(reader.readRemainingTime()));
+        waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
 
         String output = reader.readOutput();
