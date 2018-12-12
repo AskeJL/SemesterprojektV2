@@ -5,8 +5,10 @@
  */
 package domain.sound;
 
+import domain.DomainReader;
 import domain.GameElement;
 import domain.GameElementGroup;
+import domain.locations.LocationsManager;
 import java.io.File;
 import javafx.scene.media.AudioClip;
 import presentation.GUIManager;
@@ -21,6 +23,8 @@ public class SoundPlayer extends GameElement {
     private boolean game = true;
     private boolean mute = false;
     private DrawController drawController;
+    LocationsManager location = new LocationsManager();
+    String a = "Outside";
 
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
@@ -39,27 +43,25 @@ public class SoundPlayer extends GameElement {
     }
 
     public void playGameMusic() {
-        if (game == true && mute == false) {
+
+        if (game == true && mute == false && !location.getLocationMap().keySet().contains(a)) {
             if (gameMusic.isPlaying() == false) {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
             }
+        }  if (location.getLocationMap().keySet().contains(a)) {
+            gameMusic.stop();
         }
     }
 
     public void playLocationSound() {
-        if (game == true && mute == false) {
-            if ("Outside".equals(drawController.getCurrentLocationName())) {
-                if (backSound.isPlaying() == false) {
-                    backSound.play();
-                }
-
-            } else {
-                if (backSound2.isPlaying() == false) {
-                    backSound2.setVolume(0.1);
-                    backSound2.play();
-                }
+        if (game == true && mute == false && !location.getLocationMap().keySet().contains(a)) {
+            if (backSound2.isPlaying() == false) {
+                backSound2.setVolume(0.1);
+                backSound2.play();
             }
+        } else if (location.getLocationMap().keySet().contains(a)) {
+            backSound2.stop();
         }
     }
 

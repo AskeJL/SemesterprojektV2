@@ -142,7 +142,7 @@ public class DrawController extends GameElement {
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case WEST:
                     exitDirection = currentMapLocation.getWestExit().getTileExit();
@@ -150,7 +150,7 @@ public class DrawController extends GameElement {
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case SOUTH:
                     exitDirection = currentMapLocation.getSouthExit().getTileExit();
@@ -158,7 +158,7 @@ public class DrawController extends GameElement {
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case EAST:
                     exitDirection = currentMapLocation.getEastExit().getTileExit();
@@ -166,10 +166,10 @@ public class DrawController extends GameElement {
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case CONTROL:
-                    sound.playInteractionSound();
+                    requester.playInteractionSound();
                     break;
             }
         }
