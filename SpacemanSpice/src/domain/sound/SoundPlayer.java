@@ -32,28 +32,28 @@ public class SoundPlayer extends GameElement {
 
     String backSoundFile = "assets/sounds/Background_spacesounds.wav";
     AudioClip backSound = new AudioClip(new File(backSoundFile).toURI().toString());
-    
+
     String sireenSoundFile = "assets/sounds/alarm_siren_warning_01.wav";
     AudioClip sireenSound = new AudioClip(new File(sireenSoundFile).toURI().toString());
-    
+
     String moveSpaceshipSoundFile = "assets/sounds/retro_spaceship_engine_03.wav";
     AudioClip moveSpaceshipSound = new AudioClip(new File(moveSpaceshipSoundFile).toURI().toString());
-    
+
     String consoleSoundFile = "assets/sounds/beep_09.wav";
     AudioClip consoleSound = new AudioClip(new File(consoleSoundFile).toURI().toString());
-    
+
     String airSoundFile = "assets/sounds/AirTank_Sound.wav";
     AudioClip airSound = new AudioClip(new File(airSoundFile).toURI().toString());
-   
+
     String repairSoundFile = "assets/sounds/RepairSound.wav";
     AudioClip repairSound = new AudioClip(new File(repairSoundFile).toURI().toString());
-    
+
     String laserSoundFile = "assets/sounds/sci-fi_weapon_laser_small_03.wav";
     AudioClip laserSound = new AudioClip(new File(laserSoundFile).toURI().toString());
-    
-    
 
-    
+    String laserChargeSoundFile = "assets/sounds/LaserCharge_Sound.wav";
+    AudioClip laserChargeSound = new AudioClip(new File(laserChargeSoundFile).toURI().toString());
+
     private final String buttonHover = "assets/sounds/menu/button_hover.wav";
     private final String buttonClick = "assets/sounds/menu/button_click.wav";
 
@@ -62,7 +62,7 @@ public class SoundPlayer extends GameElement {
         GameElementGroup group = this.gameElementGroup;
         GUIManager gui = (GUIManager) group.getManagerGroup().getManager(GUIManager.class);
         drawController = (DrawController) gui.getGameElementGroup().getGameElement(DrawController.class);
-        this.locationsManager = (LocationsManager)group.getManagerGroup().getManager(LocationsManager.class);
+        this.locationsManager = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
     }
 
     public void playGameMusic() {
@@ -71,7 +71,8 @@ public class SoundPlayer extends GameElement {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
             }
-        }  if (locationsManager.getCurrentLocation() != null && locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
+        }
+        if (locationsManager.getCurrentLocation() != null && locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             gameMusic.stop();
         }
     }
@@ -89,17 +90,17 @@ public class SoundPlayer extends GameElement {
 
     public void playDoorSound() {
         if (mute == false) {
-            if (door == 1){
-            String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
-            AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
-            sound.play();
-            door = 2;
+            if (door == 1) {
+                String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
+                AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+                sound.play();
+                door = 2;
             } else if (door == 2) {
                 String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door2.wav";
                 AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
                 sound.play();
                 door = 3;
-            } else if (door == 3){
+            } else if (door == 3) {
                 String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door3.wav";
                 AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
                 sound.play();
@@ -113,46 +114,52 @@ public class SoundPlayer extends GameElement {
             consoleSound.play();
         }
     }
-    
-    public void playSireenSound(){
-        if (mute == false){
+
+    public void playSireenSound() {
+        if (mute == false) {
             if (sireenSound.isPlaying() == false) {
-            sireenSound.setVolume(0.05);
-            sireenSound.play();
+                sireenSound.setVolume(0.05);
+                sireenSound.play();
             }
         }
     }
-    
-    public void stopSireenSound(){
-        if (mute == false){
+
+    public void stopSireenSound() {
+        if (mute == false) {
             if (sireenSound.isPlaying() == false) {
-            sireenSound.stop();
+                sireenSound.stop();
             }
         }
     }
-    
-    public void playMoveSound(){
-        if (mute == false){
+
+    public void playMoveSound() {
+        if (mute == false) {
             moveSpaceshipSound.play();
         }
     }
-    
-    public void playAirSound(){
-        if (mute == false){
+
+    public void playAirSound() {
+        if (mute == false) {
             airSound.play();
         }
     }
-    
-    public void playRepairSound(){
-        if (mute == false){
+
+    public void playRepairSound() {
+        if (mute == false) {
             repairSound.play();
         }
     }
-        
-    public void playLaserSound(){
-        if (mute == false){
+
+    public void playLaserSound() {
+        if (mute == false) {
             laserSound.play();
-        } 
+        }
+    }
+
+    public void playLaserChargeSound() {
+        if (mute == false) {
+            laserChargeSound.play();
+        }
     }
 
     public void startSounds() {
@@ -170,13 +177,13 @@ public class SoundPlayer extends GameElement {
         audio.setVolume(0.3);
         audio.play();
     }
-    
+
     public void playButtonClickSound() {
         AudioClip audio = new AudioClip(new File(buttonClick).toURI().toString());
         audio.setVolume(0.3);
         audio.play();
     }
-    
+
     public void mute() {
         this.mute = !mute;
     }

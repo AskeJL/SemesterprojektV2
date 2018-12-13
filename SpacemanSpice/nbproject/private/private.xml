@@ -3,15 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/OxygenControl.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/NetControl.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/controllers/ViewController_Game.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/controllers/ViewController_Menu.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/OxygenGenerator1.java</file>
             <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/presentation/draw/DrawController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/sound/SoundPlayer.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/NetRepair.java</file>
             <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/sound/SoundManager.java</file>
-            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/LocationsManager.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/LaserArmingSystem.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/OxygenGenerator3.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/SteeringOvercharge.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/ScanningControl.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/LaserControl.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/sound/SoundPlayer.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/OxygenGenerator2.java</file>
+            <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/SteeringControl.java</file>
             <file>file:/C:/Users/askel/OneDrive/SemesterprojektV2/SpacemanSpice/src/domain/DomainRequester.java</file>
-            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/LaserControl.java</file>
-            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/presentation/controllers/ViewController_Game.java</file>
-            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/locations/gameobjects/ScanningControl.java</file>
-            <file>file:/C:/Users/sbang/OneDrive/SDU/Software%20Engineering/01%20Semester%20projects/1.SemesterProjekt/Repo%20(v2)/SemesterprojektV2/SpacemanSpice/src/domain/Game.java</file>
         </group>
     </open-files>
 </project-private>

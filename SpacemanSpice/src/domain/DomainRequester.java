@@ -39,7 +39,7 @@ public class DomainRequester implements InteractionsRequest {
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         
         resources.getOxygen().setValue(100);
-        resources.getLife().setValue(40);
+        resources.getLife().setValue(100);
         resources.getTime().init();
         
         systems.getWave().setNumberOfWaves(0);
@@ -117,6 +117,11 @@ public class DomainRequester implements InteractionsRequest {
      public void playLaserSound(){
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
         sound.playLaserSound();
+     }
+     
+     public void playLaserChargeSound() {
+         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playLaserChargeSound();
      }
 
     public void startSounds() {
