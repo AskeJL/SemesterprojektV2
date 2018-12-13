@@ -42,18 +42,16 @@ public class NetControl extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         if(wave.getNetCurrentHealth() > 0){
-        requester.playConsoleSound();
-        reader.storeln("Interacting with net control.");
-        systemsManager.setMediumFragmentDestroyed(true);
-        wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
+            requester.playConsoleSound();
+            reader.storeln("Interacting with net control.");
+            systemsManager.setMediumFragmentDestroyed(true);
+            wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
+            if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
+            }
         }
         else{
             reader.storeln("Net is too damaged, repair it in order to keep using it!");
-        }
-        }
-        
-        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
         }
     }
 

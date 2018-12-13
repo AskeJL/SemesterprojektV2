@@ -40,20 +40,24 @@ public class OxygenControl extends GameObject {
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
         if(oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true){
-        requester.playAirSound();
-        reader.storeln("You interact with the Oxygen refilling control");
-        oxygen.increaseValue(100 - oxygen.getValue());
-        oxygen.setOxygenGenerator1On(false);
-        oxygen.setOxygenGenerator2On(false);
-        oxygen.setOxygenGenerator3On(false);
+            requester.playAirSound();
+            reader.storeln("You interact with the Oxygen refilling control");
+            oxygen.increaseValue(100 - oxygen.getValue());
+            oxygen.setOxygenGenerator1On(false);
+            oxygen.setOxygenGenerator2On(false);
+            oxygen.setOxygenGenerator3On(false);
+            if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenCharged(true);
+            }
         }
         else{
-        reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
+            reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
+            if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setScannerActivated(true);
+            }
         }
         
-        if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setScannerActivated(true);
-        }
     }
 
     @Override

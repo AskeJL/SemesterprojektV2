@@ -10,6 +10,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
+import domain.tutorial.TutorialManager;
 
 /**
  *
@@ -33,6 +34,9 @@ public class NetRepair extends GameObject {
         else{
             wave.setNetCurrentHealth(wave.getNetCurrentHealth() + 10);
             reader.storeln("Net has been repaired, now at: " + wave.getNetCurrentHealth() + "% health");
+        }
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetRepaired(true);
         }
     }
     

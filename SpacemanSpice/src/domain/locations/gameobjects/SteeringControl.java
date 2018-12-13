@@ -47,7 +47,10 @@ public class SteeringControl extends GameObject {
         }
         
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
+            systemsManager.setLargeFragmentDestroyed(true);
+            requester.playMoveSound();
+            reader.storeln("You have moved the ship");
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringActivated(true);
         }
     }
 

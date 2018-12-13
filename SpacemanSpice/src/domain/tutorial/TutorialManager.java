@@ -230,7 +230,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
             oxygenCharged = false;
             damageRepairActivated = false;
             netActivated = false;
-            netRepaired = false;
             steeringActivated = false;
             steeringCharged = false;
         }
