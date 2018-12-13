@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| An empty catch? Well I guess you  |
+| tried.                            |
+|                                   |
+| Next you will learn how to steer  |
+| the ship in order to avoid        |
+| debris that are too large to be   |
+| caught by the net. Avoiding these |
+| is very important, as they can    |
+| do a lot of damange to the hull.  |
++-----------------------------------+
+ Type continue to continue.

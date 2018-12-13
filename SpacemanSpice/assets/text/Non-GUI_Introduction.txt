@@ -1,0 +1,16 @@
++--------------------------------------------------+
+| Spaceman Spice                                   |
+| Log entry 003                        10/02/2133  |
+|                                                  |
+| After having left Earth's atmosphere, I can      |
+| finally see the spaceship LEO Control 153, on    |
+| which I am to spend the next 3 months as a       |
+| low Earth orbit debris controller (LEODC).       |
+|                                                  |
+| The job of a LEODC is fairly simple, as my main  |
+| task is to oversee the AI of the spaceship and   |
+| ensure that the ship function as intended.       |
+|                                                  |
+| I wonder what the future has in store for me.    |
++--------------------------------------------------+
+ Type continue to continue.

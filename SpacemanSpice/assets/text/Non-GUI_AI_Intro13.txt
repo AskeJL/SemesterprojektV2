@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| To repair the ship you will need  |
+| to get outside. To get outside    |
+| will need to get to the airlock.  |
+|                                   |
+| I can see that you are already    |
+| wearing a spacesuit with an oxygen|
+| tank. Good.                       |
+| Now get out there and see if any- |
+| thing is in need of repairs.      |
++-----------------------------------+
+ Hint: Type help interact.

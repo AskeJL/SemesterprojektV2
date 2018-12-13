@@ -1,0 +1,14 @@
++-----------------------------------+
+| SAL153                            |
+| And before you ask: No, it is     |
+| not an abbreviation. It is just   |
+| a net. Nothing special about it.  |
+|                                   |
+| You may think "but why not just   |
+| shoot the medium debris with the  |
+| laser?" the answer is: let us not |
+| think too much about that.        |
+| Now, get to the net room and      |
+| catch some fish! - I mean debris. |
++-----------------------------------+
+ Hint: Type help interact.
