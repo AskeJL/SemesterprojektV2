@@ -108,6 +108,11 @@ public class DomainRequester implements InteractionsRequest {
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
         sound.playRepairSound();
      }
+     
+     public void playLaserSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playLaserSound();
+     }
 
     public void startSounds() {
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);

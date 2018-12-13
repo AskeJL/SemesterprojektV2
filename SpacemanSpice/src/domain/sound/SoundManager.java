@@ -57,6 +57,10 @@ public class SoundManager extends Manager {
          sound.playAirSound();
      }
      
+     public void playLaserSound(){
+         sound.playLaserSound();
+     }
+     
      public void playRepairSound(){
          sound.playRepairSound();
      }

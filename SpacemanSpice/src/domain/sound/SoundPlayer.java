@@ -25,6 +25,7 @@ public class SoundPlayer extends GameElement {
     private DrawController drawController;
     private LocationsManager locationsManager;
     String a = "outside";
+    int door = 1;
 
     private final String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     private AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
@@ -46,6 +47,11 @@ public class SoundPlayer extends GameElement {
    
     String repairSoundFile = "assets/sounds/RepairSound.wav";
     AudioClip repairSound = new AudioClip(new File(repairSoundFile).toURI().toString());
+    
+    String laserSoundFile = "assets/sounds/sci-fi_weapon_laser_small_03.wav";
+    AudioClip laserSound = new AudioClip(new File(laserSoundFile).toURI().toString());
+    
+    
 
     
     private final String buttonHover = "assets/sounds/menu/button_hover.wav";
@@ -83,9 +89,22 @@ public class SoundPlayer extends GameElement {
 
     public void playDoorSound() {
         if (mute == false) {
+            if (door == 1){
             String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door.wav";
             AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
             sound.play();
+            door = 2;
+            } else if (door == 2) {
+                String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door2.wav";
+                AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+                sound.play();
+                door = 3;
+            } else if (door == 3){
+                String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door3.wav";
+                AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
+                sound.play();
+                door = 4;
+            }
         }
     }
 
@@ -119,6 +138,12 @@ public class SoundPlayer extends GameElement {
         if (mute == false){
             repairSound.play();
         }
+    }
+        
+    public void playLaserSound(){
+        if (mute == false){
+            laserSound.play();
+        } 
     }
 
     public void startSounds() {

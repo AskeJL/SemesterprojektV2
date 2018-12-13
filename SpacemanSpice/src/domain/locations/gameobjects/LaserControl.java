@@ -38,7 +38,7 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playConsoleSound();
+        requester.playLaserSound();
         reader.storeln("Interacting with laser control");
         systemsManager.setSmallFragmentDestroyed(true);
     }
