@@ -52,6 +52,15 @@ public class Wave extends GameElement {
     private final int NET_MAX_HEALTH = 100;
     private int netCurrentHealth;
     
+    private int sensor1currentValue;
+    private int sensor1MaxValue;
+    private int sensor2currentValue;
+    private int sensor2MaxValue;
+    private int sensor3currentValue;
+    private int sensor3MaxValue;
+    private int sensor4currentValue;
+    private int sensor4MaxValue;
+    
     private boolean thrustersOn;
     
     private ResourcesManager resourcesManager;
@@ -66,6 +75,10 @@ public class Wave extends GameElement {
         setAmountOfLaserShots(0);
         setNetCurrentHealth(getNET_MAX_HEALTH());
         setThrustersOn(false);
+        this.setSensor1currentValue(0);
+        this.setSensor2currentValue(0);
+        this.setSensor3currentValue(0);
+        this.setSensor4currentValue(0);
     }
 
     /**
@@ -103,7 +116,7 @@ public class Wave extends GameElement {
         } else {
             easy = true;
         }
-
+        this.createSensorValues();
         time.setRandomTime();
     }
 
@@ -166,7 +179,13 @@ public class Wave extends GameElement {
             }
         }
     }
-
+    private void createSensorValues(){
+        Random random = new Random();
+        this.sensor1MaxValue = random.nextInt(4)+1;
+        this.sensor2MaxValue = random.nextInt(4)+1;
+        this.sensor3MaxValue = random.nextInt(4)+1;
+        this.sensor4MaxValue = random.nextInt(4)+1;
+    }
     @Override
     public String toString() {
         String s = "";
@@ -273,5 +292,89 @@ public class Wave extends GameElement {
 
     public void setThrustersOn(boolean thrustersOn) {
         this.thrustersOn = thrustersOn;
+    }
+
+    /**
+     * @return the sensor1MaxValue
+     */
+    public int getSensor1MaxValue() {
+        return sensor1MaxValue;
+    }
+
+    /**
+     * @return the sensor2MaxValue
+     */
+    public int getSensor2MaxValue() {
+        return sensor2MaxValue;
+    }
+
+    /**
+     * @return the sensor3MaxValue
+     */
+    public int getSensor3MaxValue() {
+        return sensor3MaxValue;
+    }
+
+    /**
+     * @return the sensor4MaxValue
+     */
+    public int getSensor4MaxValue() {
+        return sensor4MaxValue;
+    }
+
+    /**
+     * @return the sensor1currentValue
+     */
+    public int getSensor1currentValue() {
+        return sensor1currentValue;
+    }
+
+    /**
+     * @param sensor1currentValue the sensor1currentValue to set
+     */
+    public void setSensor1currentValue(int sensor1currentValue) {
+        this.sensor1currentValue = sensor1currentValue;
+    }
+
+    /**
+     * @return the sensor2currentValue
+     */
+    public int getSensor2currentValue() {
+        return sensor2currentValue;
+    }
+
+    /**
+     * @param sensor2currentValue the sensor2currentValue to set
+     */
+    public void setSensor2currentValue(int sensor2currentValue) {
+        this.sensor2currentValue = sensor2currentValue;
+    }
+
+    /**
+     * @return the sensor3currentValue
+     */
+    public int getSensor3currentValue() {
+        return sensor3currentValue;
+    }
+
+    /**
+     * @param sensor3currentValue the sensor3currentValue to set
+     */
+    public void setSensor3currentValue(int sensor3currentValue) {
+        this.sensor3currentValue = sensor3currentValue;
+    }
+
+    /**
+     * @return the sensor4currentValue
+     */
+    public int getSensor4currentValue() {
+        return sensor4currentValue;
+    }
+
+    /**
+     * @param sensor4currentValue the sensor4currentValue to set
+     */
+    public void setSensor4currentValue(int sensor4currentValue) {
+        this.sensor4currentValue = sensor4currentValue;
     }
 }

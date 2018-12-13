@@ -102,9 +102,7 @@ public class TileManager extends Manager implements GameUpdateable {
     private final String CONTROLLER_LASER_01_FILE_PATH = "assets/pictures/controllers/controllerLaser.png";
     private final Image CONTROLLER_LASER_01_IMAGE = new Image(new File(CONTROLLER_LASER_01_FILE_PATH).toURI().toString());
     private Tile controllerLaser02;
-    private final String CONTROLLER_LASER_02_FILE_PATH = "assets/pictures/controllers/controllerLaser.png";
-    private final Image CONTROLLER_LASER_02_IMAGE = new Image(new File(CONTROLLER_LASER_02_FILE_PATH).toURI().toString());
-
+ 
     private Tile controllerNet01;
     private final String CONTROLLER_NET_01_FILE_PATH = "assets/pictures/controllers/controllerNet.png";
     private final Image CONTROLLER_NET_01_IMAGE = new Image(new File(CONTROLLER_NET_01_FILE_PATH).toURI().toString());
@@ -119,9 +117,14 @@ public class TileManager extends Manager implements GameUpdateable {
     private Tile controllerOxygen03;
     private Tile controllerOxygen04;
 
-    private Tile controllerScanning_01;
-    private final String CONTROLLER_SCANNING_01_FILE_PATH = "assets/pictures/controllers/controllerScanning.png";
-    private final Image CONTROLLER_SCANNING_01_IMAGE = new Image(new File(CONTROLLER_SCANNING_01_FILE_PATH).toURI().toString());
+    
+    private final String SCANNING_FILE_PATH = "assets/pictures/controllers/controllerScanning.png";
+    private final Image SCANNING_IMAGE = new Image(new File(SCANNING_FILE_PATH).toURI().toString());
+    private Tile controllerScanning;
+    private Tile activatorScanning_01;
+    private Tile activatorScanning_02;
+    private Tile activatorScanning_03;
+    private Tile activatorScanning_04;
 
     private final String CONTROLLER_STEERING_FILE_PATH = "assets/pictures/controllers/controllerSteering.png";
     private final Image CONTROLLER_STEERING_IMAGE = new Image(new File(CONTROLLER_STEERING_FILE_PATH).toURI().toString());
@@ -204,7 +207,12 @@ public class TileManager extends Manager implements GameUpdateable {
         this.controllerOxygen03 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
         this.controllerOxygen04 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
 
-        this.controllerScanning_01 = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_SCANNING_01_IMAGE);
+        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        this.activatorScanning_01 = new Tile('[', false, GameObjectType.CONTROL, new ActivatorScanning1(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        this.activatorScanning_02 = new Tile(']', false, GameObjectType.CONTROL, new ActivatorScanning2(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        this.activatorScanning_03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        this.activatorScanning_04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        
         this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
 
         this.controllerSteering01 = new Tile('<', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_IMAGE);
@@ -260,7 +268,13 @@ public class TileManager extends Manager implements GameUpdateable {
         getTileMap().put(this.controllerOxygen03.getSYMBOL(), this.controllerOxygen03);
         getTileMap().put(this.controllerOxygen04.getSYMBOL(), this.controllerOxygen04);
 
-        getTileMap().put(this.controllerScanning_01.getSYMBOL(), this.controllerScanning_01);
+        getTileMap().put(this.controllerScanning.getSYMBOL(), this.controllerScanning);
+        getTileMap().put(this.activatorScanning_01.getSYMBOL(), this.activatorScanning_01);
+        getTileMap().put(this.activatorScanning_02.getSYMBOL(), this.activatorScanning_02);
+        getTileMap().put(this.activatorScanning_03.getSYMBOL(), this.activatorScanning_03);
+        getTileMap().put(this.activatorScanning_04.getSYMBOL(), this.activatorScanning_04);
+        
+        
         getTileMap().put(this.controllerSteering01.getSYMBOL(), this.controllerSteering01);
         getTileMap().put(this.controllerSteering02.getSYMBOL(), this.controllerSteering02);
 
