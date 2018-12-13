@@ -23,7 +23,7 @@ public class SoundPlayer extends GameElement {
     private boolean game = true;
     private boolean mute = false;
     private DrawController drawController;
-    LocationsManager location = new LocationsManager();
+    private LocationsManager locationsManager;
     String a = "outside";
 
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
@@ -53,27 +53,27 @@ public class SoundPlayer extends GameElement {
         GameElementGroup group = this.gameElementGroup;
         GUIManager gui = (GUIManager) group.getManagerGroup().getManager(GUIManager.class);
         drawController = (DrawController) gui.getGameElementGroup().getGameElement(DrawController.class);
+        this.locationsManager = (LocationsManager)group.getManagerGroup().getManager(LocationsManager.class);
     }
 
     public void playGameMusic() {
-
-        if (game == true && mute == false && !location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
+        if (game == true && mute == false && locationsManager.getCurrentLocation() != null && !locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (gameMusic.isPlaying() == false) {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
             }
-        }  if (location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
+        }  if (locationsManager.getCurrentLocation() != null && locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             gameMusic.stop();
         }
     }
 
     public void playLocationSound() {
-        if (game == true && mute == false && !location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
+        if (game == true && mute == false && locationsManager.getCurrentLocation() != null && !locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (backSound.isPlaying() == false) {
                 backSound.setVolume(0.1);
                 backSound.play();
             }
-        } else if (location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
+        } else if (locationsManager.getCurrentLocationName().equalsIgnoreCase(a)) {
             backSound.stop();
         }
     }
