@@ -39,7 +39,7 @@ public class DomainRequester implements InteractionsRequest {
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         
         resources.getOxygen().setValue(100);
-        resources.getLife().setValue(100);
+        resources.getLife().setValue(40);
         resources.getTime().init();
         
         systems.getWave().setNumberOfWaves(0);
@@ -92,6 +92,11 @@ public class DomainRequester implements InteractionsRequest {
     public void playSireenSound(){
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
         sound.playSireenSound();
+    }
+    
+    public void stopSireenSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.stopSireenSound();
     }
     
      public void playMoveSound(){

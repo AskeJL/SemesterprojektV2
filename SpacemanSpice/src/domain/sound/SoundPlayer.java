@@ -39,7 +39,7 @@ public class SoundPlayer extends GameElement {
     String moveSpaceshipSoundFile = "assets/sounds/retro_spaceship_engine_03.wav";
     AudioClip moveSpaceshipSound = new AudioClip(new File(moveSpaceshipSoundFile).toURI().toString());
     
-    String consoleSoundFile = "assets/sounds/beep_04.wav";
+    String consoleSoundFile = "assets/sounds/beep_09.wav";
     AudioClip consoleSound = new AudioClip(new File(consoleSoundFile).toURI().toString());
     
     String airSoundFile = "assets/sounds/AirTank_Sound.wav";
@@ -116,8 +116,17 @@ public class SoundPlayer extends GameElement {
     
     public void playSireenSound(){
         if (mute == false){
-            if (gameMusic.isPlaying() == false) {
+            if (sireenSound.isPlaying() == false) {
+            sireenSound.setVolume(0.05);
             sireenSound.play();
+            }
+        }
+    }
+    
+    public void stopSireenSound(){
+        if (mute == false){
+            if (sireenSound.isPlaying() == false) {
+            sireenSound.stop();
             }
         }
     }

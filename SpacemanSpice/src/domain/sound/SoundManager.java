@@ -49,6 +49,10 @@ public class SoundManager extends Manager {
         sound.playSireenSound();
     }
     
+    public void stopSireenSound(){
+        sound.stopSireenSound();
+    }
+    
      public void playMoveSound(){
          sound.playMoveSound();
      }
