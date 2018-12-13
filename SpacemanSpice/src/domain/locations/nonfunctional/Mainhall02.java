@@ -1,7 +1,6 @@
 package domain.locations.nonfunctional;
 
 import domain.locations.Exit;
-import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
 
@@ -10,9 +9,6 @@ import domain.locations.Room;
  */
 public final class Mainhall02 extends Location {
     
-    /**
-     * Constructor that runs the createLocationCLI method.
-     */
     public Mainhall02(){
         super("Mainhall02", "This is the 2nd mainhall on the space ship");
         

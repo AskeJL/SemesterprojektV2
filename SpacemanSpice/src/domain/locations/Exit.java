@@ -1,9 +1,5 @@
 package domain.locations;
 
-import domain.locations.ExitDirection;
-import domain.locations.Location;
-import domain.locations.Room;
-
 /**
  * An exit from on room/location to another. This is used to map out the
  * positions of the {@link Room}s and {@link Location}s.

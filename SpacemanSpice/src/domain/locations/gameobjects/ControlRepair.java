@@ -15,13 +15,13 @@ import domain.resources.ResourcesManager;
  * @see GameObject
  * @see domain.locations.functional.Outside
  */
-public class DamageRepair extends GameObject {
+public class ControlRepair extends GameObject {
     
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public DamageRepair(ResourcesManager resources) {
+    public ControlRepair(ResourcesManager resources) {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
@@ -35,7 +35,7 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playRepairSound();
+        requester.requestRepairSound();
         reader.storeln("You begin repairing the ship.");
         Life life = resourcesManager.getLife();
         life.setRepair(true);

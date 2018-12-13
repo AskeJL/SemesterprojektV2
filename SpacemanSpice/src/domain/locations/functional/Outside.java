@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.DamageRepair;
+import domain.locations.gameobjects.ControlRepair;
 import domain.resources.ResourcesManager;
 
 /**
@@ -20,13 +20,6 @@ public final class Outside extends Location {
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
     }
-    
-    @Override
-    public void init() {
-        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
-
-        createLocationCLI();
-    }
 
     public Outside(Boolean gui){
                    super(
@@ -39,13 +32,31 @@ public final class Outside extends Location {
                    "outsideMap.txt");
     }
     
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
+
+        createLocationCLI();
+    }
+    
+    /**
+     * Creates an outside {@link Room} and an airlock
+     * {@link Room}.
+     * <p>
+     * A {@link ControlRepair} is added to the outside {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the outside location are created-----------------------*/
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
-        outside.addGameObject(new DamageRepair(resourcesManager));
+        outside.addGameObject(new ControlRepair(resourcesManager));
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/
