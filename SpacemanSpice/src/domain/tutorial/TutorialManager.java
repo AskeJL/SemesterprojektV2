@@ -38,11 +38,16 @@ public class TutorialManager extends Manager implements GameUpdateable {
     private int counter = 0;
     private boolean tutorial = true;
     private boolean scannerActivated = false;
+    private boolean scannerCalibrated = false;
     private boolean laserActivated = false;
+    private boolean laserCharged = false;
     private boolean oxygenActivated = false;
     private boolean damageRepairActivated = false;
     private boolean netActivated = false;
+    private boolean netRepaired = false;
     private boolean steeringActivated = false;
+    private boolean steeringCharged = false;
+    
 
     private InteractionsManager interactionsManager;
     private LocationsManager locationsManager;
