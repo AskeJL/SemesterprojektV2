@@ -31,6 +31,14 @@ public interface DataReader {
      * @see data.read.Read
      */
     List<String> readData(AssetType type, String filename);
-    
+
+    /**
+     * Request an image from the data layer. The image requested depends on the
+     * {@link data.AssetType} and filename.
+     *
+     * @param type The type of data. {@link data.AssetType}
+     * @param filename The name of the file. (Remember file extensions)
+     * @return An Image.
+     */
     Image readImage(AssetType type, String filename);
 }

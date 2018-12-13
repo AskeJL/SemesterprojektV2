@@ -39,7 +39,7 @@ public class OxygenControl extends GameObject {
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
         if(oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true){
-        requester.playAirSound();
+        requester.requestAirSound();
         reader.storeln("You interact with the Oxygen refilling control");
         oxygen.increaseValue(100 - oxygen.getValue());
         oxygen.setOxygenGenerator1On(false);

@@ -12,13 +12,13 @@ public abstract class Manager {
     }
 
     public void init() {
-        for (GameElement e : gameElementGroup.getElements()) {
+        for (GameElement e : gameElementGroup.getGameElements()) {
             e.init();
         }
     }
 
     public void update() {
-        for (GameElement e : gameElementGroup.getElements()) {
+        for (GameElement e : gameElementGroup.getGameElements()) {
             if (e instanceof GameUpdateable) {
                 ((GameUpdateable) e).update();
             }

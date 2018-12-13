@@ -47,7 +47,7 @@ public class LaserControl extends GameObject {
         } else {
             reader.storeln("The laser needs to be recharged in order to fire again.");
         }
-        requester.playConsoleSound();
+        requester.requestConsoleSound();
     }
 
     @Override

@@ -107,7 +107,7 @@ public class ViewController_Settings extends ViewController implements Initializ
 
     @FXML
     private void toogleSoundHandler(ActionEvent event) {
-        domain.mute();
+        domain.requestMuteSounds();
     }
 
     @FXML

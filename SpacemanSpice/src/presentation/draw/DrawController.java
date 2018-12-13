@@ -64,13 +64,13 @@ public class DrawController extends GameElement {
         GUIManager gui = (GUIManager)gameElementGroup.getManager();
         gc = ((ViewController_Game)gui.getController(gui.getGameViewPath())).getGraphicsContext();
         
-        currentTileMap = requester.getTileMap();
-        locationMap = requester.getLocationMap();
+        currentTileMap = requester.requestTileMap();
+        locationMap = requester.requestLocationsMap();
         currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
 
-        player = requester.getPlayer();
+        player = requester.requestPlayer();
         playerXLocation = player.getxPosition() + 19;
         playerYLocation = player.getyPosition() + 10;
 
@@ -111,7 +111,7 @@ public class DrawController extends GameElement {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
-        requester.setcurrentLocation(this.currentMapLocation);
+        requester.requestSetCurrentLocation(this.currentMapLocation);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
                 if (currentTileMap.get(characters[x][y]) == exitTile) {
@@ -149,7 +149,7 @@ public class DrawController extends GameElement {
                     this.currentLocationName = this.currentMapLocation.getName();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    requester.playDoorSound();
+                    requester.requestDoorSound();
                     break;
                 case WEST:
                     exitDirection = currentMapLocation.getWestExit().getTileExit();
@@ -158,7 +158,7 @@ public class DrawController extends GameElement {
                     drawLocation(currentTileMap.get(exitDirection));
                     this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    requester.playDoorSound();
+                    requester.requestDoorSound();
                     break;
                 case SOUTH:
                     exitDirection = currentMapLocation.getSouthExit().getTileExit();
@@ -167,7 +167,7 @@ public class DrawController extends GameElement {
                     drawLocation(currentTileMap.get(exitDirection));
                     this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    requester.playDoorSound();
+                    requester.requestDoorSound();
                     break;
                 case EAST:
                     exitDirection = currentMapLocation.getEastExit().getTileExit();
@@ -176,7 +176,7 @@ public class DrawController extends GameElement {
                     drawLocation(currentTileMap.get(exitDirection));
                     this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    requester.playDoorSound();
+                    requester.requestDoorSound();
                     break;
                 case CONTROL:
                     break;

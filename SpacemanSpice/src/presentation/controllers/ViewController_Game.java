@@ -117,18 +117,18 @@ public class ViewController_Game extends ViewController implements Initializable
             initialized = true;
         }
 
-        requester.startSounds();
+        requester.requestStartSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() <= 50 && reader.readLifeValue() > 0) {
-           requester.playSireenSound();
+           requester.requestSirenSound();
         } else if(reader.readLifeValue() == 0){
             guiManager.loadView(guiManager.getGameOverPath());
-            requester.stopSounds();
+            requester.requestStopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            requester.stopSounds();
+            requester.requestStopSounds();
         }
         waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
@@ -165,8 +165,8 @@ public class ViewController_Game extends ViewController implements Initializable
             terminalLampOn = true;
         }
 
-        requester.playGameMusic();
-        requester.playLocationSound();
+        requester.requestGameMusic();
+        requester.requestLocationSound();
 
         earth.rotateProperty().set(menu.getEarthCount());
         menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);

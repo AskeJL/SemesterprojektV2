@@ -35,7 +35,7 @@ public class ScanningControl extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playConsoleSound();
+        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         reader.storeln("You interact with the scanningstation\nThere are:\n"
                 + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"

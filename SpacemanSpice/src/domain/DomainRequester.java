@@ -9,19 +9,43 @@ import domain.locations.gameobjects.Tile;
 import domain.locations.gameobjects.TileManager;
 import domain.resources.ResourcesManager;
 import domain.sound.SoundManager;
+import domain.sound.SoundPlayer;
 import domain.systems.SystemsManager;
 import domain.tutorial.TutorialManager;
 import java.util.HashMap;
 
-
+/**
+ * This is used to request actions from the domain layer. To request an action
+ * it is to be implemented like this.<p>
+ *
+ * DomainRequester requester = new DomainRequester();
+ * requester.requestRunCommand(command);
+ *
+ * @see DomainReader
+ */
 public class DomainRequester implements InteractionsRequest {
 
+    /**
+     * The {@link ManagerGroup} of for the domain layer.
+     */
     private static ManagerGroup group;
 
+    /**
+     * Initialize the reader. This is necessary before using the class.
+     *
+     * @param group The manager group of a domain.
+     */
     void init(ManagerGroup group) {
         DomainRequester.group = group;
     }
 
+    /**
+     * Request a command from
+     * {@link domain.interactions.Parser#getCommand(java.lang.String)} to run.
+     *
+     * @param input The command to run.
+     * @see InteractionsRequest
+     */
     @Override
     public void requestRunCommand(String input) {
         InteractionsManager interactions = (InteractionsManager) group.getManager(InteractionsManager.class);
@@ -31,116 +55,221 @@ public class DomainRequester implements InteractionsRequest {
         }
     }
 
+    /**
+     * Request a reset from the domain. This will reset all necessary variables
+     * to run the game again.
+     */
     public void requestReset() {
         ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
         LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
         TutorialManager tutorial = (TutorialManager) group.getManager(TutorialManager.class);
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
-        
+
         resources.getOxygen().setValue(100);
         resources.getLife().setValue(100);
         resources.getTime().init();
-        
+
         systems.getWave().setNumberOfWaves(0);
         systems.setPlayerReady(false);
-        
+
         locations.clearLocationMap();
         locations.init();
         tutorial.init();
-        
+
         tiles.clearTileMap();
         tiles.init();
     }
 
+    /**
+     * Request {@link domain.resources.Life#setDifficultyEasy() and
+     * {@link domain.systems.Wave#setDifficultyEasy().
+     */
     public void requestDifficultyEasy() {
         ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
-        
-        resources.getLife().setDifficultyEasy();
-        systems.getWave().setDifficultyEasy();
+
+        if (resources != null) {
+            resources.getLife().setDifficultyEasy();
+        }
+        if (systems != null) {
+            systems.getWave().setDifficultyEasy();
+        }
     }
 
+    /**
+     * Request {@link domain.resources.Life#setDifficultyHard() and
+     * {@link domain.systems.Wave#setDifficultyHard().
+     */
     public void requestDifficultyHard() {
         ResourcesManager resources = (ResourcesManager) group.getManager(ResourcesManager.class);
         SystemsManager systems = (SystemsManager) group.getManager(SystemsManager.class);
-        
-        resources.getLife().setDifficultyHard();
-        systems.getWave().setDifficultyHard();
-    }
-    
-    public void playGameMusic() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playGameMusic();
+
+        if (resources != null) {
+            resources.getLife().setDifficultyHard();
+        }
+        if (systems != null) {
+            systems.getWave().setDifficultyHard();
+        }
     }
 
-    public void playLocationSound() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playLocationSound();
+    /**
+     * Request game music from {@link domain.sound.SoundPlayer#playGameMusic()}.
+     */
+    public void requestGameMusic() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playGameMusic();
+        }
     }
 
-    public void playDoorSound() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playDoorSound();
+    /**
+     * Request locations sound from
+     * {@link domain.sound.SoundPlayer#playLocationSound()}.
+     */
+    public void requestLocationSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playLocationSound();
+        }
     }
 
-    public void playConsoleSound() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playConsoleSound();
-    }
-    
-    public void playSireenSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playSireenSound();
-    }
-    
-     public void playMoveSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playMoveSound();
-     }
-     
-     public void playAirSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playAirSound();
-     }
-     
-     public void playRepairSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playRepairSound();
-     }
-
-    public void startSounds() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.startSounds();
+    /**
+     * Request door sound from {@link domain.sound.SoundPlayer#playDoorSound()}.
+     */
+    public void requestDoorSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playDoorSound();
+        }
     }
 
-    public void stopSounds() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.stopSounds();
+    /**
+     * Request console sound from
+     * {@link domain.sound.SoundPlayer#playConsoleSound()}.
+     */
+    public void requestConsoleSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playConsoleSound();
+        }
     }
 
-    public void mute() {
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.mute();
+    /**
+     * Request siren sound from
+     * {@link domain.sound.SoundPlayer#playSireenSound()}.
+     */
+    public void requestSirenSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playSireenSound();
+        }
     }
-    
-    public HashMap<Character, Tile> getTileMap(){
+
+    /**
+     * Request move sound from {@link domain.sound.SoundPlayer#playMoveSound()}.
+     */
+    public void requestMoveSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playMoveSound();
+        }
+    }
+
+    /**
+     * Request air sound from {@link domain.sound.SoundPlayer#playAirSound()}.
+     */
+    public void requestAirSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playAirSound();
+        }
+    }
+
+    /**
+     * Request repair sound from
+     * {@link domain.sound.SoundPlayer#playRepairSound()}.
+     */
+    public void requestRepairSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playRepairSound();
+        }
+    }
+
+    /**
+     * Request start sounds from {@link domain.sound.SoundPlayer#startSounds()}.
+     */
+    public void requestStartSounds() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.startSounds();
+        }
+    }
+
+    /**
+     * Request stop sounds from {@link domain.sound.SoundPlayer#stopSounds()}.
+     */
+    public void requestStopSounds() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.stopSounds();
+        }
+    }
+
+    /**
+     * Request mute sounds from {@link domain.sound.SoundPlayer#mute()}.
+     */
+    public void requestMuteSounds() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.mute();
+        }
+    }
+
+    /**
+     * Request tile map from
+     * {@link domain.locations.gameobjects.TileManager#tileMap}.
+     *
+     * @return The full tile map. (This includes the complex classes..)
+     */
+    public HashMap<Character, Tile> requestTileMap() {
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
-        return tiles.getTileMap();
-    }
-    
-    public HashMap<String, Location> getLocationMap(){
-        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
-        return locations.getLocationMap();
-    }
-    
-    public Player getPlayer(){
-        TileManager tiles = (TileManager) group.getManager(TileManager.class);
-        return tiles.getPlayer();
+        return tiles != null ? tiles.getTileMap() : new HashMap<>();
     }
 
-    public void setcurrentLocation(Location name) {
+    /**
+     * Request locations map from
+     * {@link domain.locations.LocationsManager#locationMap}.
+     *
+     * @return The full locations map. (This includes a complex class..)
+     */
+    public HashMap<String, Location> requestLocationsMap() {
         LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
-        locations.setCurrentLocation(name);
+        return locations != null ? locations.getLocationMap() : new HashMap<>();
+    }
+
+    /**
+     * Request player from
+     * {@link domain.locations.gameobjects.TileManager#player}.
+     *
+     * @return The player. (This is a complex type..)
+     */
+    public Player requestPlayer() {
+        TileManager tiles = (TileManager) group.getManager(TileManager.class);
+        return tiles != null ? tiles.getPlayer() : new TileManager().getPlayer();
+    }
+
+    /**
+     * Request to set
+     * {@link domain.locations.LocationsManager#setCurrentLocation(domain.locations.Location)}.
+     *
+     * @param name Name of the location to set.
+     */
+    public void requestSetCurrentLocation(Location name) {
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
+        if (locations != null) {
+            locations.setCurrentLocation(name);
+        }
     }
 }
