@@ -6,6 +6,7 @@ import domain.sound.SoundManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,8 +53,11 @@ public class ViewController_Highscore extends ViewController implements Initiali
         guiManager.getCurrentStage().setHeight(720);
 
         ObservableList<String> scores = highscoreLIst.getItems();
-        for (int i = 0; i < data.readData(AssetType.SCORE, "highscore.txt").size(); i++) {
-            scores.add(data.readData(AssetType.SCORE, "highscore.txt").get(i));
+        for(String line : data.readData(AssetType.SCORE, "highscore.txt")) {
+            Scanner scanner = new Scanner(line);
+            String name = scanner.next();
+            int score = scanner.nextInt();
+            scores.add(String.format("%-16s %5s", name, score));
         }
     }
     
