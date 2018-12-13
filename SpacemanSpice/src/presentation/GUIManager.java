@@ -20,13 +20,15 @@ public class GUIManager extends ViewManager {
     private final static String PATH_HIGH_SCORE = "fxml/view_HighScore.fxml";
     private final static String PATH_GAME_VIEW  = "fxml/view_Game.fxml";
     private final static String PATH_GAME_OVER  = "fxml/view_GameOver.fxml";
+    private final static String PATH_ABOUT      = "fxml/view_About.fxml";
 
     private final static String[] FXML_PATHS = {
         PATH_SETTINGS,
         PATH_MENU,
         PATH_HIGH_SCORE,
         PATH_GAME_VIEW,
-        PATH_GAME_OVER
+        PATH_GAME_OVER,
+        PATH_ABOUT
     };
 
     private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation/fxml/css/gameViewStyleSheet.css").toExternalForm();
@@ -136,6 +138,10 @@ public class GUIManager extends ViewManager {
 
     public String getGameOverPath() {
         return PATH_GAME_OVER;
+    }
+    
+    public String getAboutPath() {
+        return PATH_ABOUT;
     }
 
     public Stage getCurrentStage() {

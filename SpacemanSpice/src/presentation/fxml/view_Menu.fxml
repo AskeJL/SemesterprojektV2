@@ -51,7 +51,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="about" mnemonicParsing="false" onAction="#onAbout" onMouseEntered="#hover" prefHeight="50.0" prefWidth="160.0" text="About">
+            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#onAbout" onMouseEntered="#hover" prefHeight="50.0" prefWidth="160.0" text="About">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font>

@@ -14,7 +14,7 @@
 }
 
 .progress-bar .track {
-    -fx-background-color: grey;
+    -fx-background-color: black;
 }
 
 #progressBarOxygen .bar {
@@ -23,6 +23,10 @@
 
 #progressBarLife .bar {
     -fx-background-color: linear-gradient(to left, #b50000 0%, #bc2b2b 80%, #d64848 100%);
+}
+
+#hpCanister, #o2Canister {
+    -fx-text-fill: #00ff00;
 }
 
 .button{
@@ -99,8 +103,6 @@
 /* Terminal */
 .text-area {
     -fx-font-family: Consolas;
-    -fx-highlight-fill: #00ff00;
-    -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
 
@@ -120,11 +122,16 @@
 
 .text-field{
     -fx-font-family: Consolas;
-    -fx-highlight-fill: #00ff00;
-    -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
     -fx-border-color: #cccccc;
     -fx-border-width: 2px;
+}
+
+#about {
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-size:13px;
 }
 

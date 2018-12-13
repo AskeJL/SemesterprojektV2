@@ -109,7 +109,7 @@ public class ViewController_Menu extends ViewController implements Initializable
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
         new SoundManager().getSoundPlayer().playButtonClickSound();
-        //requester.requestReset();
+        requester.requestReset();
         guiManager.loadView(guiManager.getGameViewPath());
     }
 
@@ -128,6 +128,7 @@ public class ViewController_Menu extends ViewController implements Initializable
     @FXML
     private void onAbout(ActionEvent event) {
         new SoundManager().getSoundPlayer().playButtonClickSound();
+        guiManager.loadView(guiManager.getAboutPath());
     }
 
     @FXML

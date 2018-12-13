@@ -48,6 +48,10 @@ public class ViewController_Game extends ViewController implements Initializable
     private ImageView terminalLamp;
     @FXML
     private ImageView canisterLamp;
+    @FXML
+    private Label o2Canister;
+    @FXML
+    private Label hpCanister;
 
     private int terminalLampCounter = 0;
     private int canisterLampCounter = 0;

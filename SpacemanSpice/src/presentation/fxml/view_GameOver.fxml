@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,11 +13,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="presentation.controllers.ViewController_GameOver">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" smooth="false" />
       <AnchorPane fx:id="foreground" />
+      <VBox fx:id="authors" alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="150.0">
+         <children>
+            <Label fx:id="createdByLabel" prefHeight="20.0" prefWidth="230.0" text="Created by:" />
+            <Label fx:id="nameLabel1" prefHeight="20.0" prefWidth="230.0" text="Samuel Bangslund, Nikolaos Pattelakis," />
+            <Label fx:id="nameLabel2" prefHeight="20.0" prefWidth="230.0" text="Oliver Pickardt and Aske Lorenz">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="305.0" prefWidth="1039.0" spacing="10.0" StackPane.alignment="CENTER">
          <children>
             <TextField fx:id="scoreField" prefHeight="59.0" prefWidth="250.0" />

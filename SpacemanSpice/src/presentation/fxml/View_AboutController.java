@@ -1,50 +1,43 @@
-package presentation.controllers;
+/*
+ * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
+ */
+package presentation.fxml;
 
-import domain.DomainRequester;
+import data.AssetType;
+import data.Data;
 import domain.sound.SoundManager;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import presentation.controllers.ViewController;
+import presentation.controllers.ViewController_Menu;
 
-public class ViewController_Settings extends ViewController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author sbang
+ */
+public class View_AboutController extends ViewController implements Initializable {
 
-    DomainRequester domain = new DomainRequester();
-    @FXML
-    private ToggleButton toggleSoundButton;
-    @FXML
-    private SplitMenuButton screenMenu;
-    @FXML
-    private MenuItem screenSmall;
-    @FXML
-    private MenuItem screenMedium;
-    @FXML
-    private MenuItem screenLarge;
-    @FXML
-    private SplitMenuButton difficultyMenu;
-    @FXML
-    private MenuItem difficultyEasy;
-    @FXML
-    private MenuItem difficultyHard;
-    @FXML
-    private Button backButton;
     @FXML
     private ImageView background;
     @FXML
     private AnchorPane foreground;
-
+    @FXML
+    private ImageView aboutBackground;
+    @FXML
+    private TextArea about;
+    
     private ViewController_Menu menu;
     private boolean initialized = false;
-
+    
     private ImageView earth;
     private ImageView earth_Debris_01;
     private ImageView earth_Debris_02;
@@ -55,20 +48,27 @@ public class ViewController_Settings extends ViewController implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         background.setImage(new Image("presentation/controllers/background-titled.png", true));
-
+        
         prepareAnimation();
-
+        
         guiManager.getCurrentStage().setWidth(1280);
         guiManager.getCurrentStage().setHeight(720);
+        
+        Data data = new Data();
+        String text = "";
+        for(String line : data.readData(AssetType.TEXT, "about.txt")) {
+            text += line + "\n";
+        }
+        about.setText(text);
     }
 
     @Override
     public void update() {
-        if (!initialized) {
+        if(!initialized) {
             menu = (ViewController_Menu) guiManager.getController(guiManager.getMenuPath());
             initialized = true;
         }
-
+        
         earth.rotateProperty().set(menu.getEarthCount());
         menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);
 
@@ -78,7 +78,7 @@ public class ViewController_Settings extends ViewController implements Initializ
         earth_Debris_02.rotateProperty().set(menu.getDebris02Count());
         menu.setDebris02Count(menu.getDebris02Count() > 360 ? 0 : menu.getDebris02Count() + 0.01);
     }
-
+    
     public void prepareAnimation() {
         ImageView earthBackground = new ImageView(new Image("presentation/controllers/earthBackground.png"));
         earth = new ImageView(new Image("presentation/controllers/earth.png"));
@@ -104,43 +104,13 @@ public class ViewController_Settings extends ViewController implements Initializ
     }
 
     @FXML
-    private void toogleSoundHandler(ActionEvent event) {
-        domain.mute();
-    }
-
-    @FXML
-    private void screenSmallHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenMediumlHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenLargelHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenMenuHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void difficultyEasyHandler(ActionEvent event) {
-        domain.requestDifficultyEasy();
-    }
-
-    @FXML
-    private void difficultyHardHandler(ActionEvent event) {
-        domain.requestDifficultyHard();
-    }
-
-    @FXML
-    private void difficultyMenuHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void backButtonHandler(ActionEvent event) throws IOException {
+    private void onBack(ActionEvent event) {
         new SoundManager().getSoundPlayer().playButtonClickSound();
         guiManager.loadView(guiManager.getMenuPath());
+    }
+
+    @FXML
+    private void hover(MouseEvent event) {
+        new SoundManager().getSoundPlayer().playButtonHoverSound();
     }
 }
