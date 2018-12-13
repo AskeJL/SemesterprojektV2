@@ -19,6 +19,14 @@ public final class Mainhall02 extends Location {
         createLocationCLI();
     }
     
+    /**
+     *  Makes a gui Mainhall02 location
+     *  Sends name, desciption, exits and map file name
+     * 
+     * @param gui
+     * 
+     * @see domain.locations.LocationsManager#createLocationGUI() 
+     */
     public Mainhall02(Boolean gui){
                    super(
                    "Mainhall02", 
@@ -35,6 +43,11 @@ public final class Mainhall02 extends Location {
 
     }
     
+    /**
+     * Makes a CLI Mainhall01 location by adding rooms to a location
+     * 
+     * @see domain.locations.LocationsManager#createLocations() 
+     */
     @Override
     protected void createLocationCLI(){
         /*The room in the location are created--------------------------------*/
