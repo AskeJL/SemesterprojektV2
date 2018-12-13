@@ -10,6 +10,7 @@
 | head to the scanning room         |
 | and have a go at the terminal.    |
 +-----------------------------------+
- Hint: press Esc to exit the terminal.
- Hint: use the arrow keys to move.
- Hint: use the space key to interact with objects and doors. 
+ Hint: Press the Esc key to exit the terminal.
+ Hint: Use the arrow keys to move.
+ Hint: Use the Space key to interact with objects and doors.
+ Hint: Most interactable objects have a yellow/black border.

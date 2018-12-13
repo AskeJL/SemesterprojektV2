@@ -5,9 +5,12 @@
 | destroy small debris within the   |
 | vicinity of the ship.             |
 |                                   |
-| To operate the ship's laser, head |
-| to the laser control room and     |
-| try out the controls.             |
+| To operate the ship's laser, you  |
+| will first need to charge it.     |
+| To do so head to the laser        |
+| charger, charge the laser, and    |
+| then interact with the laser      |
+| controller just south of it.      |   
 | Posthaste now!                    |
 +-----------------------------------+
  Hint: type help interact.

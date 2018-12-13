@@ -10,4 +10,4 @@
 | The first thing we will look at   |
 | is the ship's scanner.            |
 +-----------------------------------+
- Type continue to continue.
+ Type continue or press C to continue.

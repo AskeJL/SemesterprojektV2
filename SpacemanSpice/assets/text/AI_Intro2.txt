@@ -10,5 +10,5 @@
 | Would you like to continue?       |
 +-----------------------------------+
  Choose one:
- Type continue to start the tutorial. 
+ Type continue or press C to start the tutorial. 
  Type start to skip the tutorial and start the game.

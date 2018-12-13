@@ -10,6 +10,6 @@
 | right, activate the calibrator    |
 | and reactivate the scanner.       |
 +-----------------------------------+
- Hint: press Esc to exit the terminal.
+ Hint: press the Esc key to exit the terminal.
  Hint: use the arrow keys to move.
- Hint: use the space key to interact with objects and doors.      
+ Hint: use the Space key to interact with objects and doors.      
