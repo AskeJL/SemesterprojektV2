@@ -125,7 +125,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro3);
                         commands.setLastCommand(new Clear());
-                        continueActivated = false;
                         counter++;
                     }
                     break;
@@ -148,7 +147,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (scannerActivated == true) {
                         println(aIintro6);
                         counter++;
-                        scannerActivated = false;
                     }
                     break;
                 case 7:
@@ -162,7 +160,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (laserActivated == true) {
                         println(aIintro8);
                         counter++;
-                        laserActivated = false;
                     }
                     break;
                 case 9:
