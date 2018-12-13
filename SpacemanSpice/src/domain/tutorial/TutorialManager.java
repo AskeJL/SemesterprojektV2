@@ -17,6 +17,24 @@ public class TutorialManager extends Manager implements GameUpdateable {
     private final Data data = new Data();
 
     private List<String> introduction,
+            gUIintroduction,
+            gUIaIintro1,
+            gUIaIintro2,
+            gUIaIintro3,
+            gUIaIintro4,
+            gUIaIintro5,
+            gUIaIintro6,
+            gUIaIintro7,
+            gUIaIintro8,
+            gUIaIintro9,
+            gUIaIintro10,
+            gUIaIintro11,
+            gUIaIintro12,
+            gUIaIintro13,
+            gUIaIintro14,
+            gUIaIintro15,
+            gUIaIintro16,
+            gUIaIintro17,
             aIintro1,
             aIintro2,
             aIintro3,
@@ -70,24 +88,43 @@ public class TutorialManager extends Manager implements GameUpdateable {
         interactionsManager = (InteractionsManager) group.getManagerGroup().getManager(InteractionsManager.class);
         locationsManager = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
 
-        introduction = getTextToString("Introduction.txt");
-        aIintro1 = getTextToString("AI_Intro1.txt");
-        aIintro2 = getTextToString("AI_Intro2.txt");
-        aIintro3 = getTextToString("AI_Intro3.txt");
-        aIintro4 = getTextToString("AI_Intro4.txt");
-        aIintro5 = getTextToString("AI_Intro5.txt");
-        aIintro6 = getTextToString("AI_Intro6.txt");
-        aIintro7 = getTextToString("AI_Intro7.txt");
-        aIintro8 = getTextToString("AI_Intro8.txt");
-        aIintro9 = getTextToString("AI_Intro9.txt");
-        aIintro10 = getTextToString("AI_Intro10.txt");
-        aIintro11 = getTextToString("AI_Intro11.txt");
-        aIintro12 = getTextToString("AI_Intro12.txt");
-        aIintro13 = getTextToString("AI_Intro13.txt");
-        aIintro14 = getTextToString("AI_Intro14.txt");
-        aIintro15 = getTextToString("AI_Intro15.txt");
-        aIintro16 = getTextToString("AI_Intro16.txt");
-        aIintro17 = getTextToString("AI_Intro17.txt");
+        introduction = getTextToString("Non-GUI_Introduction.txt");
+        aIintro1 = getTextToString("Non-GUI_AI_Intro1.txt");
+        aIintro2 = getTextToString("Non-GUI_AI_Intro2.txt");
+        aIintro3 = getTextToString("Non-GUI_AI_Intro3.txt");
+        aIintro4 = getTextToString("Non-GUI_AI_Intro4.txt");
+        aIintro5 = getTextToString("Non-GUI_AI_Intro5.txt");
+        aIintro6 = getTextToString("Non-GUI_AI_Intro6.txt");
+        aIintro7 = getTextToString("Non-GUI_AI_Intro7.txt");
+        aIintro8 = getTextToString("Non-GUI_AI_Intro8.txt");
+        aIintro9 = getTextToString("Non-GUI_AI_Intro9.txt");
+        aIintro10 = getTextToString("Non-GUI_AI_Intro10.txt");
+        aIintro11 = getTextToString("Non-GUI_AI_Intro11.txt");
+        aIintro12 = getTextToString("Non-GUI_AI_Intro12.txt");
+        aIintro13 = getTextToString("Non-GUI_AI_Intro13.txt");
+        aIintro14 = getTextToString("Non-GUI_AI_Intro14.txt");
+        aIintro15 = getTextToString("Non-GUI_AI_Intro15.txt");
+        aIintro16 = getTextToString("Non-GUI_AI_Intro16.txt");
+        aIintro17 = getTextToString("Non-GUI_AI_Intro17.txt");
+        
+        gUIintroduction = getTextToString("GUI_Introduction.txt");
+        gUIaIintro1 = getTextToString("GUI_AI_Intro1.txt");
+        gUIaIintro2 = getTextToString("GUI_AI_Intro2.txt");
+        gUIaIintro3 = getTextToString("GUI_AI_Intro3.txt");
+        gUIaIintro4 = getTextToString("GUI_AI_Intro4.txt");
+        gUIaIintro5 = getTextToString("GUI_AI_Intro5.txt");
+        gUIaIintro6 = getTextToString("GUI_AI_Intro6.txt");
+        gUIaIintro7 = getTextToString("GUI_AI_Intro7.txt");
+        gUIaIintro8 = getTextToString("GUI_AI_Intro8.txt");
+        gUIaIintro9 = getTextToString("GUI_AI_Intro9.txt");
+        gUIaIintro10 = getTextToString("GUI_AI_Intro10.txt");
+        gUIaIintro11 = getTextToString("GUI_AI_Intro11.txt");
+        gUIaIintro12 = getTextToString("GUI_AI_Intro12.txt");
+        gUIaIintro13 = getTextToString("GUI_AI_Intro13.txt");
+        gUIaIintro14 = getTextToString("GUI_AI_Intro14.txt");
+        gUIaIintro15 = getTextToString("GUI_AI_Intro15.txt");
+        gUIaIintro16 = getTextToString("GUI_AI_Intro16.txt");
+        gUIaIintro17 = getTextToString("GUI_AI_Intro17.txt");
         
         super.init();
     }
@@ -112,109 +149,109 @@ public class TutorialManager extends Manager implements GameUpdateable {
                         break;
                     case 1:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro1);
+                            println(gUIaIintro1);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 2:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro2);
+                            println(gUIaIintro2);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 3:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro3);
+                            println(gUIaIintro3);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 4:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro4);
+                            println(gUIaIintro4);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 5:
                         if (scannerActivated == true) {
-                            println(aIintro5);
+                            println(gUIaIintro5);
                             counter++;
                         }
                         break;
                     case 6:
                         if (scannerCalibrated == true && scannerActivated == true) {
-                            println(aIintro6);
+                            println(gUIaIintro6);
                             counter++;
                         }
                         break;
                     case 7:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro7);
+                            println(gUIaIintro7);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 8:
                         if (laserCharged == true && laserActivated == true) {
-                            println(aIintro8);
+                            println(gUIaIintro8);
                             counter++;
                         }
                         break;
                     case 9:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
-                            println(aIintro9);
+                            println(gUIaIintro9);
                             commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 10:
                         if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
-                            println(aIintro10);
+                            println(gUIaIintro10);
                             counter++;
                         }
                         break;
                     case 11:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
-                            println(aIintro11);
+                            println(gUIaIintro11);
                             counter++;
                         }
                         break;
                     case 12:
                         if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
-                            println(aIintro12);
+                            println(gUIaIintro12);
                             counter++;
                         }
                         break;
                     case 13:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
-                            println(aIintro13);
+                            println(gUIaIintro13);
                             counter++;
                         }
                         break;
                     case 14:
                         if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Outside") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
-                            println(aIintro14);
+                            println(gUIaIintro14);
                             counter++;
                         }
                         break;
                     case 15:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("show") && commands.getLastParameter().equals("oxygen")) {
-                            println(aIintro15);
+                            println(gUIaIintro15);
                             counter++;
                         }
                         break;
                     case 16:
                         if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
-                            println(aIintro16);
+                            println(gUIaIintro16);
                             counter++;
                         }
                         break;
                     case 17:
                         if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
-                            println(aIintro17);
+                            println(gUIaIintro17);
                             counter++;
                             setTutorial(false);
                         }
