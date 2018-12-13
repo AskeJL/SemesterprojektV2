@@ -5,22 +5,41 @@
  */
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
+import domain.systems.Wave;
 
 /**
  *
  * @author Lupo
  */
-public class ActivatorSteering extends GameObject{
+public class ActivatorSteering extends GameObject {
 
-    public ActivatorSteering(){
-        super("Steering overcharge.", "You can overcharge the thrusters here.", GameObjectType.CONTROL, null);
-    }
+    private final SystemsManager systemsManager;
+    private final DomainReader  reader = new DomainReader();
     
+    public ActivatorSteering(SystemsManager systems) {
+        super("Steering activator", "Overcharges the ships reactor to fly away in high speed.", GameObjectType.CONTROL, null);
+        this.systemsManager = systems;
+    }
+
     @Override
     public void interact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Wave wave = systemsManager.getWave();
+        
+        if(wave.isThrustersOn() == false){
+            wave.setThrustersOn(true);
+            reader.storeln("Reactor is overcharged! You can use the thrusters to fly away now!");
+        }
+        else{
+            reader.storeln("Reactor is already overcharged");
+        }
     }
-    
 }
+       
+    
+
+

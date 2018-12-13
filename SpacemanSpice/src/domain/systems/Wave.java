@@ -52,6 +52,8 @@ public class Wave extends GameElement {
     private final int NET_MAX_HEALTH = 100;
     private int netCurrentHealth;
     
+    private boolean thrustersOn;
+    
     private ResourcesManager resourcesManager;
     private SystemsManager systemsManager;
     
@@ -63,6 +65,7 @@ public class Wave extends GameElement {
         this.systemsManager = (SystemsManager) group.getManager();
         setAmountOfLaserShots(0);
         setNetCurrentHealth(getNET_MAX_HEALTH());
+        setThrustersOn(false);
     }
 
     /**
@@ -262,5 +265,13 @@ public class Wave extends GameElement {
 
     public void setNetCurrentHealth(int netCurrentHealth) {
         this.netCurrentHealth = netCurrentHealth;
+    }
+
+    public boolean isThrustersOn() {
+        return thrustersOn;
+    }
+
+    public void setThrustersOn(boolean thrustersOn) {
+        this.thrustersOn = thrustersOn;
     }
 }

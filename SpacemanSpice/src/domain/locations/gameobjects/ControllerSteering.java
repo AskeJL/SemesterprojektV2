@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 
 /**
  * Used to dodge large fragments.
@@ -38,11 +39,17 @@ public class ControllerSteering extends GameObject {
      */
     @Override
     public void interact() {
+        Wave wave = systemsManager.getWave();
+        if(wave.isThrustersOn() == true){
         reader.storeln("Interacting with the steering controls.");
         if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
             requester.playMoveSound();
-            reader.storeln("You have moved the ship out of danger");
+            reader.storeln("You have moved the ship out of danger.");
+        }
+        }
+        else {
+            reader.storeln("You don't have enough power to move the ship!");
         }
     }
 
