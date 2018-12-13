@@ -10,5 +10,6 @@
 | head to the scanning room         |
 | and have a go at the terminal.    |
 +-----------------------------------+
- Hint: type help go.
- Hint: type help interact.
+ Hint: press Esc to exit the terminal.
+ Hint: use the arrow keys to move.
+ Hint: use the space key to interact with objects and doors.      

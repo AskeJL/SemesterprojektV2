@@ -37,6 +37,12 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
     private int counter = 0;
     private boolean tutorial = true;
+    private boolean scannerActivated = false;
+    private boolean laserActivated = false;
+    private boolean oxygenActivated = false;
+    private boolean damageRepairActivated = false;
+    private boolean netActivated = false;
+    private boolean steeringActivated = false;
 
     private InteractionsManager interactionsManager;
     private LocationsManager locationsManager;
@@ -116,26 +122,30 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     }
                     break;
                 case 4:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("show") && commands.getLastParameter().equals("map")) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro4);
+                        commands.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 5:
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro5);
+                        commands.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 6:
-                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Scanning Control") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                    if (scannerActivated == true) {
                         println(aIintro6);
                         counter++;
+                        scannerActivated = false;
                     }
                     break;
                 case 7:
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro7);
+                        commands.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
@@ -241,4 +251,9 @@ public class TutorialManager extends Manager implements GameUpdateable {
     public void setTutorial(boolean bool) {
         this.tutorial = bool;
     }
+    
+    public void setScannerActivated(boolean bool) {
+        this.scannerActivated = bool;
+    }
+    
 }

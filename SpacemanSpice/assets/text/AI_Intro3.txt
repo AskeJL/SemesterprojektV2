@@ -2,13 +2,12 @@
 | SAL153                            |
 | Marvelous! Let us get to it then. |
 |                                   |
-| Firstly I would recommend that    |
-| you learn where what is on the    |
-| ship.                             |
-| I have been informed that you     |
-| were given a map before you left  |
-| Earth, so let us have a look at   |
-| that, shall we?                   |
+| We need to get you familiarized   |
+| with the locations of the various |
+| equipment onboard the ship and    |
+| how to operate said equipment.    |
+|                                   |
+| The first thing we will look at   |
+| is the ship's scanner.            |
 +-----------------------------------+
- Hint: the "help" command is useful.
- Hint: type help show.
+ Type continue to continue.

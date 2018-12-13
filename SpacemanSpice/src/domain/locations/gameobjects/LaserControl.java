@@ -4,6 +4,7 @@ import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to destroy small fragments.
@@ -38,6 +39,8 @@ public class LaserControl extends GameObject {
     public void interact() {
         reader.storeln("Interacting with laser control");
         systemsManager.setSmallFragmentDestroyed(true);
+        
+        //((TutorialManager)systemsManager.getManager(TutorialManager.class));
     }
 
     @Override
