@@ -4,6 +4,7 @@ import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to catch medium fragments.
@@ -38,6 +39,10 @@ public class NetControl extends GameObject {
     public void interact() {
         reader.storeln("Interacting with net control.");
         systemsManager.setMediumFragmentDestroyed(true);
+        
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
+        }
     }
 
     @Override

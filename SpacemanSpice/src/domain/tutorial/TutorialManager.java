@@ -42,6 +42,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
     private boolean laserActivated = false;
     private boolean laserCharged = false;
     private boolean oxygenActivated = false;
+    private boolean oxygenCharged = false;
     private boolean damageRepairActivated = false;
     private boolean netActivated = false;
     private boolean netRepaired = false;
@@ -148,7 +149,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     }
                     break;
                 case 7:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (laserActivated == true) {
                         println(aIintro7);
                         commands.setLastCommand(new Clear());
                         counter++;
@@ -261,4 +262,43 @@ public class TutorialManager extends Manager implements GameUpdateable {
         this.scannerActivated = bool;
     }
     
+    public void setScannerCalibrated(boolean bool) {
+        this.scannerCalibrated = bool;
+    }
+    
+    public void setLaserActivated(boolean bool) {
+        this.laserActivated = bool;
+    }
+    
+    public void setLaserCharged(boolean bool) {
+        this.laserCharged = bool;
+    }
+    
+    public void setOxygenActivated(boolean bool) {
+        this.oxygenActivated = bool;
+    }
+    
+    public void setOxygenCharged(boolean bool) {
+        this.oxygenCharged = bool;
+    }
+    
+    public void setDamageRepairActivated(boolean bool) {
+        this.damageRepairActivated = bool;
+    }
+    
+    public void setNetActivated(boolean bool) {
+        this.netActivated = bool;
+    }
+    
+    public void setNetRepaired(boolean bool) {
+        this.netRepaired = bool;
+    }
+    
+    public void setSteeringActivated(boolean bool) {
+        this.steeringActivated = bool;
+    }
+    
+    public void setSteeringCharged(boolean bool) {
+        this.steeringCharged = bool;
+    }
 }

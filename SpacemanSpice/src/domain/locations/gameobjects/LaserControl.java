@@ -40,7 +40,9 @@ public class LaserControl extends GameObject {
         reader.storeln("Interacting with laser control");
         systemsManager.setSmallFragmentDestroyed(true);
         
-        //((TutorialManager)systemsManager.getManager(TutorialManager.class));
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setLaserActivated(true);
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to fill up the players oxygen.
@@ -39,6 +40,10 @@ public class OxygenControl extends GameObject {
         reader.storeln("You interact with the Oxygen refilling control");
         Oxygen oxygen = resourcesManager.getOxygen();
         oxygen.increaseValue(100 - oxygen.getValue());
+        
+        if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setScannerActivated(true);
+        }
     }
 
     @Override

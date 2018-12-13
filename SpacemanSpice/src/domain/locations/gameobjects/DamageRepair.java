@@ -5,6 +5,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Life;
 import domain.resources.ResourcesManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to repair the hull of the ship.
@@ -36,6 +37,10 @@ public class DamageRepair extends GameObject {
         reader.storeln("You begin repairing the ship.");
         Life life = resourcesManager.getLife();
         life.setRepair(true);
+        
+        if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setNetActivated(true);
+        }
     }
 
     @Override

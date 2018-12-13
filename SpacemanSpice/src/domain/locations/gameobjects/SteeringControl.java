@@ -4,6 +4,7 @@ import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to dodge large fragments.
@@ -40,6 +41,10 @@ public class SteeringControl extends GameObject {
         if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
             reader.storeln("You have moved the ship out of danger");
+        }
+        
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
         }
     }
 
