@@ -23,7 +23,7 @@ public class SoundPlayer extends GameElement {
     private boolean game = true;
     private boolean mute = false;
     private DrawController drawController;
-    DrawController location = new DrawController();
+    LocationsManager location = new LocationsManager();
     String a = "outside";
 
     String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
@@ -57,23 +57,23 @@ public class SoundPlayer extends GameElement {
 
     public void playGameMusic() {
 
-        if (game == true && mute == false && !location.getCurrentLocationName().equalsIgnoreCase(a)) {
+        if (game == true && mute == false && !location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (gameMusic.isPlaying() == false) {
                 gameMusic.setVolume(0.2);
                 gameMusic.play();
             }
-        }  if (location.getCurrentLocationName().equalsIgnoreCase(a)) {
+        }  if (location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             gameMusic.stop();
         }
     }
 
     public void playLocationSound() {
-        if (game == true && mute == false && !location.getCurrentLocationName().equalsIgnoreCase(a)) {
+        if (game == true && mute == false && !location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (backSound.isPlaying() == false) {
                 backSound.setVolume(0.1);
                 backSound.play();
             }
-        } else if (location.getCurrentLocationName().equalsIgnoreCase(a)) {
+        } else if (location.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             backSound.stop();
         }
     }

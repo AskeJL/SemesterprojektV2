@@ -53,12 +53,6 @@ public class DrawController extends GameElement {
 
     @Override
     public void init() {
-    }
-    
-    /**
-     * Instantiates the components needed to be drawn on the canvas
-     */
-    public void setup() {
         GUIManager gui = (GUIManager)gameElementGroup.getManager();
         gc = ((ViewController_Game)gui.getController(gui.getGameViewPath())).getGraphicsContext();
         
@@ -71,6 +65,13 @@ public class DrawController extends GameElement {
         player = requester.getPlayer();
         playerXLocation = player.getxPosition() + 5;
         playerYLocation = player.getyPosition() + 5;
+    }
+    
+    /**
+     * Instantiates the components needed to be drawn on the canvas
+     */
+    public void setup() {
+        
 
     }
 
@@ -105,6 +106,7 @@ public class DrawController extends GameElement {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
+        requester.setcurrentLocation(this.currentMapLocation);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
                 if (currentTileMap.get(characters[x][y]) == exitTile) {

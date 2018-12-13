@@ -138,4 +138,9 @@ public class DomainRequester implements InteractionsRequest {
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getPlayer();
     }
+
+    public void setcurrentLocation(Location name) {
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
+        locations.setCurrentLocation(name);
+    }
 }
