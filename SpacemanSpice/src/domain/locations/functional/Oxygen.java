@@ -34,9 +34,9 @@ public final class Oxygen extends Location {
                    "Oxygen", 
                    "Oxygen is refueled from here.",
                    null,
-                   new Exit('e', "Hallway02"),
+                   new Exit('E', "Hallway02"),
                    null,
-                   new Exit('w', "Mainhall01"), 
+                   new Exit('W', "Mainhall01"), 
                    "oxygenMap.txt");
     }
     

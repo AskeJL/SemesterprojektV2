@@ -22,10 +22,10 @@ public final class Hallway02 extends Location {
                    super(
                    "Hallway02", 
                    "The hallway connecting airlock, oxygen and navigation.",
-                   new Exit('w' ,"Control"),
+                   new Exit('W' ,"Control"),
                    null,
-                   new Exit('n', "Outside"),
-                   new Exit('w', "Oxygen"), 
+                   new Exit('N', "Outside"),
+                   new Exit('W', "Oxygen"), 
                    "hallway02Map.txt");
     }
     
