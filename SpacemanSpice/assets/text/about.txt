@@ -1,11 +1,13 @@
-PROBLEM STATEMENT:
-By using Gamification, we intend to make the player aware of The Kessler Syndrome, what it is and what potential consequences it will have upon our society if left untreated. Proceedingly we intend to suggest solutions to the problem and thus provoke a debate about the subject.
-
 INTRODUCTION:
-It can, for many, seem uncomprehensible to forsee dangers from outer space - which is understandable given its enormous complexity. Because of this, the argument that not many people are aware of which dangers lies just behind the atmosphere. One of these dangers are known as the Kessler Syndrome (Aka The Kessler Effekt).
+It can, for many, seem uncomprehensible to forsee dangers from outer space - which is understandable given its enormous complexity. Because of this, a majority of people are not aware of which dangers lies just behind the atmosphere. One of these dangers are known as the Kessler Syndrome (Aka The Kessler Effekt).
 
 The Kessler Syndrome is a scenario defined by Donald J. Kessler in 1978. The Kessler Syndrome describes the phenomenon that occours with moving objects in vaccum - objects colliding in space. In this case, it is applied to the spacetrash that orbits the earth. The syndrome explains the relations that occurs between the moving, colliding objects and how it exponentially increases the amount of objects(fragments).
 
 Every spacetravel or satelite put into orbit is partaking in this phenomenon. Whenever something is boosted into space a lot of mass and objects are left behind, drifting in space. For every single piece, the orbits gets more and more crowded. Eventually this will make spacetravel impossible to do safely. To put it into perspective how serious this has become there is estimated to be 2.000 satelites and 600.000 other objects orbiting the earth.
 
+SPACEMAN SPICE:
+
+
+PROBLEM STATEMENT:
+By using Gamification, we intend to make the player aware of The Kessler Syndrome, what it is and what potential consequences it will have upon our society if left untreated. Proceedingly we intend to suggest solutions to the problem and thus provoke a debate about the subject.
 

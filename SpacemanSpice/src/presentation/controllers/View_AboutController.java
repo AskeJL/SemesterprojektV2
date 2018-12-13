@@ -1,7 +1,7 @@
 /*
  * Created by Samuel Bangslund, Odense SDU Software Engineering 1. semester.
  */
-package presentation.fxml;
+package presentation.controllers;
 
 import data.AssetType;
 import data.Data;
@@ -16,8 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import presentation.controllers.ViewController;
-import presentation.controllers.ViewController_Menu;
 
 /**
  * FXML Controller class
@@ -47,7 +45,7 @@ public class View_AboutController extends ViewController implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        background.setImage(new Image("presentation/controllers/background-titled.png", true));
+        background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
         
         prepareAnimation();
         
@@ -80,10 +78,10 @@ public class View_AboutController extends ViewController implements Initializabl
     }
     
     public void prepareAnimation() {
-        ImageView earthBackground = new ImageView(new Image("presentation/controllers/earthBackground.png"));
-        earth = new ImageView(new Image("presentation/controllers/earth.png"));
-        earth_Debris_01 = new ImageView(new Image("presentation/controllers/Debris_01.png"));
-        earth_Debris_02 = new ImageView(new Image("presentation/controllers/Debris_02.png"));
+        ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
+        earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
+        earth_Debris_01 = new ImageView(new Data().readImage(AssetType.UI, "Debris_01.png"));
+        earth_Debris_02 = new ImageView(new Data().readImage(AssetType.UI, "Debris_02.png"));
 
         prepareImage(earthBackground, -500, 280, 0.5, 0.5);
         prepareImage(earth, -380, 420, 0.5, 0.5);

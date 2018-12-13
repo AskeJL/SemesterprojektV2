@@ -1,5 +1,7 @@
 package presentation.controllers;
 
+import data.AssetType;
+import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
 import java.net.URL;
@@ -13,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -52,10 +53,19 @@ public class ViewController_Game extends ViewController implements Initializable
     private Label o2Canister;
     @FXML
     private Label hpCanister;
+    @FXML
+    private ImageView waveImage;
+    @FXML
+    private ImageView timeImage;
+    @FXML
+    private ImageView terminalImage;
+    @FXML
+    private ImageView canisterImage;
 
     private int terminalLampCounter = 0;
     private int canisterLampCounter = 0;
-    private boolean terminalLampOn = false;
+    private boolean terminalLampOn = true;
+    private boolean canisterLampOn = true;
 
     private static String lastOutput = "";
 
@@ -81,7 +91,11 @@ public class ViewController_Game extends ViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         gc = canvasMap.getGraphicsContext2D();
 
-        background.setImage(new Image("presentation/controllers/background.png", true));
+        background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
+        waveImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
+        timeImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
+        terminalImage.setImage(new Data().readImage(AssetType.UI, "terminal.png"));
+        canisterImage.setImage(new Data().readImage(AssetType.UI, "canisters.png"));
 
         prepareAnimation();
 
@@ -119,23 +133,24 @@ public class ViewController_Game extends ViewController implements Initializable
         
         if (terminalLampOn) {
             if (terminalLampCounter == 1) {
-                terminalLamp.setImage(new Image("presentation/fxml/squareGreen-lit.png", true));
+                terminalLamp.setImage(new Data().readImage(AssetType.UI, "squareGreen-lit.png"));
             }
             terminalLampCounter = terminalLampCounter < 200 ? terminalLampCounter + 1 : 0;
             if (terminalLampCounter == 0) {
-                terminalLamp.setImage(new Image("presentation/fxml/squareGreen.png", true));
+                terminalLamp.setImage(new Data().readImage(AssetType.UI, "squareGreen.png"));
                 terminalLampOn = false;
             }
         }
         
-        if (reader.readLifeValue() < 50 || reader.readOxygenValue() < 50) {
+        if (canisterLampOn || reader.readLifeValue() < 50 || reader.readOxygenValue() < 50) {
             if (canisterLampCounter == 1 || canisterLampCounter == 200) {
-                canisterLamp.setImage(new Image("presentation/fxml/squareRed-lit.png", true));
+                canisterLamp.setImage(new Data().readImage(AssetType.UI, "squareRed-lit.png"));
             }
             canisterLampCounter = canisterLampCounter < 400 ? canisterLampCounter + 1 : 0;
-            if (canisterLampCounter == 100 || canisterLampCounter == 300) {
-                canisterLamp.setImage(new Image("presentation/fxml/squareRed.png", true));
+            if (canisterLampOn || canisterLampCounter == 100 || canisterLampCounter == 300) {
+                canisterLamp.setImage(new Data().readImage(AssetType.UI, "squareRed.png"));
             }
+            canisterLampOn = false;
         }
 
         String output = reader.readOutput();
@@ -162,10 +177,10 @@ public class ViewController_Game extends ViewController implements Initializable
     }
 
     public void prepareAnimation() {
-        ImageView earthBackground = new ImageView(new Image("presentation/controllers/earthBackground.png"));
-        earth = new ImageView(new Image("presentation/controllers/earth.png"));
-        earth_Debris_01 = new ImageView(new Image("presentation/controllers/Debris_01.png"));
-        earth_Debris_02 = new ImageView(new Image("presentation/controllers/Debris_02.png"));
+        ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
+        earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
+        earth_Debris_01 = new ImageView(new Data().readImage(AssetType.UI, "Debris_01.png"));
+        earth_Debris_02 = new ImageView(new Data().readImage(AssetType.UI, "Debris_02.png"));
 
         prepareImage(earthBackground, -500, 280, 0.5, 0.5);
         prepareImage(earth, -380, 420, 0.5, 0.5);

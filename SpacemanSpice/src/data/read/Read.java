@@ -1,10 +1,12 @@
 package data.read;
 
+import data.AssetType;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.scene.image.Image;
 
 /**
  * The main class for reading files.
@@ -22,8 +24,8 @@ class Read {
      *
      * @see Read(String, String)
      */
-    private final File FILE;
-
+    private final File file;
+    
     /**
      * Creates a file upon instantiation. The parameters are called from the
      * controller in the
@@ -34,11 +36,11 @@ class Read {
      * @param filename The name of the file. (Remember file extentions: .txt)
      */
     Read(String folderpath, String filename) {
-        this.FILE = new File(folderpath + filename);
+        this.file = new File(folderpath + filename);
     }
 
     /**
-     * Will read the {@link Read#FILE file} assigned to the class - uses the
+     * Will read the {@link Read#file file} assigned to the class - uses the
      * Scanner to read data an store it in a String List.
      *
      * @return A list of data. Each element corresponds to a line.
@@ -48,24 +50,28 @@ class Read {
         Scanner scanner;
 
         try {
-            scanner = new Scanner(this.FILE);
+            scanner = new Scanner(this.file);
 
             while (scanner.hasNext()) {
                 data.add(scanner.nextLine());
             }
             scanner.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("No file was found at " + FILE.getAbsolutePath() + "\nReturning empty.");
+            System.out.println("No file was found at " + file.getAbsolutePath() + "\nReturning empty.");
         }
         return data;
     }
+    
+    Image readImageFile() {
+        return new Image(file.toURI().toString());
+    }
 
     /**
-     * Get {@link Read#FILE file}.
+     * Get {@link Read#file file}.
      *
      * @return
      */
     File getFile() {
-        return this.FILE;
+        return this.file;
     }
 }

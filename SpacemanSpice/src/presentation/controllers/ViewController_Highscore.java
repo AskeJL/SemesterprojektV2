@@ -44,8 +44,8 @@ public class ViewController_Highscore extends ViewController implements Initiali
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {        
-        background.setImage(new Image("presentation/controllers/background-titled.png", true));
+    public void initialize(URL url, ResourceBundle rb) {  
+        background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
         
         prepareAnimation();
 
@@ -79,10 +79,10 @@ public class ViewController_Highscore extends ViewController implements Initiali
     }
     
     public void prepareAnimation() {
-        ImageView earthBackground = new ImageView(new Image("presentation/controllers/earthBackground.png"));
-        earth = new ImageView(new Image("presentation/controllers/earth.png"));
-        earth_Debris_01 = new ImageView(new Image("presentation/controllers/Debris_01.png"));
-        earth_Debris_02 = new ImageView(new Image("presentation/controllers/Debris_02.png"));
+        ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
+        earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
+        earth_Debris_01 = new ImageView(new Data().readImage(AssetType.UI, "Debris_01.png"));
+        earth_Debris_02 = new ImageView(new Data().readImage(AssetType.UI, "Debris_02.png"));
 
         prepareImage(earthBackground, -500, 280, 0.5, 0.5);
         prepareImage(earth, -380, 420, 0.5, 0.5);
