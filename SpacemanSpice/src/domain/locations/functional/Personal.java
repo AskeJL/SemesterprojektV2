@@ -27,9 +27,9 @@ public final class Personal extends Location {
                    super(
                    "Personal", 
                    "This location contains a toilet and a bedroom.",
-                   new Exit('s', "Scanning"),
-                   new Exit('e', "Mainhall01"),
-                   new Exit('n', "Hallway01"),
+                   new Exit('S', "Scanning"),
+                   new Exit('E', "Mainhall01"),
+                   new Exit('N', "Hallway01"),
                    null, 
                    "personalMap.txt");
     }

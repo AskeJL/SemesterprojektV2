@@ -46,6 +46,12 @@ public class Wave extends GameElement {
     private boolean easy = true;
     private boolean hard = false;
 
+    private final int MAX_AMOUNT_OF_LASER_SHOTS = 3;
+    private int amountOfLaserShots;
+    
+    private final int NET_MAX_HEALTH = 100;
+    private int netCurrentHealth;
+    
     private ResourcesManager resourcesManager;
     private SystemsManager systemsManager;
     
@@ -55,6 +61,8 @@ public class Wave extends GameElement {
         
         this.resourcesManager = (ResourcesManager) group.getManagerGroup().getManager(ResourcesManager.class);
         this.systemsManager = (SystemsManager) group.getManager();
+        setAmountOfLaserShots(0);
+        setNetCurrentHealth(getNET_MAX_HEALTH());
     }
 
     /**
@@ -230,5 +238,29 @@ public class Wave extends GameElement {
     public void setDifficultyHard(){
         this.hard = true;
         this.easy = false;
+    }
+
+    public int getMAX_AMOUNT_OF_LASER_SHOTS() {
+        return MAX_AMOUNT_OF_LASER_SHOTS;
+    }
+
+    public int getAmountOfLaserShots() {
+        return amountOfLaserShots;
+    }
+
+    public void setAmountOfLaserShots(int amountOfLaserShots) {
+        this.amountOfLaserShots = amountOfLaserShots;
+    }
+
+    public int getNET_MAX_HEALTH() {
+        return NET_MAX_HEALTH;
+    }
+
+    public int getNetCurrentHealth() {
+        return netCurrentHealth;
+    }
+
+    public void setNetCurrentHealth(int netCurrentHealth) {
+        this.netCurrentHealth = netCurrentHealth;
     }
 }
