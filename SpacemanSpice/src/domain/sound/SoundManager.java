@@ -41,9 +41,25 @@ public class SoundManager extends Manager {
         sound.playDoorSound();
     }
 
-    public void playInteractionSound() {
-        sound.playInteractionSound();
+    public void playConsoleSound() {
+        sound.playConsoleSound();
     }
+    
+    public void playSireenSound() {
+        sound.playSireenSound();
+    }
+    
+     public void playMoveSound(){
+         sound.playMoveSound();
+     }
+     
+     public void playAirSound(){
+         sound.playAirSound();
+     }
+     
+     public void playRepairSound(){
+         sound.playRepairSound();
+     }
 
     public void startSounds() {
         sound.startSounds();

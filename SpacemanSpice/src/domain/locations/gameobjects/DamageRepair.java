@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Life;
@@ -18,6 +19,7 @@ public class DamageRepair extends GameObject {
     
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public DamageRepair(ResourcesManager resources) {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
@@ -33,6 +35,7 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact() {
+        requester.playRepairSound();
         reader.storeln("You begin repairing the ship.");
         Life life = resourcesManager.getLife();
         life.setRepair(true);

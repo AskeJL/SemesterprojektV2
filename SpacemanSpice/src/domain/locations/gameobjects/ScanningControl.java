@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
@@ -17,6 +18,7 @@ public class ScanningControl extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public ScanningControl(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL, null);
@@ -33,6 +35,7 @@ public class ScanningControl extends GameObject {
      */
     @Override
     public void interact() {
+        requester.playConsoleSound();
         reader.storeln("You interact with the scanning station.");
         reader.storeln("You interact with the scanningstation\nThere are:\n"
                 + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"

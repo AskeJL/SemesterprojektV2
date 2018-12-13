@@ -245,4 +245,8 @@ public class LocationsManager extends Manager implements GameUpdateable {
     public HashMap<String, Location> getLocationMap() {
         return locationMap;
     }
+    
+    public String getCurrentLocationName(){
+        return this.getCurrentLocation().getName();
+    }
 }

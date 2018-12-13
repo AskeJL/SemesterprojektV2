@@ -84,10 +84,30 @@ public class DomainRequester implements InteractionsRequest {
         sound.playDoorSound();
     }
 
-    public void playInteractionSound() {
+    public void playConsoleSound() {
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playInteractionSound();
+        sound.playConsoleSound();
     }
+    
+    public void playSireenSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playSireenSound();
+    }
+    
+     public void playMoveSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playMoveSound();
+     }
+     
+     public void playAirSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playAirSound();
+     }
+     
+     public void playRepairSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playRepairSound();
+     }
 
     public void startSounds() {
         SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
@@ -117,5 +137,10 @@ public class DomainRequester implements InteractionsRequest {
     public Player getPlayer(){
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getPlayer();
+    }
+
+    public void setcurrentLocation(Location name) {
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
+        locations.setCurrentLocation(name);
     }
 }
