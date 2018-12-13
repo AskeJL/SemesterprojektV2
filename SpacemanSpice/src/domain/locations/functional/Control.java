@@ -35,9 +35,9 @@ public final class Control extends Location {
                    "Control", 
                    "In this location the ship is controlled.",
                    null,
-                   new Exit('n', "Hallway02"),
-                   new Exit('n', "Mainhall01"),
-                   new Exit('w', "Scanning"), 
+                   new Exit('N', "Hallway02"),
+                   new Exit('N', "Mainhall01"),
+                   new Exit('W', "Scanning"), 
                    "controlMap.txt");
     }
     

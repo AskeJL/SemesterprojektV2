@@ -71,8 +71,9 @@ public class DrawController extends GameElement {
         textMapLocation = currentMapLocation.getTextMapLocation();
 
         player = requester.getPlayer();
-        playerXLocation = player.getxPosition() + 5;
-        playerYLocation = player.getyPosition() + 5;
+        playerXLocation = player.getxPosition() + 19;
+        playerYLocation = player.getyPosition() + 10;
+
     }
     
     /**

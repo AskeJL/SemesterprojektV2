@@ -26,6 +26,10 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
     private Time time;
     private Life life;
 
+    private boolean oxygenGenerator1On;
+    private boolean oxygenGenerator2On;
+    private boolean oxygenGenerator3On;
+    
     public Oxygen() {
         
     }
@@ -39,6 +43,10 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
         
         time = resourcesManager.getTime();
         life = resourcesManager.getLife();
+        
+        setOxygenGenerator1On(false);
+        setOxygenGenerator2On(false);
+        setOxygenGenerator3On(false);
     }
     
     /**
@@ -92,5 +100,29 @@ public class Oxygen extends GameElement implements ResourcesElement, GameUpdatea
     @Override
     public int getValue() {
         return this.oxygen;
+    }
+
+    public boolean isOxygenGenerator1On() {
+        return oxygenGenerator1On;
+    }
+
+    public boolean isOxygenGenerator2On() {
+        return oxygenGenerator2On;
+    }
+
+    public boolean isOxygenGenerator3On() {
+        return oxygenGenerator3On;
+    }
+
+    public void setOxygenGenerator1On(boolean oxygenGenerator1On) {
+        this.oxygenGenerator1On = oxygenGenerator1On;
+    }
+
+    public void setOxygenGenerator2On(boolean oxygenGenerator2On) {
+        this.oxygenGenerator2On = oxygenGenerator2On;
+    }
+
+    public void setOxygenGenerator3On(boolean oxygenGenerator3On) {
+        this.oxygenGenerator3On = oxygenGenerator3On;
     }
 }

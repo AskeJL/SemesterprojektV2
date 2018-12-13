@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 
 /**
  * Used to destroy small fragments.
@@ -22,7 +23,7 @@ public class LaserControl extends GameObject {
     
     public LaserControl(SystemsManager systems) {
         super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL, null);
-        
+
         this.systemsManager = systems;
     }
 
@@ -38,9 +39,16 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playLaserSound();
-        reader.storeln("Interacting with laser control");
-        systemsManager.setSmallFragmentDestroyed(true);
+        Wave wave = systemsManager.getWave();
+        if (wave.getAmountOfLaserShots() > 0) {
+            requester.playLaserSound();
+            wave.setAmountOfLaserShots(wave.getAmountOfLaserShots()-1);
+            reader.storeln("Interacting with laser control");
+            systemsManager.setSmallFragmentDestroyed(true);
+        } else {
+            reader.storeln("The laser needs to be recharged in order to fire again.");
+        }
+        requester.playConsoleSound();
     }
 
     @Override
