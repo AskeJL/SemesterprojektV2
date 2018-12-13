@@ -78,10 +78,6 @@ public class DrawController extends GameElement {
     /**
      * Instantiates the components needed to be drawn on the canvas
      */
-    public void setup() {
-        
-
-    }
 
     public void clearCanvas() {
         int canvasWidth = 900;
