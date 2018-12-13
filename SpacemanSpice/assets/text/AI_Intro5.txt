@@ -1,14 +1,14 @@
 +-----------------------------------+
 | SAL153                            |
-| Scanning the vicinity of the ship |
-| is very important as you would    |
-| otherwise not know what could     |
-| potentially cause a collision and |
-| cause damage to the ship.         |
+| Looks like you somehow managed to |
+| forget to calibrate the scanner   |
+| before using it. Silly human.     |
 |                                   |
-| To scan the vicinity of the ship, |
-| head to the scanning room         |
-| and have a go at the terminal.    |
+| No matter. It is a rather simple  |
+| task to do: head to the           |
+| calibrator in the room to your    |
+| right, activate the calibrator    |
+| and reactivate the scanner.       |
 +-----------------------------------+
  Hint: press Esc to exit the terminal.
  Hint: use the arrow keys to move.

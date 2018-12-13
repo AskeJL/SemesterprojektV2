@@ -4,6 +4,7 @@ import data.AssetType;
 import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
+import domain.interactions.commands.Continue;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -20,6 +21,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.draw.DrawController;
+import domain.sound.SoundPlayer;
+import domain.tutorial.TutorialManager;
 
 public class ViewController_Game extends ViewController implements Initializable {
 
@@ -241,6 +244,11 @@ public class ViewController_Game extends ViewController implements Initializable
             case ESCAPE:
                 event.consume();
                 canvasMap.requestFocus();
+                break;
+            case C:
+                event.consume();
+                System.out.println(guiManager.getManager(TutorialManager.class));
+                ((TutorialManager)guiManager.getManager(TutorialManager.class)).setContinue(true);
                 break;
         }
     }

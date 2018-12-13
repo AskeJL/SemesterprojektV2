@@ -1,13 +1,15 @@
 +-----------------------------------+
 | SAL153                            |
-| Excellent! You have managed to    |
-| open your map. Bravo.             |
-| Try to store that in your         |
-| inferior human brain, will you?   |
+| Scanning the vicinity of the ship |
+| is very important as you would    |
+| otherwise not know what could     |
+| potentially cause a collision and |
+| cause damage to the ship.         |
 |                                   |
-| Now that you have some idea of    |
-| where what is, we can continue    |
-| to the next stage: scanning the   |
-| vicinity of the ship.             |
+| To scan the vicinity of the ship, |
+| head to the scanning room         |
+| and have a go at the terminal.    |
 +-----------------------------------+
- Type continue to continue.
+ Hint: press Esc to exit the terminal.
+ Hint: use the arrow keys to move.
+ Hint: use the space key to interact with objects and doors. 

@@ -37,6 +37,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
     private int counter = 0;
     private boolean tutorial = true;
+    private boolean continueActivated = false;
     private boolean scannerActivated = false;
     private boolean scannerCalibrated = false;
     private boolean laserActivated = false;
@@ -107,9 +108,10 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
                     break;
                 case 1:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro1);
                         commands.setLastCommand(new Clear());
+                        continueActivated = false;
                         counter++;
                     }
                     break;
@@ -117,6 +119,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro2);
                         commands.setLastCommand(new Clear());
+                        continueActivated = false;
                         counter++;
                     }
                     break;
@@ -124,6 +127,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro3);
                         commands.setLastCommand(new Clear());
+                        continueActivated = false;
                         counter++;
                     }
                     break;
@@ -131,11 +135,12 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro4);
                         commands.setLastCommand(new Clear());
+                        continueActivated = false;
                         counter++;
                     }
                     break;
                 case 5:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (scannerActivated == true) {
                         println(aIintro5);
                         commands.setLastCommand(new Clear());
                         counter++;
@@ -149,16 +154,17 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     }
                     break;
                 case 7:
-                    if (laserActivated == true) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
                         println(aIintro7);
                         commands.setLastCommand(new Clear());
                         counter++;
                     }
                     break;
                 case 8:
-                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                    if (laserActivated == true) {
                         println(aIintro8);
                         counter++;
+                        laserActivated = false;
                     }
                     break;
                 case 9:
@@ -256,6 +262,10 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
     public void setTutorial(boolean bool) {
         this.tutorial = bool;
+    }
+    
+    public void setContinue(boolean bool) {
+        this.continueActivated = bool;
     }
     
     public void setScannerActivated(boolean bool) {
