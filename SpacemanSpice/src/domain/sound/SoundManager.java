@@ -7,6 +7,7 @@ package domain.sound;
 
 import domain.GameElementGroup;
 import domain.Manager;
+import domain.locations.LocationsManager;
 
 /**
  *
@@ -15,7 +16,7 @@ import domain.Manager;
 public class SoundManager extends Manager {
 
     private static SoundPlayer sound;
-
+    
     public SoundManager() {
 
     }
@@ -24,7 +25,7 @@ public class SoundManager extends Manager {
     public void init() {
         GameElementGroup group = this.getGameElementGroup();
         sound = (SoundPlayer) group.getGameElement(SoundPlayer.class);
-
+        
         super.init();
     }
 

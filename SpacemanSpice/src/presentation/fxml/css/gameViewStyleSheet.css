@@ -17,11 +17,11 @@
     -fx-background-color: grey;
 }
 
-#progressBarLife .bar {
+#progressBarOxygen .bar {
     -fx-background-color: linear-gradient(to left, #1b60d1 0%, #3970cc 80%, #507bc4 100%);
 }
 
-#progressBarOxygen .bar {
+#progressBarLife .bar {
     -fx-background-color: linear-gradient(to left, #b50000 0%, #bc2b2b 80%, #d64848 100%);
 }
 

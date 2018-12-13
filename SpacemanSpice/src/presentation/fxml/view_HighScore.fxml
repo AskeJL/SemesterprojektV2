@@ -31,7 +31,7 @@
                <VBox.margin>
                   <Insets left="500.0" right="500.0" top="100.0" />
                </VBox.margin></ListView>
-            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#onBackHandler" onMouseEntered="#hover" onMouseExited="#exit" prefHeight="50.0" prefWidth="190.0" text="Back">
+            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#onBackHandler" onMouseEntered="#hover" prefHeight="50.0" prefWidth="190.0" text="Back">
                <font>
                   <Font name="Lucida Console" size="14.0" />
                </font>

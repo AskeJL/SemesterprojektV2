@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import data.AssetType;
 import data.Data;
+import domain.sound.SoundManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,15 +100,12 @@ public class ViewController_Highscore extends ViewController implements Initiali
     
     @FXML
     private void onBackHandler(ActionEvent event) throws IOException {
+        new SoundManager().getSoundPlayer().playButtonClickSound();
         guiManager.loadView(guiManager.getMenuPath());
     }
 
     @FXML
     private void hover(MouseEvent event) {
+        new SoundManager().getSoundPlayer().playButtonHoverSound();
     }
-
-    @FXML
-    private void exit(MouseEvent event) {
-    }
-
 }

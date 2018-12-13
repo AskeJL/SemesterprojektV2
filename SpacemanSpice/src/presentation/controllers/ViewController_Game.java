@@ -44,7 +44,15 @@ public class ViewController_Game extends ViewController implements Initializable
     private AnchorPane foreground;
     @FXML
     private ImageView background;
-    
+    @FXML
+    private ImageView terminalLamp;
+    @FXML
+    private ImageView canisterLamp;
+
+    private int terminalLampCounter = 0;
+    private int canisterLampCounter = 0;
+    private boolean terminalLampOn = false;
+
     private static String lastOutput = "";
 
     private final ArrayList<String> consoleText = new ArrayList<>();
@@ -61,21 +69,21 @@ public class ViewController_Game extends ViewController implements Initializable
     private ImageView earth_Debris_02;
 
     private ViewController_Menu menu;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {      
+    public void initialize(URL url, ResourceBundle rb) {
         gc = canvasMap.getGraphicsContext2D();
-        
+
         background.setImage(new Image("presentation/controllers/background.png", true));
 
         prepareAnimation();
 
         guiManager.getCurrentStage().setWidth(1280);
         guiManager.getCurrentStage().setHeight(720);
-        
+
         drawController = (DrawController) guiManager.getGameElementGroup().getGameElement(DrawController.class);
     }
 
@@ -85,9 +93,9 @@ public class ViewController_Game extends ViewController implements Initializable
             drawController.setup();
             drawController.drawLocation();
             drawController.drawPlayer();
-            
+
             menu = (ViewController_Menu) guiManager.getController(guiManager.getMenuPath());
-            
+
             initialized = true;
         }
 
@@ -104,6 +112,27 @@ public class ViewController_Game extends ViewController implements Initializable
         }
         waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
+        
+        if (terminalLampOn) {
+            if (terminalLampCounter == 1) {
+                terminalLamp.setImage(new Image("presentation/fxml/squareGreen-lit.png", true));
+            }
+            terminalLampCounter = terminalLampCounter < 200 ? terminalLampCounter + 1 : 0;
+            if (terminalLampCounter == 0) {
+                terminalLamp.setImage(new Image("presentation/fxml/squareGreen.png", true));
+                terminalLampOn = false;
+            }
+        }
+        
+        if (reader.readLifeValue() < 50 || reader.readOxygenValue() < 50) {
+            if (canisterLampCounter == 1 || canisterLampCounter == 200) {
+                canisterLamp.setImage(new Image("presentation/fxml/squareRed-lit.png", true));
+            }
+            canisterLampCounter = canisterLampCounter < 400 ? canisterLampCounter + 1 : 0;
+            if (canisterLampCounter == 100 || canisterLampCounter == 300) {
+                canisterLamp.setImage(new Image("presentation/fxml/squareRed.png", true));
+            }
+        }
 
         String output = reader.readOutput();
 
@@ -112,11 +141,12 @@ public class ViewController_Game extends ViewController implements Initializable
             lastOutput = output;
             infoText.setScrollTop(10000);
             infoText.positionCaret(output.length());
+            terminalLampOn = true;
         }
 
         requester.playGameMusic();
         requester.playLocationSound();
-        
+
         earth.rotateProperty().set(menu.getEarthCount());
         menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);
 
@@ -150,7 +180,7 @@ public class ViewController_Game extends ViewController implements Initializable
         image.setTranslateX(xPos);
         image.setTranslateY(yPos);
     }
-    
+
     @FXML
     private void enterPressedHandler(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {

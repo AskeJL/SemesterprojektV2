@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -110,7 +109,7 @@ public class ViewController_Menu extends ViewController implements Initializable
     @FXML
     private void onPlayHandler(ActionEvent event) throws IOException {
         new SoundManager().getSoundPlayer().playButtonClickSound();
-        requester.requestReset();
+        //requester.requestReset();
         guiManager.loadView(guiManager.getGameViewPath());
     }
 
