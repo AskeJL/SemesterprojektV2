@@ -15,13 +15,13 @@ import domain.resources.ResourcesManager;
  * @see GameObject
  * @see domain.locations.functional.Outside
  */
-public class DamageRepair extends GameObject {
+public class ControllerOutside extends GameObject {
     
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public DamageRepair(ResourcesManager resources) {
+    public ControllerOutside(ResourcesManager resources) {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }

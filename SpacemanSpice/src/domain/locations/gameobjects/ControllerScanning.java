@@ -14,13 +14,13 @@ import domain.systems.SystemsManager;
  * @see GameObject
  * @see domain.locations.functional.Scanning
  */
-public class ScanningControl extends GameObject {
+public class ControllerScanning extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public ScanningControl(SystemsManager systems) {
+    public ControllerScanning(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
