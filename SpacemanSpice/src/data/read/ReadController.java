@@ -3,6 +3,7 @@ package data.read;
 import data.AssetType;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
 
 /**
  * This controller is assigned the job to read all the different kinds of files.
@@ -12,11 +13,12 @@ import java.util.List;
  */
 public class ReadController {
 
-    private static final String MAP_PATH = "assets/maps/";
-    private static final String TEXT_PATH = "assets/text/";
-    private static final String DESCRIPTION_PATH = "assets/descriptions/";
-    private static final String AI_PATH = "assets/text/AI behaviour/";
-    private static final String SCORE_PATH = "assets/score/";
+    private static final String PATH_MAP = "assets/maps/";
+    private static final String PATH_TEXT = "assets/text/";
+    private static final String PATH_DESCRIPTION = "assets/descriptions/";
+    private static final String PATH_AI = "assets/text/AI behaviour/";
+    private static final String PATH_SCORE = "assets/score/";
+    private static final String PATH_UI = "assets/UI/";
 
     /**
      * Gets data based on its {@link data.AssetType} and name.
@@ -34,17 +36,27 @@ public class ReadController {
     public List<String> readData(AssetType type, String filename) {
         switch (type) {
             case MAP:
-                return new Read(MAP_PATH, filename).readTextFile();
+                return new Read(PATH_MAP, filename).readTextFile();
             case TEXT:
-                return new Read(TEXT_PATH, filename).readTextFile();
+                return new Read(PATH_TEXT, filename).readTextFile();
             case DESCRIPTION:
-                return new Read(DESCRIPTION_PATH, filename).readTextFile();
+                return new Read(PATH_DESCRIPTION, filename).readTextFile();
             case AIWAVE:
-                return new Read(AI_PATH, filename).readTextFile();
+                return new Read(PATH_AI, filename).readTextFile();
             case SCORE:
-                return new Read(SCORE_PATH, filename).readTextFile();
+                return new Read(PATH_SCORE, filename).readTextFile();
             default:
                 return new ArrayList<>();
+        }
+    }
+
+    public Image readImage(AssetType type, String filename) {
+        switch (type) {
+            case UI:
+                return new Read(PATH_UI, filename).readImageFile();
+            default:
+                System.out.println("Nothing was found at " + type + " " + filename + ". \nReturning null.");
+                return null;
         }
     }
 }

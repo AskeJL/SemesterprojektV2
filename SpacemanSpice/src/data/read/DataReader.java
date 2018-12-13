@@ -2,6 +2,7 @@ package data.read;
 
 import data.AssetType;
 import java.util.List;
+import javafx.scene.image.Image;
 
 /**
  * Used when accessing the data layer for reading.
@@ -30,4 +31,6 @@ public interface DataReader {
      * @see data.read.Read
      */
     List<String> readData(AssetType type, String filename);
+    
+    Image readImage(AssetType type, String filename);
 }

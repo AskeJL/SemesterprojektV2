@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.ViewController_Highscore">
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="presentation.controllers.ViewController_Highscore">
    <children>
-      <Button fx:id="backButton" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackHandler" prefHeight="50.0" prefWidth="250.0" text="Back">
-         <font>
-            <Font name="Lucida Console" size="14.0" />
-         </font>
-      </Button>
-      <ListView fx:id="highscoreLIst" layoutX="415.0" layoutY="160.0" prefHeight="400.0" prefWidth="450.0" />
+      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" smooth="false" />
+      <AnchorPane fx:id="foreground" prefHeight="200.0" prefWidth="200.0" />
+      <VBox fx:id="authors" alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="150.0">
+         <children>
+            <Label fx:id="createdByLabel" prefHeight="20.0" prefWidth="230.0" text="Created by:" />
+            <Label fx:id="nameLabel1" prefHeight="20.0" prefWidth="230.0" text="Samuel Bangslund, Nikolaos Pattelakis," />
+            <Label fx:id="nameLabel2" prefHeight="20.0" prefWidth="230.0" text="Oliver Pickardt and Aske Lorenz">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="1146.0" spacing="20.0">
+         <children>
+            <ListView fx:id="highscoreLIst" prefHeight="400.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="500.0" right="500.0" top="100.0" />
+               </VBox.margin></ListView>
+            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#onBackHandler" onMouseEntered="#hover" prefHeight="50.0" prefWidth="190.0" text="Back">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</StackPane>
