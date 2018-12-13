@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public abstract class Location extends GameElement {
 
     protected static LocationsManager locationsManager;
-    
+
     /**
      * Name of the Location.
      */
@@ -39,17 +39,16 @@ public abstract class Location extends GameElement {
     private Exit westExit;
     private Exit southExit;
     private Exit eastExit;
-    
+
     private String textMapLocation;
-    
-    
+
     protected Location(String name, String description) {
         this.NAME = name;
         this.description = description;
     }
-    
-    protected Location(String name, String description, Exit northExit, Exit westExit, Exit southExit, Exit eastExit, String fileLocation){
-        
+
+    protected Location(String name, String description, Exit northExit, Exit westExit, Exit southExit, Exit eastExit, String fileLocation) {
+
         this.NAME = name;
         this.description = description;
         this.northExit = northExit;
@@ -57,13 +56,19 @@ public abstract class Location extends GameElement {
         this.southExit = southExit;
         this.eastExit = eastExit;
         this.textMapLocation = fileLocation;
-        
+
     }
-    
+
+    /**
+     * Initialize Locations. This is implemented static because of the class
+     * being abstract.
+     *
+     * @param locations The {@link LocationManager} to set.
+     */
     public static void init(LocationsManager locations) {
         Location.locationsManager = locations;
     }
-    
+
     /**
      * Add an {@link Exit} to the location.
      *

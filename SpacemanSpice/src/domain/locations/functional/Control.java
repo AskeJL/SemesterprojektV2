@@ -3,10 +3,8 @@ package domain.locations.functional;
 import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
-import domain.locations.LocationsManager;
 import domain.locations.Room;
 import domain.locations.gameobjects.SteeringControl;
-import domain.locations.nonfunctional.*;
 import domain.systems.SystemsManager;
 
 /**
@@ -15,14 +13,27 @@ import domain.systems.SystemsManager;
 public final class Control extends Location {
 
     private SystemsManager systemsManager;
-    
-    /**
-     * Constructor that runs the createLocationCLI method.
-     */
+
     public Control() {
         super("Control", "In this location the ship is controlled.");
     }
-    
+
+    public Control(Boolean gui) {
+        super(
+                "Control",
+                "In this location the ship is controlled.",
+                null,
+                new Exit('N', "Hallway02"),
+                new Exit('N', "Mainhall01"),
+                new Exit('W', "Scanning"),
+                "controlMap.txt");
+    }
+
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
     @Override
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
@@ -30,17 +41,12 @@ public final class Control extends Location {
         createLocationCLI();
     }
 
-    public Control(Boolean gui){
-                   super(
-                   "Control", 
-                   "In this location the ship is controlled.",
-                   null,
-                   new Exit('N', "Hallway02"),
-                   new Exit('N', "Mainhall01"),
-                   new Exit('W', "Scanning"), 
-                   "controlMap.txt");
-    }
-    
+    /**
+     * Creates a steering {@link Room}, navigation {@link Room} and a control
+     * {@link Room}.
+     * <p>
+     * A {@link SteeringControl} is added to the steering {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the control location are created-----------------------*/

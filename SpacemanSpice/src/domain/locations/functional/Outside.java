@@ -20,13 +20,6 @@ public final class Outside extends Location {
     public Outside() {
         super("Outside", "This location contains the airlock and from here it is possible to go outside");
     }
-    
-    @Override
-    public void init() {
-        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
-
-        createLocationCLI();
-    }
 
     public Outside(Boolean gui){
                    super(
@@ -39,6 +32,24 @@ public final class Outside extends Location {
                    "outsideMap.txt");
     }
     
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
+
+        createLocationCLI();
+    }
+    
+    /**
+     * Creates an outside {@link Room} and an airlock
+     * {@link Room}.
+     * <p>
+     * A {@link DamageRepair} is added to the outside {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the outside location are created-----------------------*/

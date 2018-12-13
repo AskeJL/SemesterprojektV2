@@ -9,21 +9,61 @@ import domain.GameUpdateable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This is responsible of keep track of where the player is, how the map looks
+ * and how it is connected.
+ * <p>
+ * Upon initialization ({@link #init()}) this will create all the locations
+ * depending on whether or not this play through is GUI or CLI.
+ */
 public class LocationsManager extends Manager implements GameUpdateable {
 
+    /**
+     * All the locations managed by the {@link LocationsManager}.
+     */
     private final List<Location> locations = new ArrayList<>();
+
+    /**
+     * The room the player is currently in. (This is not set when using a GUI
+     * instance)
+     */
     private Room currentRoom;
+
+    /**
+     * The locations the player is currently in.
+     */
     private Location currentLocation;
-    private HashMap<String, Location> locationMap = new HashMap<>();
-    private boolean guiOn = true;
-    //Temporary value to switch between views
+
+    /**
+     * All the different maps for the locations are stored here (to reference
+     * the location, use the name of the location as key).
+     */
+    private HashMap<String, Location> locationMaps = new HashMap<>();
+
+    /**
+     * Whether or not this is a GUI or a CLI instance. (Should be directly
+     * connected to {@link domain.Game}.
+     */
+    private final boolean guiOn = true;
+
+    /**
+     * Initialize the locations. Firstly calls the
+     * {@link Location#init(domain.locations.LocationsManager)}. Then, based on
+     * the {@link #guiOn}, initializes the appropriate locations.
+     * <p>
+     * Sets the {@link #currentLocation} to "Personal, making the game start
+     * there.
+     * <p>
+     * Finally calls the {@link domain.Manager#init()} to initialize
+     * {@link GameElement}s managed by this {@link domain.Manager}.
+     */
     @Override
     public void init() {
         Location.init(this);
 
         if (guiOn == true) {
             createLocationGUI();
-            currentLocation = getLocationMap().get("Personal");
+            currentLocation = getLocationMaps().get("Personal");
         } else {
             createLocations();
             currentLocation = locations.get(5);
@@ -32,6 +72,12 @@ public class LocationsManager extends Manager implements GameUpdateable {
         super.init();
     }
 
+    /**
+     * Updates the {@link domain.Manager}.
+     * <p>
+     * Finally calls the {@link domain.Manager#update()} to update
+     * {@link GameElement}s managed by this {@link domain.Manager}.
+     */
     @Override
     public void update() {
         super.update();
@@ -73,11 +119,11 @@ public class LocationsManager extends Manager implements GameUpdateable {
 
         GameElementGroup locationGroup = new GameElementGroup();
         locationGroup.setManagerGroup(this.getManagerGroup());
-        for(Location location : locations) {
+        for (Location location : locations) {
             locationGroup.add(location);
             location.init();
         }
-        
+
         // Connecting locations (Should be moved to another method: connectLocations)
         // Laser connects to mainhall02 from corridor due WEST
         // Laser connects to hallway01 from corridor due EAST
@@ -151,7 +197,8 @@ public class LocationsManager extends Manager implements GameUpdateable {
     }
 
     /**
-     * Creates locations for GUI view mode and puts them in a location hashMap
+     * Creates locations for GUI view mode and puts them in
+     * {@link #locationMaps} for later referencing.
      */
     private void createLocationGUI() {
         Location personal = new Personal(this.guiOn),
@@ -166,25 +213,24 @@ public class LocationsManager extends Manager implements GameUpdateable {
                 hallway01 = new Hallway01(this.guiOn),
                 hallway02 = new Hallway02(this.guiOn);
 
-        this.getLocationMap().put(personal.getName(), personal);
-        this.getLocationMap().put(scanning.getName(), scanning);
-        this.getLocationMap().put(control.getName(), control);
-        this.getLocationMap().put(oxygen.getName(), oxygen);
-        this.getLocationMap().put(outside.getName(), outside);
-        this.getLocationMap().put(net.getName(), net);
-        this.getLocationMap().put(laser.getName(), laser);
-        this.getLocationMap().put(mainhall01.getName(), mainhall01);
-        this.getLocationMap().put(mainhall02.getName(), mainhall02);
-        this.getLocationMap().put(hallway01.getName(), hallway01);
-        this.getLocationMap().put(hallway02.getName(), hallway02);
-
+        this.getLocationMaps().put(personal.getName(), personal);
+        this.getLocationMaps().put(scanning.getName(), scanning);
+        this.getLocationMaps().put(control.getName(), control);
+        this.getLocationMaps().put(oxygen.getName(), oxygen);
+        this.getLocationMaps().put(outside.getName(), outside);
+        this.getLocationMaps().put(net.getName(), net);
+        this.getLocationMaps().put(laser.getName(), laser);
+        this.getLocationMaps().put(mainhall01.getName(), mainhall01);
+        this.getLocationMaps().put(mainhall02.getName(), mainhall02);
+        this.getLocationMaps().put(hallway01.getName(), hallway01);
+        this.getLocationMaps().put(hallway02.getName(), hallway02);
     }
 
     /**
-     * Clears the location hashMap
+     * Clears the {@link #locationMaps}.
      */
     public void clearLocationMap() {
-        locationMap.clear();
+        locationMaps.clear();
     }
 
     @Override
@@ -193,7 +239,7 @@ public class LocationsManager extends Manager implements GameUpdateable {
         info += super.toString();
         return info;
     }
-    
+
     /**
      * Get all the {@link Location}s created in {@link #createLocations()}.
      *
@@ -240,13 +286,20 @@ public class LocationsManager extends Manager implements GameUpdateable {
     }
 
     /**
-     * @return the locationMap
+     * Get {@link #locationMaps}
+     *
+     * @return The locationMaps map.
      */
-    public HashMap<String, Location> getLocationMap() {
-        return locationMap;
+    public HashMap<String, Location> getLocationMaps() {
+        return locationMaps;
     }
-    
-    public String getCurrentLocationName(){
+
+    /**
+     * Get the name of {@link #currentLocation}.
+     *
+     * @return The name of the current location.
+     */
+    public String getCurrentLocationName() {
         return this.getCurrentLocation().getName();
     }
 }

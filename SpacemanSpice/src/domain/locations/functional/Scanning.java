@@ -13,37 +13,45 @@ import domain.systems.SystemsManager;
 public final class Scanning extends Location {
 
     private SystemsManager systemsManager;
-    
-    /**
-     * Constructor that runs the createLocationCLI method.
-     */
+
     public Scanning() {
         super("Scanning", "In this location spacedebris can be scanned.");
     }
 
+    public Scanning(Boolean gui) {
+        super(
+                "Scanning",
+                "In this location spacedebris can be scanned.",
+                null,
+                new Exit('E', "Control"),
+                new Exit('N', "Personal"),
+                null,
+                "scanningMap.txt");
+    }
+
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
     @Override
     public void init() {
         systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
-        
+
         createLocationCLI();
     }
-    
-    public Scanning(Boolean gui){
-                   super(
-                   "Scanning", 
-                   "In this location spacedebris can be scanned.",
-                   null,
-                   new Exit('E', "Control"),
-                   new Exit('N', "Personal"),
-                   null, 
-                   "scanningMap.txt");
-    }
 
+    /**
+     * Creates a scanning {@link Room}, a display {@link Room} and a sensor
+     * {@link Room}.
+     * <p>
+     * A {@link ScanningControl} is added to the scanning {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the scanning location are created----------------------*/
-       
-        /*Scanning room-------------------------------------------------------*/
+
+ /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
         scanningRoom.addGameObject(new ScanningControl(this.systemsManager));
         super.addRoom(scanningRoom);

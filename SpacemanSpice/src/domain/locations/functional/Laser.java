@@ -1,6 +1,5 @@
 package domain.locations.functional;
 
-import domain.GameElementGroup;
 import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
@@ -15,21 +14,11 @@ public final class Laser extends Location {
     
     private SystemsManager systemsManager;
     
-    /**
-     * Constructor that runs the createLocationCLI method.
-     */
     public Laser() {
         super("Laser", "The laser is operated from here.");
     }
-    
-    @Override
-    public void init() {
-        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
 
-        createLocationCLI();
-    }
-
-    public Laser(Boolean gui){
+    public Laser(boolean gui){
                    super(
                    "Laser", 
                    "The laser is operated from here.",
@@ -40,6 +29,24 @@ public final class Laser extends Location {
                    "laserMap.txt");
     }
     
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
+    @Override
+    public void init() {
+        systemsManager = (SystemsManager) this.gameElementGroup.getManagerGroup().getManager(SystemsManager.class);
+
+        createLocationCLI();
+    }
+    
+    /**
+     * Creates a corridor {@link Room}, technic {@link Room} and a control
+     * {@link Room}.
+     * <p>
+     * A {@link LaserControl} is added to the control {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the laser location are created-------------------------*/

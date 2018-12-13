@@ -246,7 +246,7 @@ public class DomainRequester implements InteractionsRequest {
      */
     public HashMap<String, Location> requestLocationsMap() {
         LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
-        return locations != null ? locations.getLocationMap() : new HashMap<>();
+        return locations != null ? locations.getLocationMaps() : new HashMap<>();
     }
 
     /**
