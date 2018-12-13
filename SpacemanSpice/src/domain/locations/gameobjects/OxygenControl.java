@@ -15,13 +15,12 @@ import domain.resources.ResourcesManager;
  * @see domain.locations.functional.Oxygen
  */
 public class OxygenControl extends GameObject {
-    
+
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
-    
+
     public OxygenControl(ResourcesManager resources) {
-        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL, null);  
-        
+        super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
 
@@ -36,9 +35,15 @@ public class OxygenControl extends GameObject {
      */
     @Override
     public void interact() {
-        reader.storeln("You interact with the Oxygen refilling control");
         Oxygen oxygen = resourcesManager.getOxygen();
+        if(oxygen.isOxygenGeneratorOn() == true){
+        reader.storeln("You interact with the Oxygen refilling control");
         oxygen.increaseValue(100 - oxygen.getValue());
+        oxygen.setOxygenGeneratorOn(false);
+        }
+        else{
+        reader.storeln("The oxygen tank is empty, activate the oxygen generator to fill up the tank!");
+        }
     }
 
     @Override

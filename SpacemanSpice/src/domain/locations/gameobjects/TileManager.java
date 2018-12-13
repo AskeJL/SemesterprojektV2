@@ -112,6 +112,9 @@ public class TileManager extends Manager implements GameUpdateable{
     private Tile controllerOxygen01;
     private final String CONTROLLER_OXYGEN_01_FILE_PATH = "assets/pictures/controllers/controllerOxygen.png";
     private final Image CONTROLLER_OXYGEN_01_IMAGE = new Image(new File(CONTROLLER_OXYGEN_01_FILE_PATH).toURI().toString());
+    private Tile controllerOxygen02;
+    private final String CONTROLLER_OXYGEN_02_FILE_PATH = "assets/pictures/controllers/controllerOxygen.png";
+    private final Image CONTROLLER_OXYGEN_02_IMAGE = new Image(new File(CONTROLLER_OXYGEN_02_FILE_PATH).toURI().toString());
     
     private Tile controllerScanning_01;
     private final String CONTROLLER_SCANNING_01_FILE_PATH = "assets/pictures/controllers/controllerScanning.png";
@@ -190,6 +193,7 @@ public class TileManager extends Manager implements GameUpdateable{
         this.controllerLaser01 = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
         this.controllerNet01 = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_01_IMAGE);
         this.controllerOxygen01 = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_01_IMAGE);
+        this.controllerOxygen02 = new Tile(',', false, GameObjectType.CONTROL, new OxygenGenerator(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_01_IMAGE);
         this.controllerScanning_01 = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_SCANNING_01_IMAGE);
         this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
         this.controllerSteering_01 = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_01_IMAGE);
@@ -236,6 +240,7 @@ public class TileManager extends Manager implements GameUpdateable{
         getTileMap().put(this.controllerLaser01.getSYMBOL(), this.controllerLaser01);
         getTileMap().put(this.controllerNet01.getSYMBOL(), this.controllerNet01);
         getTileMap().put(this.controllerOxygen01.getSYMBOL(), this.controllerOxygen01);
+        getTileMap().put(this.controllerOxygen02.getSYMBOL(), this.controllerOxygen02);
         getTileMap().put(this.controllerScanning_01.getSYMBOL(), this.controllerScanning_01);
         getTileMap().put(this.controllerOutside_01.getSYMBOL(), this.controllerOutside_01);
         getTileMap().put(this.controllerSteering_01.getSYMBOL(), this.controllerSteering_01);
