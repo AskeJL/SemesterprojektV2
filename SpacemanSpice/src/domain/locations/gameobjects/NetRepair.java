@@ -5,8 +5,11 @@
  */
 package domain.locations.gameobjects;
 
+import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
+import domain.systems.SystemsManager;
+import domain.systems.Wave;
 
 /**
  *
@@ -14,12 +17,23 @@ import domain.locations.GameObjectType;
  */
 public class NetRepair extends GameObject {
 
-    public NetRepair(){
+    private final SystemsManager systemsManager;
+    private final DomainReader reader = new DomainReader();
+    
+    public NetRepair(SystemsManager systems){
         super("Net repair.", "You can repair your net here.", GameObjectType.CONTROL, null);
+        this.systemsManager = systems;
     }
     @Override
     public void interact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Wave wave = systemsManager.getWave();
+        if(wave.getNetCurrentHealth() == wave.getNET_MAX_HEALTH()){
+            reader.storeln("Net has been repaired fully!");
+        }
+        else{
+            wave.setNetCurrentHealth(wave.getNetCurrentHealth() + 10);
+            reader.storeln("Net has been repaired, now at: " + wave.getNetCurrentHealth() + "% health");
+        }
     }
     
 }

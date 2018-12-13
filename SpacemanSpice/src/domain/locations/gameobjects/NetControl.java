@@ -4,6 +4,7 @@ import domain.DomainReader;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 
 /**
  * Used to catch medium fragments.
@@ -36,9 +37,16 @@ public class NetControl extends GameObject {
      */
     @Override
     public void interact() {
+        Wave wave = systemsManager.getWave();
+        if(wave.getNetCurrentHealth() > 0){
         reader.storeln("Interacting with net control.");
         systemsManager.setMediumFragmentDestroyed(true);
-    }
+        wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
+        }
+        else{
+            reader.storeln("Net is too damaged, repair it in order to keep using it!");
+        }
+        }
 
     @Override
     public String toString() {

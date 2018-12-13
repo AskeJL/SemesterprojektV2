@@ -36,13 +36,15 @@ public class OxygenControl extends GameObject {
     @Override
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
-        if(oxygen.isOxygenGeneratorOn() == true){
+        if(oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true){
         reader.storeln("You interact with the Oxygen refilling control");
         oxygen.increaseValue(100 - oxygen.getValue());
-        oxygen.setOxygenGeneratorOn(false);
+        oxygen.setOxygenGenerator1On(false);
+        oxygen.setOxygenGenerator2On(false);
+        oxygen.setOxygenGenerator3On(false);
         }
         else{
-        reader.storeln("The oxygen tank is empty, activate the oxygen generator to fill up the tank!");
+        reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
         }
     }
 
