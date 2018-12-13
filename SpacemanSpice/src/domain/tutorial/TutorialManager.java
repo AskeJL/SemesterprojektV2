@@ -111,20 +111,18 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro1);
                         commands.setLastCommand(new Clear());
-                        continueActivated = false;
                         counter++;
                     }
                     break;
                 case 2:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro2);
                         commands.setLastCommand(new Clear());
-                        continueActivated = false;
                         counter++;
                     }
                     break;
                 case 3:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro3);
                         commands.setLastCommand(new Clear());
                         continueActivated = false;
@@ -132,7 +130,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     }
                     break;
                 case 4:
-                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                         println(aIintro4);
                         commands.setLastCommand(new Clear());
                         continueActivated = false;
@@ -223,6 +221,18 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     }
                     break;
             }
+            continueActivated = false;
+            scannerActivated = false;
+            scannerCalibrated = false;
+            laserActivated = false;
+            laserCharged = false;
+            oxygenActivated = false;
+            oxygenCharged = false;
+            damageRepairActivated = false;
+            netActivated = false;
+            netRepaired = false;
+            steeringActivated = false;
+            steeringCharged = false;
         }
     }
 
@@ -266,6 +276,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
     
     public void setContinue(boolean bool) {
         this.continueActivated = bool;
+        
     }
     
     public void setScannerActivated(boolean bool) {
