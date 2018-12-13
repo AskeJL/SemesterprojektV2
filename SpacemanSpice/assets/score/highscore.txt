@@ -1,9 +1,6 @@
-612 Bert
-667 Sedan
-6677 Tim 
-1 Elmer
-16 Dennis
-300 Rasmus
-29 Gert
-36 
-40 Lars
+Gert 432
+Tim 425
+Rasmus 300
+Birger 36
+Egon 20
+Elmer 16

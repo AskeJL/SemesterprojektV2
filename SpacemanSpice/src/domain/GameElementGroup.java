@@ -8,7 +8,7 @@ public class GameElementGroup {
     private ManagerGroup managerGroup;
     private Manager manager;
     
-    private List<GameElement> elements = new ArrayList<>();
+    private final List<GameElement> elements = new ArrayList<>();
     
     public void add(GameElement element) {
         element.setGameElementGroup(this);

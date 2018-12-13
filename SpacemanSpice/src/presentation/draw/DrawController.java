@@ -4,6 +4,9 @@ import data.AssetType;
 import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
+import domain.GameElement;
+import domain.GameUpdateable;
+import domain.Manager;
 import domain.locations.*;
 import domain.locations.gameobjects.Player;
 import domain.locations.gameobjects.Tile;
@@ -13,6 +16,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import presentation.controllers.ViewController_Game;
 import domain.sound.SoundPlayer;
+import presentation.GUIManager;
 
 /**
  * Draw controller class, implements DataReader interface in order to draw data
@@ -20,9 +24,8 @@ import domain.sound.SoundPlayer;
  * the relationships between them based on user input.
  *
  */
-public class DrawController {
+public class DrawController extends GameElement {
 
-    private final ViewController_Game gameViewController;
     private GraphicsContext gc;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
@@ -48,17 +51,18 @@ public class DrawController {
     private GameObjectType actionType;
     private char exitDirection;
 
-    public DrawController(ViewController_Game controller) {
-        this.gameViewController = controller;
+    @Override
+    public void init() {
+        
     }
-
+    
     /**
      * Instantiates the components needed to be drawn on the canvas
      */
     public void setup() {
-
-        gc = gameViewController.getGraphicsContext();
-
+        GUIManager gui = (GUIManager)gameElementGroup.getManager();
+        gc = ((ViewController_Game)gui.getController(gui.getGameViewPath())).getGraphicsContext();
+        
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
 
@@ -73,7 +77,6 @@ public class DrawController {
     }
 
     public void clearCanvas() {
-        gc = gameViewController.getGraphicsContext();
         int canvasWidth = 900;
         int canvasHeight = 540;
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -122,7 +125,6 @@ public class DrawController {
      * Draws the player.
      */
     public void drawPlayer() {
-
         gc.drawImage(player.getPlayerImage(), playerXLocation * tileSize, playerYLocation * tileSize);
     }
 
@@ -131,7 +133,7 @@ public class DrawController {
      * interact-able.
      */
     public void interact() {
-        SoundPlayer sound = new SoundPlayer(this);
+        SoundPlayer sound = new SoundPlayer();
         if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
             actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
             currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
@@ -243,5 +245,4 @@ public class DrawController {
     public String getCurrentLocationName() {
         return currentLocationName;
     }
-
 }
