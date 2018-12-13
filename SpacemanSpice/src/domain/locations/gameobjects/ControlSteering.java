@@ -14,13 +14,13 @@ import domain.systems.SystemsManager;
  * @see GameObject
  * @see domain.locations.functional.Laser
  */
-public class SteeringControl extends GameObject {
+public class ControlSteering extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public SteeringControl(SystemsManager systems) {
+    public ControlSteering(SystemsManager systems) {
         super("Steering Control", "The ship is flown from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;

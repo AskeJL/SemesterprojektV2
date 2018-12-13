@@ -9,9 +9,6 @@ import domain.locations.Room;
  */
 public final class Hallway01 extends Location {
 
-    /**
-     * Constructor that runs the createLocationCLI method.
-     */
     public Hallway01() {
         super("Hallway01", "Hallway connecting Personal, Laser and Net");
         

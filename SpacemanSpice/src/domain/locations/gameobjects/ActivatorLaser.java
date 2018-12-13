@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
@@ -12,19 +7,28 @@ import domain.systems.SystemsManager;
 import domain.systems.Wave;
 
 /**
+ * An activator for the {@link ControlLaser}. This is paired with the
+ * {@link ControlLaser} and its main job is to activate the controller.
+ * <p>
+ * To activate it, the player simply has to interact with it. This will charge
+ * the {@link ControlLaser}.
  *
- * @author Lupo
+ * @see ControlLaser
  */
-public class LaserArmingSystem extends GameObject {
+public class ActivatorLaser extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
 
-    public LaserArmingSystem(SystemsManager systems) {
+    public ActivatorLaser(SystemsManager systems) {
         super("Laser arming system.", "The laser is armed from here.", GameObjectType.CONTROL, null);
         this.systemsManager = systems;
     }
 
+    /**
+     * Upon interaction, this activator will grant the player 3 shots to the
+     * laser - if not already charged.
+     */
     @Override
     public void interact() {
         Wave wave = systemsManager.getWave();

@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.LaserControl;
+import domain.locations.gameobjects.ControlLaser;
 import domain.systems.SystemsManager;
 
 /**
@@ -45,7 +45,7 @@ public final class Laser extends Location {
      * Creates a corridor {@link Room}, technic {@link Room} and a control
      * {@link Room}.
      * <p>
-     * A {@link LaserControl} is added to the control {@link Room}.
+     * A {@link ControlLaser} is added to the control {@link Room}.
      */
     @Override
     protected void createLocationCLI() {
@@ -61,7 +61,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        controlsRoom.addGameObject(new LaserControl(systemsManager));
+        controlsRoom.addGameObject(new ControlLaser(systemsManager));
         
         super.addRoom(controlsRoom);
 

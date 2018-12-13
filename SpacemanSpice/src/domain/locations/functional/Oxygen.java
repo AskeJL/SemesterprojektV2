@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.OxygenControl;
+import domain.locations.gameobjects.ControlOxygen;
 import domain.resources.ResourcesManager;
 
 /**
@@ -48,7 +48,7 @@ public final class Oxygen extends Location {
      * Creates a corridor {@link Room}, a refuel {@link Room} and a storage
      * {@link Room}.
      * <p>
-     * A {@link OxygenControl} is added to the refuel {@link Room}.
+     * A {@link ControlOxygen} is added to the refuel {@link Room}.
      */
     @Override
     protected void createLocationCLI() {
@@ -64,7 +64,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-        refuelRoom.addGameObject(new OxygenControl(resourcesManager));
+        refuelRoom.addGameObject(new ControlOxygen(resourcesManager));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

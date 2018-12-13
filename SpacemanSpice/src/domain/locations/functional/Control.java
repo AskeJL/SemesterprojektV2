@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.SteeringControl;
+import domain.locations.gameobjects.ControlSteering;
 import domain.systems.SystemsManager;
 
 /**
@@ -45,7 +45,7 @@ public final class Control extends Location {
      * Creates a steering {@link Room}, navigation {@link Room} and a control
      * {@link Room}.
      * <p>
-     * A {@link SteeringControl} is added to the steering {@link Room}.
+     * A {@link ControlSteering} is added to the steering {@link Room}.
      */
     @Override
     protected void createLocationCLI() {
@@ -53,7 +53,7 @@ public final class Control extends Location {
 
         /*Steering------------------------------------------------------------*/
         Room steeringRoom = new Room("Control Steering", "The ship is controlled from here.");
-        steeringRoom.addGameObject(new SteeringControl(systemsManager));
+        steeringRoom.addGameObject(new ControlSteering(systemsManager));
         super.addRoom(steeringRoom);
 
         /*Navigation----------------------------------------------------------*/

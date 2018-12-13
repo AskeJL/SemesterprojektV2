@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.locations.gameobjects;
 
 import domain.locations.GameObject;
@@ -10,91 +5,134 @@ import domain.locations.GameObjectType;
 import javafx.scene.image.Image;
 
 /**
- *
- * @author Lupo
+ * The actual tiles that are drawn on top of the canvas. Every tile is
+ * identified by a symbol:{@link #symbol}, an Image:{@link #tileImage} and a
+ * {@link GameObject}:{@link #gameObject}.
  */
 public class Tile {
-    
-    private final char SYMBOL;
-    
-    private int TILE_POSITION_X_AXIS;
-    private int TILE_POSITION_Y_AXIS;
-    
-    private final Boolean SOLID;
-    private final GameObjectType GAME_OBJECT_TYPE;
-    private final GameObject GAME_OBJECT;
-    
-    private final Image TILE_IMAGE;
-    
-    public Tile(char symbol, Boolean isSolid, GameObjectType type, GameObject gameObject, Image img){
-        
-        this.SYMBOL = symbol;
-        this.SOLID = isSolid;
-        this.GAME_OBJECT_TYPE = type;
-        this.GAME_OBJECT = gameObject;
-        this.TILE_IMAGE = img;
+
+    /**
+     * The symbol representing this tile.
+     */
+    private final char symbol;
+
+    /**
+     * The x position of this tile.
+     */
+    private int xPos;
+
+    /**
+     * The y position of this tile.
+     */
+    private int yPos;
+
+    /**
+     * Whether or not this tile is a solid object. (If solid the player can't
+     * translate the tile)
+     */
+    private final boolean solid;
+
+    /**
+     * This tiles {@link GameObjectType}.
+     */
+    private final GameObjectType gameObjectType;
+
+    /**
+     * The {@link GameObject} that represents this tile.
+     */
+    private final GameObject gameObject;
+
+    /**
+     * The visual representation of this tile.
+     */
+    private final Image tileImage;
+
+    public Tile(char symbol, Boolean isSolid, GameObjectType type, GameObject gameObject, Image img) {
+        this.symbol = symbol;
+        this.solid = isSolid;
+        this.gameObjectType = type;
+        this.gameObject = gameObject;
+        this.tileImage = img;
     }
 
     /**
-     * @return the SYMBOL
+     * Set the {@link #xPos}.
+     *
+     * @param x The x position to set
      */
-    public char getSYMBOL() {
-        return SYMBOL;
+    public void setXPos(int x) {
+        this.xPos = x;
     }
 
     /**
-     * @return the TILE_POSITION_X_AXIS
+     * Set the {@link #yPos}.
+     *
+     * @param y The y position to set
      */
-    public int getTILE_POSITION_X_AXIS() {
-        return TILE_POSITION_X_AXIS;
+    public void setYPos(int y) {
+        this.yPos = y;
     }
 
     /**
-     * @param TILE_POSITION_X_AXIS the TILE_POSITION_X_AXIS to set
+     * Get {@link #symbol}.
+     *
+     * @return The symbol.
      */
-    public void setTILE_POSITION_X_AXIS(int TILE_POSITION_X_AXIS) {
-        this.TILE_POSITION_X_AXIS = TILE_POSITION_X_AXIS;
+    public char getSymbol() {
+        return symbol;
     }
 
     /**
-     * @return the TILE_POSITION_Y_AXIS
+     * Get the {@link #xPos}.
+     *
+     * @return The x position.
      */
-    public int getTILE_POSITION_Y_AXIS() {
-        return TILE_POSITION_Y_AXIS;
+    public int getXPos() {
+        return xPos;
     }
 
     /**
-     * @param TILE_POSITION_Y_AXIS the TILE_POSITION_Y_AXIS to set
+     * Get the {@link #yPos}.
+     *
+     * @return The y position.
      */
-    public void setTILE_POSITION_Y_AXIS(int TILE_POSITION_Y_AXIS) {
-        this.TILE_POSITION_Y_AXIS = TILE_POSITION_Y_AXIS;
+    public int getYPos() {
+        return yPos;
     }
 
     /**
-     * @return the SOLID
+     * Get {@link #solid}.
+     *
+     * @return Whether or not this tile is solid.
      */
-    public Boolean getSOLID() {
-        return SOLID;
+    public boolean getSolid() {
+        return solid;
     }
 
     /**
-     * @return the GAME_OBJECT_TYPE
+     * Get the {@link #gameObjectType}.
+     *
+     * @return The type of the gameObject.
      */
-    public GameObjectType getGAME_OBJECT_TYPE() {
-        return GAME_OBJECT_TYPE;
+    public GameObjectType getGameObjectType() {
+        return gameObjectType;
     }
 
     /**
-     * @return the GAME_OBJECT
+     * Get {@link #gameObject}.
+     *
+     * @return The GameObject representing this tile.
      */
-    public GameObject getGAME_OBJECT() {
-        return GAME_OBJECT;
+    public GameObject getGameObject() {
+        return gameObject;
     }
 
     /**
-     * @return the TILE_IMAGE
+     * Get {@link #tileImage}.
+     *
+     * @return The tile image representing this tile.
      */
-    public Image getTILE_IMAGE() {
-        return TILE_IMAGE;
+    public Image getTileImage() {
+        return tileImage;
     }
 }

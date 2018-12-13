@@ -15,15 +15,15 @@ import domain.systems.Wave;
  * @see GameObject
  * @see domain.locations.functional.Net
  */
-public class NetControl extends GameObject {
+public class ControlNet extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-    
-    public NetControl(SystemsManager systems) {
+
+    public ControlNet(SystemsManager systems) {
         super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL, null);
-        
+
         this.systemsManager = systems;
     }
 
@@ -32,7 +32,8 @@ public class NetControl extends GameObject {
      * {@link domain.systems.SystemsController#setMediumFragmentDestroyed(boolean)}
      * boolean.
      * <p>
-     * Only runs if there are any medium fragments to destroy.
+     * Only runs if there are any medium fragments to destroy and the net is not
+     * too damaged.
      *
      * @see domain.systems.Wave
      * @see domain.systems.SystemsController
@@ -40,16 +41,15 @@ public class NetControl extends GameObject {
     @Override
     public void interact() {
         Wave wave = systemsManager.getWave();
-        if(wave.getNetCurrentHealth() > 0){
-        requester.requestConsoleSound();
-        reader.storeln("Interacting with net control.");
-        systemsManager.setMediumFragmentDestroyed(true);
-        wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
-        }
-        else{
+        if (wave.getNetCurrentHealth() > 0) {
+            requester.requestConsoleSound();
+            reader.storeln("Interacting with net control.");
+            systemsManager.setMediumFragmentDestroyed(true);
+            wave.setNetCurrentHealth(wave.getNetCurrentHealth() - 10);
+        } else {
             reader.storeln("Net is too damaged, repair it in order to keep using it!");
         }
-        }
+    }
 
     @Override
     public String toString() {

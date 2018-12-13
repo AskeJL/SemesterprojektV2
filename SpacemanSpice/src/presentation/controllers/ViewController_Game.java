@@ -91,7 +91,7 @@ public class ViewController_Game extends ViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         gc = canvasMap.getGraphicsContext2D();
 
-        background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
+        background.setImage(new Data().readImage(AssetType.UI, "background.png"));
         waveImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
         timeImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
         terminalImage.setImage(new Data().readImage(AssetType.UI, "terminal.png"));

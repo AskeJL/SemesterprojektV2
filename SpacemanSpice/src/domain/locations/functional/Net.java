@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.NetControl;
+import domain.locations.gameobjects.ControlNet;
 import domain.systems.SystemsManager;
 
 /**
@@ -45,7 +45,7 @@ public final class Net extends Location {
      * Creates a corridor {@link Room}, net {@link Room} and a net bay
      * {@link Room}.
      * <p>
-     * A {@link NetControl} is added to the net {@link Room}.
+     * A {@link ControlNet} is added to the net {@link Room}.
      */
     @Override
     protected void createLocationCLI() {
@@ -57,7 +57,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-        NetRoom.addGameObject(new NetControl(systemsManager));
+        NetRoom.addGameObject(new ControlNet(systemsManager));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/

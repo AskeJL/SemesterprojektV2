@@ -15,13 +15,13 @@ import domain.systems.Wave;
  * @see GameObject
  * @see domain.locations.functional.Laser
  */
-public class LaserControl extends GameObject {
+public class ControlLaser extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-    
-    public LaserControl(SystemsManager systems) {
+
+    public ControlLaser(SystemsManager systems) {
         super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL, null);
 
         this.systemsManager = systems;
@@ -41,7 +41,7 @@ public class LaserControl extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         if (wave.getAmountOfLaserShots() > 0) {
-            wave.setAmountOfLaserShots(wave.getAmountOfLaserShots()-1);
+            wave.setAmountOfLaserShots(wave.getAmountOfLaserShots() - 1);
             reader.storeln("Interacting with laser control");
             systemsManager.setSmallFragmentDestroyed(true);
         } else {
