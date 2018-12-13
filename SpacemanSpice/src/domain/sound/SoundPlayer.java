@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domain.sound;
 
-import domain.DomainReader;
 import domain.GameElement;
 import domain.GameElementGroup;
 import domain.locations.LocationsManager;
@@ -14,10 +9,6 @@ import javafx.scene.media.AudioClip;
 import presentation.GUIManager;
 import presentation.draw.DrawController;
 
-/**
- *
- * @author askel
- */
 public class SoundPlayer extends GameElement {
 
     private boolean game = true;
@@ -64,7 +55,10 @@ public class SoundPlayer extends GameElement {
         drawController = (DrawController) gui.getGameElementGroup().getGameElement(DrawController.class);
         this.locationsManager = (LocationsManager) group.getManagerGroup().getManager(LocationsManager.class);
     }
-
+    /**
+    * Play the game music if {@link domain.locations.LocationsManager#getCurrentLocation().getName()} != "outside"
+    * Stop game music if {@link domain.locations.LocationsManager#getCurrentLocation().getName()} equals "outside"
+    */
     public void playGameMusic() {
         if (game == true && mute == false && locationsManager.getCurrentLocation() != null && !locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (gameMusic.isPlaying() == false) {
@@ -76,7 +70,10 @@ public class SoundPlayer extends GameElement {
             gameMusic.stop();
         }
     }
-
+    
+    /**
+     * Play background sounds if {@link domain.locations.LocationsManager#getCurrentLocation().getName()} != "outside"
+     */
     public void playLocationSound() {
         if (game == true && mute == false && locationsManager.getCurrentLocation() != null && !locationsManager.getCurrentLocation().getName().equalsIgnoreCase(a)) {
             if (backSound.isPlaying() == false) {
@@ -87,7 +84,11 @@ public class SoundPlayer extends GameElement {
             backSound.stop();
         }
     }
-
+    
+    /**
+     * Play sound of opening door.
+     * Changes between sounds based on number of times method has been called.
+     */
     public void playDoorSound() {
         if (mute == false) {
             if (door == 1) {
@@ -104,17 +105,25 @@ public class SoundPlayer extends GameElement {
                 String musicFile = "assets/sounds/FREE_SOUND_FX_Doors_Sci_Fi_Space_Door3.wav";
                 AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
                 sound.play();
-                door = 4;
+                door = 1;
             }
         }
     }
-
+    
+    /**
+     * plays a console beep.
+     */
     public void playConsoleSound() {
         if (mute == false) {
             consoleSound.play();
         }
     }
-
+    
+    /**
+     * Plays a sireen sound.
+     * Loops continuselse
+     * {@link sireenSound}
+     */
     public void playSireenSound() {
         if (mute == false) {
             if (sireenSound.isPlaying() == false) {
@@ -123,7 +132,11 @@ public class SoundPlayer extends GameElement {
             }
         }
     }
-
+    
+    /**
+     * Stops the Sireen sound if playing
+     * {@link sireenSound}
+     */
     public void stopSireenSound() {
         if (mute == false) {
             if (sireenSound.isPlaying() == false) {
@@ -131,59 +144,95 @@ public class SoundPlayer extends GameElement {
             }
         }
     }
-
+    
+    /**
+     * Plays the sound of spaceship mooving.
+     */
     public void playMoveSound() {
         if (mute == false) {
             moveSpaceshipSound.play();
         }
     }
-
+    
+    /**
+     * Plays the sound of 02 souply being reefilled.
+     */
     public void playAirSound() {
         if (mute == false) {
             airSound.play();
         }
     }
-
+    
+    /**
+     * Plays the sound of ship being repaired.
+     */
     public void playRepairSound() {
         if (mute == false) {
             repairSound.play();
         }
     }
-
+    
+    /**
+     * Plays the sound of a laser being fired.
+     */
     public void playLaserSound() {
         if (mute == false) {
             laserSound.play();
         }
     }
-
+    
+    /**
+     * Plays the sound of a laser charging
+     */
     public void playLaserChargeSound() {
         if (mute == false) {
             laserChargeSound.play();
         }
     }
-
+    
+    /**
+     * sets {@link SoundPlayer#game} to true
+     * This is enables the music to be played
+     * @see #stopSounds() 
+     */
     public void startSounds() {
         this.game = true;
     }
-
+    
+    /**
+     * stops the current playback of {@link SoundPlayer#gameMusic } and {@link SoundPlayer#backSound}
+     * sets {@link SoundPlayer#game} to false
+     * this diables the music to be played
+     * @see #startSounds() 
+     */
     public void stopSounds() {
         gameMusic.stop();
         backSound.stop();
         this.game = false;
     }
-
+    
+    /**
+     * Plays a sound for huvering over buttons.
+     */
     public void playButtonHoverSound() {
         AudioClip audio = new AudioClip(new File(buttonHover).toURI().toString());
         audio.setVolume(0.3);
         audio.play();
     }
-
+    
+    /**
+     * Plays a click sound.
+     */
     public void playButtonClickSound() {
         AudioClip audio = new AudioClip(new File(buttonClick).toURI().toString());
         audio.setVolume(0.3);
         audio.play();
     }
-
+    
+    /**
+     * Changes the {@link SoundPlayer#mute} boolean to opposite of it's current state.
+     * This enables or dissables all sounds abilitie to be played.
+     */
     public void mute() {
         this.mute = !mute;
     }
