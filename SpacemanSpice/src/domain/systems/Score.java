@@ -60,12 +60,17 @@ public class Score extends GameElement {
     /**
      * Get the {@link #score score}.
      *
-     * @return
+     * @return score value
      */
     public int getValue() {
         return score;
     }
-
+    
+    /**
+     * Set the {@link #score score}.
+     *
+     * @param value
+     */
     static void setValue(int value) {
         score = value;
     }

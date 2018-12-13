@@ -23,7 +23,10 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     public Time() {
         
     }
-
+    
+    /**
+     * Initializes the time.
+     */
     @Override
     public void init() {
         initTime = new Date().getTime() / 1000;
@@ -36,15 +39,21 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     public void update() {
         
     }
-
+    
+    /**
+    * Nothing to decrease in time
+    */
     @Override
     public void decreaseValue(int value) {
-
+        //Nothing to decrease
     }
-
+    
+    /**
+    * Nothing to increase in time
+    */
     @Override
     public void increaseValue(int value) {
-
+        //Noting to increase
     }
 
     /**
@@ -55,20 +64,26 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     public void setWaveTime(long time) {
         waveTime = time;
     }
-
+    
+    /**
+     * set {@link #randTime randTime} to a random between 5 and 25
+     */
     public void setRandomTime() {
         randTime = ((long) (Math.random() * 20 + 5));
     }
-
+    
+    /*
+    * Nothing to set in time
+    */
     @Override
     public void setValue(int value) {
-        
+        //Nothing to set
     }
 
     /**
      * Get the {@link #initTime initTime}.
      *
-     * @return
+     * @return the init time
      */
     long getInitTime() {
         return Time.initTime;
@@ -77,7 +92,7 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     /**
      * Get the {@link #currentTime currentTime}.
      *
-     * @return
+     * @return the current time
      */
     public long getCurrentTime() {
         return new Date().getTime() / 1000 - initTime;
@@ -86,7 +101,7 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     /**
      * Get the {@link #waveTime waveTime}.
      *
-     * @return
+     * @return the current time since wave was created
      */
     public long getWaveTime() {
         return waveTime;
@@ -95,16 +110,26 @@ public class Time extends GameElement implements ResourcesElement, GameUpdateabl
     /**
      * Get the {@link #getRemainingTime() remainingTime}.
      *
-     * @return
+     * @return the remaining wave time
      */
     public long getRemainingTime() {
         return waveTime - (new Date().getTime() / 1000 - initTime);
     }
-
+    
+    /**
+     * get value for {@link #setRandomTime()}
+     * 
+     * @return {@link #randTime random time}
+     */
     public long getRandomTime() {
         return randTime;
     }
-
+    
+    /**
+     * gets time between {@link #initTime initTime} and current time
+     * 
+     * @return int currentTime - initTime
+     */
     @Override
     public int getValue() {
         return (int) (new Date().getTime() / 1000 - initTime);

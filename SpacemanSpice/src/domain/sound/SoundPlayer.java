@@ -11,13 +11,16 @@ import presentation.draw.DrawController;
 
 public class SoundPlayer extends GameElement {
 
-    private boolean game = true;
-    private boolean mute = false;
     private DrawController drawController;
     private LocationsManager locationsManager;
+    
+    // Variables used to decide what sounds are playing
+    private boolean game = true;
+    private boolean mute = false;
     String a = "outside";
     int door = 1;
 
+    // Initializes all the AudioClip instances for the different sounds and music in the game
     private final String gameMusicFile = "assets/sounds/Space_Pursuit.wav";
     private AudioClip gameMusic = new AudioClip(new File(gameMusicFile).toURI().toString());
 

@@ -42,14 +42,33 @@ public class Wave extends GameElement {
      * The max amount of randomly destroyed large fragments.
      */
     private final static int LARGE_DESCRUCTION_INDEX = 1;
-
+    
+    /**
+     * Boolean used to create an easy wave
+     */
     private boolean easy = true;
+    
+    /**
+     * Boolean used to create a hard wave
+     */
     private boolean hard = false;
-
+    
+    /**
+     * Int to set max amount of shots laser is available to play
+     */
     private final int MAX_AMOUNT_OF_LASER_SHOTS = 3;
+    /**
+     * Int to decide how man shots that have been shot
+     */
     private int amountOfLaserShots;
     
+    /**
+     * Int to set max net health
+     */
     private final int NET_MAX_HEALTH = 100;
+    /**
+     * Int to net's current healt
+     */
     private int netCurrentHealth;
     
     private ResourcesManager resourcesManager;
@@ -68,7 +87,10 @@ public class Wave extends GameElement {
     /**
      * Create the wave. This will use in-built formulas based on the
      * {@link #numberOfWaves} to compute the amount of fragments to create.
+     * Creates different waves based on wether {@link #easy} is true og {@link #hard} is true.
      *
+     * @see #setDifficultyEasy() 
+     * @see #setDifficultyHard() 
      * @see domain.resources.ResourcesController#setWaveTime(long)
      */
     public void createWave() {
@@ -176,7 +198,12 @@ public class Wave extends GameElement {
     public void incrementNumberOfWaves() {
         numberOfWaves++;
     }
-
+    
+    /**
+     * Sets {@link #smallFragments} to 0
+     * 
+     * @param smallValue 
+     */
     public void setSmallFragments(int smallValue) {
         smallFragments = 0;
     }
@@ -184,16 +211,26 @@ public class Wave extends GameElement {
     /**
      * Get number of {@link #smallFragments smallFragments}.
      *
-     * @return
+     * @return number of small fragments
      */
     public int getSmallFragments() {
         return smallFragments;
     }
-
+    
+    /**
+     * Sets {@link #mediumFragments} to 0
+     * 
+     * @param mediumValue 
+     */
     public void setMediumFragments(int mediumValue) {
         mediumFragments = 0;
     }
-
+    
+    /**
+     * Sets {@link #numberOfWaves} to i
+     * 
+     * @param i 
+     */
     public void setNumberOfWaves(int i) {
         numberOfWaves = i;
     }
@@ -201,12 +238,17 @@ public class Wave extends GameElement {
     /**
      * Get number of {@link #mediumFragments mediumFragments}.
      *
-     * @return
+     * @return number of medium fragments
      */
     public int getMediumFragments() {
         return mediumFragments;
     }
-
+    
+    /**
+     * Sets {@link #largeFragments} to 0
+     * 
+     * @param largeValue 
+     */
     public void setLargeFragments(int largeValue) {
         largeFragments = 0;
     }
@@ -214,7 +256,7 @@ public class Wave extends GameElement {
     /**
      * Get number of {@link #largeFragments largeFragments}.
      *
-     * @return
+     * @return number of large fragments
      */
     public int getLargeFragments() {
         return largeFragments;
@@ -223,43 +265,94 @@ public class Wave extends GameElement {
     /**
      * Get number of waves {@link #numberOfWaves}.
      *
-     *
-     * @return
+     * @return number of wave
      */
     public int getNumberOfWaves() {
         return numberOfWaves;
     }
     
+    /**
+     * Set diffiuclty booleans {@link #easy bool} and {@link #hard bool}
+     * Used to make easy waves
+     * 
+     * @see #createWave() 
+     */
     public void setDifficultyEasy(){
         this.easy = true;
         this.hard = false;
     }
     
+    /**
+     * Set diffiuclty booleans {@link #easy bool} and {@link #hard bool}
+     * Used to make hard waves
+     * 
+     * @see #createWave() 
+     */
     public void setDifficultyHard(){
         this.hard = true;
         this.easy = false;
     }
-
+    
+    /**
+     * Get {@link #MAX_AMOUNT_OF_LASER_SHOTS}
+     * 
+     * @return max shots the laser can fire
+     */
     public int getMAX_AMOUNT_OF_LASER_SHOTS() {
         return MAX_AMOUNT_OF_LASER_SHOTS;
     }
-
+    
+     /**
+     * Get {@link #amountOfLaserShots}
+     * Used to control laser
+     * 
+     * @return the number of time the laser has shoot
+     * @see domain.locations.gameobjects.LaserArmingSystem
+     */
     public int getAmountOfLaserShots() {
         return amountOfLaserShots;
     }
-
+    
+    /**
+     * Set {@link #amountOfLaserShots int}
+     * Used to control laser
+     * 
+     * @param amountOfLaserShots 
+     * @see domain.locations.gameobjects.LaserControl
+     */
     public void setAmountOfLaserShots(int amountOfLaserShots) {
         this.amountOfLaserShots = amountOfLaserShots;
     }
-
+    
+    /**
+     * Get {@link #NET_MAX_HEALTH}
+     * Used to control net
+     * 
+     * @return the number of time the laser has shoot
+     *  @see domain.locations.gameobjects.NetRepair
+     */
     public int getNET_MAX_HEALTH() {
         return NET_MAX_HEALTH;
     }
-
+    
+    /**
+     * Get {@link #netCurrentHealth}
+     * Used to control net
+     * 
+     * @return the the current healt of the net
+     *  @see domain.locations.gameobjects.NetControl
+     */
     public int getNetCurrentHealth() {
         return netCurrentHealth;
     }
-
+    
+    /**
+     * Set {@link #netCurrentHealth int}
+     * Used to control net
+     * 
+     * @param netCurrentHealth
+     * @see domain.locations.gameobjects.NetRepair
+     */
     public void setNetCurrentHealth(int netCurrentHealth) {
         this.netCurrentHealth = netCurrentHealth;
     }

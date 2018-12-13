@@ -128,7 +128,7 @@ public class ViewController_Game extends ViewController implements Initializable
             requester.stopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
-        if (reader.readOxygenValue() == 0) {
+        if (reader.readOxygenValue() <= 0) {
             guiManager.loadView(guiManager.getGameOverPath());
             requester.stopSounds();
         }
