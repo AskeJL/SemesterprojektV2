@@ -15,12 +15,12 @@ import domain.resources.ResourcesManager;
  *
  * @author Lupo
  */
-public class OxygenGenerator1 extends GameObject {
+public class ActivatorOxygen1 extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
 
-    public OxygenGenerator1(ResourcesManager resources) {
+    public ActivatorOxygen1(ResourcesManager resources) {
         super("Oxygen generator.", "You can activate the oxygen generator from here.", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }

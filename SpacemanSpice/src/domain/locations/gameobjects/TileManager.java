@@ -197,25 +197,25 @@ public class TileManager extends Manager implements GameUpdateable{
         this.decoration14 = new Tile('n', false, GameObjectType.DECORATION, null, this.DECORATION_14_IMAGE);
         
         
-        this.controllerLaser01 = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
-        this.controllerLaser02 = new Tile('|', false, GameObjectType.CONTROL, new LaserArmingSystem(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
+        this.controllerLaser01 = new Tile('!', false, GameObjectType.CONTROL, new ControlLaser(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
+        this.controllerLaser02 = new Tile('|', false, GameObjectType.CONTROL, new ActivatorLaser(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
         
-        this.controllerNet01 = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_01_IMAGE);
-        this.controllerNet02 = new Tile('%', false, GameObjectType.CONTROL, new NetRepair(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_02_IMAGE);
+        this.controllerNet01 = new Tile('#', false, GameObjectType.CONTROL, new ControlNet(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_01_IMAGE);
+        this.controllerNet02 = new Tile('%', false, GameObjectType.CONTROL, new ActivatorNet(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_02_IMAGE);
         
-        this.controllerOxygen01 = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen02 = new Tile(',', false, GameObjectType.CONTROL, new OxygenGenerator1(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen03 = new Tile('"', false, GameObjectType.CONTROL, new OxygenGenerator2(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen04 = new Tile('`', false, GameObjectType.CONTROL, new OxygenGenerator3(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
+        this.controllerOxygen01 = new Tile(';', false, GameObjectType.CONTROL, new ControlOxygen(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
+        this.controllerOxygen02 = new Tile(',', false, GameObjectType.CONTROL, new ActivatorOxygen1(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
+        this.controllerOxygen03 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
+        this.controllerOxygen04 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
        
-        this.controllerScanning_01 = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_SCANNING_01_IMAGE);
-        this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
-        this.controllerSteering_01 = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_01_IMAGE);
+        this.controllerScanning_01 = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_SCANNING_01_IMAGE);
+        this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
+        this.controllerSteering_01 = new Tile('^', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_01_IMAGE);
       
-        this.northExit = new Tile('N', false, GameObjectType.NORTH, new NorthExit(), this.NORTH_EXIT_IMAGE);
-        this.westExit = new Tile('W', false, GameObjectType.WEST, new WestExit(), this.WEST_EXIT_IMAGE);
-        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new SouthExit(), this.SOUTH_EXIT_IMAGE);
-        this.eastExit = new Tile('E', false, GameObjectType.EAST, new EastExit(), this.EAST_EXIT_IMAGE);
+        this.northExit = new Tile('N', false, GameObjectType.NORTH, new ExitNorth(), this.NORTH_EXIT_IMAGE);
+        this.westExit = new Tile('W', false, GameObjectType.WEST, new ExitWest(), this.WEST_EXIT_IMAGE);
+        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new ExitSouth(), this.SOUTH_EXIT_IMAGE);
+        this.eastExit = new Tile('E', false, GameObjectType.EAST, new ExitEast(), this.EAST_EXIT_IMAGE);
         
         this.nothing = new Tile('.', true, GameObjectType.DECORATION, null, null);
     }

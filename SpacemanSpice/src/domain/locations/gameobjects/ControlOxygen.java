@@ -15,13 +15,13 @@ import domain.resources.ResourcesManager;
  * @see GameObject
  * @see domain.locations.functional.Oxygen
  */
-public class OxygenControl extends GameObject {
+public class ControlOxygen extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public OxygenControl(ResourcesManager resources) {
+    public ControlOxygen(ResourcesManager resources) {
         super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }

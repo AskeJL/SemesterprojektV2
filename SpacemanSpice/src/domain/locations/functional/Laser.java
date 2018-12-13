@@ -5,7 +5,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.LaserControl;
+import domain.locations.gameobjects.ControlLaser;
 import domain.systems.SystemsManager;
 
 /**
@@ -54,7 +54,7 @@ public final class Laser extends Location {
 
         /*Controls------------------------------------------------------------*/
         Room controlsRoom = new Room("Laser Controls", "The controls for the laser.");
-        controlsRoom.addGameObject(new LaserControl(systemsManager));
+        controlsRoom.addGameObject(new ControlLaser(systemsManager));
         
         super.addRoom(controlsRoom);
 

@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.DamageRepair;
+import domain.locations.gameobjects.ControllerOutside;
 import domain.resources.ResourcesManager;
 
 /**
@@ -45,7 +45,7 @@ public final class Outside extends Location {
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
-        outside.addGameObject(new DamageRepair(resourcesManager));
+        outside.addGameObject(new ControllerOutside(resourcesManager));
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/

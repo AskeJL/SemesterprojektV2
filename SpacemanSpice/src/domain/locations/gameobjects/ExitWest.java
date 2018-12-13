@@ -14,19 +14,18 @@ import domain.locations.GameObjectType;
  *
  * @author Lupo
  */
-public class NorthExit extends GameObject{
+public class ExitWest extends GameObject{
 
     private final DomainReader reader = new DomainReader();
-    private final ExitDirection northExit = ExitDirection.NORTH;
     /**
      *
      */
-    public NorthExit(){
-        super("North exit", "You can go north from here.", GameObjectType.NORTH, ExitDirection.NORTH);
+    public ExitWest(){
+        super("West exit", "You can go west from here.", GameObjectType.WEST, ExitDirection.WEST);
     }
     @Override
     public void interact() {
-        reader.storeln("Interacting with north door.");
+        reader.storeln("Interacting with west door.");
     }
     
 }

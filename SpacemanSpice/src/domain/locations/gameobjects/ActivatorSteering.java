@@ -12,9 +12,9 @@ import domain.locations.GameObjectType;
  *
  * @author Lupo
  */
-public class SteeringOvercharge extends GameObject{
+public class ActivatorSteering extends GameObject{
 
-    public SteeringOvercharge(){
+    public ActivatorSteering(){
         super("Steering overcharge.", "You can overcharge the thrusters here.", GameObjectType.CONTROL, null);
     }
     

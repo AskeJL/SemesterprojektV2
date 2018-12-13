@@ -14,13 +14,13 @@ import domain.locations.GameObjectType;
  *
  * @author Lupo
  */
-public class EastExit extends GameObject{
+public class ExitEast extends GameObject{
 
     private final DomainReader reader = new DomainReader();
     /**
      *
      */
-    public EastExit(){
+    public ExitEast(){
         super("East exit", "You can go east from here.", GameObjectType.EAST, ExitDirection.EAST);
     }
     @Override

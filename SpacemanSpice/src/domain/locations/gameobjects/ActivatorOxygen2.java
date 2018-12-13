@@ -15,12 +15,12 @@ import domain.resources.ResourcesManager;
  *
  * @author Lupo
  */
-public class OxygenGenerator3 extends GameObject {
+public class ActivatorOxygen2 extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
 
-    public OxygenGenerator3(ResourcesManager resources) {
+    public ActivatorOxygen2(ResourcesManager resources) {
         super("Oxygen generator.", "You can activate the oxygen generator from here.", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
@@ -28,9 +28,9 @@ public class OxygenGenerator3 extends GameObject {
     @Override
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
-        if (oxygen.isOxygenGenerator3On() == false) {
-            oxygen.setOxygenGenerator3On(true);
-            reader.storeln("You have activated the third oxygen generator, activate all and head to the oxygen tank to refill your oxygen levels.");
+        if (oxygen.isOxygenGenerator2On() == false) {
+            oxygen.setOxygenGenerator2On(true);
+            reader.storeln("You have activated the second oxygen generator , activate all and head to the oxygen tank to refill your oxygen levels.");
         }
         else{
             reader.storeln("Generator is on and functioning.");

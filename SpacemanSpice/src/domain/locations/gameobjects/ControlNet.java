@@ -15,13 +15,13 @@ import domain.systems.Wave;
  * @see GameObject
  * @see domain.locations.functional.Net
  */
-public class NetControl extends GameObject {
+public class ControlNet extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public NetControl(SystemsManager systems) {
+    public ControlNet(SystemsManager systems) {
         super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;

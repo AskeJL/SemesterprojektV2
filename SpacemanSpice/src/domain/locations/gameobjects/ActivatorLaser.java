@@ -15,25 +15,26 @@ import domain.systems.Wave;
  *
  * @author Lupo
  */
-public class NetRepair extends GameObject {
+public class ActivatorLaser extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
-    
-    public NetRepair(SystemsManager systems){
-        super("Net repair.", "You can repair your net here.", GameObjectType.CONTROL, null);
+
+    public ActivatorLaser(SystemsManager systems) {
+        super("Laser arming system.", "The laser is armed from here.", GameObjectType.CONTROL, null);
         this.systemsManager = systems;
     }
+
     @Override
     public void interact() {
         Wave wave = systemsManager.getWave();
-        if(wave.getNetCurrentHealth() == wave.getNET_MAX_HEALTH()){
-            reader.storeln("Net has been repaired fully!");
-        }
-        else{
-            wave.setNetCurrentHealth(wave.getNetCurrentHealth() + 10);
-            reader.storeln("Net has been repaired, now at: " + wave.getNetCurrentHealth() + "% health");
+
+        if (wave.getAmountOfLaserShots() < 3) {
+            wave.setAmountOfLaserShots(wave.getMAX_AMOUNT_OF_LASER_SHOTS());
+            reader.storeln("Laser has now enough power for 3 shots.");
+        } else {
+            reader.storeln("Laser is fully charged!");
         }
     }
-    
+
 }

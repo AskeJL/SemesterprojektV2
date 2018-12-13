@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.NetControl;
+import domain.locations.gameobjects.ControlNet;
 import domain.systems.SystemsManager;
 
 /**
@@ -49,7 +49,7 @@ public final class Net extends Location {
         
         /*Net control---------------------------------------------------------*/
         Room NetRoom = new Room("Net Control","Here you control the space net");
-        NetRoom.addGameObject(new NetControl(systemsManager));
+        NetRoom.addGameObject(new ControlNet(systemsManager));
         super.addRoom(NetRoom);
         
         /*Netbay--------------------------------------------------------------*/

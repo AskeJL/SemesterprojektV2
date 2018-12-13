@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.OxygenControl;
+import domain.locations.gameobjects.ControlOxygen;
 import domain.locations.nonfunctional.*;
 import domain.resources.ResourcesManager;
 
@@ -54,7 +54,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-        refuelRoom.addGameObject(new OxygenControl(resourcesManager));
+        refuelRoom.addGameObject(new ControlOxygen(resourcesManager));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

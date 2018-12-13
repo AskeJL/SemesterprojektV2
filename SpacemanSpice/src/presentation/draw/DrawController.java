@@ -5,8 +5,6 @@ import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
 import domain.GameElement;
-import domain.GameUpdateable;
-import domain.Manager;
 import domain.locations.*;
 import domain.locations.gameobjects.Player;
 import domain.locations.gameobjects.Tile;
@@ -15,7 +13,6 @@ import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import presentation.controllers.ViewController_Game;
-import domain.sound.SoundPlayer;
 import presentation.GUIManager;
 
 /**
@@ -115,8 +112,6 @@ public class DrawController extends GameElement {
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
                 if (currentTileMap.get(characters[x][y]) == exitTile) {
-
-                    reader.storeln("recognize");
                     playerXLocation = x;
                     playerYLocation = y;
                 }
