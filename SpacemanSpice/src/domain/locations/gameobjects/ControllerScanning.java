@@ -36,7 +36,7 @@ public class ControllerScanning extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playConsoleSound();
+        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         Wave wave = systemsManager.getWave();
         if ((wave.getSensor1currentValue() == wave.getSensor1MaxValue())

@@ -44,7 +44,7 @@ public class ControllerSteering extends GameObject {
         reader.storeln("Interacting with the steering controls.");
         if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
-            requester.playMoveSound();
+            requester.requestMoveSound();
             reader.storeln("You have moved the ship out of danger.");
         }
         }

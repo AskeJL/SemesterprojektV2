@@ -47,18 +47,26 @@ public class TileManager extends Manager implements GameUpdateable {
             decoration13,
             decoration14;
 
-    private Tile controllerLaser01,
-            controllerLaser02,
-            controllerNet01,
-            controllerNet02;
+    private Tile controllerLaser,
+            activatorLaser,
+            controllerNet,
+            activatorNet;
 
-    private Tile controllerOxygen01,
-            controllerOxygen02,
-            controllerOxygen03,
-            controllerOxygen04,
-            controllerScanning01,
-            controllerSteering01,
-            controllerOutside01;
+    private Tile controllerOxygen,
+            activatorOxygen01,
+            activatorOxygen02,
+            activatorOxygen03;
+    
+    private Tile controllerScanning,
+            activatorScanning01,
+            activatorScanning02,
+            activatorScanning03,
+            activatorScanning04;
+    
+    private Tile controllerSteering,
+            activatorSteering;
+    
+    private Tile controllerOutside;
 
     private Tile northExit,
             westExit,
@@ -96,14 +104,12 @@ public class TileManager extends Manager implements GameUpdateable {
             decoration13Image = new Image(new File("assets/pictures/decorations/decoration_13.png").toURI().toString()),
             decoration14Image = new Image(new File("assets/pictures/decorations/decoration_14.png").toURI().toString());
 
-    private final Image controllerLaser01Image = new Image(new File("assets/pictures/controllers/controllerLaser.png").toURI().toString()),
-            controllerLaser02Image = new Image(new File("assets/pictures/controllers/controllerLaser.png").toURI().toString()),
-            controllerNet01Image = new Image(new File("assets/pictures/controllers/controllerNet.png").toURI().toString()),
-            controllerNet02Image = new Image(new File("assets/pictures/controllers/controllerNet.png").toURI().toString()),
+    private final Image controllerLaserImage = new Image(new File("assets/pictures/controllers/controllerLaser.png").toURI().toString()),
+            controllerNetImage = new Image(new File("assets/pictures/controllers/controllerNet.png").toURI().toString()),
             controllerOxygenImage = new Image(new File("assets/pictures/controllers/controllerOxygen.png").toURI().toString()),
-            controllerScanning01Image = new Image(new File("assets/pictures/controllers/controllerScanning.png").toURI().toString()),
-            controllerSteering01Image = new Image(new File("assets/pictures/controllers/controllerSteering.png").toURI().toString()),
-            controllerOutside01Image = new Image(new File("assets/pictures/controllers/controllerOutside.png").toURI().toString());
+            controllerScanningImage = new Image(new File("assets/pictures/controllers/controllerScanning.png").toURI().toString()),
+            controllerSteeringImage = new Image(new File("assets/pictures/controllers/controllerSteering.png").toURI().toString()),
+            controllerOutsideImage = new Image(new File("assets/pictures/controllers/controllerOutside.png").toURI().toString());
 
     private final Image exitNorthImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString()),
             exitWestImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString()),
@@ -137,123 +143,123 @@ public class TileManager extends Manager implements GameUpdateable {
 
     private void createTiles() {
 
-        this.floor01 = new Tile('0', false, GameObjectType.DECORATION, null, this.FLOOR_01_IMAGE);
-        this.floor02 = new Tile('1', false, GameObjectType.DECORATION, null, this.FLOOR_02_IMAGE);
-        this.floor03 = new Tile('2', false, GameObjectType.DECORATION, null, this.FLOOR_03_IMAGE);
-        this.floor04 = new Tile('3', false, GameObjectType.DECORATION, null, this.FLOOR_04_IMAGE);
-        this.floor05 = new Tile('4', false, GameObjectType.DECORATION, null, this.FLOOR_05_IMAGE);
-        this.floor06 = new Tile('5', false, GameObjectType.DECORATION, null, this.FLOOR_06_IMAGE);
-        this.floor07 = new Tile('6', false, GameObjectType.DECORATION, null, this.FLOOR_07_IMAGE);
-        this.floor08 = new Tile('7', false, GameObjectType.DECORATION, null, this.FLOOR_08_IMAGE);
-        this.floor09 = new Tile('8', false, GameObjectType.DECORATION, null, this.FLOOR_09_IMAGE);
-        this.floor10 = new Tile('9', false, GameObjectType.DECORATION, null, this.FLOOR_10_IMAGE);
+        this.floor01 = new Tile('0', false, GameObjectType.DECORATION, null, this.floor01Image);
+        this.floor02 = new Tile('1', false, GameObjectType.DECORATION, null, this.floor02Image);
+        this.floor03 = new Tile('2', false, GameObjectType.DECORATION, null, this.floor03Image);
+        this.floor04 = new Tile('3', false, GameObjectType.DECORATION, null, this.floor04Image);
+        this.floor05 = new Tile('4', false, GameObjectType.DECORATION, null, this.floor05Image);
+        this.floor06 = new Tile('5', false, GameObjectType.DECORATION, null, this.floor06Image);
+        this.floor07 = new Tile('6', false, GameObjectType.DECORATION, null, this.floor07Image);
+        this.floor08 = new Tile('7', false, GameObjectType.DECORATION, null, this.floor08Image);
+        this.floor09 = new Tile('8', false, GameObjectType.DECORATION, null, this.floor09Image);
+        this.floor10 = new Tile('9', false, GameObjectType.DECORATION, null, this.floor10Image);
 
-        this.wall01 = new Tile('+', true, GameObjectType.DECORATION, null, this.WALL_01_IMAGE);
-        this.wall02 = new Tile('/', true, GameObjectType.DECORATION, null, this.WALL_02_IMAGE);
+        this.wall01 = new Tile('+', true, GameObjectType.DECORATION, null, this.wall01Image);
+        this.wall02 = new Tile('/', true, GameObjectType.DECORATION, null, this.wall02Image);
 
-        this.decoration01 = new Tile('a', true, GameObjectType.DECORATION, null, this.DECORATION_01_IMAGE);
-        this.decoration02 = new Tile('b', true, GameObjectType.DECORATION, null, this.DECORATION_02_IMAGE);
-        this.decoration03 = new Tile('c', true, GameObjectType.DECORATION, null, this.DECORATION_03_IMAGE);
-        this.decoration04 = new Tile('d', true, GameObjectType.DECORATION, null, this.DECORATION_04_IMAGE);
-        this.decoration05 = new Tile('e', true, GameObjectType.DECORATION, null, this.DECORATION_05_IMAGE);
-        this.decoration06 = new Tile('f', true, GameObjectType.DECORATION, null, this.DECORATION_06_IMAGE);
-        this.decoration07 = new Tile('g', true, GameObjectType.DECORATION, null, this.DECORATION_07_IMAGE);
-        this.decoration08 = new Tile('h', true, GameObjectType.DECORATION, null, this.DECORATION_08_IMAGE);
-        this.decoration09 = new Tile('i', false, GameObjectType.DECORATION, null, this.DECORATION_09_IMAGE);
-        this.decoration10 = new Tile('j', true, GameObjectType.DECORATION, null, this.DECORATION_10_IMAGE);
-        this.decoration11 = new Tile('k', true, GameObjectType.DECORATION, null, this.DECORATION_11_IMAGE);
-        this.decoration12 = new Tile('l', true, GameObjectType.DECORATION, null, this.DECORATION_12_IMAGE);
-        this.decoration13 = new Tile('m', true, GameObjectType.DECORATION, null, this.DECORATION_13_IMAGE);
-        this.decoration14 = new Tile('n', false, GameObjectType.DECORATION, null, this.DECORATION_14_IMAGE);
+        this.decoration01 = new Tile('a', true, GameObjectType.DECORATION, null, this.decoration01Image);
+        this.decoration02 = new Tile('b', true, GameObjectType.DECORATION, null, this.decoration02Image);
+        this.decoration03 = new Tile('c', true, GameObjectType.DECORATION, null, this.decoration03Image);
+        this.decoration04 = new Tile('d', true, GameObjectType.DECORATION, null, this.decoration04Image);
+        this.decoration05 = new Tile('e', true, GameObjectType.DECORATION, null, this.decoration05Image);
+        this.decoration06 = new Tile('f', true, GameObjectType.DECORATION, null, this.decoration06Image);
+        this.decoration07 = new Tile('g', true, GameObjectType.DECORATION, null, this.decoration07Image);
+        this.decoration08 = new Tile('h', true, GameObjectType.DECORATION, null, this.decoration08Image);
+        this.decoration09 = new Tile('i', false, GameObjectType.DECORATION, null, this.decoration09Image);
+        this.decoration10 = new Tile('j', true, GameObjectType.DECORATION, null, this.decoration10Image);
+        this.decoration11 = new Tile('k', true, GameObjectType.DECORATION, null, this.decoration11Image);
+        this.decoration12 = new Tile('l', true, GameObjectType.DECORATION, null, this.decoration12Image);
+        this.decoration13 = new Tile('m', true, GameObjectType.DECORATION, null, this.decoration13Image);
+        this.decoration14 = new Tile('n', false, GameObjectType.DECORATION, null, this.decoration14Image);
 
-        this.controllerLaser01 = new Tile('!', false, GameObjectType.CONTROL, new ControlLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
-        this.controllerLaser02 = new Tile('|', false, GameObjectType.CONTROL, new ActivatorLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
+        this.controllerLaser = new Tile('!', false, GameObjectType.CONTROL, new ControlLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerLaserImage);
+        this.activatorLaser = new Tile('|', false, GameObjectType.CONTROL, new ActivatorLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerLaserImage);
 
-        this.controllerNet01 = new Tile('#', false, GameObjectType.CONTROL, new ControlNet(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_NET_01_IMAGE);
-        this.controllerNet02 = new Tile('%', false, GameObjectType.CONTROL, new ActivatorNet(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_NET_02_IMAGE);
+        this.controllerNet = new Tile('#', false, GameObjectType.CONTROL, new ControlNet(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerNetImage);
+        this.activatorNet = new Tile('%', false, GameObjectType.CONTROL, new ActivatorNet(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerNetImage);
 
-        this.controllerOxygen01 = new Tile(';', false, GameObjectType.CONTROL, new ControlOxygen(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen02 = new Tile(',', false, GameObjectType.CONTROL, new ActivatorOxygen1(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen03 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen04 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
+        this.controllerOxygen = new Tile(';', false, GameObjectType.CONTROL, new ControlOxygen(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen01 = new Tile(',', false, GameObjectType.CONTROL, new ActivatorOxygen1(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen02 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen03 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
 
-        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
-        this.activatorScanning_01 = new Tile('[', false, GameObjectType.CONTROL, new ActivatorScanning1(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
-        this.activatorScanning_02 = new Tile(']', false, GameObjectType.CONTROL, new ActivatorScanning2(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
-        this.activatorScanning_03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
-        this.activatorScanning_04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.SCANNING_IMAGE);
+        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning01 = new Tile('[', false, GameObjectType.CONTROL, new ActivatorScanning1(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning02 = new Tile(']', false, GameObjectType.CONTROL, new ActivatorScanning2(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         
-        this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
+        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
 
-        this.controllerSteering01 = new Tile('<', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_IMAGE);
-        this.controllerSteering02 = new Tile('>', false, GameObjectType.CONTROL, new ActivatorSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_IMAGE);
+        this.controllerSteering = new Tile('<', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
+        this.activatorSteering = new Tile('>', false, GameObjectType.CONTROL, new ActivatorSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
 
-        this.northExit = new Tile('N', false, GameObjectType.NORTH, new ExitNorth(), this.NORTH_EXIT_IMAGE);
-        this.westExit = new Tile('W', false, GameObjectType.WEST, new ExitWest(), this.WEST_EXIT_IMAGE);
-        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new ExitSouth(), this.SOUTH_EXIT_IMAGE);
-        this.eastExit = new Tile('E', false, GameObjectType.EAST, new ExitEast(), this.EAST_EXIT_IMAGE);
+        this.northExit = new Tile('N', false, GameObjectType.NORTH, new ExitNorth(), this.exitNorthImage);
+        this.westExit = new Tile('W', false, GameObjectType.WEST, new ExitWest(), this.exitWestImage);
+        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new ExitSouth(), this.exitSouthImage);
+        this.eastExit = new Tile('E', false, GameObjectType.EAST, new ExitEast(), this.exitEastImage);
 
         this.nothing = new Tile('.', true, GameObjectType.DECORATION, null, null);
     }
 
     private void createTileMap() {
 
-        getTileMap().put(this.floor01.getSYMBOL(), this.floor01);
-        getTileMap().put(this.floor02.getSYMBOL(), this.floor02);
-        getTileMap().put(this.floor03.getSYMBOL(), this.floor03);
-        getTileMap().put(this.floor04.getSYMBOL(), this.floor04);
-        getTileMap().put(this.floor05.getSYMBOL(), this.floor05);
-        getTileMap().put(this.floor06.getSYMBOL(), this.floor06);
-        getTileMap().put(this.floor07.getSYMBOL(), this.floor07);
-        getTileMap().put(this.floor08.getSYMBOL(), this.floor08);
-        getTileMap().put(this.floor09.getSYMBOL(), this.floor09);
-        getTileMap().put(this.floor10.getSYMBOL(), this.floor10);
+        getTileMap().put(this.floor01.getSymbol(), this.floor01);
+        getTileMap().put(this.floor02.getSymbol(), this.floor02);
+        getTileMap().put(this.floor03.getSymbol(), this.floor03);
+        getTileMap().put(this.floor04.getSymbol(), this.floor04);
+        getTileMap().put(this.floor05.getSymbol(), this.floor05);
+        getTileMap().put(this.floor06.getSymbol(), this.floor06);
+        getTileMap().put(this.floor07.getSymbol(), this.floor07);
+        getTileMap().put(this.floor08.getSymbol(), this.floor08);
+        getTileMap().put(this.floor09.getSymbol(), this.floor09);
+        getTileMap().put(this.floor10.getSymbol(), this.floor10);
 
-        getTileMap().put(this.wall01.getSYMBOL(), this.wall01);
-        getTileMap().put(this.wall02.getSYMBOL(), this.wall02);
+        getTileMap().put(this.wall01.getSymbol(), this.wall01);
+        getTileMap().put(this.wall02.getSymbol(), this.wall02);
 
-        getTileMap().put(this.decoration01.getSYMBOL(), this.decoration01);
-        getTileMap().put(this.decoration02.getSYMBOL(), this.decoration02);
-        getTileMap().put(this.decoration03.getSYMBOL(), this.decoration03);
-        getTileMap().put(this.decoration04.getSYMBOL(), this.decoration04);
-        getTileMap().put(this.decoration05.getSYMBOL(), this.decoration05);
-        getTileMap().put(this.decoration06.getSYMBOL(), this.decoration06);
-        getTileMap().put(this.decoration07.getSYMBOL(), this.decoration07);
-        getTileMap().put(this.decoration08.getSYMBOL(), this.decoration08);
-        getTileMap().put(this.decoration09.getSYMBOL(), this.decoration09);
-        getTileMap().put(this.decoration10.getSYMBOL(), this.decoration10);
-        getTileMap().put(this.decoration11.getSYMBOL(), this.decoration11);
-        getTileMap().put(this.decoration12.getSYMBOL(), this.decoration12);
-        getTileMap().put(this.decoration13.getSYMBOL(), this.decoration13);
-        getTileMap().put(this.decoration14.getSYMBOL(), this.decoration14);
+        getTileMap().put(this.decoration01.getSymbol(), this.decoration01);
+        getTileMap().put(this.decoration02.getSymbol(), this.decoration02);
+        getTileMap().put(this.decoration03.getSymbol(), this.decoration03);
+        getTileMap().put(this.decoration04.getSymbol(), this.decoration04);
+        getTileMap().put(this.decoration05.getSymbol(), this.decoration05);
+        getTileMap().put(this.decoration06.getSymbol(), this.decoration06);
+        getTileMap().put(this.decoration07.getSymbol(), this.decoration07);
+        getTileMap().put(this.decoration08.getSymbol(), this.decoration08);
+        getTileMap().put(this.decoration09.getSymbol(), this.decoration09);
+        getTileMap().put(this.decoration10.getSymbol(), this.decoration10);
+        getTileMap().put(this.decoration11.getSymbol(), this.decoration11);
+        getTileMap().put(this.decoration12.getSymbol(), this.decoration12);
+        getTileMap().put(this.decoration13.getSymbol(), this.decoration13);
+        getTileMap().put(this.decoration14.getSymbol(), this.decoration14);
 
-        getTileMap().put(this.controllerLaser01.getSYMBOL(), this.controllerLaser01);
-        getTileMap().put(this.controllerLaser02.getSYMBOL(), this.controllerLaser02);
+        getTileMap().put(this.controllerLaser.getSymbol(), this.controllerLaser);
+        getTileMap().put(this.activatorLaser.getSymbol(), this.activatorLaser);
 
-        getTileMap().put(this.controllerNet01.getSYMBOL(), this.controllerNet01);
-        getTileMap().put(this.controllerNet02.getSYMBOL(), this.controllerNet02);
+        getTileMap().put(this.controllerNet.getSymbol(), this.controllerNet);
+        getTileMap().put(this.activatorNet.getSymbol(), this.activatorNet);
 
-        getTileMap().put(this.controllerOxygen01.getSYMBOL(), this.controllerOxygen01);
-        getTileMap().put(this.controllerOxygen02.getSYMBOL(), this.controllerOxygen02);
-        getTileMap().put(this.controllerOxygen03.getSYMBOL(), this.controllerOxygen03);
-        getTileMap().put(this.controllerOxygen04.getSYMBOL(), this.controllerOxygen04);
+        getTileMap().put(this.controllerOxygen.getSymbol(), this.controllerOxygen);
+        getTileMap().put(this.activatorOxygen01.getSymbol(), this.activatorOxygen01);
+        getTileMap().put(this.activatorOxygen02.getSymbol(), this.activatorOxygen02);
+        getTileMap().put(this.activatorOxygen03.getSymbol(), this.activatorOxygen03);
 
-        getTileMap().put(this.controllerScanning.getSYMBOL(), this.controllerScanning);
-        getTileMap().put(this.activatorScanning_01.getSYMBOL(), this.activatorScanning_01);
-        getTileMap().put(this.activatorScanning_02.getSYMBOL(), this.activatorScanning_02);
-        getTileMap().put(this.activatorScanning_03.getSYMBOL(), this.activatorScanning_03);
-        getTileMap().put(this.activatorScanning_04.getSYMBOL(), this.activatorScanning_04);
+        getTileMap().put(this.controllerScanning.getSymbol(), this.controllerScanning);
+        getTileMap().put(this.activatorScanning01.getSymbol(), this.activatorScanning01);
+        getTileMap().put(this.activatorScanning02.getSymbol(), this.activatorScanning02);
+        getTileMap().put(this.activatorScanning03.getSymbol(), this.activatorScanning03);
+        getTileMap().put(this.activatorScanning04.getSymbol(), this.activatorScanning04);
         
         
-        getTileMap().put(this.controllerSteering01.getSYMBOL(), this.controllerSteering01);
-        getTileMap().put(this.controllerSteering02.getSYMBOL(), this.controllerSteering02);
+        getTileMap().put(this.controllerSteering.getSymbol(), this.controllerSteering);
+        getTileMap().put(this.activatorSteering.getSymbol(), this.activatorSteering);
 
-        getTileMap().put(this.northExit.getSYMBOL(), this.northExit);
-        getTileMap().put(this.westExit.getSYMBOL(), this.westExit);
-        getTileMap().put(this.southExit.getSYMBOL(), this.southExit);
-        getTileMap().put(this.eastExit.getSYMBOL(), this.eastExit);
+        getTileMap().put(this.northExit.getSymbol(), this.northExit);
+        getTileMap().put(this.westExit.getSymbol(), this.westExit);
+        getTileMap().put(this.southExit.getSymbol(), this.southExit);
+        getTileMap().put(this.eastExit.getSymbol(), this.eastExit);
 
-        getTileMap().put(this.nothing.getSYMBOL(), this.nothing);
+        getTileMap().put(this.nothing.getSymbol(), this.nothing);
 
     }
 

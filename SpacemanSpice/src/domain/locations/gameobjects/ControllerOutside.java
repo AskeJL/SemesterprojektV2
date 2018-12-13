@@ -35,7 +35,7 @@ public class ControllerOutside extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playRepairSound();
+        requester.requestRepairSound();
         reader.storeln("You begin repairing the ship.");
         Life life = resourcesManager.getLife();
         life.setRepair(true);
