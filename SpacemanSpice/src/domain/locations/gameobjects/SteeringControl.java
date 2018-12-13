@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
@@ -18,6 +19,7 @@ public class SteeringControl extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public SteeringControl(SystemsManager systems) {
         super("Steering Control", "The ship is flown from here.", GameObjectType.CONTROL, null);
@@ -40,6 +42,7 @@ public class SteeringControl extends GameObject {
         reader.storeln("Interacting with the steering controls.");
         if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
+            requester.playMoveSound();
             reader.storeln("You have moved the ship out of danger");
         }
         

@@ -34,9 +34,10 @@ public class DrawController extends GameElement {
     private HashMap<String, Location> locationMap;
     
     private final String STARTING_LOCATION_NAME = "Personal";
-    private String currentLocationName;
+    private String currentLocationName = "Personal";
     private Location currentMapLocation;
     private String textMapLocation;
+    private String textMap;
     
     private Player player;
     private int playerXLocation;
@@ -65,16 +66,19 @@ public class DrawController extends GameElement {
         
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
-
         currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
 
         player = requester.getPlayer();
-        playerXLocation = player.getxPosition() + 5;
-        playerYLocation = player.getyPosition() + 5;
+        playerXLocation = player.getxPosition() + 19;
+        playerYLocation = player.getyPosition() + 10;
 
     }
+    
+    /**
+     * Instantiates the components needed to be drawn on the canvas
+     */
 
     public void clearCanvas() {
         int canvasWidth = 900;
@@ -107,6 +111,7 @@ public class DrawController extends GameElement {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
+        requester.setcurrentLocation(this.currentMapLocation);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
                 if (currentTileMap.get(characters[x][y]) == exitTile) {
@@ -133,7 +138,6 @@ public class DrawController extends GameElement {
      * interact-able.
      */
     public void interact() {
-        SoundPlayer sound = new SoundPlayer();
         if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
             actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
             currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
@@ -142,36 +146,39 @@ public class DrawController extends GameElement {
                     exitDirection = currentMapLocation.getNorthExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case WEST:
                     exitDirection = currentMapLocation.getWestExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case SOUTH:
                     exitDirection = currentMapLocation.getSouthExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case EAST:
                     exitDirection = currentMapLocation.getEastExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case CONTROL:
-                    sound.playInteractionSound();
                     break;
             }
         }

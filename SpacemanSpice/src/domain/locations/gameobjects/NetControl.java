@@ -1,10 +1,12 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.tutorial.TutorialManager;
+import domain.systems.Wave;
 
 /**
  * Used to catch medium fragments.
@@ -18,6 +20,7 @@ public class NetControl extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public NetControl(SystemsManager systems) {
         super("Net Control", "The net is controlled from here.", GameObjectType.CONTROL, null);
@@ -37,8 +40,17 @@ public class NetControl extends GameObject {
      */
     @Override
     public void interact() {
+        Wave wave = systemsManager.getWave();
+        if(wave.getNetCurrentHealth() > 0){
+        requester.playConsoleSound();
         reader.storeln("Interacting with net control.");
         systemsManager.setMediumFragmentDestroyed(true);
+        wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
+        }
+        else{
+            reader.storeln("Net is too damaged, repair it in order to keep using it!");
+        }
+        }
         
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
             ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);

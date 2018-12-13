@@ -1,9 +1,11 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 import domain.tutorial.TutorialManager;
 
 /**
@@ -18,10 +20,11 @@ public class LaserControl extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public LaserControl(SystemsManager systems) {
         super("Laser Control", "The laser is operated from here.", GameObjectType.CONTROL, null);
-        
+
         this.systemsManager = systems;
     }
 
@@ -37,8 +40,15 @@ public class LaserControl extends GameObject {
      */
     @Override
     public void interact() {
-        reader.storeln("Interacting with laser control");
-        systemsManager.setSmallFragmentDestroyed(true);
+        Wave wave = systemsManager.getWave();
+        if (wave.getAmountOfLaserShots() > 0) {
+            wave.setAmountOfLaserShots(wave.getAmountOfLaserShots()-1);
+            reader.storeln("Interacting with laser control");
+            systemsManager.setSmallFragmentDestroyed(true);
+        } else {
+            reader.storeln("The laser needs to be recharged in order to fire again.");
+        }
+        requester.playConsoleSound();
         
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
             ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setLaserActivated(true);

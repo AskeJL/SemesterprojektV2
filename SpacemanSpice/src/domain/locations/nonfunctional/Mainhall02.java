@@ -23,10 +23,10 @@ public final class Mainhall02 extends Location {
                    super(
                    "Mainhall02", 
                    "This is the 2nd mainhall on the space ship.",
-                   new Exit('w', "Mainhall01"),
-                   new Exit('e', "Outside"),
-                   new Exit('n', "Net"),
-                   new Exit('w', "Laser"), 
+                   new Exit('S', "Mainhall01"),
+                   new Exit('E', "Outside"),
+                   new Exit('N', "Net"),
+                   new Exit('W', "Laser"), 
                    "mainhall02Map.txt");
     }
 
