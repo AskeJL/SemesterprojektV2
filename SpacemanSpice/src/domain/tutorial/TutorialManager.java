@@ -107,6 +107,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     case 0:
                         println(introduction);
                         counter++;
+                        System.out.println("This is the GUI tutorial.");
 
                         break;
                     case 1:
@@ -227,8 +228,135 @@ public class TutorialManager extends Manager implements GameUpdateable {
                 netActivated = false;
                 steeringActivated = false;
             }
-        } else {
-            
+        } else if (tutorial) {
+            Commands commands = interactionsManager.getCommands();
+            switch (counter) {
+                case 0:
+                    println(introduction);
+                    counter++;
+                    System.out.println("This is not the GUI tutorial.");
+
+                    break;
+                case 1:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro1);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 2:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro2);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 3:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro3);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 4:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("show") && interactionsManager.getLastParameter().equals("map")) {
+                        println(aIintro4);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 5:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro5);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 6:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Scanning Control") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro6);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 7:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro7);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 8:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Laser Controls") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro8);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 9:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro9);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 10:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro10);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 11:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro11);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 12:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro12);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 13:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro13);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 14:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Outside") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro14);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 15:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("show") && interactionsManager.getLastParameter().equals("oxygen")) {
+                        println(aIintro15);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 16:
+                    if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        println(aIintro16);
+                        commands.setLastCommand(new Clear());
+                        counter++;
+                    }
+                    break;
+                case 17:
+                    if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        println(aIintro17);
+                        counter++;
+                        setTutorial(false);
+                    }
+                    break;
+            }
         }
     }
 
