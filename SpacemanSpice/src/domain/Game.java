@@ -10,6 +10,8 @@ import domain.resources.Life;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
 import domain.resources.Time;
+import domain.sound.SoundManager;
+import domain.sound.SoundPlayer;
 import domain.systems.Score;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 import presentation.CLIManager;
 import presentation.GUIManager;
 import presentation.ViewManager;
+import presentation.draw.DrawController;
 
 public class Game extends Application {
 
@@ -41,6 +44,10 @@ public class Game extends Application {
         initInterfaces();
         initUI(new GUIManager(), primaryStage);
 
+        for (Manager manager : managerGroup.getManagers()) {
+            manager.init();
+        }
+        
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -57,6 +64,7 @@ public class Game extends Application {
         SystemsManager systemsManager = new SystemsManager();
         TutorialManager tutorialManager = new TutorialManager();
         TileManager tileManager = new TileManager();
+        SoundManager soundManager = new SoundManager();
 
         // Add to manager list
         List<Manager> managers = new ArrayList<>();
@@ -66,6 +74,7 @@ public class Game extends Application {
         managers.add(systemsManager);
         managers.add(tileManager);
         managers.add(tutorialManager);
+        managers.add(soundManager);
 
         managerGroup = new ManagerGroup(managers);
         
@@ -105,10 +114,12 @@ public class Game extends Application {
         GameElementGroup tileGroup = new GameElementGroup();
         tileGroup.setManagerGroup(managerGroup);
         tileManager.setGameElementGroup(tileGroup);
-
-        for (Manager manager : managerGroup.getManagers()) {
-            manager.init();
-        }
+        
+        // create Sound package
+        GameElementGroup soundGroup = new GameElementGroup();
+        soundGroup.setManagerGroup(managerGroup);
+        soundGroup.add(new SoundPlayer());
+        soundManager.setGameElementGroup(soundGroup);
     }
 
     void initInterfaces() {
@@ -117,12 +128,18 @@ public class Game extends Application {
     }
 
     void initUI(ViewManager viewManager, Stage stage) {
+        GameElementGroup group = new GameElementGroup();
         if (viewManager instanceof GUIManager) {
-            ((GUIManager) viewManager).init(stage);
+            group.setManagerGroup(managerGroup);
+            group.add(new DrawController());
+            viewManager.setGameElementGroup(group);
+            
+            managerGroup.add(viewManager);
+            
+            ((GUIManager) viewManager).setStage(stage);
         } else if (viewManager instanceof CLIManager) {
             System.out.println("CLI");
         }
-        managerGroup.add(viewManager);
         this.viewManager = viewManager;
     }
 

@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.ScanningControl;
+import domain.locations.gameobjects.ControllerScanning;
 import domain.systems.SystemsManager;
 
 /**
@@ -45,7 +45,7 @@ public final class Scanning extends Location {
        
         /*Scanning room-------------------------------------------------------*/
         Room scanningRoom = new Room("Scanning Control", "Space debris can be scanned from here.");
-        scanningRoom.addGameObject(new ScanningControl(this.systemsManager));
+        scanningRoom.addGameObject(new ControllerScanning(this.systemsManager));
         super.addRoom(scanningRoom);
 
         /*Display room--------------------------------------------------------*/

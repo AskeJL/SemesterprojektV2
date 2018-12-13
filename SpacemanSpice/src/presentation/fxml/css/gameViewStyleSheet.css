@@ -1,121 +1,114 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 25, 2018, 10:07:25 PM
-    Author     : Lupo
-*/
-@font-face{
-    font-family: 'ArcadeClassic';
-    src: url('ArcadeClassic.TTF');
+/*@font-face {
+    font-family: CFSpaceship;
+    src: url(CFSpaceship-Regular.ttf);
+}*/
+.text {
+    -fx-font-family: 'Consolas';
+    -fx-text-fill: white;
+    -fx-font-size: 20;
 }
-.root {
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 10;
+}
+
+.progress-bar .track {
     -fx-background-color: black;
 }
-.progress-bar .track{
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-opacity: 0.4;
+
+#progressBarOxygen .bar {
+    -fx-background-color: linear-gradient(to left, #1b60d1 0%, #3970cc 80%, #507bc4 100%);
 }
 
-.progress-bar-life {
-    -fx-background-color: white;
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-accent: red;
+#progressBarLife .bar {
+    -fx-background-color: linear-gradient(to left, #b50000 0%, #bc2b2b 80%, #d64848 100%);
 }
 
-.progress-bar-oxygen{
-    -fx-background-color: white;
-    -fx-text-box-border: forestgreen;
-    -fx-control-inner-background: palegreen;
-    -fx-accent: blue;
+#hpCanister, #o2Canister {
+    -fx-text-fill: #00ff00;
 }
+
+#highscoreLIst {
+    -fx-background-radius: 20px;
+    -fx-border-radius:20px;
+    -fx-font-size:12px;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill:white;
+}
+
+.list-cell:even {
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+
 .button{
     -fx-background-color: rgba(204,204,204,0.1);
-    -fx-font-family: 'ArcadeClassic';
+    -fx-background-radius: 20px;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
 }
 .button:hover{
     -fx-background-color: rgba(246,246,246,0.2);
-    -fx-font-family: 'ArcadeClassic';
     -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 48;
-    -fx-translate-x: 15;
+}
+
+#waveLabel, #timeLabel {
+    -fx-text-fill: black;
+}
+
+#waveNumberValue, #waveTimeValue {
+    -fx-text-fill: #00ff00;
 }
 
 /* Split menu button styling*/
 /*These buttons are used for settings and difficulty*/
-
-.split-menu-button{
+.split-menu-button {
     -fx-background-color: rgba(204,204,204,0.1);
-
-}
-.split-menu-button .label{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: rgba(204,204,204,0.1);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 24;
-}
-.split-menu-button .arrow-button{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: rgba(204,204,204,0.1);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
-}
-.split-menu-button .arrow-button:hover{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: rgba(246,246,246,0.2);
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 40;
-}
-.split-menu-button .button{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: rgba(204,204,204,0.1);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
 }
 
-.context-menu{
-    -fx-background-color: rgba(0,0,0,0.1);
-}
-.menu-item .label{
-    -fx-background-color: transparent;
-}
-.menu-item:focused .label{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
-}
-.menu-item:focused{
+.split-menu-button:hover {
     -fx-background-color: rgba(246,246,246,0.2);
 }
+
+.split-menu-button .arrow-button {
+    -fx-background-color: rgba(204,204,204,0.1);
+}
+
+.split-menu-button .label {
+    -fx-background-color: rgba(204,204,204,0.1);
+}
+
+.context-menu { 
+    -fx-background-color: rgba(204,204,204,0.5); 
+} 
+.menu-item .text { 
+    -fx-font-size: 12px;
+} 
+
+.menu-item:focused .text{ 
+    -fx-font-size: 12px;
+} 
+
+.menu-item .label{ 
+    -fx-background-color: transparent; 
+} 
 
 /*Style Toggle button for sound toggling*/
-.toggle-button{
-    -fx-font-family: 'ArcadeClassic';
+.toggle-button {
     -fx-background-color: rgba(204,204,204,0.1);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
+    -fx-background-radius: 20px;
 }
 .toggle-button:selected{
-    -fx-font-family: 'ArcadeClassic';
     -fx-background-color: rgba(246,246,246,0.2);
     -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 36;
 }
 
 /*Style list view, where scores will be shown*/
@@ -124,40 +117,15 @@ and open the template in the editor.
 }
 
 /* Style label for main menu title*/
-.label-title{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: transparent;
-    -fx-effect:dropshadow(one-pass-box, gray, 10, 1, 3, 3);
-    -fx-alignment: center;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 72px;
+#authors .text{
+    -fx-font-size: 11px;
 }
 
-.label-resources{
-    -fx-background-color: transparent;
-    -fx-alignment: center;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-}
-
-.label-authors{
-    -fx-font-family: 'ArcadeClassic';
-    -fx-background-color: transparent;
-    -fx-alignment: CENTER_LEFT;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 18px;
-}
-
+/* Terminal */
 .text-area {
     -fx-font-family: Consolas;
-    -fx-highlight-fill: #00ff00;
-    -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
-    -fx-background-color: rgba(53,89,119,0.2);
 
 }
 
@@ -169,19 +137,22 @@ and open the template in the editor.
     -fx-background-color: transparent;
 }
 
-
-.text-area .scroll-pane .content{
+.text-area .content{
     -fx-background-color: transparent;
 }
 
 .text-field{
     -fx-font-family: Consolas;
-    -fx-highlight-fill: #00ff00;
-    -fx-highlight-text-fill: #000000;
     -fx-text-fill: #00ff00;
     -fx-background-color: #000000;
-    -fx-background-color: rgba(53,89,119,0.2);
     -fx-border-color: #cccccc;
     -fx-border-width: 2px;
+}
+
+#about {
+    -fx-background-color: rgba(204,204,204,0.1);
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-size:13px;
 }
 

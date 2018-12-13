@@ -5,6 +5,7 @@ import data.read.ReadController;
 import data.write.DataWriter;
 import data.write.WriteController;
 import java.util.List;
+import javafx.scene.image.Image;
 
 public class Data implements DataReader, DataWriter {
 
@@ -17,6 +18,11 @@ public class Data implements DataReader, DataWriter {
     @Override
     public List<String> readData(AssetType type, String filename) {
         return reader.readData(type, filename);
+    }
+
+    @Override
+    public Image readImage(AssetType type, String filename) {
+        return reader.readImage(type, filename);
     }
 
     @Override

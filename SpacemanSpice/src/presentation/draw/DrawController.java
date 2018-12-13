@@ -4,6 +4,7 @@ import data.AssetType;
 import data.Data;
 import domain.DomainReader;
 import domain.DomainRequester;
+import domain.GameElement;
 import domain.locations.*;
 import domain.locations.gameobjects.Player;
 import domain.locations.gameobjects.Tile;
@@ -12,7 +13,7 @@ import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import presentation.controllers.ViewController_Game;
-import domain.sound.SoundPlayer;
+import presentation.GUIManager;
 
 /**
  * Draw controller class, implements DataReader interface in order to draw data
@@ -20,9 +21,8 @@ import domain.sound.SoundPlayer;
  * the relationships between them based on user input.
  *
  */
-public class DrawController {
+public class DrawController extends GameElement {
 
-    private final ViewController_Game gameViewController;
     private GraphicsContext gc;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
@@ -31,9 +31,10 @@ public class DrawController {
     private HashMap<String, Location> locationMap;
     
     private final String STARTING_LOCATION_NAME = "Personal";
-    private String currentLocationName;
+    private String currentLocationName = "Personal";
     private Location currentMapLocation;
     private String textMapLocation;
+    private String textMap;
     
     private Player player;
     private int playerXLocation;
@@ -48,20 +49,20 @@ public class DrawController {
     private GameObjectType actionType;
     private char exitDirection;
 
-    public DrawController(ViewController_Game controller) {
-        this.gameViewController = controller;
+    @Override
+    public void init() {
+        
     }
-
+    
     /**
      * Instantiates the components needed to be drawn on the canvas
      */
     public void setup() {
-
-        gc = gameViewController.getGraphicsContext();
-
+        GUIManager gui = (GUIManager)gameElementGroup.getManager();
+        gc = ((ViewController_Game)gui.getController(gui.getGameViewPath())).getGraphicsContext();
+        
         currentTileMap = requester.getTileMap();
         locationMap = requester.getLocationMap();
-
         currentLocationName = STARTING_LOCATION_NAME;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
@@ -71,9 +72,12 @@ public class DrawController {
         playerYLocation = player.getyPosition() + 10;
 
     }
+    
+    /**
+     * Instantiates the components needed to be drawn on the canvas
+     */
 
     public void clearCanvas() {
-        gc = gameViewController.getGraphicsContext();
         int canvasWidth = 900;
         int canvasHeight = 540;
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -104,11 +108,10 @@ public class DrawController {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
         characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
+        requester.setcurrentLocation(this.currentMapLocation);
         for (int x = 0; x < characters.length; x++) {
             for (int y = 0; y < characters[x].length; y++) {
                 if (currentTileMap.get(characters[x][y]) == exitTile) {
-
-                    reader.storeln("recognize");
                     playerXLocation = x;
                     playerYLocation = y;
                 }
@@ -122,7 +125,6 @@ public class DrawController {
      * Draws the player.
      */
     public void drawPlayer() {
-
         gc.drawImage(player.getPlayerImage(), playerXLocation * tileSize, playerYLocation * tileSize);
     }
 
@@ -131,7 +133,6 @@ public class DrawController {
      * interact-able.
      */
     public void interact() {
-        SoundPlayer sound = new SoundPlayer(this);
         if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE() != GameObjectType.DECORATION) {
             actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT_TYPE();
             currentTileMap.get(characters[playerXLocation][playerYLocation]).getGAME_OBJECT().interact();
@@ -140,36 +141,39 @@ public class DrawController {
                     exitDirection = currentMapLocation.getNorthExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getNorthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawLocation(currentTileMap.get(exitDirection));
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case WEST:
                     exitDirection = currentMapLocation.getWestExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getWestExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case SOUTH:
                     exitDirection = currentMapLocation.getSouthExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getSouthExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case EAST:
                     exitDirection = currentMapLocation.getEastExit().getTileExit();
                     currentMapLocation = locationMap.get(currentMapLocation.getEastExit().getTargetLocation());
                     textMapLocation = currentMapLocation.getTextMapLocation();
                     drawLocation(currentTileMap.get(exitDirection));
+                    this.currentLocationName = this.currentMapLocation.getName();
                     drawPlayer();
-                    sound.playDoorSound();
+                    requester.playDoorSound();
                     break;
                 case CONTROL:
-                    sound.playInteractionSound();
                     break;
             }
         }
@@ -243,5 +247,4 @@ public class DrawController {
     public String getCurrentLocationName() {
         return currentLocationName;
     }
-
 }

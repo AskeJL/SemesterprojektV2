@@ -13,5 +13,6 @@ public enum AssetType {
     SOUND,      // "assets/sound/"
     SCORE,      // "assets/score/"
     DESCRIPTION,// "assets/descriptions/"
+    UI,         // "assets/UI/"
     AIWAVE;     // "assets/text/AI behaviour/"
 }

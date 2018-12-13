@@ -8,6 +8,7 @@ import domain.locations.gameobjects.Player;
 import domain.locations.gameobjects.Tile;
 import domain.locations.gameobjects.TileManager;
 import domain.resources.ResourcesManager;
+import domain.sound.SoundManager;
 import domain.systems.SystemsManager;
 import domain.tutorial.TutorialManager;
 import java.util.HashMap;
@@ -68,6 +69,61 @@ public class DomainRequester implements InteractionsRequest {
         systems.getWave().setDifficultyHard();
     }
     
+    public void playGameMusic() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playGameMusic();
+    }
+
+    public void playLocationSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playLocationSound();
+    }
+
+    public void playDoorSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playDoorSound();
+    }
+
+    public void playConsoleSound() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playConsoleSound();
+    }
+    
+    public void playSireenSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playSireenSound();
+    }
+    
+     public void playMoveSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playMoveSound();
+     }
+     
+     public void playAirSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playAirSound();
+     }
+     
+     public void playRepairSound(){
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.playRepairSound();
+     }
+
+    public void startSounds() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.startSounds();
+    }
+
+    public void stopSounds() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.stopSounds();
+    }
+
+    public void mute() {
+        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+        sound.mute();
+    }
+    
     public HashMap<Character, Tile> getTileMap(){
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getTileMap();
@@ -81,5 +137,10 @@ public class DomainRequester implements InteractionsRequest {
     public Player getPlayer(){
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
         return tiles.getPlayer();
+    }
+
+    public void setcurrentLocation(Location name) {
+        LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
+        locations.setCurrentLocation(name);
     }
 }

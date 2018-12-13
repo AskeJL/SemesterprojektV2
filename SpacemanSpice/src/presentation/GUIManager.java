@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentation.controllers.ViewController;
@@ -19,36 +20,45 @@ public class GUIManager extends ViewManager {
     private final static String PATH_HIGH_SCORE = "fxml/view_HighScore.fxml";
     private final static String PATH_GAME_VIEW  = "fxml/view_Game.fxml";
     private final static String PATH_GAME_OVER  = "fxml/view_GameOver.fxml";
+    private final static String PATH_ABOUT      = "fxml/view_About.fxml";
 
     private final static String[] FXML_PATHS = {
-        PATH_MENU,
         PATH_SETTINGS,
+        PATH_MENU,
         PATH_HIGH_SCORE,
         PATH_GAME_VIEW,
-        PATH_GAME_OVER
+        PATH_GAME_OVER,
+        PATH_ABOUT
     };
 
-    private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation//fxml/css/gameViewStyleSheet.css").toExternalForm();
+    private final static String STYLESHEET_PATH = GUIManager.class.getResource("/presentation/fxml/css/gameViewStyleSheet.css").toExternalForm();
     private Stage currentStage;
     private ViewController currentController;
     private final List<ViewController> viewControllers = new ArrayList<>();
 
     /**
      * Initialize the necessary scene.
-     *
-     * @param stage
      */
-    public void init(Stage stage) {
-        currentStage = stage;
+    public void init() {
         currentStage.setTitle("Spaceman Spice - Kessler Syndrome");
-
+        
+        new ViewController() {
+            @Override
+            public void update() {
+                // Temp anonymous
+            }
+        }.setManager(this);
+        
         loadControllers();
         loadView(PATH_MENU);
+        
+        super.init();
     }
 
     @Override
     public void update() {
         currentController.update();
+        super.update();
     }
 
     private void loadControllers() {
@@ -68,7 +78,6 @@ public class GUIManager extends ViewManager {
                 System.out.println(ex);
             }
         }
-
         for (ViewController controller : viewControllers) {
             controller.setManager(this);
         }
@@ -80,12 +89,13 @@ public class GUIManager extends ViewManager {
                 currentStage.setScene(controller.getScene());
                 currentController = controller;
                 currentController.getScene().getRoot().requestFocus();
+                currentController.getScene().getRoot().setCursor(Cursor.DEFAULT);
             }
         }
         currentStage.show();
     }
 
-    void setStage(Stage stage) {
+    public void setStage(Stage stage) {
         currentStage = stage;
     }
 
@@ -93,8 +103,12 @@ public class GUIManager extends ViewManager {
         currentController = controller;
     }
 
+    public List<ViewController> getControllers() {
+        return this.viewControllers;
+    }
+    
     public ViewController getController(String fxml) {
-        for (ViewController controller : viewControllers) {
+        for (ViewController controller : this.viewControllers) {
             if (controller.getPath().equals(fxml)) {
                 return controller;
             }
@@ -124,6 +138,10 @@ public class GUIManager extends ViewManager {
 
     public String getGameOverPath() {
         return PATH_GAME_OVER;
+    }
+    
+    public String getAboutPath() {
+        return PATH_ABOUT;
     }
 
     public Stage getCurrentStage() {
