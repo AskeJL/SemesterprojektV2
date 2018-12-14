@@ -16,10 +16,13 @@ import presentation.controllers.ViewController_Game;
 import presentation.GUIManager;
 
 /**
- * Draw controller class, implements DataReader interface in order to draw data
- * from data package. Instantiates player, tile/location controllers controls
- * the relationships between them based on user input.
- *
+ * This is responsible for drawing the various game elements on 
+ * the canvas of Game view, based on the current location and the 
+ * players position. As well as keeping track of these.
+ * <p>
+ * Upon initialization ({@link #setup() }) will setup all the necessary
+ * information for keeping track of the current location, maps
+ * and player position.
  */
 public class DrawController extends GameElement {
 
@@ -30,7 +33,7 @@ public class DrawController extends GameElement {
     private HashMap<Character, Tile> currentTileMap;
     private HashMap<String, Location> locationMap;
     
-    private final String STARTING_LOCATION_NAME = "Personal";
+    private final String startingLocationName = "Personal";
     private String currentLocationName = "Personal";
     private Location currentMapLocation;
     private String textMapLocation;
@@ -41,9 +44,9 @@ public class DrawController extends GameElement {
     private int playerYLocation;
     
     private final Data data = new Data();
-    private char[][] characters;
-    private final int NUMBER_OF_TILES_X_AXIS = 28;
-    private final int NUMBER_OF_TILES_Y_AXIS = 16;
+    private char[][] symbolArray;
+    private final int tileNumberXAxis = 28;
+    private final int tileNumberYAxis = 16;
     private final int tileSize = 32;
 
     private GameObjectType actionType;
@@ -55,7 +58,7 @@ public class DrawController extends GameElement {
     }
     
     /**
-     * Instantiates the components needed to be drawn on the canvas
+     * Instantiates the components needed to be drawn on the canvas.
      */
     public void setup() {
         GUIManager gui = (GUIManager)gameElementGroup.getManager();
@@ -63,7 +66,7 @@ public class DrawController extends GameElement {
         
         currentTileMap = requester.requestTileMap();
         locationMap = requester.requestLocationsMap();
-        currentLocationName = STARTING_LOCATION_NAME;
+        currentLocationName = startingLocationName;
         currentMapLocation = locationMap.get(currentLocationName);
         textMapLocation = currentMapLocation.getTextMapLocation();
 
@@ -74,7 +77,8 @@ public class DrawController extends GameElement {
     }
     
     /**
-     * Instantiates the components needed to be drawn on the canvas
+     * Clears the canvas in preparation for the next time components will be 
+     * drawn on it.
      */
 
     public void clearCanvas() {
@@ -84,58 +88,63 @@ public class DrawController extends GameElement {
     }
 
     /**
-     * Draws a location on the screen, based on a text file
+     * Draws a location on the canvas, based on a text file of the current map.
      */
     public void drawLocation() {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
-        characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
-        for (int x = 0; x < characters.length; x++) {
-            for (int y = 0; y < characters[x].length; y++) {
-                Image img = currentTileMap.get(characters[x][y]).getTileImage();
+        symbolArray = convertToCharArray(map, tileNumberXAxis, tileNumberYAxis);
+        for (int x = 0; x < symbolArray.length; x++) {
+            for (int y = 0; y < symbolArray[x].length; y++) {
+                Image img = currentTileMap.get(symbolArray[x][y]).getTileImage();
                 gc.drawImage(img, x * tileSize, y * tileSize);
             }
         }
     }
 
     /**
-     * Draws a location on the screen, based on a text file, depending on the
-     * current tile the player is interacting with
+     * Uses ({@link #clearCanvas()}) to prepare the canvas and
+     * draws a location on the screen, based on a text file.
+     * Sets a new player position on the new drawn map depending on
+     * the exit tile that the player interacted to begin with. 
+     * See ({@link #interact()})
      *
      * @param exitTile
      */
     public void drawLocation(Tile exitTile) {
         clearCanvas();
         List<String> map = data.readData(AssetType.MAP, textMapLocation);
-        characters = convertToCharArray(map, NUMBER_OF_TILES_X_AXIS, NUMBER_OF_TILES_Y_AXIS);
+        symbolArray = convertToCharArray(map, tileNumberXAxis, tileNumberYAxis);
         requester.requestSetCurrentLocation(this.currentMapLocation);
-        for (int x = 0; x < characters.length; x++) {
-            for (int y = 0; y < characters[x].length; y++) {
-                if (currentTileMap.get(characters[x][y]) == exitTile) {
+        for (int x = 0; x < symbolArray.length; x++) {
+            for (int y = 0; y < symbolArray[x].length; y++) {
+                if (currentTileMap.get(symbolArray[x][y]) == exitTile) {
                     playerXLocation = x;
                     playerYLocation = y;
                 }
-                Image img = currentTileMap.get(characters[x][y]).getTileImage();
+                Image img = currentTileMap.get(symbolArray[x][y]).getTileImage();
                 gc.drawImage(img, x * tileSize, y * tileSize);
             }
         }
     }
 
     /**
-     * Draws the player.
+     * Draws the player based on its current position.
      */
     public void drawPlayer() {
         gc.drawImage(player.getPlayerImage(), playerXLocation * tileSize, playerYLocation * tileSize);
     }
 
     /**
-     * Called from user input, to interact with the tiles that are
-     * interact-able.
+     * Called from ({@link presentation.controllers.ViewController_Game}), 
+     * used to interact with the tile based on player position.
+     * Updates ({@link #currentMapLocation}) and ({@link #textMapLocation}),
+     * 
      */
     public void interact() {
-        if (currentTileMap.get(characters[playerXLocation][playerYLocation]).getGameObjectType() != GameObjectType.DECORATION) {
-            actionType = currentTileMap.get(characters[playerXLocation][playerYLocation]).getGameObjectType();
-            currentTileMap.get(characters[playerXLocation][playerYLocation]).getGameObject().interact();
+        if (currentTileMap.get(symbolArray[playerXLocation][playerYLocation]).getGameObjectType() != GameObjectType.DECORATION) {
+            actionType = currentTileMap.get(symbolArray[playerXLocation][playerYLocation]).getGameObjectType();
+            currentTileMap.get(symbolArray[playerXLocation][playerYLocation]).getGameObject().interact();
             switch (actionType) {
                 case NORTH:
                     exitDirection = currentMapLocation.getNorthExit().getTileExit();
@@ -180,10 +189,10 @@ public class DrawController extends GameElement {
     }
 
     /**
-     * Move player 1 tile upwards (negative y axis)
+     * Takes ({@link #playerYLocation}) and moves the player position by 1 tile upwards (negative y axis)
      */
     public void movePlayerUP() {
-        if (currentTileMap.get(characters[playerXLocation][playerYLocation - 1]).getSolid() == false) {
+        if (currentTileMap.get(symbolArray[playerXLocation][playerYLocation - 1]).getSolid() == false) {
             playerYLocation -= 1;
             drawLocation();
             drawPlayer();
@@ -192,10 +201,10 @@ public class DrawController extends GameElement {
     }
 
     /**
-     * Move player 1 tile to the left (negative x axis)
+     * Takes ({@link #playerXLocation}) and moves the player position by 1 tile to the left (negative x axis)
      */
     public void movePlayerLeft() {
-        if (currentTileMap.get(characters[playerXLocation - 1][playerYLocation]).getSolid() == false) {
+        if (currentTileMap.get(symbolArray[playerXLocation - 1][playerYLocation]).getSolid() == false) {
             playerXLocation -= 1;
             drawLocation();
             drawPlayer();
@@ -203,10 +212,10 @@ public class DrawController extends GameElement {
     }
 
     /**
-     * Move player 1 tile downwards (positive y axis)
+     * Takes ({@link #playerYLocation}) and moves the player position by 1 tile downwards (positive y axis)
      */
     public void movePlayerDown() {
-        if (currentTileMap.get(characters[playerXLocation][playerYLocation + 1]).getSolid() == false) {
+        if (currentTileMap.get(symbolArray[playerXLocation][playerYLocation + 1]).getSolid() == false) {
             playerYLocation += 1;
             drawLocation();
             drawPlayer();
@@ -214,10 +223,10 @@ public class DrawController extends GameElement {
     }
 
     /**
-     * Move player 1 tile to the right (positive x axis)
+     *Takes ({@link #playerXLocation}) and moves the player position by 1 tile to the right (positive x axis)
      */
     public void movePlayerRight() {
-        if (currentTileMap.get(characters[playerXLocation + 1][playerYLocation]).getSolid() == false) {
+        if (currentTileMap.get(symbolArray[playerXLocation + 1][playerYLocation]).getSolid() == false) {
             playerXLocation += 1;
             drawLocation();
             drawPlayer();

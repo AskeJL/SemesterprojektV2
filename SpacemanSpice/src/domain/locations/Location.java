@@ -18,7 +18,7 @@ public abstract class Location extends GameElement {
     /**
      * Name of the Location.
      */
-    private final String NAME;
+    private final String name;
 
     /**
      * Description of the location.
@@ -43,13 +43,13 @@ public abstract class Location extends GameElement {
     private String textMapLocation;
 
     protected Location(String name, String description) {
-        this.NAME = name;
+        this.name = name;
         this.description = description;
     }
 
     protected Location(String name, String description, Exit northExit, Exit westExit, Exit southExit, Exit eastExit, String fileLocation) {
 
-        this.NAME = name;
+        this.name = name;
         this.description = description;
         this.northExit = northExit;
         this.westExit = westExit;
@@ -124,12 +124,12 @@ public abstract class Location extends GameElement {
     }
 
     /**
-     * Get the {@link #NAME name} of this Location.
+     * Get the {@link #name name} of this Location.
      *
      * @return
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
