@@ -133,7 +133,11 @@ public class ViewController_Game extends ViewController implements Initializable
             guiManager.loadView(guiManager.getGameOverPath());
             requester.requestStopSounds();
         }
+        if(reader.readRemainingTime() >= 0){
         waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
+        } else{
+          waveTimeValue.setText("0");
+        }
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
         
         if (terminalLampOn) {
