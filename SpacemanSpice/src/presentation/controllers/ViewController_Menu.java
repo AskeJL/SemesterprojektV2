@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -90,10 +89,10 @@ public class ViewController_Menu extends ViewController implements Initializable
         earth_Debris_01 = new ImageView(new Data().readImage(AssetType.UI, "Debris_01.png"));
         earth_Debris_02 = new ImageView(new Data().readImage(AssetType.UI, "Debris_02.png"));
 
-        prepareImage(earthBackground, -500, 280, 0.5, 0.5);
-        prepareImage(earth, -380, 420, 0.5, 0.5);
-        prepareImage(earth_Debris_01, -350, 420, 0.75, 0.75);
-        prepareImage(earth_Debris_02, -350, 420, 0.75, 0.75);
+        prepareImage(earthBackground, -500, 0, 0.5, 0.5);
+        prepareImage(earth, -380, 135, 0.5, 0.5);
+        prepareImage(earth_Debris_01, -350, 135, 0.75, 0.75);
+        prepareImage(earth_Debris_02, -350, 135, 0.75, 0.75);
 
         foreground.getChildren().add(earthBackground);
         foreground.getChildren().add(earth);

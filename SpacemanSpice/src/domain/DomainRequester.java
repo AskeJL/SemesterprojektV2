@@ -13,6 +13,8 @@ import domain.sound.SoundPlayer;
 import domain.systems.SystemsManager;
 import domain.tutorial.TutorialManager;
 import java.util.HashMap;
+import presentation.GUIManager;
+import presentation.draw.DrawController;
 
 /**
  * This is used to request actions from the domain layer. To request an action
@@ -65,7 +67,12 @@ public class DomainRequester implements InteractionsRequest {
         LocationsManager locations = (LocationsManager) group.getManager(LocationsManager.class);
         TutorialManager tutorial = (TutorialManager) group.getManager(TutorialManager.class);
         TileManager tiles = (TileManager) group.getManager(TileManager.class);
+        DrawController draw = (DrawController)((GUIManager)group.getManager(GUIManager.class)).getGameElementGroup().getGameElement(DrawController.class);
 
+        draw.setup();
+        draw.drawLocation();
+        draw.drawPlayer();
+        
         resources.getOxygen().setValue(100);
         resources.getLife().setValue(100);
         resources.getTime().init();
