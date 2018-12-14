@@ -42,8 +42,9 @@ public class ControlScanning extends GameObject {
                 + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                 + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
                 + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
-        
+        System.out.println("Does this work?");
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            System.out.println("This works");
             ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
         }
     }

@@ -10,6 +10,8 @@ import domain.interactions.Commands;
 import domain.interactions.InteractionsManager;
 import domain.interactions.commands.Clear;
 import domain.locations.LocationsManager;
+import domain.systems.SystemsManager;
+import domain.systems.Wave;
 import java.util.List;
 
 public class TutorialManager extends Manager implements GameUpdateable {
@@ -73,6 +75,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
     private InteractionsManager interactionsManager;
     private LocationsManager locationsManager;
+    private SystemsManager systemsManager;
 
     public TutorialManager() {
 
@@ -141,7 +144,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
         if (gui == true) {
             if (tutorial) {
                 Commands commands = interactionsManager.getCommands();
-
+                
                 switch (counter) {
                     case 0:
                         println(gUIintroduction);
@@ -184,7 +187,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                         }
                         break;
                     case 6:
-                        if (scannerCalibrated == true && scannerActivated == true) {
+                        if (/*scannerCalibrated == true &&*/ scannerActivated == true) {
                             println(gUIaIintro6);
                             counter++;
                         }

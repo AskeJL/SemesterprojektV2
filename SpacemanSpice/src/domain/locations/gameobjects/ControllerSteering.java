@@ -6,6 +6,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to dodge large fragments.
@@ -46,6 +47,12 @@ public class ControllerSteering extends GameObject {
             systemsManager.setLargeFragmentDestroyed(true);
             requester.requestMoveSound();
             reader.storeln("You have moved the ship out of danger.");
+        }
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            systemsManager.setLargeFragmentDestroyed(true);
+            requester.requestMoveSound();
+            reader.storeln("You have moved the ship");
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringActivated(true);
         }
         }
         else {

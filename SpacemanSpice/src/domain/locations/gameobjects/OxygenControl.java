@@ -40,7 +40,7 @@ public class OxygenControl extends GameObject {
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
         if(oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true){
-            requester.playAirSound();
+            requester.requestAirSound();
             reader.storeln("You interact with the Oxygen refilling control");
             oxygen.increaseValue(100 - oxygen.getValue());
             oxygen.setOxygenGenerator1On(false);
@@ -54,7 +54,7 @@ public class OxygenControl extends GameObject {
         else{
             reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
             if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
-                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setScannerActivated(true);
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
             }
         }
         

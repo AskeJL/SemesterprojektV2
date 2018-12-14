@@ -42,7 +42,7 @@ public class ControlRepair extends GameObject {
         life.setRepair(true);
         
         if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setNetActivated(true);
+            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setDamageRepairActivated(true);
         }
     }
 

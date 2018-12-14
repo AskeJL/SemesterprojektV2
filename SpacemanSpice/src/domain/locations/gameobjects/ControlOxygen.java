@@ -6,6 +6,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to fill up the players oxygen.
@@ -48,6 +49,11 @@ public class ControlOxygen extends GameObject {
             oxygen.setOxygenGenerator1On(false);
             oxygen.setOxygenGenerator2On(false);
             oxygen.setOxygenGenerator3On(false);
+            
+            if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenCharged(true);
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
+            }
         } else {
             reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
         }

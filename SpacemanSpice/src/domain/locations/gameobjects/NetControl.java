@@ -42,7 +42,7 @@ public class NetControl extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         if(wave.getNetCurrentHealth() > 0){
-            requester.playConsoleSound();
+            requester.requestConsoleSound();
             reader.storeln("Interacting with net control.");
             systemsManager.setMediumFragmentDestroyed(true);
             wave.setNetCurrentHealth(wave.getNetCurrentHealth()-10);
