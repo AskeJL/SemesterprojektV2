@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +56,7 @@ public class ViewController_Highscore extends ViewController implements Initiali
             Scanner scanner = new Scanner(line);
             String name = scanner.next();
             int score = scanner.nextInt();
-            scores.add(String.format("%-16s %5s", name, score));
+            scores.add(String.format("%-16s %-5s", name, score));
         }
     }
     

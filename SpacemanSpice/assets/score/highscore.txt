@@ -1,6 +1,1 @@
-Gert 432
-Tim 425
-Rasmus 300
-Birger 36
-Egon 20
-Elmer 16
+Group27 100

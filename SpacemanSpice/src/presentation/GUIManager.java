@@ -87,6 +87,7 @@ public class GUIManager extends ViewManager {
         for (ViewController controller : viewControllers) {
             if (controller.getPath().equals(FXMLFile)) {
                 currentStage.setScene(controller.getScene());
+                currentStage.setResizable(false);
                 currentController = controller;
                 currentController.getScene().getRoot().requestFocus();
                 currentController.getScene().getRoot().setCursor(Cursor.DEFAULT);

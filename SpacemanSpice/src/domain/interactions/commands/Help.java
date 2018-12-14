@@ -3,7 +3,6 @@ package domain.interactions.commands;
 import domain.DomainReader;
 import domain.interactions.Command;
 import domain.interactions.InteractionsManager;
-import domain.locations.Exit;
 import domain.locations.LocationsManager;
 import domain.systems.SystemsManager;
 
@@ -21,14 +20,12 @@ public class Help extends Command {
 
     public Help(InteractionsManager interactions) {
         super("help", "Display the help list.", true);
-        super.addParameter("go");
-        super.addParameter("interact");
-        super.addParameter("help");
-        super.addParameter("quit");
-        super.addParameter("clear");
-        super.addParameter("start");
-
+        
         this.interactionsManager = interactions;
+        
+        for(Command command : interactionsManager.getCommands().getCommandWords()) {
+            super.addParameter(command.getName());
+        }
     }
 
     /**
@@ -50,7 +47,10 @@ public class Help extends Command {
     public void run() {
         for (String parameter : super.getAvailableParameters()) {
             if (parameter.equalsIgnoreCase(super.getCurrentParameter())) {
-                interactionsManager.getCommand(super.getCurrentParameter().toLowerCase()).helpInfo();
+                Command command = interactionsManager.getCommand(super.getCurrentParameter().toLowerCase());
+                if(command != null) {
+                    command.helpInfo();
+                }
                 return;
             }
         }
@@ -77,23 +77,8 @@ public class Help extends Command {
         LocationsManager locationsManager = (LocationsManager) interactionsManager.getManager(LocationsManager.class);
         SystemsManager systemsManager = (SystemsManager) interactionsManager.getManager(SystemsManager.class);
 
-        reader.storeln("Current room:");
-        reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName() + "/" + locationsManager.getCurrentRoom().getName()));
-
-        reader.storeln("You can go:");
-        for (Exit exit : locationsManager.getCurrentLocation().getExits()) {
-            if (exit.getFromRoom().getName().equals(locationsManager.getCurrentRoom().getName())) {
-                reader.storeln(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getToLocation().getName()));
-            }
-        }
-        for (Exit exit : locationsManager.getCurrentRoom().getExits()) {
-            reader.storeln(String.format("%10s %-5s - %-10s", "", exit.getDirection().name().toLowerCase(), exit.getFromRoom().getName()));
-        }
-
-        if (!locationsManager.getCurrentRoom().getGameObjects().isEmpty()) {
-            reader.storeln("You can interact with:");
-            reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentRoom().getGameObjects().get(0).getName()));
-        }
+        reader.storeln("Current location:");
+        reader.storeln(String.format("%10s %s", "", locationsManager.getCurrentLocation().getName()));
 
         reader.storeln("Available commands: ");
         if (!systemsManager.getPlayerReady()) {

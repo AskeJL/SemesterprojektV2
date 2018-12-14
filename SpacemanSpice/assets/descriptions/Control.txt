@@ -1,5 +1,5 @@
 +-----------------------------------+
-| As you enter the room, a large    |
+| As you enter the location, a large|
 | transparent half-globe quickly    |
 | gets your attention.              |
 | This would be the observation     |

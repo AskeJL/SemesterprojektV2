@@ -53,10 +53,10 @@ public class Parser extends GameElement {
     
     /**
      * Print a list of all the available commands. Uses the
-     * {@link Commands#getCommandwords()}
+     * {@link Commands#getCommandWords()}
      */
     void showCommands() {
-        for (Command command : commands.getCommandwords()) {
+        for (Command command : commands.getCommandWords()) {
             System.out.println(command);
         }
     }
