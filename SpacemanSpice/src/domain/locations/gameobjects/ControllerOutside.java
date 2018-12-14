@@ -41,7 +41,9 @@ public class ControllerOutside extends GameObject {
         Life life = resourcesManager.getLife();
         life.setRepair(true);
         
-        
+        if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setDamageRepairActivated(true);
+        } 
     }
 
     @Override

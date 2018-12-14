@@ -49,13 +49,25 @@ public class ControllerScanning extends GameObject {
                     + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                     + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
                     + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
-            System.out.println("Does this work?");
+
             if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-                System.out.println("This works");
                 ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+                ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setScannerCalibrated(true);
             }
         }
         else{
+            if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                wave.setSensor1currentValue(0);
+                wave.setSensor2currentValue(0);
+                wave.setSensor3currentValue(0);
+                wave.setSensor4currentValue(0);
+                reader.storeln("Cannot scan at the moment, sensors need to be calibrated as such:");
+                reader.storeln("Sensor 1 at: " + wave.getSensor1MaxValue());
+                reader.storeln("Sensor 2 at: " + wave.getSensor2MaxValue());
+                reader.storeln("Sensor 3 at: " + wave.getSensor3MaxValue());
+                reader.storeln("Sensor 4 at: " + wave.getSensor4MaxValue());
+            }
+            
             wave.setSensor1currentValue(0);
             wave.setSensor2currentValue(0);
             wave.setSensor3currentValue(0);

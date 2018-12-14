@@ -38,7 +38,6 @@ public class ActivatorSteering extends GameObject {
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
             systemsManager.setLargeFragmentDestroyed(true);
             ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringCharged(true);
-            reader.storeln("Reactor is overcharged! You can use the thrusters to fly away now!");
         }
         else{
             reader.storeln("Reactor is already overcharged");

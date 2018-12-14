@@ -56,6 +56,9 @@ public class ControlOxygen extends GameObject {
             }
         } else {
             reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
+            if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
+            }
         }
     }
 

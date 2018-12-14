@@ -10,6 +10,7 @@ import domain.interactions.InteractionsManager;
 import domain.resources.Life;
 import domain.resources.ResourcesManager;
 import domain.resources.Time;
+import domain.tutorial.TutorialManager;
 import java.util.List;
 
 public class SystemsManager extends Manager implements GameUpdateable {
