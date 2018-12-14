@@ -184,11 +184,25 @@ public class SystemsManager extends Manager implements GameUpdateable {
     public void setPlayerReady(boolean bool) {
         playerReady = bool;
     }
-
+    
+    /**
+     * Get text from {@link #getTextString(filename) file}
+     * 
+     * @param filename
+     * 
+     * @return data text List
+     */
     private List<String> getTextString(String filename) {
         return data.readData(AssetType.TEXT, filename);
     }
     
+    /**
+     * Get text from {@link #getAIString(filename) file}
+     * 
+     * @param filename
+     * 
+     * @return data text List
+     */
     private List<String> getAIString(String filename) {
         return data.readData(AssetType.AIWAVE, filename);
     }
@@ -202,7 +216,7 @@ public class SystemsManager extends Manager implements GameUpdateable {
     /**
      * Get {@link #SMALL_FRAGMENT_IDENTIFIER}.
      *
-     * @return
+     * @return {@link #SMALL_FRAGMENT_IDENTIFIER}
      */
     public int getSmallFragmentIdentifier() {
         return SMALL_FRAGMENT_IDENTIFIER;
@@ -211,7 +225,7 @@ public class SystemsManager extends Manager implements GameUpdateable {
     /**
      * Get {@link #MEDIUM_FRAGMENT_IDENTIFIER}.
      *
-     * @return
+     * @return {@link #MEDIUM_FRAGMENT_IDENTIFIER}
      */
     public int getMediumFragmentIdentifier() {
         return MEDIUM_FRAGMENT_IDENTIFIER;
@@ -220,12 +234,17 @@ public class SystemsManager extends Manager implements GameUpdateable {
     /**
      * Get {@link #LARGE_FRAGMENT_IDENTIFIER}.
      *
-     * @return
+     * @return {@link #LARGE_FRAGMENT_IDENTIFIER}
      */
     public int getLargeFragmentIdentifier() {
         return LARGE_FRAGMENT_IDENTIFIER;
     }
-
+    
+    /**
+     * get wave {@link #getWave() wave]
+     * 
+    * @return Wave
+    */
     public Wave getWave() {
         return this.wave;
     }
@@ -233,7 +252,7 @@ public class SystemsManager extends Manager implements GameUpdateable {
     /**
      * Get {@link Score#score}.
      *
-     * @return
+     * @return score int
      */
     public Score getScore() {
         return this.score;
@@ -242,7 +261,7 @@ public class SystemsManager extends Manager implements GameUpdateable {
     /**
      * Get {@link #playerReady}.
      *
-     * @return
+     * @return playerReady boolean
      */
     public boolean getPlayerReady() {
         return this.playerReady;

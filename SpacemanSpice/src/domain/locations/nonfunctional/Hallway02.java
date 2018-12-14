@@ -14,7 +14,15 @@ public final class Hallway02 extends Location {
         
         createLocationCLI();
     }
-
+    
+    /**
+     *  Makes a gui Hallway02 location
+     *  Sends name, desciption, exits and map file name
+     * 
+     * @param gui 
+     * 
+     * @see domain.locations.LocationsManager#createLocationGUI() 
+     */
     public Hallway02(Boolean gui){
                    super(
                    "Hallway02", 
@@ -30,7 +38,11 @@ public final class Hallway02 extends Location {
     public void init() {
        
     }
-    
+     /**
+     * Makes a CLI Hallway02 location by adding rooms to a location
+     * 
+     * @see domain.locations.LocationsManager#createLocations() 
+     */
     @Override
     protected void createLocationCLI() {
         /*The room in the hallway02 location are created----------------------*/

@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
@@ -19,6 +20,7 @@ public class ActivatorLaser extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
 
     public ActivatorLaser(SystemsManager systems) {
         super("Laser arming system.", "The laser is armed from here.", GameObjectType.CONTROL, null);
@@ -34,6 +36,7 @@ public class ActivatorLaser extends GameObject {
         Wave wave = systemsManager.getWave();
 
         if (wave.getAmountOfLaserShots() < 3) {
+            requester.playLaserChargeSound();
             wave.setAmountOfLaserShots(wave.getMAX_AMOUNT_OF_LASER_SHOTS());
             reader.storeln("Laser has now enough power for 3 shots.");
         } else {
