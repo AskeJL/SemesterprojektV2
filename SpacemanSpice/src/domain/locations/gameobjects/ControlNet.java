@@ -42,7 +42,7 @@ public class ControlNet extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         if (wave.getNetCurrentHealth() > 0) {
-            requester.requestConsoleSound();
+            requester.requestScanningConsoleSound();
             reader.storeln("Interacting with net control.");
             systemsManager.setMediumFragmentDestroyed(true);
             wave.setNetCurrentHealth(wave.getNetCurrentHealth() - 10);

@@ -33,8 +33,14 @@ public class SoundPlayer extends GameElement {
     String moveSpaceshipSoundFile = "assets/sounds/retro_spaceship_engine_03.wav";
     AudioClip moveSpaceshipSound = new AudioClip(new File(moveSpaceshipSoundFile).toURI().toString());
 
-    String consoleSoundFile = "assets/sounds/beep_09.wav";
+    String consoleSoundFile = "assets/sounds/ConsoleSounds2.wav";
     AudioClip consoleSound = new AudioClip(new File(consoleSoundFile).toURI().toString());
+    
+    String scanningConsoleSoundFile = "assets/sounds/ScanningConsoleSound.wav";
+    AudioClip scanningConsoleSound = new AudioClip(new File(scanningConsoleSoundFile).toURI().toString());
+    
+    String activatorConsoleSoundFile = "assets/sounds/ConsoleSounds.wav";
+    AudioClip activatorConsoleSound = new AudioClip(new File(activatorConsoleSoundFile).toURI().toString());
 
     String airSoundFile = "assets/sounds/AirTank_Sound.wav";
     AudioClip airSound = new AudioClip(new File(airSoundFile).toURI().toString());
@@ -115,6 +121,7 @@ public class SoundPlayer extends GameElement {
     
     /**
      * plays a console beep.
+     * {@link #consoleSound}
      */
     public void playConsoleSound() {
         if (mute == false) {
@@ -123,9 +130,29 @@ public class SoundPlayer extends GameElement {
     }
     
     /**
+     * plays a console beep.
+     * {@link #scanningConsoleSound}
+     */
+    public void playScanningConsoleSound() {
+        if (mute == false) {
+            scanningConsoleSound.play();
+        }
+    }
+    
+    /**
+     * plays a console beep.
+     * {@link #activatorConsoleSound}
+     */
+    public void playActivatorConsoleSound() {
+        if (mute == false) {
+            activatorConsoleSound.play();
+        }
+    }
+    
+    /**
      * Plays a sireen sound.
      * Loops continuselse
-     * {@link sireenSound}
+     * {@link #sireenSound}
      */
     public void playSireenSound() {
         if (mute == false) {
@@ -138,7 +165,7 @@ public class SoundPlayer extends GameElement {
     
     /**
      * Stops the Sireen sound if playing
-     * {@link sireenSound}
+     * {@link #sireenSound}
      */
     public void stopSireenSound() {
         if (mute == false) {

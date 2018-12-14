@@ -6,6 +6,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
@@ -19,6 +20,7 @@ public class ActivatorNet extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public ActivatorNet(SystemsManager systems){
         super("Net repair.", "You can repair your net here.", GameObjectType.CONTROL, null);
@@ -27,6 +29,7 @@ public class ActivatorNet extends GameObject {
     @Override
     public void interact() {
         Wave wave = systemsManager.getWave();
+        requester.requestActivatorConsoleSound();
         if(wave.getNetCurrentHealth() == wave.getNET_MAX_HEALTH()){
             reader.storeln("Net has been repaired fully!");
         }

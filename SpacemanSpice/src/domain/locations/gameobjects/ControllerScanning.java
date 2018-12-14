@@ -36,20 +36,20 @@ public class ControllerScanning extends GameObject {
      */
     @Override
     public void interact() {
-        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         Wave wave = systemsManager.getWave();
         if ((wave.getSensor1currentValue() == wave.getSensor1MaxValue())
                 && (wave.getSensor2currentValue() == wave.getSensor2MaxValue())
                 && (wave.getSensor3currentValue() == wave.getSensor3MaxValue())
                 && (wave.getSensor4currentValue() == wave.getSensor4MaxValue())) {
-
+            requester.requestScanningConsoleSound();
             reader.storeln("You interact with the scanningstation\nThere are:\n"
                     + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                     + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
                     + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
         }
         else{
+            requester.requestConsoleSound();
             wave.setSensor1currentValue(0);
             wave.setSensor2currentValue(0);
             wave.setSensor3currentValue(0);
