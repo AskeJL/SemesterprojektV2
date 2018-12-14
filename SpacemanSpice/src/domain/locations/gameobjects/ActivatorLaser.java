@@ -36,7 +36,7 @@ public class ActivatorLaser extends GameObject {
         Wave wave = systemsManager.getWave();
 
         if (wave.getAmountOfLaserShots() < 3) {
-            requester.playLaserChargeSound();
+            requester.requestLaserChargeSound();
             wave.setAmountOfLaserShots(wave.getMAX_AMOUNT_OF_LASER_SHOTS());
             reader.storeln("Laser has now enough power for 3 shots.");
         } else {

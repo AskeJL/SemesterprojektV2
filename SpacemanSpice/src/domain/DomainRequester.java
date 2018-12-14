@@ -165,33 +165,15 @@ public class DomainRequester implements InteractionsRequest {
             sound.playSireenSound();
         }
     }
-    
-    public void stopSireenSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.stopSireenSound();
-    }
-    
-     public void playMoveSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playMoveSound();
-     }
      
-     public void playAirSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playAirSound();
-     }
-     
-     public void playRepairSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
-        sound.playRepairSound();
-     }
-     
-     public void playLaserSound(){
-        SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
+     public void requestLaserSound(){
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
         sound.playLaserSound();
+        }
      }
      
-     public void playLaserChargeSound() {
+     public void requestLaserChargeSound() {
          SoundManager sound = (SoundManager) group.getManager(SoundManager.class);
         sound.playLaserChargeSound();
      }

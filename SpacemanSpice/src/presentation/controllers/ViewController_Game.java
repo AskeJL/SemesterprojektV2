@@ -120,9 +120,9 @@ public class ViewController_Game extends ViewController implements Initializable
         requester.requestStartSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() <= 50 && reader.readLifeValue() > 0) {
-           requester.playSireenSound();
+           requester.requestSirenSound();
         } else if(reader.readLifeValue()>50){
-            requester.stopSireenSound();
+            requester.requestStopSirenSound();
         } else if(reader.readLifeValue() == 0){
             guiManager.loadView(guiManager.getGameOverPath());
             requester.requestStopSounds();
