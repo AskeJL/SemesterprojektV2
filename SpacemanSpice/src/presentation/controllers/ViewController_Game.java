@@ -250,7 +250,6 @@ public class ViewController_Game extends ViewController implements Initializable
                 break;
             case C:
                 event.consume();
-                System.out.println(guiManager.getManager(TutorialManager.class));
                 ((TutorialManager)guiManager.getManager(TutorialManager.class)).setContinue(true);
                 break;
         }
