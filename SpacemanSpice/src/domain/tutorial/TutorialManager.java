@@ -149,7 +149,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     case 0:
                         println(gUIintroduction);
                         counter++;
-                        System.out.println("This is the GUI tutorial.");
 
                         break;
                     case 1:
@@ -187,7 +186,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                         }
                         break;
                     case 6:
-                        if (/*scannerCalibrated == true &&*/ scannerActivated == true) {
+                        if (scannerCalibrated == true && scannerActivated == true) {
                             println(gUIaIintro6);
                             counter++;
                         }
@@ -286,7 +285,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                 case 0:
                     println(introduction);
                     counter++;
-                    System.out.println("This is not the GUI tutorial.");
 
                     break;
                 case 1:
