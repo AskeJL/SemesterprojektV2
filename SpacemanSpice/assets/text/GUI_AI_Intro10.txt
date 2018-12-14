@@ -10,4 +10,4 @@
 | is very important, as they can    |
 | do a lot of damange to the hull.  |
 +-----------------------------------+
- Type continue to continue.
+ Type continue or press C to continue.

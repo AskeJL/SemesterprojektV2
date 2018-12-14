@@ -10,4 +10,5 @@
 | Now get out there and see if any- |
 | thing is in need of repairs.      |
 +-----------------------------------+
- Hint: Type help interact.
+ Hint: To get to the airlock from the steering location, 
+ go left and then down.

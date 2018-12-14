@@ -10,4 +10,6 @@
 | Get to the steering room at the   |
 | front of the ship.                |
 +-----------------------------------+
- Hint: Type help interact.
+ Hint: To get to the steering location from the net location,
+ go back through the door you came from and go up twice.
+ Hint: Press the Space key to interact with objects.

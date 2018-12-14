@@ -2,13 +2,6 @@
 | SAL153                            |
 | Nothing to repair? Well I am a    |
 | flawless AI after all!            |
-|                                   |
-| While you are out there, you      |
-| should probably have a look at    |
-| how much oxygen is left in your   |
-| tank. You are a human afterall,   |
-| and humans need oxygen to         |
-| survive.                          |
 +-----------------------------------+
- Hint: Figure out how to show oxygen.
+ Type continue or press C to continue.
  

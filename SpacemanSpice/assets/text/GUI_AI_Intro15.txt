@@ -1,6 +1,5 @@
 +-----------------------------------+
 | SAL153                            |
-| Well done! You figured it out.    |
 | Remember that whenever you are    |
 | outside or the ship has taken too |
 | much damange, your oxygen tank    |
@@ -11,4 +10,5 @@
 | room is for. Get to the oxygen    |
 | room to refill your tank.         |
 +-----------------------------------+
- Hint: Type help interact.
+ Hint: To get to the oxygen location from the airlock, 
+ head up once and take the first entrance to the right.

@@ -35,6 +35,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
             gUIaIintro15,
             gUIaIintro16,
             gUIaIintro17,
+            gUIaIintro18,
             aIintro1,
             aIintro2,
             aIintro3,
@@ -125,6 +126,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
         gUIaIintro15 = getTextToString("GUI_AI_Intro15.txt");
         gUIaIintro16 = getTextToString("GUI_AI_Intro16.txt");
         gUIaIintro17 = getTextToString("GUI_AI_Intro17.txt");
+        gUIaIintro18 = getTextToString("GUI_AI_Intro18.txt");
         
         super.init();
     }
@@ -142,7 +144,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
 
                 switch (counter) {
                     case 0:
-                        println(introduction);
+                        println(gUIintroduction);
                         counter++;
                         System.out.println("This is the GUI tutorial.");
 
@@ -208,50 +210,60 @@ public class TutorialManager extends Manager implements GameUpdateable {
                         }
                         break;
                     case 10:
-                        if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Net Control") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        if (netRepaired == true && netActivated == true) {
                             println(gUIaIintro10);
                             counter++;
                         }
                         break;
                     case 11:
-                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                             println(gUIaIintro11);
+                            commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 12:
-                        if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Control Steering") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        if (steeringActivated == true) {
                             println(gUIaIintro12);
                             counter++;
                         }
                         break;
                     case 13:
-                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                             println(gUIaIintro13);
+                            commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 14:
-                        if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Outside") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        if (damageRepairActivated == true) {
                             println(gUIaIintro14);
                             counter++;
                         }
                         break;
                     case 15:
-                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("show") && commands.getLastParameter().equals("oxygen")) {
+                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
                             println(gUIaIintro15);
+                            commands.setLastCommand(new Clear());
                             counter++;
                         }
                         break;
                     case 16:
-                        if (locationsManager.getCurrentRoom().getName().equalsIgnoreCase("Oxygen Refuel") && interactionsManager.getLastCommandName().equalsIgnoreCase("interact")) {
+                        if (oxygenActivated == true) {
                             println(gUIaIintro16);
                             counter++;
                         }
                         break;
                     case 17:
-                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue")) {
+                        if (oxygenCharged == true && oxygenActivated == true) {
                             println(gUIaIintro17);
+                            counter++;
+                        }
+                        break;
+                    case 18:
+                        if (interactionsManager.getLastCommandName().equalsIgnoreCase("continue") || continueActivated == true) {
+                            println(gUIaIintro18);
+                            commands.setLastCommand(new Clear());
                             counter++;
                             setTutorial(false);
                         }

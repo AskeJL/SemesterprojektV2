@@ -10,4 +10,4 @@
 | to learn how to deal with medium  |
 | debris. Spolier: It is a net.     |
 +-----------------------------------+
- Type continue to continue.
+ Type continue or press C to continue.

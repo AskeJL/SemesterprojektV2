@@ -10,4 +10,4 @@
 | damaged. Repairing the ship will  |
 | be essential for your survival.   |
 +-----------------------------------+
- Type continue to continue.
+ Type continue or press C to continue.

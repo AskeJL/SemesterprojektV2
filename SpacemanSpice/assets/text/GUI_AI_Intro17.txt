@@ -1,17 +1,13 @@
 +-----------------------------------+
 | SAL153                            |
-| To fully understand everything    |
-| I suggest using the help command  |
-| and have a look at what the       |
-| different commands can do before  |
-| progressing.                      |
-| AI's are allowed to break the     |
-| fourth wall.                      |
+| You did it! Your tank should now  |
+| be at max capacity.               |
 |                                   |
-| Whenever you feel ready to begin  |
-| the game propperly, type "start". |
-|                                   |
-| To skip the tutorial when         |
-| you restart the game, just type   |
-| "start" at the start of the game. |
+| And with that, the mandatory      |
+| crash course on how to operate    |
+| the ship is complete.             |
+| You have now earned the status:   |
+| Not completely useless.           |
+| Well done!                        |
 +-----------------------------------+
+ Type continue or press C to continue.

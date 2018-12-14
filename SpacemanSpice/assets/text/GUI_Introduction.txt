@@ -16,3 +16,4 @@
  Type continue or press c to continue.
  Hint: To type commands (e.g. continue) press the Enter key.
  Hint: To exit the terminal press the Esc key.
+ Hint: Scroll up.

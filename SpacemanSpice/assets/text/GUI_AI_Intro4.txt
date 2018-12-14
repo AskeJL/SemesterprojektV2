@@ -13,4 +13,6 @@
  Hint: Press the Esc key to exit the terminal.
  Hint: Use the arrow keys to move.
  Hint: Use the Space key to interact with objects and doors.
- Hint: Most interactable objects have a yellow/black border.
+ Hint: Most interactable objects have a orange/black border.
+ Hint: To get to the scanner, go up once from the starting location.
+ Hint: Scroll up.

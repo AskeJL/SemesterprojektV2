@@ -1,0 +1,25 @@
++-----------------------------------+
+| SAL153                            |
+| This tutorial should have given   |
+| you the basic information you     |
+| will need to play Spaceman Spice. |
+| AI's are allowed to break the     |
+| fourth wall.                      |
+|                                   |
+| To get a better understanding of  |
+| everyting, I suggest running      |
+| around the ship for a while to    |
+| familiarize yourself with the     |
+| different locations, and to       |
+| create a mental map of where the  |
+| different locations are.          |
+|                                   |
+| Whenever you feel ready to begin  |
+| the game propperly, type "start". |
+|                                   |
+| To skip the tutorial when         |
+| you restart the game, just type   |
+| "start" at the start of the game. |
+| Good luck and have fun!           |
++-----------------------------------+
+ Hint: Scroll up.

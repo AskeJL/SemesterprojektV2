@@ -13,4 +13,7 @@
 | controller just south of it.      |   
 | Posthaste now!                    |
 +-----------------------------------+
- Hint: type help interact.
+ Hint: To get to the laser location from the scanner location,
+ head down twice and to the left once.
+ Hint: Press the Space key to interact with objects.
+ 

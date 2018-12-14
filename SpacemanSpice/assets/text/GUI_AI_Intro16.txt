@@ -1,13 +1,10 @@
 +-----------------------------------+
 | SAL153                            |
-| You did it! Your tank should now  |
-| be at max capacity.               |
-|                                   |
-| And with that, the mandatory      |
-| crash course on how to operate    |
-| the ship is complete.             |
-| You have now earned the status:   |
-| Not completely useless.           |
-| Well done!                        |
+| Did I forget to mention that you  |
+| will need to operate all three    |
+| oxygen valves in order to access  |
+| the oxygen refueling station to   |
+| refill your oxygen tank?          |
 +-----------------------------------+
- Type continue to continue.
+ Hint: Operate the three oxygen valves in the oxygen
+ location and then refill your oxygen tank.
