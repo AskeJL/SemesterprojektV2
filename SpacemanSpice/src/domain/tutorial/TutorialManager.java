@@ -11,13 +11,15 @@ import domain.interactions.InteractionsManager;
 import domain.interactions.commands.Clear;
 import domain.locations.LocationsManager;
 import domain.systems.SystemsManager;
-import domain.systems.Wave;
 import java.util.List;
 
 public class TutorialManager extends Manager implements GameUpdateable {
 
     private final Data data = new Data();
-
+    
+    /**
+     * List over all the used tutorial strings.
+     */
     private List<String> introduction,
             gUIintroduction,
             gUIaIintro1,
@@ -56,6 +58,9 @@ public class TutorialManager extends Manager implements GameUpdateable {
             aIintro16,
             aIintro17;
 
+    /**
+     * 
+     */
     private int counter = 0;
     private boolean gui = true;
     private boolean tutorial = true;
@@ -135,9 +140,11 @@ public class TutorialManager extends Manager implements GameUpdateable {
     }
 
     /**
-     * Check how far the player has come in the introduction. Will use
+     * Check how far the player has come in the tutorial. Will use
      * {@link TutorialData#println(List)} to print the next dialog for the
      * player.
+     * The first switch-case contains the GUI tutorial.
+     * The second switch-case contains the non-GUI tutorial.
      */
     @Override
     public void update() {
@@ -225,7 +232,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                         }
                         break;
                     case 12:
-                        if (steeringActivated == true) {
+                        if (steeringCharged == true && steeringActivated == true) {
                             println(gUIaIintro12);
                             counter++;
                         }
@@ -279,6 +286,7 @@ public class TutorialManager extends Manager implements GameUpdateable {
                 netActivated = false;
                 steeringActivated = false;
             }
+            
         } else if (tutorial) {
             Commands commands = interactionsManager.getCommands();
             switch (counter) {
@@ -440,59 +448,128 @@ public class TutorialManager extends Manager implements GameUpdateable {
         return data.readData(AssetType.TEXT, filename);
     }
 
+    /**
+     * Get the {@link #tutorial} boolean.
+     * 
+     * @return 
+     */
     public boolean getTutorial() {
         return this.tutorial;
     }
 
+    /**
+     * Set the {@link #tutorial} boolean.
+     * 
+     * @param bool 
+     */
     public void setTutorial(boolean bool) {
         this.tutorial = bool;
     }
     
+    /**
+     * Set the {@link #continueActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setContinue(boolean bool) {
-        this.continueActivated = bool;
-        
+        this.continueActivated = bool;   
     }
     
+    /**
+     * Set the {@link #scannerActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setScannerActivated(boolean bool) {
         this.scannerActivated = bool;
     }
     
+    /**
+     * Set the {@link #scannerCalibrated} boolean.
+     * 
+     * @param bool 
+     */
     public void setScannerCalibrated(boolean bool) {
         this.scannerCalibrated = bool;
     }
     
+    /**
+     * Set the {@link #laserActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setLaserActivated(boolean bool) {
         this.laserActivated = bool;
     }
     
+    /**
+     * Set the {@link #laserCharged} boolean.
+     * 
+     * @param bool 
+     */
     public void setLaserCharged(boolean bool) {
         this.laserCharged = bool;
     }
     
+    /**
+     * Set the {@link #oxygenActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setOxygenActivated(boolean bool) {
         this.oxygenActivated = bool;
     }
     
+    /**
+     * Set the {@link #oxygenCharged} boolean.
+     * 
+     * @param bool 
+     */
     public void setOxygenCharged(boolean bool) {
         this.oxygenCharged = bool;
     }
     
+    /**
+     * Set the {@link #damageRepairActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setDamageRepairActivated(boolean bool) {
         this.damageRepairActivated = bool;
     }
     
+    /**
+     * Set the {@link #netActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setNetActivated(boolean bool) {
         this.netActivated = bool;
     }
     
+    /**
+     * Set the {@link #netRepaired} boolean.
+     * 
+     * @param bool 
+     */
     public void setNetRepaired(boolean bool) {
         this.netRepaired = bool;
     }
     
+    /**
+     * Set the {@link #steeringActivated} boolean.
+     * 
+     * @param bool 
+     */
     public void setSteeringActivated(boolean bool) {
         this.steeringActivated = bool;
     }
     
+    /**
+     * Set the {@link #steeringCharged} boolean.
+     * 
+     * @param bool 
+     */
     public void setSteeringCharged(boolean bool) {
         this.steeringCharged = bool;
     }
