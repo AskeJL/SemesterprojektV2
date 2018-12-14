@@ -16,13 +16,13 @@ import domain.tutorial.TutorialManager;
  * @see GameObject
  * @see domain.locations.functional.Oxygen
  */
-public class ControlOxygen extends GameObject {
+public class OxygenControl extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-
-    public ControlOxygen(ResourcesManager resources) {
+    
+    public OxygenControl(ResourcesManager resources) {
         super("Oxygen control", "This is the refilling station for oxygen", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
@@ -30,9 +30,6 @@ public class ControlOxygen extends GameObject {
     /**
      * Refills the players {@link domain.resources.Oxygen}. This will call the
      * {@link ResourcesController#increaseOxygen(int)}
-     * <p>
-     * This will only run if all the activators are running.
-     * {@link ActivatorOxygen1}, {@link ActivatorOxygen2}, {@link ActivatorOxygen3}.
      * <p>
      * This will always fill the {@link domain.resources.Oxygen} completely.
      *
@@ -42,24 +39,25 @@ public class ControlOxygen extends GameObject {
     @Override
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
-        if (oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true) {
+        if(oxygen.isOxygenGenerator1On() && oxygen.isOxygenGenerator2On() && oxygen.isOxygenGenerator3On() == true){
             requester.requestAirSound();
             reader.storeln("You interact with the Oxygen refilling control");
             oxygen.increaseValue(100 - oxygen.getValue());
             oxygen.setOxygenGenerator1On(false);
             oxygen.setOxygenGenerator2On(false);
             oxygen.setOxygenGenerator3On(false);
-            
             if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
-                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenCharged(true);
                 ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
+                ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenCharged(true);
             }
-        } else {
+        }
+        else{
             reader.storeln("The oxygen tank is empty, activate all of the oxygen generators to fill up the tank!");
             if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
                 ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setOxygenActivated(true);
             }
         }
+        
     }
 
     @Override

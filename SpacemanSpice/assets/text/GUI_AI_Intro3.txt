@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| Marvelous! Let us get to it then. |
+|                                   |
+| We need to get you familiarized   |
+| with the locations of the various |
+| equipment onboard the ship and    |
+| how to operate said equipment.    |
+|                                   |
+| The first thing we will look at   |
+| is the ship's scanner.            |
++-----------------------------------+
+ Type continue or press C to continue.

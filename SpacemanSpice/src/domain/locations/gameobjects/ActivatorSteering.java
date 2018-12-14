@@ -6,6 +6,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
+import domain.tutorial.TutorialManager;
 
 /**
  * An activator for the {@link ConstrolSteering}. This is paired with the
@@ -35,6 +36,10 @@ public class ActivatorSteering extends GameObject {
         if(wave.isThrustersOn() == false){
             wave.setThrustersOn(true);
             reader.storeln("Reactor is overcharged! You can use the thrusters to fly away now!");
+        }
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            systemsManager.setLargeFragmentDestroyed(true);
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringCharged(true);
         }
         else{
             reader.storeln("Reactor is already overcharged");

@@ -1,0 +1,19 @@
++-----------------------------------+
+| SAL153                            |
+| First off we have the ship's      |
+| laser. You can use this to        |
+| destroy small debris within the   |
+| vicinity of the ship.             |
+|                                   |
+| To operate the ship's laser, you  |
+| will first need to charge it.     |
+| To do so head to the laser        |
+| charger, charge the laser, and    |
+| then interact with the laser      |
+| controller just south of it.      |   
+| Posthaste now!                    |
++-----------------------------------+
+ Hint: To get to the laser location from the scanner location,
+ head down twice and to the left once.
+ Hint: Press the Space key to interact with objects.
+ 

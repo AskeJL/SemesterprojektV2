@@ -1,0 +1,9 @@
++-----------------------------------+
+| SAL153                            |
+| Hello Spaceman Spice. I have      |
+| been expecting your arrival!      |
+|                                   |
+| I am SAL153, the AI of the ship   |
+| LEO Control 153. Welcome aboard.  |
++-----------------------------------+
+ Type continue or press C to continue.

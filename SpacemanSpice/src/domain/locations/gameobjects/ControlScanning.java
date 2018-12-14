@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to scan the vicinity of the ship for fragments.
@@ -41,6 +42,10 @@ public class ControlScanning extends GameObject {
                 + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                 + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
                 + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
+        
+        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+        }
     }
 
     @Override

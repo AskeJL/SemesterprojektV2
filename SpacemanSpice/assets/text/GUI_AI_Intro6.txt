@@ -1,0 +1,13 @@
++-----------------------------------+
+| SAL153                            |
+| Superb! You now know how to scan  |
+| the vicinity of the ship for      |
+| threats.                          |
+|                                   |
+| Despite there being no imminent   |
+| danger according to your latest   |
+| scan, we should probably teach    |
+| you how to operate the various    |
+| controls around the ship.         |
++-----------------------------------+
+ Type continue or press C to continue.

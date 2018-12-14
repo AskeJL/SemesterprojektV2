@@ -1,0 +1,14 @@
++-----------------------------------+
+| SAL153                            |
+| As you may or may not know, you   |
+| will be expected to partake in    |
+| a crash course on how to operate  |
+| the ship, in case of emergency.   |
+| However if you feel that this     |
+| course will not be necessary,     |
+| you could always skip it.         |
+| Would you like to continue?       |
++-----------------------------------+
+ Choose one:
+ Type continue or press C to start the tutorial. 
+ Type start to skip the tutorial and start the game.

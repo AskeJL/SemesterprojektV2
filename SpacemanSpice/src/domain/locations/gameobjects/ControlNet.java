@@ -6,6 +6,7 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
+import domain.tutorial.TutorialManager;
 
 /**
  * Used to catch medium fragments.
@@ -46,6 +47,11 @@ public class ControlNet extends GameObject {
             reader.storeln("Interacting with net control.");
             systemsManager.setMediumFragmentDestroyed(true);
             wave.setNetCurrentHealth(wave.getNetCurrentHealth() - 10);
+            
+            if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetActivated(true);
+                ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setNetRepaired(true);
+            }
         } else {
             reader.storeln("Net is too damaged, repair it in order to keep using it!");
         }

@@ -1,0 +1,18 @@
++-----------------------------------+
+| SAL153                            |
+| Scanning the vicinity of the ship |
+| is very important as you would    |
+| otherwise not know what could     |
+| potentially cause a collision and |
+| cause damage to the ship.         |
+|                                   |
+| To scan the vicinity of the ship, |
+| head to the scanning room         |
+| and have a go at the terminal.    |
++-----------------------------------+
+ Hint: Press the Esc key to exit the terminal.
+ Hint: Use the arrow keys to move.
+ Hint: Use the Space key to interact with objects and doors.
+ Hint: Most interactable objects have a orange/black border.
+ Hint: To get to the scanner, go up once from the starting location.
+ Hint: Scroll up.

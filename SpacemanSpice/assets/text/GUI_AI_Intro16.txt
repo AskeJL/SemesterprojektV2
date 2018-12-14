@@ -1,0 +1,10 @@
++-----------------------------------+
+| SAL153                            |
+| Did I forget to mention that you  |
+| will need to operate all three    |
+| oxygen valves in order to access  |
+| the oxygen refueling station to   |
+| refill your oxygen tank?          |
++-----------------------------------+
+ Hint: Operate the three oxygen valves in the oxygen
+ location and then refill your oxygen tank.

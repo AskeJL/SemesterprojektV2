@@ -1,0 +1,16 @@
++-----------------------------------+
+| SAL153                            |
+| Looks like you somehow managed to |
+| forget to calibrate the scanner   |
+| before using it. Silly human.     |
+|                                   |
+| No matter. It is a rather simple  |
+| task to do: head to the           |
+| calibrator room to your right,    |
+| activate the calibrator and       |
+| reactivate the scanner.           |
++-----------------------------------+
+ Hint: press the Esc key to exit the terminal.
+ Hint: use the arrow keys to move.
+ Hint: use the Space key to interact with objects and doors.  
+ Hint: Scroll up.    
