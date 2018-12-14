@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 import domain.tutorial.TutorialManager;
 
 /**
@@ -39,18 +40,22 @@ public class ControlSteering extends GameObject {
      */
     @Override
     public void interact() {
-        reader.storeln("Interacting with the steering controls.");
-        if (systemsManager.getWave().getLargeFragments() != 0) {
-            systemsManager.setLargeFragmentDestroyed(true);
-            requester.requestMoveSound();
-            reader.storeln("You have moved the ship out of danger");
-        }
-        
-        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            systemsManager.setLargeFragmentDestroyed(true);
-            requester.requestMoveSound();
-            reader.storeln("You have moved the ship");
-            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringActivated(true);
+        Wave wave = systemsManager.getWave();
+        if (wave.isThrustersOn() == true) {
+            reader.storeln("Interacting with the steering controls.");
+            if (systemsManager.getWave().getLargeFragments() != 0) {
+                systemsManager.setLargeFragmentDestroyed(true);
+                requester.requestMoveSound();
+                reader.storeln("You have moved the ship out of danger.");
+            }
+            if (((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                systemsManager.setLargeFragmentDestroyed(true);
+                requester.requestMoveSound();
+                reader.storeln("You have moved the ship");
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setSteeringActivated(true);
+            }
+        } else {
+            reader.storeln("You don't have enough power to move the ship!");
         }
     }
 

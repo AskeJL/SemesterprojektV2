@@ -4,7 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.ControlRepair;
+import domain.locations.gameobjects.ControlOutside;
 import domain.resources.ResourcesManager;
 
 /**
@@ -48,7 +48,7 @@ public final class Outside extends Location {
      * Creates an outside {@link Room} and an airlock
      * {@link Room}.
      * <p>
-     * A {@link ControlRepair} is added to the outside {@link Room}.
+     * A {@link ControlOutside} is added to the outside {@link Room}.
      */
     @Override
     protected void createLocationCLI() {
@@ -56,7 +56,7 @@ public final class Outside extends Location {
 
         /*outside-------------------------------------------------------------*/
         Room outside = new Room("Outside", "You are now outside and here you can repair the ship");
-        outside.addGameObject(new ControlRepair(resourcesManager));
+        outside.addGameObject(new ControlOutside(resourcesManager));
         super.addRoom(outside);
 
         /*Airlock----------------------------------------------------------*/

@@ -5,6 +5,7 @@ import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
+import domain.systems.Wave;
 import domain.tutorial.TutorialManager;
 
 /**
@@ -20,10 +21,10 @@ public class ControlScanning extends GameObject {
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
-    
+
     public ControlScanning(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL, null);
-        
+
         this.systemsManager = systems;
     }
 
@@ -36,15 +37,45 @@ public class ControlScanning extends GameObject {
      */
     @Override
     public void interact() {
-        requester.requestScanningConsoleSound();
+        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
-        reader.storeln("You interact with the scanningstation\nThere are:\n"
-                + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
-                + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
-                + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
-        
-        if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+        Wave wave = systemsManager.getWave();
+        if ((wave.getSensor1currentValue() == wave.getSensor1MaxValue())
+                && (wave.getSensor2currentValue() == wave.getSensor2MaxValue())
+                && (wave.getSensor3currentValue() == wave.getSensor3MaxValue())
+                && (wave.getSensor4currentValue() == wave.getSensor4MaxValue())) {
+
+            reader.storeln("You interact with the scanningstation\nThere are:\n"
+                    + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
+                    + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
+                    + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
+
+            if (((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerCalibrated(true);
+            }
+        } else {
+            if (((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+                wave.setSensor1currentValue(0);
+                wave.setSensor2currentValue(0);
+                wave.setSensor3currentValue(0);
+                wave.setSensor4currentValue(0);
+                reader.storeln("Cannot scan at the moment, sensors need to be calibrated as such:");
+                reader.storeln("Sensor 1 at: " + wave.getSensor1MaxValue());
+                reader.storeln("Sensor 2 at: " + wave.getSensor2MaxValue());
+                reader.storeln("Sensor 3 at: " + wave.getSensor3MaxValue());
+                reader.storeln("Sensor 4 at: " + wave.getSensor4MaxValue());
+            }
+
+            wave.setSensor1currentValue(0);
+            wave.setSensor2currentValue(0);
+            wave.setSensor3currentValue(0);
+            wave.setSensor4currentValue(0);
+            reader.storeln("Cannot scan at the moment, sensors need to be calibrated as such:");
+            reader.storeln("Sensor 1 at: " + wave.getSensor1MaxValue());
+            reader.storeln("Sensor 2 at: " + wave.getSensor2MaxValue());
+            reader.storeln("Sensor 3 at: " + wave.getSensor3MaxValue());
+            reader.storeln("Sensor 4 at: " + wave.getSensor4MaxValue());
         }
     }
 
