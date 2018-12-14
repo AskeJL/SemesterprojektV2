@@ -47,35 +47,35 @@ public class ViewController_GameOver extends ViewController implements Initializ
 
     private ViewController_Menu menu;
     private boolean initialized = false;
-    
+
     private ImageView earth;
     private ImageView earth_Debris_01;
     private ImageView earth_Debris_02;
-    
+
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
-        
+
         prepareAnimation();
 
         guiManager.getCurrentStage().setWidth(1280);
         guiManager.getCurrentStage().setHeight(720);
-        
-        scoreField.setText("Your score was " + reader.readScore());
-    }    
-    
+    }
+
     @Override
     public void update() {
-        if(!initialized) {
+        if (!initialized) {
             menu = (ViewController_Menu) guiManager.getController(guiManager.getMenuPath());
+            scoreField.setText("Your score was " + reader.readScore());
             initialized = true;
         }
-        
+
         earth.rotateProperty().set(menu.getEarthCount());
         menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);
 
@@ -85,7 +85,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
         earth_Debris_02.rotateProperty().set(menu.getDebris02Count());
         menu.setDebris02Count(menu.getDebris02Count() > 360 ? 0 : menu.getDebris02Count() + 0.01);
     }
-    
+
     public void prepareAnimation() {
         ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
         earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
@@ -109,7 +109,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
         image.setTranslateX(xPos);
         image.setTranslateY(yPos);
     }
-   
+
     @FXML
     private void menuButtonHandler(ActionEvent event) throws IOException {
         new SoundManager().getSoundPlayer().playButtonClickSound();
@@ -125,14 +125,14 @@ public class ViewController_GameOver extends ViewController implements Initializ
     @FXML
     private void updateHighScore(ActionEvent event) {
         new SoundManager().getSoundPlayer().playButtonClickSound();
-        
+
         DomainReader reader = new DomainReader();
         Data data = new Data();
-        
+
         HashMap<String, Integer> scoreList = new HashMap<>();
         List<String> names = new ArrayList<>();
         List<Integer> scores = new ArrayList<>();
-        
+
         String currentScoreString = usernameField.getText() + " " + Integer.toString(reader.readScore());
         List<String> readScores = data.readData(AssetType.SCORE, "highscore.txt");
         readScores.add(currentScoreString);
@@ -145,25 +145,24 @@ public class ViewController_GameOver extends ViewController implements Initializ
                 scores.add(scanner.nextInt());
             }
         }
-        
+
         for (int i = 0; i < readScores.size(); i++) {
             scoreList.put(names.get(i), scores.get(i));
         }
-        
+
         List<Map.Entry<String, Integer>> listToSort = new LinkedList<>(scoreList.entrySet());
-        Collections.sort(listToSort, new Comparator<Map.Entry<String, Integer> >() { 
-            public int compare(Map.Entry<String, Integer> o1,  
-                               Map.Entry<String, Integer> o2) 
-            { 
-                return (o2.getValue()).compareTo(o1.getValue()); 
-            } 
-        }); 
-        
+        Collections.sort(listToSort, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,
+                    Map.Entry<String, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+
         List<String> sortedList = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : listToSort) { 
+        for (Map.Entry<String, Integer> entry : listToSort) {
             sortedList.add(entry.getKey() + " " + entry.getValue());
-        } 
-        
+        }
+
         data.writeData(AssetType.SCORE, "highscore.txt", sortedList);
     }
 

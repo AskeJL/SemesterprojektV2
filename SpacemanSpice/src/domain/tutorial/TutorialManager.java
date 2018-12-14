@@ -149,7 +149,6 @@ public class TutorialManager extends Manager implements GameUpdateable {
                     case 0:
                         println(gUIintroduction);
                         counter++;
-                        System.out.println("This is the GUI tutorial.");
 
                         break;
                     case 1:
