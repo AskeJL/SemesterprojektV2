@@ -22,6 +22,11 @@ import javafx.scene.layout.AnchorPane;
 import presentation.draw.DrawController;
 import domain.tutorial.TutorialManager;
 
+/**
+ * The {@link ViewController} that controls the game view. This manages all the
+ * UI elements that reads from the domain layer as well as requesting actions
+ * from the domain layer.
+ */
 public class ViewController_Game extends ViewController implements Initializable {
 
     @FXML
@@ -121,10 +126,10 @@ public class ViewController_Game extends ViewController implements Initializable
         requester.requestStartSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() <= 50 && reader.readLifeValue() > 0) {
-           requester.requestSirenSound();
-        } else if(reader.readLifeValue()>50){
+            requester.requestSirenSound();
+        } else if (reader.readLifeValue() > 50) {
             requester.requestStopSirenSound();
-        } else if(reader.readLifeValue() == 0){
+        } else if (reader.readLifeValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
             requester.requestStopSounds();
         }
@@ -133,13 +138,13 @@ public class ViewController_Game extends ViewController implements Initializable
             guiManager.loadView(guiManager.getGameOverPath());
             requester.requestStopSounds();
         }
-        if(reader.readRemainingTime() >= 0){
-        waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
-        } else{
-          waveTimeValue.setText("0");
+        if (reader.readRemainingTime() >= 0) {
+            waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
+        } else {
+            waveTimeValue.setText("0");
         }
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
-        
+
         if (terminalLampOn) {
             if (terminalLampCounter == 1) {
                 terminalLamp.setImage(new Data().readImage(AssetType.UI, "squareGreen-lit.png"));
@@ -150,7 +155,7 @@ public class ViewController_Game extends ViewController implements Initializable
                 terminalLampOn = false;
             }
         }
-        
+
         if (canisterLampOn || reader.readLifeValue() < 50 || reader.readOxygenValue() < 50) {
             if (canisterLampCounter == 1 || canisterLampCounter == 200) {
                 canisterLamp.setImage(new Data().readImage(AssetType.UI, "squareRed-lit.png"));
@@ -185,16 +190,20 @@ public class ViewController_Game extends ViewController implements Initializable
         menu.setDebris02Count(menu.getDebris02Count() > 360 ? 0 : menu.getDebris02Count() + 0.01);
     }
 
+    /**
+     * Get all the needed images and set their scale and position to prepare for
+     * animation updates.
+     */
     public void prepareAnimation() {
         ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
         earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
         earth_Debris_01 = new ImageView(new Data().readImage(AssetType.UI, "Debris_01.png"));
         earth_Debris_02 = new ImageView(new Data().readImage(AssetType.UI, "Debris_02.png"));
 
-        prepareImage(earthBackground, -500, 280, 0.5, 0.5);
-        prepareImage(earth, -380, 420, 0.5, 0.5);
-        prepareImage(earth_Debris_01, -350, 420, 0.75, 0.75);
-        prepareImage(earth_Debris_02, -350, 420, 0.75, 0.75);
+        prepareImage(earthBackground, -500, 0, 0.5, 0.5);
+        prepareImage(earth, -380, 135, 0.5, 0.5);
+        prepareImage(earth_Debris_01, -350, 135, 0.75, 0.75);
+        prepareImage(earth_Debris_02, -350, 135, 0.75, 0.75);
 
         foreground.getChildren().add(earthBackground);
         foreground.getChildren().add(earth);
@@ -202,6 +211,15 @@ public class ViewController_Game extends ViewController implements Initializable
         foreground.getChildren().add(earth_Debris_02);
     }
 
+    /**
+     * Set an images position and scale.
+     *
+     * @param image ImageView to set.
+     * @param xPos x position of the image.
+     * @param yPos y position of the image.
+     * @param xScale x scale of the image.
+     * @param yScale y scale of the image.
+     */
     public void prepareImage(ImageView image, double xPos, double yPos, double xScale, double yScale) {
         image.setScaleX(xScale);
         image.setScaleY(yScale);
@@ -254,7 +272,7 @@ public class ViewController_Game extends ViewController implements Initializable
                 break;
             case C:
                 event.consume();
-                ((TutorialManager)guiManager.getManager(TutorialManager.class)).setContinue(true);
+                ((TutorialManager) guiManager.getManager(TutorialManager.class)).setContinue(true);
                 break;
         }
     }

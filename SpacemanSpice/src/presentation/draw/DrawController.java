@@ -252,6 +252,10 @@ public class DrawController extends GameElement {
         return charArray;
     }
 
+    public Player getPlayer() {
+        return this.player;
+    }
+    
     public String getCurrentLocationName() {
         return currentLocationName;
     }

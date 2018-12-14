@@ -1,5 +1,8 @@
 package presentation;
 
+/**
+ * Yet to be implemented.
+ */
 public class CLIManager extends ViewManager {
 
     @Override

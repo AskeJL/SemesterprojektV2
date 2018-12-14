@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
@@ -12,10 +7,6 @@ import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
 import domain.systems.Wave;
 
-/**
- *
- * @author Lupo
- */
 public class ActivatorScanning1 extends GameObject {
 
     private final SystemsManager systemsManager;
