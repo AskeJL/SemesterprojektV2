@@ -32,10 +32,10 @@ public class ViewController_Highscore extends ViewController implements Initiali
     private ImageView earth;
     private ImageView earth_Debris_01;
     private ImageView earth_Debris_02;
-    
+
     private boolean initialized = false;
     private ViewController_Menu menu;
-    
+
     /**
      * Initializes the controller class.
      *
@@ -43,26 +43,26 @@ public class ViewController_Highscore extends ViewController implements Initiali
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {  
+    public void initialize(URL url, ResourceBundle rb) {
         background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
-        
+
         prepareAnimation();
 
         guiManager.getCurrentStage().setWidth(1280);
         guiManager.getCurrentStage().setHeight(720);
 
         ObservableList<String> scores = highscoreLIst.getItems();
-        for(String line : data.readData(AssetType.SCORE, "highscore.txt")) {
+        for (String line : data.readData(AssetType.SCORE, "highscore.txt")) {
             Scanner scanner = new Scanner(line);
             String name = scanner.next();
             int score = scanner.nextInt();
             scores.add(String.format("%-16s %-5s", name, score));
         }
     }
-    
+
     @Override
     public void update() {
-        if(!initialized) {
+        if (!initialized) {
             menu = (ViewController_Menu) guiManager.getController(guiManager.getMenuPath());
             initialized = true;
         }
@@ -76,7 +76,7 @@ public class ViewController_Highscore extends ViewController implements Initiali
         earth_Debris_02.rotateProperty().set(menu.getDebris02Count());
         menu.setDebris02Count(menu.getDebris02Count() > 360 ? 0 : menu.getDebris02Count() + 0.01);
     }
-    
+
     public void prepareAnimation() {
         ImageView earthBackground = new ImageView(new Data().readImage(AssetType.UI, "earthBackground.png"));
         earth = new ImageView(new Data().readImage(AssetType.UI, "earth.png"));
@@ -100,7 +100,7 @@ public class ViewController_Highscore extends ViewController implements Initiali
         image.setTranslateX(xPos);
         image.setTranslateY(yPos);
     }
-    
+
     @FXML
     private void onBackHandler(ActionEvent event) throws IOException {
         new SoundManager().getSoundPlayer().playButtonClickSound();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation.controllers;
 
 import data.AssetType;
@@ -16,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -27,18 +21,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import static presentation.controllers.ViewController.guiManager;
 
-/**
- * FXML Controller class
- *
- * @author askel
- */
 public class ViewController_GameOver extends ViewController implements Initializable {
 
     @FXML
@@ -81,6 +68,7 @@ public class ViewController_GameOver extends ViewController implements Initializ
         
         scoreField.setText("Your score was " + reader.readScore());
     }    
+    
     @Override
     public void update() {
         if(!initialized) {
