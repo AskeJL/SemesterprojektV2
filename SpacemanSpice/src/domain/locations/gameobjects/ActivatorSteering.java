@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.systems.SystemsManager;
@@ -19,6 +20,7 @@ public class ActivatorSteering extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader  reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
     
     public ActivatorSteering(SystemsManager systems) {
         super("Steering activator", "Overcharges the ships reactor to fly away in high speed.", GameObjectType.CONTROL, null);
@@ -29,7 +31,7 @@ public class ActivatorSteering extends GameObject {
     public void interact() {
         
         Wave wave = systemsManager.getWave();
-        
+        requester.requestActivatorConsoleSound();
         if(wave.isThrustersOn() == false){
             wave.setThrustersOn(true);
             reader.storeln("Reactor is overcharged! You can use the thrusters to fly away now!");

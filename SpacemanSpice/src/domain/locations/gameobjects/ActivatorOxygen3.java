@@ -1,6 +1,7 @@
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
+import domain.DomainRequester;
 import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Oxygen;
@@ -20,6 +21,7 @@ public class ActivatorOxygen3 extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
+    private final DomainRequester requester = new DomainRequester();
 
     public ActivatorOxygen3(ResourcesManager resources) {
         super("Oxygen generator.", "You can activate the oxygen generator from here.", GameObjectType.CONTROL, null);
@@ -33,6 +35,7 @@ public class ActivatorOxygen3 extends GameObject {
     @Override
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
+        requester.requestConsoleSound();
         if (oxygen.isOxygenGenerator3On() == false) {
             oxygen.setOxygenGenerator3On(true);
             reader.storeln("You have activated the third oxygen generator, activate all and head to the oxygen tank to refill your oxygen levels.");

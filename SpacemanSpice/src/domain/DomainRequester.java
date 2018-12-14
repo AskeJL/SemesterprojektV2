@@ -154,6 +154,28 @@ public class DomainRequester implements InteractionsRequest {
             sound.playConsoleSound();
         }
     }
+    
+    /**
+     * Request console sound from
+     * {@link domain.sound.SoundPlayer#playScanningConsoleSound()}.
+     */
+    public void requestScanningConsoleSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playScanningConsoleSound();
+        }
+    }
+    
+     /**
+     * Request console sound from
+     * {@link domain.sound.SoundPlayer#playActivatorConsoleSound()}.
+     */
+    public void requestActivatorConsoleSound() {
+        SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
+        if (sound != null) {
+            sound.playActivatorConsoleSound();
+        }
+    }
 
     /**
      * Request siren sound from
@@ -166,6 +188,10 @@ public class DomainRequester implements InteractionsRequest {
         }
     }
     
+    /**
+     * Request stop of siren sound from
+     * {@link domain.sound.SoundPlayer#stopSireenSound()}.
+     */
     public void requestStopSirenSound() {
         SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
         if (sound != null) {
@@ -173,6 +199,10 @@ public class DomainRequester implements InteractionsRequest {
         }
     }
      
+    /**
+     * Request laser sound from
+     * {@link domain.sound.SoundPlayer#playLaserSound()}.
+     */
      public void requestLaserSound(){
         SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
         if (sound != null) {
@@ -180,6 +210,10 @@ public class DomainRequester implements InteractionsRequest {
         }
      }
      
+     /**
+     * Request siren sound from
+     * {@link domain.sound.SoundPlayer#playLaserChargeSound()}.
+     */
      public void requestLaserChargeSound() {
          SoundPlayer sound = ((SoundManager) group.getManager(SoundManager.class)).getSoundPlayer();
         if (sound != null) {

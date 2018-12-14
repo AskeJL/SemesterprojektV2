@@ -41,6 +41,7 @@ public class ControlLaser extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         if (wave.getAmountOfLaserShots() > 0) {
+            requester.requestLaserSound();
             wave.setAmountOfLaserShots(wave.getAmountOfLaserShots() - 1);
             reader.storeln("Interacting with laser control");
             systemsManager.setSmallFragmentDestroyed(true);
