@@ -62,7 +62,7 @@ public class Show extends Command {
                 reader.storeln("Life: " + resourcesManager.getLife().getValue());
                 break;
             case "score":
-                reader.storeln("Score: " + systems.getScore());
+                reader.storeln("Score: " + systems.getScore().getValue());
                 break;
         }
     }

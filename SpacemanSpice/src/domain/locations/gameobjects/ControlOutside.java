@@ -16,13 +16,13 @@ import domain.tutorial.TutorialManager;
  * @see GameObject
  * @see domain.locations.functional.Outside
  */
-public class ControllerOutside extends GameObject {
+public class ControlOutside extends GameObject {
     
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public ControllerOutside(ResourcesManager resources) {
+    public ControlOutside(ResourcesManager resources) {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
@@ -43,7 +43,7 @@ public class ControllerOutside extends GameObject {
         
         if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
             ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setDamageRepairActivated(true);
-        } 
+        }
     }
 
     @Override

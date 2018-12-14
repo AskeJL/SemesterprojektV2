@@ -15,7 +15,7 @@ public class ExitNorth extends GameObject {
 
     @Override
     public void interact() {
-        reader.storeln("Interacting with north door.");
+        
     }
 
 }

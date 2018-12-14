@@ -189,7 +189,7 @@ public class TileManager extends Manager implements GameUpdateable {
         this.activatorScanning03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         this.activatorScanning04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         
-        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControlRepair(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
+        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControlOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
 
         this.controllerSteering = new Tile('<', false, GameObjectType.CONTROL, new ControlSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
         this.activatorSteering = new Tile('>', false, GameObjectType.CONTROL, new ActivatorSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);

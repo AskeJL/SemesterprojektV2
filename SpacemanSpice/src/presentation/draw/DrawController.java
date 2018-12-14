@@ -37,7 +37,6 @@ public class DrawController extends GameElement {
     private String currentLocationName = "Personal";
     private Location currentMapLocation;
     private String textMapLocation;
-    private String textMap;
     
     private Player player;
     private int playerXLocation;
