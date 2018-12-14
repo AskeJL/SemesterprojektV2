@@ -40,22 +40,19 @@ public class ControlScanning extends GameObject {
         requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         Wave wave = systemsManager.getWave();
-        if ((wave.getSensor1currentValue() == wave.getSensor1MaxValue())
+        if(((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == false) {
+            if ((wave.getSensor1currentValue() == wave.getSensor1MaxValue())
                 && (wave.getSensor2currentValue() == wave.getSensor2MaxValue())
                 && (wave.getSensor3currentValue() == wave.getSensor3MaxValue())
                 && (wave.getSensor4currentValue() == wave.getSensor4MaxValue())) {
 
-            reader.storeln("You interact with the scanningstation\nThere are:\n"
+                reader.storeln("You interact with the scanningstation\nThere are:\n"
                     + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                     + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
                     + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
 
-            if (((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
-                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
-                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerCalibrated(true);
-            }
-        } else {
-            if (((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
+            
+            } else {
                 wave.setSensor1currentValue(0);
                 wave.setSensor2currentValue(0);
                 wave.setSensor3currentValue(0);
@@ -66,16 +63,31 @@ public class ControlScanning extends GameObject {
                 reader.storeln("Sensor 3 at: " + wave.getSensor3MaxValue());
                 reader.storeln("Sensor 4 at: " + wave.getSensor4MaxValue());
             }
+        } else {
+            if ((wave.getSensor1currentValue() == 0)
+                && (wave.getSensor2currentValue() == 0)
+                && (wave.getSensor3currentValue() == 1)
+                && (wave.getSensor4currentValue() == 1)) {
 
-            wave.setSensor1currentValue(0);
-            wave.setSensor2currentValue(0);
-            wave.setSensor3currentValue(0);
-            wave.setSensor4currentValue(0);
-            reader.storeln("Cannot scan at the moment, sensors need to be calibrated as such:");
-            reader.storeln("Sensor 1 at: " + wave.getSensor1MaxValue());
-            reader.storeln("Sensor 2 at: " + wave.getSensor2MaxValue());
-            reader.storeln("Sensor 3 at: " + wave.getSensor3MaxValue());
-            reader.storeln("Sensor 4 at: " + wave.getSensor4MaxValue());
+                reader.storeln("You interact with the scanningstation\nThere are:\n"
+                    + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
+                    + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
+                    + "    " + systemsManager.getWave().getLargeFragments() + " large fragments.\n");
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerCalibrated(true);
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+            
+            } else {
+                wave.setSensor1currentValue(0);
+                wave.setSensor2currentValue(0);
+                wave.setSensor3currentValue(0);
+                wave.setSensor4currentValue(0);
+                reader.storeln("Cannot scan at the moment, sensors need to be calibrated as such:");
+                reader.storeln("Sensor 1 at: " + wave.getSensor1MaxValue());
+                reader.storeln("Sensor 2 at: " + wave.getSensor2MaxValue());
+                reader.storeln("Sensor 3 at: " + 1);
+                reader.storeln("Sensor 4 at: " + 1);
+                ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
+            }
         }
     }
 
