@@ -1,15 +1,13 @@
-+-----------------------------------+
-| SAL153                            |
-| And no, I am not just saying that |
-| because I am directly connected   |
-| to the ship and it therefore also |
-| hurts me *if I could feel pain*.  |
-|                                   |
-| Why are you still here? Go on!    |
-| Training waits for no one.        |
-| Get to the steering room at the   |
-| front of the ship.                |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| And no, I am not just saying that because I am   |
+| directly connected to the ship and it therefore  |
+| also hurts me *if I could feel pain*.            |
+|                                                  |
+| Why are you still here? Gon on! Training waits   |
+| for no one. Get to the steering room at the      |
+| front of the ship.                               |
++--------------------------------------------------+
  Hint: To get to the steering location from the net location,
  go back through the door you came from and go up twice.
  Hint: Press the Space key to interact with objects.

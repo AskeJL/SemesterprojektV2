@@ -1,6 +1,5 @@
-+-----------------------------------+
-| SAL153                            |
-| Well someone did not do their job |
-| propperly.. Seeing as we were hit |
-| and all.                          |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| Well someone did not do their job propperly..    |
+| Seeing as we were hit and all.                   |
++--------------------------------------------------+

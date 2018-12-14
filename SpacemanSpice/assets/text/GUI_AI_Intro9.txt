@@ -1,18 +1,16 @@
-+-----------------------------------+
-| SAL153                            |
-| And before you ask: No, it is     |
-| not an abbreviation. It is just   |
-| a net. Nothing special about it.  |
-|                                   |
-| You may think "but why not just   |
-| shoot the medium debris with the  |
-| laser?" the answer is: let us not |
-| think too much about that.        |
-| Now, get to the net room and      |
-| catch some fish! - I mean debris. |
-|                                   |
-| Did I mention that you will need  |
-| to repair the net first? No? Ok.  |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| And before you ask: No, it is not an             |
+| abbreviation. It is just a net. Nothing special  |
+| about it.                                        |
+|                                                  |
+| You may think "But why not just shoot the medium |
+| debris with the laser?" the answer is: let us    |
+| not think too much about that. Now, get to the   |
+| net room and catch some fish! - I mean debris.   |
+|                                                  |
+| Did I mention that you will need to repair the   |
+| net first? No? Ok.                               |
++--------------------------------------------------+
  Hint: To get to the net location from the laser location, 
  head left once and then down once.

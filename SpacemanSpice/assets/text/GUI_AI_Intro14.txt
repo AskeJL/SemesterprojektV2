@@ -1,7 +1,6 @@
-+-----------------------------------+
-| SAL153                            |
-| Nothing to repair? Well I am a    |
-| flawless AI after all!            |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| Nothing to repair?                               |
+| Well I am a flawless AI after all!               |
++--------------------------------------------------+
  Type continue or press C to continue.
- 

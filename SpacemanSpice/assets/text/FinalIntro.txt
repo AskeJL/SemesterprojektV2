@@ -14,5 +14,4 @@
 | will have to use everything I have learned in    |
 | order to stay alive until they get here.         |
 +--------------------------------------------------+
- Type continue to start the game (or press C if you are running the
- GUI version).
+ Type continue to start the game.
