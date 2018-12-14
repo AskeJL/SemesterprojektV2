@@ -1,15 +1,19 @@
-+-----------------------------------+
-| SAL153                            |
-| Looks like you somehow managed to |
-| forget to calibrate the scanner   |
-| before using it. Silly human.     |
-|                                   |
-| No matter. It is a rather simple  |
-| task to do: head to the           |
-| calibrator room to your right,    |
-| activate the calibrator and       |
-| reactivate the scanner.           |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| Looks like you somehow managed to forget to      |
+| calibrate the scanner before useing it. Silly    |
+| human.                                           |
+|                                                  |
+| No matter. It is a rather simple task to do:     |
+| When you interact with the scanner, you should   |
+| be given a sequence of numbers. You will need to |
+| put those numbers into the calibrators to the    |
+| right of here.                                   |
+| If you manage to enter the wrong number in a     |
+| calibrator, you can always reset them by         |
+| reactivating the scanner.                        |
+| When you are done, interact with the scanner.    |
++--------------------------------------------------+
  Hint: press the Esc key to exit the terminal.
  Hint: use the arrow keys to move.
  Hint: use the Space key to interact with objects and doors.  

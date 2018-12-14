@@ -1,13 +1,12 @@
-+-----------------------------------+
-| SAL153                            |
-| Alright. You managed to avoid     |
-| collision with something that was |
-| not there. Well done!             |
-|                                   |
-| The next thing you will need to   |
-| learn is how to repair the ship   |
-| in case you manange to get it     |
-| damaged. Repairing the ship will  |
-| be essential for your survival.   |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| Alright. You managed to avoid collision with     |
+| something that was not there. Well done!         |
+|                                                  |
+| The next thing you will need to learn is how to  |
+| repair the ship in case you manage to get it     |
+| damaged. Repairing the ship will be essential    |
+| for your survival.                               |
++--------------------------------------------------+
  Type continue or press C to continue.
+

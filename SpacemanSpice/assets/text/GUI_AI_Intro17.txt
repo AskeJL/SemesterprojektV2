@@ -1,13 +1,12 @@
-+-----------------------------------+
-| SAL153                            |
-| You did it! Your tank should now  |
-| be at max capacity.               |
-|                                   |
-| And with that, the mandatory      |
-| crash course on how to operate    |
-| the ship is complete.             |
-| You have now earned the status:   |
-| Not completely useless.           |
-| Well done!                        |
-+-----------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| You did it! Your tank should now be at max       |
+| capacity.                                        |
+|                                                  |
+| And with that, the mandatory crash course on how |
+| to operate the ship is complete.                 |
+| You have now earned the status:                  |
+| Not completely useless.                          |
+| Well done!                                       |
++--------------------------------------------------+
  Type continue or press C to continue.

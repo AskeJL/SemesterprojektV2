@@ -1,8 +1,7 @@
-+---------------------------------------+
-| SAL153                                |
-| ALERT! ALERT!                         |
-| It would seem a new wave of fragments |
-| is on its way!                        |
-|                                       |
-| Good luck, Spaceman Spice.            |
-+---------------------------------------+
++--------------------------------------------------+
+| SAL153                                           |
+| ALERT! ALERT!                                    |
+| It would seem a new wave of fragments in on its  |
+| way!                                             |
+| Good luck, Spaceman Spice.                       |
++--------------------------------------------------+
