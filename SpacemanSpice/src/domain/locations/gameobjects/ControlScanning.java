@@ -37,7 +37,6 @@ public class ControlScanning extends GameObject {
      */
     @Override
     public void interact() {
-        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         Wave wave = systemsManager.getWave();
         if(((TutorialManager) systemsManager.getManager(TutorialManager.class)).getTutorial() == false) {
@@ -45,7 +44,8 @@ public class ControlScanning extends GameObject {
                 && (wave.getSensor2currentValue() == wave.getSensor2MaxValue())
                 && (wave.getSensor3currentValue() == wave.getSensor3MaxValue())
                 && (wave.getSensor4currentValue() == wave.getSensor4MaxValue())) {
-
+                
+                requester.requestScanningConsoleSound();
                 reader.storeln("You interact with the scanningstation\nThere are:\n"
                     + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                     + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
@@ -53,6 +53,7 @@ public class ControlScanning extends GameObject {
 
             
             } else {
+                requester.requestConsoleSound();
                 wave.setSensor1currentValue(0);
                 wave.setSensor2currentValue(0);
                 wave.setSensor3currentValue(0);
@@ -68,7 +69,8 @@ public class ControlScanning extends GameObject {
                 && (wave.getSensor2currentValue() == 0)
                 && (wave.getSensor3currentValue() == 1)
                 && (wave.getSensor4currentValue() == 1)) {
-
+                
+                requester.requestScanningConsoleSound();
                 reader.storeln("You interact with the scanningstation\nThere are:\n"
                     + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"
                     + "    " + systemsManager.getWave().getMediumFragments() + " medium fragments.\n"
@@ -77,6 +79,7 @@ public class ControlScanning extends GameObject {
                 ((TutorialManager) systemsManager.getManager(TutorialManager.class)).setScannerActivated(true);
             
             } else {
+                requester.requestConsoleSound();
                 wave.setSensor1currentValue(0);
                 wave.setSensor2currentValue(0);
                 wave.setSensor3currentValue(0);
