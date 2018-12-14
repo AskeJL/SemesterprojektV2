@@ -1,9 +1,12 @@
 package domain.interactions;
 
+import domain.DomainReader;
 import java.util.ArrayList;
 
 public abstract class Command {
    
+    private DomainReader reader = new DomainReader();
+    
     /**
      * Name of the Command. (Part of the constructor)
      */
@@ -114,7 +117,7 @@ public abstract class Command {
                 data += "    " + parameter + "\n";
             }
 
-            System.out.println("These are the parameters to the command " + this.name + ":\n" + data);
+            reader.storeln("These are the parameters to the command " + this.name + ":\n" + data);
         }
     }
 
@@ -129,7 +132,7 @@ public abstract class Command {
                 data += "    " + parameter + "\n";
             }
             
-            System.out.println("These are the available parameters to the command " + this.name + ":\n" + data);
+            reader.storeln("These are the available parameters to the command " + this.name + ":\n" + data);
         }
     }
 

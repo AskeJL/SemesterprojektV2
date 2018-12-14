@@ -3,6 +3,7 @@ package domain.interactions.commands;
 import domain.DomainReader;
 import domain.interactions.Command;
 import domain.resources.ResourcesManager;
+import domain.systems.SystemsManager;
 
 /**
  * This command is responsible for showing resources to the player. Upon
@@ -23,7 +24,6 @@ public class Show extends Command {
         super.addParameter("oxygen");
         super.addParameter("time");
         super.addParameter("life");
-        super.addParameter("map");
         super.addParameter("score");
         
         this.resourcesManager = resources;
@@ -49,6 +49,8 @@ public class Show extends Command {
      */
     @Override
     protected void run() {
+        SystemsManager systems = (SystemsManager) resourcesManager.getManager(SystemsManager.class);
+        
         switch (super.getCurrentParameter()) {
             case "oxygen":
                 reader.storeln("Oxygen: " + resourcesManager.getOxygen().getValue());
@@ -59,12 +61,8 @@ public class Show extends Command {
             case "life":
                 reader.storeln("Life: " + resourcesManager.getLife().getValue());
                 break;
-            case "map":
-                String data = "";
-                reader.storeln(data);
-                break;
             case "score":
-                reader.storeln("Score: ");
+                reader.storeln("Score: " + systems.getScore());
                 break;
         }
     }

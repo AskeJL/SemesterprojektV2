@@ -11,26 +11,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class ViewController_Settings extends ViewController implements Initializable {
 
     DomainRequester domain = new DomainRequester();
     @FXML
     private ToggleButton toggleSoundButton;
-    @FXML
-    private SplitMenuButton screenMenu;
-    @FXML
-    private MenuItem screenSmall;
-    @FXML
-    private MenuItem screenMedium;
-    @FXML
-    private MenuItem screenLarge;
     @FXML
     private SplitMenuButton difficultyMenu;
     @FXML
@@ -50,6 +44,14 @@ public class ViewController_Settings extends ViewController implements Initializ
     private ImageView earth;
     private ImageView earth_Debris_01;
     private ImageView earth_Debris_02;
+    @FXML
+    private VBox authors;
+    @FXML
+    private Label createdByLabel;
+    @FXML
+    private Label nameLabel1;
+    @FXML
+    private Label nameLabel2;
 
     /**
      * Initializes the controller class.
@@ -107,42 +109,36 @@ public class ViewController_Settings extends ViewController implements Initializ
 
     @FXML
     private void toogleSoundHandler(ActionEvent event) {
+        domain.requestClickSound();
         domain.requestMuteSounds();
     }
 
-    @FXML
-    private void screenSmallHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenMediumlHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenLargelHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void screenMenuHandler(ActionEvent event) {
-    }
 
     @FXML
     private void difficultyEasyHandler(ActionEvent event) {
+        domain.requestClickSound();
         domain.requestDifficultyEasy();
     }
 
     @FXML
     private void difficultyHardHandler(ActionEvent event) {
+        domain.requestClickSound();
         domain.requestDifficultyHard();
     }
 
     @FXML
     private void difficultyMenuHandler(ActionEvent event) {
+        domain.requestClickSound();
     }
 
     @FXML
     private void backButtonHandler(ActionEvent event) throws IOException {
-        new SoundManager().getSoundPlayer().playButtonClickSound();
+        domain.requestClickSound();
         guiManager.loadView(guiManager.getMenuPath());
+    }
+
+    @FXML
+    private void hover(MouseEvent event) {
+       domain.requestHoverSound();
     }
 }

@@ -183,15 +183,15 @@ public class TileManager extends Manager implements GameUpdateable {
         this.activatorOxygen02 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
         this.activatorOxygen03 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
 
-        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControlScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         this.activatorScanning01 = new Tile('[', false, GameObjectType.CONTROL, new ActivatorScanning1(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         this.activatorScanning02 = new Tile(']', false, GameObjectType.CONTROL, new ActivatorScanning2(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         this.activatorScanning03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         this.activatorScanning04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         
-        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
+        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControlRepair(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
 
-        this.controllerSteering = new Tile('<', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
+        this.controllerSteering = new Tile('<', false, GameObjectType.CONTROL, new ControlSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
         this.activatorSteering = new Tile('>', false, GameObjectType.CONTROL, new ActivatorSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
 
         this.northExit = new Tile('N', false, GameObjectType.NORTH, new ExitNorth(), this.exitNorthImage);

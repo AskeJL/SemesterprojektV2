@@ -281,6 +281,26 @@ public class DomainRequester implements InteractionsRequest {
             sound.mute();
         }
     }
+    
+    /**
+     * Request hover sound from {@link domain.sound.SoundPlayer#buttonHover}.
+     */
+    public void requestHoverSound() {
+        SoundPlayer sound = ((SoundManager)group.getManager(SoundManager.class)).getSoundPlayer();
+        if(sound != null) {
+            sound.playButtonHoverSound();
+        }
+    }
+    
+    /**
+     * Request click sound from {@link domain.sound.SoundPlayer#buttonClick}.
+     */
+    public void requestClickSound() {
+        SoundPlayer sound = ((SoundManager)group.getManager(SoundManager.class)).getSoundPlayer();
+        if(sound != null) {
+            sound.playButtonClickSound();
+        }
+    }
 
     /**
      * Request tile map from

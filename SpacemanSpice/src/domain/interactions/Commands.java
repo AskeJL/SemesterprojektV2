@@ -4,8 +4,6 @@ import domain.DomainReader;
 import domain.GameElement;
 import domain.GameElementGroup;
 import domain.interactions.commands.Inspect;
-import domain.interactions.commands.Go;
-import domain.interactions.commands.Interact;
 import domain.interactions.commands.Quit;
 import domain.interactions.commands.Clear;
 import domain.interactions.commands.Continue;
@@ -55,11 +53,9 @@ public class Commands extends GameElement {
         commandWords.add(new Show(resources));
         commandWords.add(new Start(systems, tutorial));
         commandWords.add(new Clear());
-        commandWords.add(new Go(locations));
         commandWords.add(new Quit());
         commandWords.add(new Inspect(locations));
         commandWords.add(new Help(interactions));
-        commandWords.add(new Interact(locations));
         commandWords.add(new Continue());
     }
 
@@ -172,7 +168,7 @@ public class Commands extends GameElement {
      *
      * @return A List of command words.
      */
-    List<Command> getCommandwords() {
+    public List<Command> getCommandWords() {
         return commandWords;
     }
 
@@ -182,7 +178,7 @@ public class Commands extends GameElement {
      *
      * @return
      */
-    String getLastCommandName() {
+    public String getLastCommandName() {
         return lastCommand.getName();
     }
 

@@ -40,8 +40,8 @@ public class Inspect extends Command {
     @Override
     protected void run() {
         String data = "";
-        for (String string : this.dataAccess.readData(AssetType.DESCRIPTION, locationsManager.getCurrentRoom().getName() + ".txt")) {
-            data += string;
+        for (String string : this.dataAccess.readData(AssetType.DESCRIPTION, locationsManager.getCurrentLocation().getName() + ".txt")) {
+            data += "\n" + string;
         }
         reader.storeln(data);
     }
