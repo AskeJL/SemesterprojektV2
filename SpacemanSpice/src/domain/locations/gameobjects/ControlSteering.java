@@ -48,7 +48,7 @@ public class ControlSteering extends GameObject {
         
         if(((TutorialManager)systemsManager.getManager(TutorialManager.class)).getTutorial() == true) {
             systemsManager.setLargeFragmentDestroyed(true);
-            requester.playMoveSound();
+            requester.requestMoveSound();
             reader.storeln("You have moved the ship");
             ((TutorialManager)systemsManager.getManager(TutorialManager.class)).setSteeringActivated(true);
         }
