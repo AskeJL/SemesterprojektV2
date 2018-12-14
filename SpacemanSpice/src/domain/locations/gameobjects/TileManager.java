@@ -253,6 +253,8 @@ public class TileManager extends Manager implements GameUpdateable {
         
         getTileMap().put(this.controllerSteering.getSymbol(), this.controllerSteering);
         getTileMap().put(this.activatorSteering.getSymbol(), this.activatorSteering);
+        
+        getTileMap().put(this.controllerOutside.getSymbol(), this.controllerOutside);
 
         getTileMap().put(this.northExit.getSymbol(), this.northExit);
         getTileMap().put(this.westExit.getSymbol(), this.westExit);
