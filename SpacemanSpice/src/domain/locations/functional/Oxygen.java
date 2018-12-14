@@ -4,8 +4,7 @@ import domain.locations.Exit;
 import domain.locations.ExitDirection;
 import domain.locations.Location;
 import domain.locations.Room;
-import domain.locations.gameobjects.OxygenControl;
-import domain.locations.nonfunctional.*;
+import domain.locations.gameobjects.ControlOxygen;
 import domain.resources.ResourcesManager;
 
 /**
@@ -22,14 +21,7 @@ public final class Oxygen extends Location {
         super("Oxygen", "Oxygen is refueled from here");
     }
 
-    @Override
-    public void init() {
-        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
-
-        createLocationCLI();
-    }
-
-    public Oxygen(Boolean gui){
+    public Oxygen(boolean gui){
                    super(
                    "Oxygen", 
                    "Oxygen is refueled from here.",
@@ -39,7 +31,25 @@ public final class Oxygen extends Location {
                    new Exit('W', "Mainhall01"), 
                    "oxygenMap.txt");
     }
+
+    /**
+     * Will call the {@link domain.systems.SystemsManager} in the main
+     * {@link domain.ManagerGroup}. Then proceeds to
+     * {@link #createLocationCLI()}
+     */
+    @Override
+    public void init() {
+        resourcesManager = (ResourcesManager) this.gameElementGroup.getManagerGroup().getManager(ResourcesManager.class);
+
+        createLocationCLI();
+    }
     
+    /**
+     * Creates a corridor {@link Room}, a refuel {@link Room} and a storage
+     * {@link Room}.
+     * <p>
+     * A {@link ControlOxygen} is added to the refuel {@link Room}.
+     */
     @Override
     protected void createLocationCLI() {
         /*The rooms in the oxygen location are created------------------------*/
@@ -54,7 +64,7 @@ public final class Oxygen extends Location {
 
         /*Oxygen room---------------------------------------------------------*/
         Room refuelRoom = new Room("Oxygen Refuel", "Here oxygen suply can be refilled");
-        refuelRoom.addGameObject(new OxygenControl(resourcesManager));
+        refuelRoom.addGameObject(new ControlOxygen(resourcesManager));
         super.addRoom(refuelRoom);
 
         /*Setting exits and entrances-----------------------------------------*/

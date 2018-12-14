@@ -14,8 +14,8 @@ import javafx.scene.image.Image;
  * This is primarily used by the
  * {@link ReadController#getData(data.AssetType, java.lang.String) ReadController.getData}
  * method.
- * 
- * @see Read#readTextFile() 
+ *
+ * @see Read#readTextFile()
  */
 class Read {
 
@@ -25,7 +25,7 @@ class Read {
      * @see Read(String, String)
      */
     private final File file;
-    
+
     /**
      * Creates a file upon instantiation. The parameters are called from the
      * controller in the
@@ -61,7 +61,13 @@ class Read {
         }
         return data;
     }
-    
+
+    /**
+     * Will read the {@link Read#file file} assigned to the class - uses the
+     * Scanner to read an image and store it in an Image object.
+     *
+     * @return An Image object.
+     */
     Image readImageFile() {
         return new Image(file.toURI().toString());
     }

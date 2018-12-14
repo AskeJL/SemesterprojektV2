@@ -10,283 +10,278 @@ import java.util.HashMap;
 import javafx.scene.image.Image;
 
 /**
- * Tile manager class,
- * extends Manager,
- * implements GameUpdateable
- * 
+ * The TileManager manages all the tiles that are created and updated throughout
+ * the game.
+ *
  */
-public class TileManager extends Manager implements GameUpdateable{
-    
-    private final HashMap <Character, Tile> tileMap = new HashMap<>();
-    
-    private Tile floor01;
-    private final String FLOOR_01_FILE_PATH = "assets/pictures//floors/floor_01.png";
-    private final Image FLOOR_01_IMAGE = new Image(new File(FLOOR_01_FILE_PATH).toURI().toString());
-    private Tile floor02;
-    private final String FLOOR_02_FILE_PATH = "assets/pictures/floors/floor_02.png";
-    private final Image FLOOR_02_IMAGE = new Image(new File(FLOOR_02_FILE_PATH).toURI().toString());
-    private Tile floor03;
-    private final String FLOOR_03_FILE_PATH = "assets/pictures/floors/floor_03.png";
-    private final Image FLOOR_03_IMAGE = new Image(new File(FLOOR_03_FILE_PATH).toURI().toString());
-    private Tile floor04;
-    private final String FLOOR_04_FILE_PATH = "assets/pictures/floors/floor_04.png";
-    private final Image FLOOR_04_IMAGE = new Image(new File(FLOOR_04_FILE_PATH).toURI().toString());
-    private Tile floor05;
-    private final String FLOOR_05_FILE_PATH = "assets/pictures/floors/floor_05.png";
-    private final Image FLOOR_05_IMAGE = new Image(new File(FLOOR_05_FILE_PATH).toURI().toString());
-    private Tile floor06;
-    private final String FLOOR_06_FILE_PATH = "assets/pictures/floors/floor_06.png";
-    private final Image FLOOR_06_IMAGE = new Image(new File(FLOOR_06_FILE_PATH).toURI().toString());
-    private Tile floor07;
-    private final String FLOOR_07_FILE_PATH = "assets/pictures/floors/floor_07.png";
-    private final Image FLOOR_07_IMAGE = new Image(new File(FLOOR_07_FILE_PATH).toURI().toString());
-    private Tile floor08;
-    private final String FLOOR_08_FILE_PATH = "assets/pictures/floors/floor_08.png";
-    private final Image FLOOR_08_IMAGE = new Image(new File(FLOOR_08_FILE_PATH).toURI().toString());
-    private Tile floor09;
-    private final String FLOOR_09_FILE_PATH = "assets/pictures/floors/floor_09.png";
-    private final Image FLOOR_09_IMAGE = new Image(new File(FLOOR_09_FILE_PATH).toURI().toString());
-    private Tile floor10;
-    private final String FLOOR_10_FILE_PATH = "assets/pictures/floors/floor_10.png";
-    private final Image FLOOR_10_IMAGE = new Image(new File(FLOOR_10_FILE_PATH).toURI().toString());
-    
-    
-    private Tile wall01;
-    private final String WALL_01_FILE_PATH = "assets/pictures/walls/wall_01.png";
-    private final Image WALL_01_IMAGE = new Image(new File(WALL_01_FILE_PATH).toURI().toString());
-    private Tile wall02;
-    private final String WALL_02_FILE_PATH = "assets/pictures/walls/wall_02.png";
-    private final Image WALL_02_IMAGE = new Image(new File(WALL_02_FILE_PATH).toURI().toString());
+public class TileManager extends Manager implements GameUpdateable {
 
-    private Tile decoration01;
-    private final String DECORATION_01_FILE_PATH = "assets/pictures/decorations/decoration_01.png";
-    private final Image DECORATION_01_IMAGE = new Image(new File(DECORATION_01_FILE_PATH).toURI().toString());
-    private Tile decoration02;
-    private final String DECORATION_02_FILE_PATH = "assets/pictures/decorations/decoration_02.png";
-    private final Image DECORATION_02_IMAGE = new Image(new File(DECORATION_02_FILE_PATH).toURI().toString());
-    private Tile decoration03;
-    private final String DECORATION_03_FILE_PATH = "assets/pictures/decorations/decoration_03.png";
-    private final Image DECORATION_03_IMAGE = new Image(new File(DECORATION_03_FILE_PATH).toURI().toString());
-    private Tile decoration04;
-    private final String DECORATION_04_FILE_PATH = "assets/pictures/decorations/decoration_04.png";
-    private final Image DECORATION_04_IMAGE = new Image(new File(DECORATION_04_FILE_PATH).toURI().toString());
-    private Tile decoration05;
-    private final String DECORATION_05_FILE_PATH = "assets/pictures/decorations/decoration_05.png";
-    private final Image DECORATION_05_IMAGE = new Image(new File(DECORATION_05_FILE_PATH).toURI().toString());
-    private Tile decoration06;
-    private final String DECORATION_06_FILE_PATH = "assets/pictures/decorations/decoration_06.png";
-    private final Image DECORATION_06_IMAGE = new Image(new File(DECORATION_06_FILE_PATH).toURI().toString());
-    private Tile decoration07;
-    private final String DECORATION_07_FILE_PATH = "assets/pictures/decorations/decoration_07.png";
-    private final Image DECORATION_07_IMAGE = new Image(new File(DECORATION_07_FILE_PATH).toURI().toString());
-    private Tile decoration08;
-    private final String DECORATION_08_FILE_PATH = "assets/pictures/decorations/decoration_08.png";
-    private final Image DECORATION_08_IMAGE = new Image(new File(DECORATION_08_FILE_PATH).toURI().toString());
-    private Tile decoration09;
-    private final String DECORATION_09_FILE_PATH = "assets/pictures/decorations/decoration_09.png";
-    private final Image DECORATION_09_IMAGE = new Image(new File(DECORATION_09_FILE_PATH).toURI().toString());
-    private Tile decoration10;
-    private final String DECORATION_10_FILE_PATH = "assets/pictures/decorations/decoration_10.png";
-    private final Image DECORATION_10_IMAGE = new Image(new File(DECORATION_10_FILE_PATH).toURI().toString());
-    private Tile decoration11;
-    private final String DECORATION_11_FILE_PATH = "assets/pictures/decorations/decoration_11.png";
-    private final Image DECORATION_11_IMAGE = new Image(new File(DECORATION_11_FILE_PATH).toURI().toString());
-    private Tile decoration12;
-    private final String DECORATION_12_FILE_PATH = "assets/pictures/decorations/decoration_12.png";
-    private final Image DECORATION_12_IMAGE = new Image(new File(DECORATION_12_FILE_PATH).toURI().toString());
-    private Tile decoration13;
-    private final String DECORATION_13_FILE_PATH = "assets/pictures/decorations/decoration_13.png";
-    private final Image DECORATION_13_IMAGE = new Image(new File(DECORATION_13_FILE_PATH).toURI().toString());
-    private Tile decoration14;
-    private final String DECORATION_14_FILE_PATH = "assets/pictures/decorations/decoration_14.png";
-    private final Image DECORATION_14_IMAGE = new Image(new File(DECORATION_14_FILE_PATH).toURI().toString());
+    private final HashMap<Character, Tile> tileMap = new HashMap<>();
+
+    private Tile floor01,
+            floor02,
+            floor03,
+            floor04,
+            floor05,
+            floor06,
+            floor07,
+            floor08,
+            floor09,
+            floor10;
+
+    private Tile wall01;
+    private Tile wall02;
+
+    private Tile decoration01,
+            decoration02,
+            decoration03,
+            decoration04,
+            decoration05,
+            decoration06,
+            decoration07,
+            decoration08,
+            decoration09,
+            decoration10,
+            decoration11,
+            decoration12,
+            decoration13,
+            decoration14;
+
+    private Tile controllerLaser,
+            activatorLaser,
+            controllerNet,
+            activatorNet;
+
+    private Tile controllerOxygen,
+            activatorOxygen01,
+            activatorOxygen02,
+            activatorOxygen03;
     
-    private Tile controllerLaser01;
-    private final String CONTROLLER_LASER_01_FILE_PATH = "assets/pictures/controllers/controllerLaser.png";
-    private final Image CONTROLLER_LASER_01_IMAGE = new Image(new File(CONTROLLER_LASER_01_FILE_PATH).toURI().toString());
-    private Tile controllerLaser02;
-    private final String CONTROLLER_LASER_02_FILE_PATH = "assets/pictures/controllers/controllerLaser.png";
-    private final Image CONTROLLER_LASER_02_IMAGE = new Image(new File(CONTROLLER_LASER_02_FILE_PATH).toURI().toString());
+    private Tile controllerScanning,
+            activatorScanning01,
+            activatorScanning02,
+            activatorScanning03,
+            activatorScanning04;
     
-    private Tile controllerNet01;
-    private final String CONTROLLER_NET_01_FILE_PATH = "assets/pictures/controllers/controllerNet.png";
-    private final Image CONTROLLER_NET_01_IMAGE = new Image(new File(CONTROLLER_NET_01_FILE_PATH).toURI().toString());
-    private Tile controllerNet02;
-    private final String CONTROLLER_NET_02_FILE_PATH = "assets/pictures/controllers/controllerNet.png";
-    private final Image CONTROLLER_NET_02_IMAGE = new Image(new File(CONTROLLER_NET_02_FILE_PATH).toURI().toString());
+    private Tile controllerSteering,
+            activatorSteering;
     
-    
-    private final String CONTROLLER_OXYGEN_FILE_PATH = "assets/pictures/controllers/controllerOxygen.png";
-    private final Image CONTROLLER_OXYGEN_IMAGE = new Image(new File(CONTROLLER_OXYGEN_FILE_PATH).toURI().toString());
-    private Tile controllerOxygen01;
-    private Tile controllerOxygen02;
-    private Tile controllerOxygen03;
-    private Tile controllerOxygen04;
-    
-    private Tile controllerScanning_01;
-    private final String CONTROLLER_SCANNING_01_FILE_PATH = "assets/pictures/controllers/controllerScanning.png";
-    private final Image CONTROLLER_SCANNING_01_IMAGE = new Image(new File(CONTROLLER_SCANNING_01_FILE_PATH).toURI().toString());
-    
-    private Tile controllerSteering_01;
-    private final String CONTROLLER_STEERING_01_FILE_PATH = "assets/pictures/controllers/controllerSteering.png";
-    private final Image CONTROLLER_STEERING_01_IMAGE = new Image(new File(CONTROLLER_STEERING_01_FILE_PATH).toURI().toString());
-    
-    private Tile controllerOutside_01;
-    private final String CONTROLLER_OUTSIDE_01_FILE_PATH = "assets/pictures/controllers/controllerOutside.png";
-    private final Image CONTROLLER_OUTSIDE_01_IMAGE = new Image(new File(CONTROLLER_OUTSIDE_01_FILE_PATH).toURI().toString());
-    
-    private Tile northExit;
-    private final String NORTH_EXIT_FILE_PATH = "assets/pictures/controllers/controllerExit.png";
-    private final Image NORTH_EXIT_IMAGE = new Image(new File(NORTH_EXIT_FILE_PATH).toURI().toString());
-    private Tile westExit;
-    private final String WEST_EXIT_FILE_PATH = "assets/pictures/controllers/controllerExit.png";
-    private final Image WEST_EXIT_IMAGE = new Image(new File(WEST_EXIT_FILE_PATH).toURI().toString());
-    private Tile southExit;
-    private final String SOUTH_EXIT_FILE_PATH = "assets/pictures/controllers/controllerExit.png";
-    private final Image SOUTH_EXIT_IMAGE = new Image(new File(SOUTH_EXIT_FILE_PATH).toURI().toString());
-    private Tile eastExit;
-    private final String EAST_EXIT_FILE_PATH = "assets/pictures/controllers/controllerExit.png";
-    private final Image EAST_EXIT_IMAGE = new Image(new File(EAST_EXIT_FILE_PATH).toURI().toString());
-    
+    private Tile controllerOutside;
+
+    private Tile northExit,
+            westExit,
+            southExit,
+            eastExit;
+
     private Tile nothing;
-    
+
+    private final Image floor01Image = new Image(new File("assets/pictures//floors/floor_01.png").toURI().toString()),
+            floor02Image = new Image(new File("assets/pictures/floors/floor_02.png").toURI().toString()),
+            floor03Image = new Image(new File("assets/pictures/floors/floor_03.png").toURI().toString()),
+            floor04Image = new Image(new File("assets/pictures/floors/floor_04.png").toURI().toString()),
+            floor05Image = new Image(new File("assets/pictures/floors/floor_05.png").toURI().toString()),
+            floor06Image = new Image(new File("assets/pictures/floors/floor_06.png").toURI().toString()),
+            floor07Image = new Image(new File("assets/pictures/floors/floor_07.png").toURI().toString()),
+            floor08Image = new Image(new File("assets/pictures/floors/floor_08.png").toURI().toString()),
+            floor09Image = new Image(new File("assets/pictures/floors/floor_09.png").toURI().toString()),
+            floor10Image = new Image(new File("assets/pictures/floors/floor_10.png").toURI().toString());
+
+    private final Image wall01Image = new Image(new File("assets/pictures/walls/wall_01.png").toURI().toString());
+    private final Image wall02Image = new Image(new File("assets/pictures/walls/wall_02.png").toURI().toString());
+
+    private final Image decoration01Image = new Image(new File("assets/pictures/decorations/decoration_01.png").toURI().toString()),
+            decoration02Image = new Image(new File("assets/pictures/decorations/decoration_02.png").toURI().toString()),
+            decoration03Image = new Image(new File("assets/pictures/decorations/decoration_03.png").toURI().toString()),
+            decoration04Image = new Image(new File("assets/pictures/decorations/decoration_04.png").toURI().toString()),
+            decoration05Image = new Image(new File("assets/pictures/decorations/decoration_05.png").toURI().toString()),
+            decoration06Image = new Image(new File("assets/pictures/decorations/decoration_06.png").toURI().toString()),
+            decoration07Image = new Image(new File("assets/pictures/decorations/decoration_07.png").toURI().toString()),
+            decoration08Image = new Image(new File("assets/pictures/decorations/decoration_08.png").toURI().toString()),
+            decoration09Image = new Image(new File("assets/pictures/decorations/decoration_09.png").toURI().toString()),
+            decoration10Image = new Image(new File("assets/pictures/decorations/decoration_10.png").toURI().toString()),
+            decoration11Image = new Image(new File("assets/pictures/decorations/decoration_11.png").toURI().toString()),
+            decoration12Image = new Image(new File("assets/pictures/decorations/decoration_12.png").toURI().toString()),
+            decoration13Image = new Image(new File("assets/pictures/decorations/decoration_13.png").toURI().toString()),
+            decoration14Image = new Image(new File("assets/pictures/decorations/decoration_14.png").toURI().toString());
+
+    private final Image controllerLaserImage = new Image(new File("assets/pictures/controllers/controllerLaser.png").toURI().toString()),
+            controllerNetImage = new Image(new File("assets/pictures/controllers/controllerNet.png").toURI().toString()),
+            controllerOxygenImage = new Image(new File("assets/pictures/controllers/controllerOxygen.png").toURI().toString()),
+            controllerScanningImage = new Image(new File("assets/pictures/controllers/controllerScanning.png").toURI().toString()),
+            controllerSteeringImage = new Image(new File("assets/pictures/controllers/controllerSteering.png").toURI().toString()),
+            controllerOutsideImage = new Image(new File("assets/pictures/controllers/controllerOutside.png").toURI().toString());
+
+    private final Image exitNorthImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString()),
+            exitWestImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString()),
+            exitSouthImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString()),
+            exitEastImage = new Image(new File("assets/pictures/controllers/controllerExit.png").toURI().toString());
+
     private Player player;
-    
+
+    /**
+     * Initialize the TileManager and its {@link domain.GameElement}.
+     * <p>
+     * Will run {@link #createTiles()}, {@link #createTileMap()} and initialize
+     * the {@link Player}.
+     */
     @Override
-    public void init(){
+    public void init() {
         createTiles();
         createTileMap();
         player = new Player();
         super.init();
     }
-    
+
+    /**
+     * Update all the {@link domain.GameElement}s related to this
+     * {@link domain.Manager}.
+     */
     @Override
-    public void update(){
+    public void update() {
         super.update();
     }
-    
-    private void createTiles(){
+
+    private void createTiles() {
+
+        this.floor01 = new Tile('0', false, GameObjectType.DECORATION, null, this.floor01Image);
+        this.floor02 = new Tile('1', false, GameObjectType.DECORATION, null, this.floor02Image);
+        this.floor03 = new Tile('2', false, GameObjectType.DECORATION, null, this.floor03Image);
+        this.floor04 = new Tile('3', false, GameObjectType.DECORATION, null, this.floor04Image);
+        this.floor05 = new Tile('4', false, GameObjectType.DECORATION, null, this.floor05Image);
+        this.floor06 = new Tile('5', false, GameObjectType.DECORATION, null, this.floor06Image);
+        this.floor07 = new Tile('6', false, GameObjectType.DECORATION, null, this.floor07Image);
+        this.floor08 = new Tile('7', false, GameObjectType.DECORATION, null, this.floor08Image);
+        this.floor09 = new Tile('8', false, GameObjectType.DECORATION, null, this.floor09Image);
+        this.floor10 = new Tile('9', false, GameObjectType.DECORATION, null, this.floor10Image);
+
+        this.wall01 = new Tile('+', true, GameObjectType.DECORATION, null, this.wall01Image);
+        this.wall02 = new Tile('/', true, GameObjectType.DECORATION, null, this.wall02Image);
+
+        this.decoration01 = new Tile('a', true, GameObjectType.DECORATION, null, this.decoration01Image);
+        this.decoration02 = new Tile('b', true, GameObjectType.DECORATION, null, this.decoration02Image);
+        this.decoration03 = new Tile('c', true, GameObjectType.DECORATION, null, this.decoration03Image);
+        this.decoration04 = new Tile('d', true, GameObjectType.DECORATION, null, this.decoration04Image);
+        this.decoration05 = new Tile('e', true, GameObjectType.DECORATION, null, this.decoration05Image);
+        this.decoration06 = new Tile('f', true, GameObjectType.DECORATION, null, this.decoration06Image);
+        this.decoration07 = new Tile('g', true, GameObjectType.DECORATION, null, this.decoration07Image);
+        this.decoration08 = new Tile('h', true, GameObjectType.DECORATION, null, this.decoration08Image);
+        this.decoration09 = new Tile('i', false, GameObjectType.DECORATION, null, this.decoration09Image);
+        this.decoration10 = new Tile('j', true, GameObjectType.DECORATION, null, this.decoration10Image);
+        this.decoration11 = new Tile('k', true, GameObjectType.DECORATION, null, this.decoration11Image);
+        this.decoration12 = new Tile('l', true, GameObjectType.DECORATION, null, this.decoration12Image);
+        this.decoration13 = new Tile('m', true, GameObjectType.DECORATION, null, this.decoration13Image);
+        this.decoration14 = new Tile('n', false, GameObjectType.DECORATION, null, this.decoration14Image);
+
+        this.controllerLaser = new Tile('!', false, GameObjectType.CONTROL, new ControlLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerLaserImage);
+        this.activatorLaser = new Tile('|', false, GameObjectType.CONTROL, new ActivatorLaser(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerLaserImage);
+
+        this.controllerNet = new Tile('#', false, GameObjectType.CONTROL, new ControlNet(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerNetImage);
+        this.activatorNet = new Tile('%', false, GameObjectType.CONTROL, new ActivatorNet(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerNetImage);
+
+        this.controllerOxygen = new Tile(';', false, GameObjectType.CONTROL, new ControlOxygen(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen01 = new Tile(',', false, GameObjectType.CONTROL, new ActivatorOxygen1(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen02 = new Tile('"', false, GameObjectType.CONTROL, new ActivatorOxygen2(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+        this.activatorOxygen03 = new Tile('`', false, GameObjectType.CONTROL, new ActivatorOxygen3(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOxygenImage);
+
+        this.controllerScanning = new Tile('?', false, GameObjectType.CONTROL, new ControllerScanning(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning01 = new Tile('[', false, GameObjectType.CONTROL, new ActivatorScanning1(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning02 = new Tile(']', false, GameObjectType.CONTROL, new ActivatorScanning2(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning03 = new Tile('(', false, GameObjectType.CONTROL, new ActivatorScanning3(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
+        this.activatorScanning04 = new Tile(')', false, GameObjectType.CONTROL, new ActivatorScanning4(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerScanningImage);
         
-        this.floor01 = new Tile('0', false, GameObjectType.DECORATION, null, this.FLOOR_01_IMAGE);
-        this.floor02 = new Tile('1', false, GameObjectType.DECORATION, null, this.FLOOR_02_IMAGE);
-        this.floor03 = new Tile('2', false, GameObjectType.DECORATION, null, this.FLOOR_03_IMAGE);
-        this.floor04 = new Tile('3', false, GameObjectType.DECORATION, null, this.FLOOR_04_IMAGE);
-        this.floor05 = new Tile('4', false, GameObjectType.DECORATION, null, this.FLOOR_05_IMAGE);
-        this.floor06 = new Tile('5', false, GameObjectType.DECORATION, null, this.FLOOR_06_IMAGE);
-        this.floor07 = new Tile('6', false, GameObjectType.DECORATION, null, this.FLOOR_07_IMAGE);
-        this.floor08 = new Tile('7', false, GameObjectType.DECORATION, null, this.FLOOR_08_IMAGE);
-        this.floor09 = new Tile('8', false, GameObjectType.DECORATION, null, this.FLOOR_09_IMAGE);
-        this.floor10 = new Tile('9', false, GameObjectType.DECORATION, null, this.FLOOR_10_IMAGE);
-        
-        this.wall01 =  new Tile('+', true, GameObjectType.DECORATION, null, this.WALL_01_IMAGE);
-        this.wall02 =  new Tile('/', true, GameObjectType.DECORATION, null, this.WALL_02_IMAGE);
-        
-        this.decoration01 = new Tile('a', true, GameObjectType.DECORATION, null, this.DECORATION_01_IMAGE);
-        this.decoration02 = new Tile('b', true, GameObjectType.DECORATION, null, this.DECORATION_02_IMAGE);
-        this.decoration03 = new Tile('c', true, GameObjectType.DECORATION, null, this.DECORATION_03_IMAGE);
-        this.decoration04 = new Tile('d', true, GameObjectType.DECORATION, null, this.DECORATION_04_IMAGE);
-        this.decoration05 = new Tile('e', true, GameObjectType.DECORATION, null, this.DECORATION_05_IMAGE);
-        this.decoration06 = new Tile('f', true, GameObjectType.DECORATION, null, this.DECORATION_06_IMAGE);
-        this.decoration07 = new Tile('g', true, GameObjectType.DECORATION, null, this.DECORATION_07_IMAGE);
-        this.decoration08 = new Tile('h', true, GameObjectType.DECORATION, null, this.DECORATION_08_IMAGE);
-        this.decoration09 = new Tile('i', false, GameObjectType.DECORATION, null, this.DECORATION_09_IMAGE);
-        this.decoration10 = new Tile('j', true, GameObjectType.DECORATION, null, this.DECORATION_10_IMAGE);
-        this.decoration11 = new Tile('k', true, GameObjectType.DECORATION, null, this.DECORATION_11_IMAGE);
-        this.decoration12 = new Tile('l', true, GameObjectType.DECORATION, null, this.DECORATION_12_IMAGE);
-        this.decoration13 = new Tile('m', true, GameObjectType.DECORATION, null, this.DECORATION_13_IMAGE);
-        this.decoration14 = new Tile('n', false, GameObjectType.DECORATION, null, this.DECORATION_14_IMAGE);
-        
-        
-        this.controllerLaser01 = new Tile('!', false, GameObjectType.CONTROL, new LaserControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
-        this.controllerLaser02 = new Tile('|', false, GameObjectType.CONTROL, new LaserArmingSystem(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_LASER_01_IMAGE);
-        
-        this.controllerNet01 = new Tile('#', false, GameObjectType.CONTROL, new NetControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_01_IMAGE);
-        this.controllerNet02 = new Tile('%', false, GameObjectType.CONTROL, new NetRepair(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_NET_02_IMAGE);
-        
-        this.controllerOxygen01 = new Tile(';', false, GameObjectType.CONTROL, new OxygenControl(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen02 = new Tile(',', false, GameObjectType.CONTROL, new OxygenGenerator1(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen03 = new Tile('"', false, GameObjectType.CONTROL, new OxygenGenerator2(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-        this.controllerOxygen04 = new Tile('`', false, GameObjectType.CONTROL, new OxygenGenerator3(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OXYGEN_IMAGE);
-       
-        this.controllerScanning_01 = new Tile('?', false, GameObjectType.CONTROL, new ScanningControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_SCANNING_01_IMAGE);
-        this.controllerOutside_01 = new Tile('*', false, GameObjectType.CONTROL, new DamageRepair(((ResourcesManager)this.getManager(ResourcesManager.class))), this.CONTROLLER_OUTSIDE_01_IMAGE);
-        this.controllerSteering_01 = new Tile('^', false, GameObjectType.CONTROL, new SteeringControl(((SystemsManager)this.getManager(SystemsManager.class))), this.CONTROLLER_STEERING_01_IMAGE);
-      
-        this.northExit = new Tile('N', false, GameObjectType.NORTH, new NorthExit(), this.NORTH_EXIT_IMAGE);
-        this.westExit = new Tile('W', false, GameObjectType.WEST, new WestExit(), this.WEST_EXIT_IMAGE);
-        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new SouthExit(), this.SOUTH_EXIT_IMAGE);
-        this.eastExit = new Tile('E', false, GameObjectType.EAST, new EastExit(), this.EAST_EXIT_IMAGE);
-        
+        this.controllerOutside = new Tile('*', false, GameObjectType.CONTROL, new ControllerOutside(((ResourcesManager) this.getManager(ResourcesManager.class))), this.controllerOutsideImage);
+
+        this.controllerSteering = new Tile('<', false, GameObjectType.CONTROL, new ControllerSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
+        this.activatorSteering = new Tile('>', false, GameObjectType.CONTROL, new ActivatorSteering(((SystemsManager) this.getManager(SystemsManager.class))), this.controllerSteeringImage);
+
+        this.northExit = new Tile('N', false, GameObjectType.NORTH, new ExitNorth(), this.exitNorthImage);
+        this.westExit = new Tile('W', false, GameObjectType.WEST, new ExitWest(), this.exitWestImage);
+        this.southExit = new Tile('S', false, GameObjectType.SOUTH, new ExitSouth(), this.exitSouthImage);
+        this.eastExit = new Tile('E', false, GameObjectType.EAST, new ExitEast(), this.exitEastImage);
+
         this.nothing = new Tile('.', true, GameObjectType.DECORATION, null, null);
     }
-    private void createTileMap(){
+
+    private void createTileMap() {
+
+        getTileMap().put(this.floor01.getSymbol(), this.floor01);
+        getTileMap().put(this.floor02.getSymbol(), this.floor02);
+        getTileMap().put(this.floor03.getSymbol(), this.floor03);
+        getTileMap().put(this.floor04.getSymbol(), this.floor04);
+        getTileMap().put(this.floor05.getSymbol(), this.floor05);
+        getTileMap().put(this.floor06.getSymbol(), this.floor06);
+        getTileMap().put(this.floor07.getSymbol(), this.floor07);
+        getTileMap().put(this.floor08.getSymbol(), this.floor08);
+        getTileMap().put(this.floor09.getSymbol(), this.floor09);
+        getTileMap().put(this.floor10.getSymbol(), this.floor10);
+
+        getTileMap().put(this.wall01.getSymbol(), this.wall01);
+        getTileMap().put(this.wall02.getSymbol(), this.wall02);
+
+        getTileMap().put(this.decoration01.getSymbol(), this.decoration01);
+        getTileMap().put(this.decoration02.getSymbol(), this.decoration02);
+        getTileMap().put(this.decoration03.getSymbol(), this.decoration03);
+        getTileMap().put(this.decoration04.getSymbol(), this.decoration04);
+        getTileMap().put(this.decoration05.getSymbol(), this.decoration05);
+        getTileMap().put(this.decoration06.getSymbol(), this.decoration06);
+        getTileMap().put(this.decoration07.getSymbol(), this.decoration07);
+        getTileMap().put(this.decoration08.getSymbol(), this.decoration08);
+        getTileMap().put(this.decoration09.getSymbol(), this.decoration09);
+        getTileMap().put(this.decoration10.getSymbol(), this.decoration10);
+        getTileMap().put(this.decoration11.getSymbol(), this.decoration11);
+        getTileMap().put(this.decoration12.getSymbol(), this.decoration12);
+        getTileMap().put(this.decoration13.getSymbol(), this.decoration13);
+        getTileMap().put(this.decoration14.getSymbol(), this.decoration14);
+
+        getTileMap().put(this.controllerLaser.getSymbol(), this.controllerLaser);
+        getTileMap().put(this.activatorLaser.getSymbol(), this.activatorLaser);
+
+        getTileMap().put(this.controllerNet.getSymbol(), this.controllerNet);
+        getTileMap().put(this.activatorNet.getSymbol(), this.activatorNet);
+
+        getTileMap().put(this.controllerOxygen.getSymbol(), this.controllerOxygen);
+        getTileMap().put(this.activatorOxygen01.getSymbol(), this.activatorOxygen01);
+        getTileMap().put(this.activatorOxygen02.getSymbol(), this.activatorOxygen02);
+        getTileMap().put(this.activatorOxygen03.getSymbol(), this.activatorOxygen03);
+
+        getTileMap().put(this.controllerScanning.getSymbol(), this.controllerScanning);
+        getTileMap().put(this.activatorScanning01.getSymbol(), this.activatorScanning01);
+        getTileMap().put(this.activatorScanning02.getSymbol(), this.activatorScanning02);
+        getTileMap().put(this.activatorScanning03.getSymbol(), this.activatorScanning03);
+        getTileMap().put(this.activatorScanning04.getSymbol(), this.activatorScanning04);
         
-        getTileMap().put(this.floor01.getSYMBOL(), this.floor01);
-        getTileMap().put(this.floor02.getSYMBOL(), this.floor02);
-        getTileMap().put(this.floor03.getSYMBOL(), this.floor03);
-        getTileMap().put(this.floor04.getSYMBOL(), this.floor04);
-        getTileMap().put(this.floor05.getSYMBOL(), this.floor05);
-        getTileMap().put(this.floor06.getSYMBOL(), this.floor06);
-        getTileMap().put(this.floor07.getSYMBOL(), this.floor07);
-        getTileMap().put(this.floor08.getSYMBOL(), this.floor08);
-        getTileMap().put(this.floor09.getSYMBOL(), this.floor09);
-        getTileMap().put(this.floor10.getSYMBOL(), this.floor10);
         
-        getTileMap().put(this.wall01.getSYMBOL(), this.wall01);
-        getTileMap().put(this.wall02.getSYMBOL(), this.wall02);
-        
-        getTileMap().put(this.decoration01.getSYMBOL(), this.decoration01);
-        getTileMap().put(this.decoration02.getSYMBOL(), this.decoration02);
-        getTileMap().put(this.decoration03.getSYMBOL(), this.decoration03);
-        getTileMap().put(this.decoration04.getSYMBOL(), this.decoration04);
-        getTileMap().put(this.decoration05.getSYMBOL(), this.decoration05);
-        getTileMap().put(this.decoration06.getSYMBOL(), this.decoration06);
-        getTileMap().put(this.decoration07.getSYMBOL(), this.decoration07);
-        getTileMap().put(this.decoration08.getSYMBOL(), this.decoration08);
-        getTileMap().put(this.decoration09.getSYMBOL(), this.decoration09);
-        getTileMap().put(this.decoration10.getSYMBOL(), this.decoration10);
-        getTileMap().put(this.decoration11.getSYMBOL(), this.decoration11);
-        getTileMap().put(this.decoration12.getSYMBOL(), this.decoration12);
-        getTileMap().put(this.decoration13.getSYMBOL(), this.decoration13);
-        getTileMap().put(this.decoration14.getSYMBOL(), this.decoration14);
-        
-        
-        getTileMap().put(this.controllerLaser01.getSYMBOL(), this.controllerLaser01);
-        getTileMap().put(this.controllerLaser02.getSYMBOL(), this.controllerLaser02);
-        
-        getTileMap().put(this.controllerNet01.getSYMBOL(), this.controllerNet01);
-        getTileMap().put(this.controllerNet02.getSYMBOL(), this.controllerNet02);
-        
-        getTileMap().put(this.controllerOxygen01.getSYMBOL(), this.controllerOxygen01);
-        getTileMap().put(this.controllerOxygen02.getSYMBOL(), this.controllerOxygen02);
-        getTileMap().put(this.controllerOxygen03.getSYMBOL(), this.controllerOxygen03);
-        getTileMap().put(this.controllerOxygen04.getSYMBOL(), this.controllerOxygen04);
-        
-        getTileMap().put(this.controllerScanning_01.getSYMBOL(), this.controllerScanning_01);
-        getTileMap().put(this.controllerOutside_01.getSYMBOL(), this.controllerOutside_01);
-        getTileMap().put(this.controllerSteering_01.getSYMBOL(), this.controllerSteering_01);
-        
-        getTileMap().put(this.northExit.getSYMBOL(), this.northExit);
-        getTileMap().put(this.westExit.getSYMBOL(), this.westExit);
-        getTileMap().put(this.southExit.getSYMBOL(), this.southExit);
-        getTileMap().put(this.eastExit.getSYMBOL(), this.eastExit);
-        
-        getTileMap().put(this.nothing.getSYMBOL(), this.nothing);
-        
-    }
-    
-    public void clearTileMap(){
-        getTileMap().clear();
+        getTileMap().put(this.controllerSteering.getSymbol(), this.controllerSteering);
+        getTileMap().put(this.activatorSteering.getSymbol(), this.activatorSteering);
+
+        getTileMap().put(this.northExit.getSymbol(), this.northExit);
+        getTileMap().put(this.westExit.getSymbol(), this.westExit);
+        getTileMap().put(this.southExit.getSymbol(), this.southExit);
+        getTileMap().put(this.eastExit.getSymbol(), this.eastExit);
+
+        getTileMap().put(this.nothing.getSymbol(), this.nothing);
+
     }
 
     /**
+     * Clear the tile map for all its content.
+     */
+    public void clearTileMap() {
+        this.tileMap.clear();
+    }
+
+    /**
+     * Get {@link #tileMap}.
+     * 
      * @return the tileMap
      */
-    public HashMap <Character, Tile> getTileMap() {
+    public HashMap<Character, Tile> getTileMap() {
         return tileMap;
     }
 
     /**
+     * Get {@link #player}.
+     * 
      * @return the player
      */
     public Player getPlayer() {

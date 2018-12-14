@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain.locations.gameobjects;
 
 import domain.DomainReader;
@@ -12,29 +7,38 @@ import domain.resources.Oxygen;
 import domain.resources.ResourcesManager;
 
 /**
+ * One of three activators for the {@link ControlOxygen}. This is paired with
+ * the {@link ControlOxygen} and its main job is to help activate the
+ * controller.
+ * <p>
+ * To activate it, the player simply has to interact with it. This will charge
+ * the {@link ControlLaser}.
  *
- * @author Lupo
+ * @see ControlOxygen
  */
-public class OxygenGenerator2 extends GameObject {
+public class ActivatorOxygen2 extends GameObject {
 
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
 
-    public OxygenGenerator2(ResourcesManager resources) {
+    public ActivatorOxygen2(ResourcesManager resources) {
         super("Oxygen generator.", "You can activate the oxygen generator from here.", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
 
+    /**
+     * Upon interaction, this activator activate one of three oxygen generator.
+     * Nothing will happen until all the generators are turned on.
+     */
     @Override
     public void interact() {
         Oxygen oxygen = resourcesManager.getOxygen();
         if (oxygen.isOxygenGenerator2On() == false) {
             oxygen.setOxygenGenerator2On(true);
             reader.storeln("You have activated the second oxygen generator , activate all and head to the oxygen tank to refill your oxygen levels.");
-        }
-        else{
+        } else {
             reader.storeln("Generator is on and functioning.");
         }
-        }
-
     }
+
+}

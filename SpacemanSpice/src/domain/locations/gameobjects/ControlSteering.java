@@ -15,13 +15,13 @@ import domain.tutorial.TutorialManager;
  * @see GameObject
  * @see domain.locations.functional.Laser
  */
-public class SteeringControl extends GameObject {
+public class ControlSteering extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public SteeringControl(SystemsManager systems) {
+    public ControlSteering(SystemsManager systems) {
         super("Steering Control", "The ship is flown from here.", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
@@ -42,7 +42,7 @@ public class SteeringControl extends GameObject {
         reader.storeln("Interacting with the steering controls.");
         if (systemsManager.getWave().getLargeFragments() != 0) {
             systemsManager.setLargeFragmentDestroyed(true);
-            requester.playMoveSound();
+            requester.requestMoveSound();
             reader.storeln("You have moved the ship out of danger");
         }
         

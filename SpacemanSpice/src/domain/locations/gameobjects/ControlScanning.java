@@ -15,13 +15,13 @@ import domain.tutorial.TutorialManager;
  * @see GameObject
  * @see domain.locations.functional.Scanning
  */
-public class ScanningControl extends GameObject {
+public class ControlScanning extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public ScanningControl(SystemsManager systems) {
+    public ControlScanning(SystemsManager systems) {
         super("Scanning control", "This is the scanningstation", GameObjectType.CONTROL, null);
         
         this.systemsManager = systems;
@@ -36,7 +36,7 @@ public class ScanningControl extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playConsoleSound();
+        requester.requestConsoleSound();
         reader.storeln("You interact with the scanning station.");
         reader.storeln("You interact with the scanningstation\nThere are:\n"
                 + "    " + systemsManager.getWave().getSmallFragments() + " small fragments.\n"

@@ -6,7 +6,6 @@ import domain.locations.GameObject;
 import domain.locations.GameObjectType;
 import domain.resources.Life;
 import domain.resources.ResourcesManager;
-import domain.tutorial.TutorialManager;
 
 /**
  * Used to repair the hull of the ship.
@@ -16,13 +15,13 @@ import domain.tutorial.TutorialManager;
  * @see GameObject
  * @see domain.locations.functional.Outside
  */
-public class DamageRepair extends GameObject {
+public class ControllerOutside extends GameObject {
     
     private final ResourcesManager resourcesManager;
     private final DomainReader reader = new DomainReader();
     private final DomainRequester requester = new DomainRequester();
     
-    public DamageRepair(ResourcesManager resources) {
+    public ControllerOutside(ResourcesManager resources) {
         super("Damage repair", "Here you can repair some of the ships damage", GameObjectType.CONTROL, null);
         this.resourcesManager = resources;
     }
@@ -36,14 +35,10 @@ public class DamageRepair extends GameObject {
      */
     @Override
     public void interact() {
-        requester.playRepairSound();
+        requester.requestRepairSound();
         reader.storeln("You begin repairing the ship.");
         Life life = resourcesManager.getLife();
         life.setRepair(true);
-        
-        if(((TutorialManager)resourcesManager.getManager(TutorialManager.class)).getTutorial() == true) {
-            ((TutorialManager)resourcesManager.getManager(TutorialManager.class)).setNetActivated(true);
-        }
     }
 
     @Override

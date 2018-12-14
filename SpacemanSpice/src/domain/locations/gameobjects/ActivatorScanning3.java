@@ -15,26 +15,20 @@ import domain.systems.Wave;
  *
  * @author Lupo
  */
-public class LaserArmingSystem extends GameObject {
+public class ActivatorScanning3 extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
 
-    public LaserArmingSystem(SystemsManager systems) {
-        super("Laser arming system.", "The laser is armed from here.", GameObjectType.CONTROL, null);
+    public ActivatorScanning3(SystemsManager systems) {
+        super("Scanning activator 3", "Calibrates the ships sensors in order to scan for fragments.", GameObjectType.CONTROL, null);
         this.systemsManager = systems;
     }
 
     @Override
     public void interact() {
         Wave wave = systemsManager.getWave();
-
-        if (wave.getAmountOfLaserShots() < 3) {
-            wave.setAmountOfLaserShots(wave.getMAX_AMOUNT_OF_LASER_SHOTS());
-            reader.storeln("Laser has now enough power for 3 shots.");
-        } else {
-            reader.storeln("Laser is fully charged!");
-        }
+        wave.setSensor3currentValue(wave.getSensor3currentValue() + 1);
+        reader.storeln("Sensor 3 is being calibrated, progress at: " + wave.getSensor3currentValue());
     }
-
 }

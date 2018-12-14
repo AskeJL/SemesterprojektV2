@@ -16,12 +16,12 @@ import domain.tutorial.TutorialManager;
  *
  * @author Lupo
  */
-public class NetRepair extends GameObject {
+public class ActivatorNet extends GameObject {
 
     private final SystemsManager systemsManager;
     private final DomainReader reader = new DomainReader();
     
-    public NetRepair(SystemsManager systems){
+    public ActivatorNet(SystemsManager systems){
         super("Net repair.", "You can repair your net here.", GameObjectType.CONTROL, null);
         this.systemsManager = systems;
     }

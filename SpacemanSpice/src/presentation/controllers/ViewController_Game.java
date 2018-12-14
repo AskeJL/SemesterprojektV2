@@ -94,7 +94,7 @@ public class ViewController_Game extends ViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         gc = canvasMap.getGraphicsContext2D();
 
-        background.setImage(new Data().readImage(AssetType.UI, "background-titled.png"));
+        background.setImage(new Data().readImage(AssetType.UI, "background.png"));
         waveImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
         timeImage.setImage(new Data().readImage(AssetType.UI, "metalPanel_numberDisplay.png"));
         terminalImage.setImage(new Data().readImage(AssetType.UI, "terminal.png"));
@@ -120,18 +120,18 @@ public class ViewController_Game extends ViewController implements Initializable
             initialized = true;
         }
 
-        requester.startSounds();
+        requester.requestStartSounds();
         progressBarLife.setProgress((double) reader.readLifeValue() / 100);
         if (reader.readLifeValue() <= 50 && reader.readLifeValue() > 0) {
-           requester.playSireenSound();
+           requester.requestSirenSound();
         } else if(reader.readLifeValue() == 0){
             guiManager.loadView(guiManager.getGameOverPath());
-            requester.stopSounds();
+            requester.requestStopSounds();
         }
         progressBarOxygen.setProgress((double) reader.readOxygenValue() / 100);
         if (reader.readOxygenValue() == 0) {
             guiManager.loadView(guiManager.getGameOverPath());
-            requester.stopSounds();
+            requester.requestStopSounds();
         }
         waveTimeValue.setText(Long.toString(reader.readRemainingTime()));
         waveNumberValue.setText(Integer.toString(reader.readNumberOfWaves()));
@@ -168,8 +168,8 @@ public class ViewController_Game extends ViewController implements Initializable
             terminalLampOn = true;
         }
 
-        requester.playGameMusic();
-        requester.playLocationSound();
+        requester.requestGameMusic();
+        requester.requestLocationSound();
 
         earth.rotateProperty().set(menu.getEarthCount());
         menu.setEarthCount(menu.getEarthCount() > 360 ? 0 : menu.getEarthCount() + 0.005);
