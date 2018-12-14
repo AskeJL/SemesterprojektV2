@@ -31,7 +31,7 @@ public class ActivatorScanning3 extends GameObject {
     public void interact() {
         Wave wave = systemsManager.getWave();
         requester.requestActivatorConsoleSound();
-        wave.setSensor3currentValue(wave.getSensor1currentValue() > wave.getNumberOfWaves() + 2 ? 1 : wave.getSensor3currentValue() + 1);
+        wave.setSensor3currentValue(wave.getSensor1currentValue() > wave.getNumberOfWaves() + 2 ? 0 : wave.getSensor3currentValue() + 1);
         reader.storeln("Sensor 3 is being calibrated, progress at: " + wave.getSensor3currentValue());
     }
 }
